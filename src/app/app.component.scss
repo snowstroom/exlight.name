@@ -1,4 +1,10 @@
+@import 'variables';
+
 .container {
   display: flex;
   flex-direction: column;
+}
+
+.active {
+  background: $active-element-bg;
 }

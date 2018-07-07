@@ -23,6 +23,9 @@
   .items-wrapper {
     display: flex;
     .menu-item {
+      &.active {
+        background: $active-element-bg;
+      }
       cursor: pointer;
       font-family: $elements-text;
       padding: 1em;
