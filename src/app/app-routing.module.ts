@@ -8,11 +8,13 @@ import { MusicComponent } from './pages/music/music.component';
 import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [ {
-    path: '*',
+    path: '',
     component: MainComponent
   }, {
     path: 'catalog',
-    component: CatalogComponent
+    component: CatalogComponent,
+    children: [
+    ]
   }, {
     path: 'video',
     component: VideoComponent

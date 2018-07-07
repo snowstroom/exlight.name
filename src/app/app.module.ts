@@ -13,6 +13,7 @@ import { VideoComponent } from './pages/video/video.component';
 import { MusicComponent } from './pages/music/music.component';
 import { PhotoComponent } from './pages/photo/photo.component';
 import { AboutComponent } from './pages/about/about.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AboutComponent } from './pages/about/about.component';
     VideoComponent,
     MusicComponent,
     PhotoComponent,
-    AboutComponent
+    AboutComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
