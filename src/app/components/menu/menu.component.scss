@@ -1,0 +1,40 @@
+@import '../../variables';
+
+.main-menu {
+  display: flex;
+  background: $blocks-color;
+  justify-content: space-between;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: $box-shadow;
+  .logo {
+    .name {
+      cursor: pointer;
+      padding: 1em;
+      font-family: $elements-text;
+      color: $element-text-color;
+      animation-name: animation-logo;
+      animation-duration: 8s;
+      animation-iteration-count: infinite;
+      text-transform: none;
+      font-size: 1.2em;
+    }
+  }
+  .items-wrapper {
+    display: flex;
+    .menu-item {
+      cursor: pointer;
+      font-family: $elements-text;
+      padding: 1em;
+      color: $element-text-color;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      text-shadow: $text-shadow;
+    }
+    .menu-item:hover {
+      animation-name: animation-items;
+      animation-duration: 8s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
