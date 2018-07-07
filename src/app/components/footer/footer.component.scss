@@ -1,0 +1,31 @@
+@import '../../variables';
+
+.footer {
+  box-shadow: $box-shadow;
+  font-family: $simple-text;
+  font-size: 1em;
+  padding: 1em;
+  color: $simple-text-color;
+  background: $blocks-color-bg;
+  .footer-menu {
+    display: flex;
+    justify-content: center;
+    font-family: $elements-text;
+    .footer-menu-items {
+      display: flex;
+      .footer-menu-item {
+        cursor: pointer;
+        margin: 0 0.5em;
+        text-transform: uppercase;
+        text-decoration: underline;
+      }
+    }
+  }
+  .info {
+    .link {
+      cursor: pointer;
+      font-family: $elements-text;
+      color: $links-text-color;
+    }
+  }
+}
