@@ -14,6 +14,10 @@ import { MusicComponent } from './pages/music/music.component';
 import { PhotoComponent } from './pages/photo/photo.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { ArticleComponent } from './components/article/article.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
+import { ArticlesComponent } from './components/articles/articles.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { SliderComponent } from './components/slider/slider.component';
     MusicComponent,
     PhotoComponent,
     AboutComponent,
-    SliderComponent
+    SliderComponent,
+    ArticleComponent,
+    PaginationComponent,
+    CatalogMenuComponent,
+    ArticlesComponent
   ],
   imports: [
     BrowserModule,
