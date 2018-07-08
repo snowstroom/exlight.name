@@ -4,7 +4,11 @@
   .pagination-wrapper {
     display: flex;
     .pagination-item {
-      padding: 1em;
+      &.active {
+        background: $active-element-bg;
+      }
+      cursor: pointer;
+      padding: .5em 1em;
       font-family: $elements-text;
       color: $element-text-color;
       text-shadow: $text-shadow;

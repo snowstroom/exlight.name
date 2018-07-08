@@ -1,9 +1,12 @@
 <div class="pagination">
-    <div class="pagination-wrapper">
-        <div class="pagination-item">Назад</div>
-        <div class="pagination-item active">1</div>
-        <div class="pagination-item">2</div>
-        <div class="pagination-item">3</div>
-        <div class="pagination-item">Далее</div>
-    </div>
+  <div class="pagination-wrapper">
+    <div class="pagination-item"
+      (click)="prevPage()">Назад</div>
+    <div class="pagination-item"
+      [ngClass]="{'active': item === activePage}"
+      *ngFor="let item of items"
+      (click)="toPage(item)">{{item}}</div>
+    <div class="pagination-item"
+      (click)="nextPage()">Далее</div>
+  </div>
 </div>
