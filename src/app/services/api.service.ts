@@ -36,12 +36,46 @@ export class ApiService {
   public getArticles(): Promise<ArticleApiData[]> {
     return Promise.resolve([{
       id: 1,
+      date: '22.05.2018',
       views: 2,
       category: 3,
       title: 'Какой то тайтл',
       discription: 'Какое то описание',
       article: 'Контент статьи',
-    }]);
+    }, {
+      id: 1,
+      date: '22.05.2018',
+      views: 2,
+      category: 3,
+      title: 'Какой то тайтл',
+      discription: 'Какое то описание',
+      article: 'Контент статьи',
+    }, {
+      id: 1,
+      date: '22.05.2018',
+      views: 2,
+      category: 3,
+      title: 'Какой то тайтл',
+      discription: 'Какое то описание',
+      article: 'Контент статьи',
+    }, {
+      id: 1,
+      date: '22.05.2018',
+      views: 2,
+      category: 3,
+      title: 'Какой то тайтл',
+      discription: 'Какое то описание',
+      article: 'Контент статьи',
+    }, {
+      id: 1,
+      date: '22.05.2018',
+      views: 2,
+      category: 3,
+      title: 'Какой то тайтл',
+      discription: 'Какое то описание',
+      article: 'Контент статьи',
+    }
+  ]);
   }
 
   public getTracks(): Promise<TrackApiData[]> {

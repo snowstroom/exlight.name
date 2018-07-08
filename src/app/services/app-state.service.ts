@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { TrackApiData } from '../interfaces/TrackApiData.interface';
 import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
+import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -12,9 +13,11 @@ export class AppStateService {
   private slider: SliderApiData[] = [];
   private traks: TrackApiData[] = [];
   private categories: CategoriesApiData[] = [];
+  private articles: ArticleApiData[] = [];
   private _slider$ = new BehaviorSubject(this.slider);
   private _traks$ = new BehaviorSubject(this.traks);
   private _categories$ = new BehaviorSubject(this.categories);
+  private _articles$ = new BehaviorSubject(this.articles);
   constructor(
     private apiService: ApiService
   ) {
@@ -33,6 +36,11 @@ export class AppStateService {
         this.categories = data;
         this._categories$.next(data);
       });
+    this.apiService.getArticles()
+      .then((data: ArticleApiData[]) => {
+          this.articles = data;
+          this._articles$.next(data);
+      }).catch(err => console.log(err));
   }
 
   get slider$(): Observable<SliderApiData[]> {
@@ -45,5 +53,9 @@ export class AppStateService {
 
   get categories$(): Observable<CategoriesApiData[]> {
     return this._categories$.asObservable();
+  }
+
+  get articles$(): Observable<ArticleApiData[]> {
+    return this._articles$.asObservable();
   }
 }

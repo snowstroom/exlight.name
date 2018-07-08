@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
 
 @Component({
   selector: 'app-articles',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
+  @Input() articles: ArticleApiData;
 
   constructor() { }
 

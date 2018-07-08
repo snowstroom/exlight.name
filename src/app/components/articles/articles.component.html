@@ -1,8 +1,8 @@
 <div class="articles">
-  <div class="article">
-      <div class="article-head">Поддержка</div>
-      <div class="article-date">2018-01-20</div>
-      <div class="article-discription">Привет дорогой друг, случайный знакомый или просто подписчик сообщества. Сегодня я обращаюсь к тебе.</div>
-      <div class="article-link">Читать подробнее...</div>
+  <div class="article" *ngFor="let art of articles">
+    <div class="article-head">{{art.title}}</div>
+    <div class="article-date">{{art.date}}</div>
+    <div class="article-discription">{{art.discription}}</div>
+    <div class="article-link" role="link">Читать подробнее...</div>
   </div>
 </div>
