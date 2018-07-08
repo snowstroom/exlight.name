@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleStateService } from '../../services/article-state.service';
-import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
+import { Article } from '../../interfaces/ArticleApiData.interface';
+import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
 
 @Component({
   selector: 'app-catalog',
@@ -9,13 +10,16 @@ import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
 })
 export class CatalogComponent implements OnInit {
   public page: number;
-  public articles: ArticleApiData[] = [];
+  public articles: Article[] = [];
+  public total = 0;
+  public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(
     private artStateSrv: ArticleStateService
   ) { }
 
   ngOnInit() {
     this.artStateSrv.articles$.subscribe(articles => this.articles = articles);
+    this.artStateSrv.totalarticles$.subscribe(total => this.total = total);
     this.artStateSrv.page$.subscribe(page => this.page = page);
   }
 

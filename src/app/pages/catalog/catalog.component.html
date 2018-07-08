@@ -2,7 +2,8 @@
   <div class="main">
     <app-catalog-menu></app-catalog-menu>
     <app-articles [articles]="articles"></app-articles>
-    <app-pagination [itemCount]="articles.length"
+    <app-pagination [itemCount]="total"
+      [onPage]="itemsOnPage"
       [activePage]="page"
       (selectPage)="setActivePage($event)"></app-pagination>
   </div>

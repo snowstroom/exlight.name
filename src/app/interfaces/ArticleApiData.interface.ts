@@ -1,4 +1,4 @@
-export interface ArticleApiData {
+export interface Article {
   id: number;
   title: string;
   date: string;
@@ -6,4 +6,10 @@ export interface ArticleApiData {
   article: string;
   views: number;
   category: number;
+}
+
+export interface ArticleApiData {
+  totalItems: number;
+  articles: Article[];
+  category?: number;
 }

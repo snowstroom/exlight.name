@@ -33,49 +33,51 @@ export class ApiService {
     }]);
   }
 
-  public getArticles(): Promise<ArticleApiData[]> {
-    return Promise.resolve([{
-      id: 1,
-      date: '22.05.2018',
-      views: 2,
-      category: 3,
-      title: 'Какой то тайтл',
-      discription: 'Какое то описание',
-      article: 'Контент статьи',
-    }, {
-      id: 1,
-      date: '22.05.2018',
-      views: 2,
-      category: 3,
-      title: 'Какой то тайтл',
-      discription: 'Какое то описание',
-      article: 'Контент статьи',
-    }, {
-      id: 1,
-      date: '22.05.2018',
-      views: 2,
-      category: 3,
-      title: 'Какой то тайтл',
-      discription: 'Какое то описание',
-      article: 'Контент статьи',
-    }, {
-      id: 1,
-      date: '22.05.2018',
-      views: 2,
-      category: 3,
-      title: 'Какой то тайтл',
-      discription: 'Какое то описание',
-      article: 'Контент статьи',
-    }, {
-      id: 1,
-      date: '22.05.2018',
-      views: 2,
-      category: 3,
-      title: 'Какой то тайтл',
-      discription: 'Какое то описание',
-      article: 'Контент статьи',
-    }
-  ]);
+  public getArticles(start: number, end: number, categoryId?: number): Promise<ArticleApiData> {
+    return Promise.resolve({
+      totalItems: 42,
+      articles: [{
+        id: 1,
+        date: '22.05.2018',
+        views: 2,
+        category: 3,
+        title: 'Какой то тайтл',
+        discription: 'Какое то описание',
+        article: 'Контент статьи',
+      }, {
+        id: 1,
+        date: '22.05.2018',
+        views: 2,
+        category: 3,
+        title: 'Какой то тайтл',
+        discription: 'Какое то описание',
+        article: 'Контент статьи',
+      }, {
+        id: 1,
+        date: '22.05.2018',
+        views: 2,
+        category: 3,
+        title: 'Какой то тайтл',
+        discription: 'Какое то описание',
+        article: 'Контент статьи',
+      }, {
+        id: 1,
+        date: '22.05.2018',
+        views: 2,
+        category: 3,
+        title: 'Какой то тайтл',
+        discription: 'Какое то описание',
+        article: 'Контент статьи',
+      }, {
+        id: 1,
+        date: '22.05.2018',
+        views: 2,
+        category: 3,
+        title: 'Какой то тайтл',
+        discription: 'Какое то описание',
+        article: 'Контент статьи',
+      }]
+    });
   }
 
   public getTracks(): Promise<TrackApiData[]> {
@@ -96,6 +98,6 @@ export class ApiService {
       }, {
         id: 4,
         name: 'Стихи'
-      } ]);
+      }]);
   }
 }
