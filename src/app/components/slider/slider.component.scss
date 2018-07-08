@@ -44,6 +44,9 @@
     .controls-wrapper {
       display: flex;
       .controll {
+        &.active {
+          background: $active-element-bg;
+        }
         cursor: pointer;
         font-family: $elements-text;
         font-size: 1.2em;

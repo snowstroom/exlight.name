@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
 import { Http } from '@angular/http';
-import { Promise } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +14,31 @@ export class ApiService {
 
   public getSliderData(): Promise<SliderApiData[]> {
     return Promise.resolve([{
+      id: 2,
       title: 'Какая то интересная новость',
       data: 'Какая то интересная информация об этой новости',
-      urlImg: 'slider_1.jpg',
-      id: 2
+      urlImg: '/assets/slider_1.jpg'
+    }, {
+      id: 2,
+      title: 'Какая то интересная новость 2',
+      data: 'Какая то интересная информация об этой новости',
+      urlImg: '/assets/slider_1.jpg'
+    }, {
+      id: 2,
+      title: 'Какая то интересная новость 3',
+      data: 'Какая то интересная информация об этой новости',
+      urlImg: '/assets/slider_1.jpg'
     }]);
   }
 
-  public getArticles(): Promise<ArticleApiData> {
-    return Promise.resolve([
-      {
-        id: 1,
-        title: 'Какой то тайтл',
-        discription: 'Какое то описание статьи',
-        articele: 'Какое то содержание статьи',
-        views: 21,
-        category: 3
-      }
-    ]);
+  public getArticles(): Promise<ArticleApiData[]> {
+    return Promise.resolve([{
+      id: 1,
+      views: 2,
+      category: 3,
+      title: 'Какой то тайтл',
+      discription: 'Какое то описание',
+      article: 'Контент статьи',
+    }]);
   }
 }

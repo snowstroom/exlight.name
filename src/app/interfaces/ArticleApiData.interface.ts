@@ -1,5 +1,5 @@
 export interface ArticleApiData {
-  id: string;
+  id: number;
   title: string;
   discription: string;
   article: string;
