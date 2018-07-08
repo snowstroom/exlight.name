@@ -53,6 +53,7 @@ export class ArticleStateService {
   }
 
   set curCat(catId: number) {
+    this.curPage = 1;
     this._category$.next(catId);
     this.currentCategory = catId;
   }

@@ -8,13 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PaginationComponent implements OnInit {
   @Input() itemCount: number;
   @Input() onPage: number;
+  @Input() activePage: number;
   @Output() selectPage = new EventEmitter<number>();
-  public activePage = 1;
   public items: number[] = [1, 2, 3, 4, 5, 6];
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.activePage);
   }
 
   public toPage(page: number) {

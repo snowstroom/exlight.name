@@ -8,6 +8,7 @@ import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
+  public page: number;
   public articles: ArticleApiData[] = [];
   constructor(
     private artStateSrv: ArticleStateService
@@ -15,6 +16,7 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit() {
     this.artStateSrv.articles$.subscribe(articles => this.articles = articles);
+    this.artStateSrv.page$.subscribe(page => this.page = page);
   }
 
   public setActivePage(page: number) {
