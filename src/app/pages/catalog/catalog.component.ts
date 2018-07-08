@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppStateService } from '../../services/app-state.service';
+import { ArticleStateService } from '../../services/article-state.service';
 import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
 
 @Component({
@@ -10,11 +10,15 @@ import { ArticleApiData } from '../../interfaces/ArticleApiData.interface';
 export class CatalogComponent implements OnInit {
   public articles: ArticleApiData[] = [];
   constructor(
-    private appStateSrv: AppStateService
+    private artStateSrv: ArticleStateService
   ) { }
 
   ngOnInit() {
-    this.appStateSrv.articles$.subscribe(articles => this.articles = articles);
+    this.artStateSrv.articles$.subscribe(articles => this.articles = articles);
+  }
+
+  public setActivePage(page: number) {
+    this.artStateSrv.curPage = page;
   }
 
 }
