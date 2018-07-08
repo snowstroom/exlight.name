@@ -66,6 +66,6 @@ export class SliderComponent implements OnInit {
   private autoNext() {
     this.timer = setInterval(() => {
       this.nextSlide();
-    }, 120000);
+    }, 12000);
   }
 }

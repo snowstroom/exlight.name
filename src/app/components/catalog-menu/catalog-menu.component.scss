@@ -1,0 +1,22 @@
+@import '../../variables';
+.main-head {
+  padding: 1em;
+  box-shadow: 0 0 1em;
+  text-shadow: $text-shadow;
+  font-family: $elements-text;
+  .head {
+    color: $element-text-color;
+    font-size: 1.5em;
+  }
+  .page {
+    color: $element-text-color;
+    padding: 0.5em 0;
+  }
+  .categories {
+    display: flex;
+    .category {
+      color: $element-text-color;
+      padding: 0.5em 1em;
+    }
+  }
+}

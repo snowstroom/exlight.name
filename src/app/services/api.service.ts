@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
+import { TrackApiData } from '../interfaces/TrackApiData.interface';
 import { Http } from '@angular/http';
 
 @Injectable({
@@ -40,5 +41,9 @@ export class ApiService {
       discription: 'Какое то описание',
       article: 'Контент статьи',
     }]);
+  }
+
+  public getTracks(): Promise<TrackApiData[]> {
+    return Promise.resolve([]);
   }
 }

@@ -1,0 +1,29 @@
+@import '../../variables';
+.articles {
+  height: calc(100% - 15em);
+  padding: 1em;
+  .article {
+    padding: 1em;
+    color: $element-text-color;
+  }
+  .article-head {
+    font-family: $elements-text;
+    padding: .5em 0;
+    font-size: 1.2em
+  }
+  .article-date {
+    font-family: $simple-text;
+    padding: .25em 0;
+  }
+  .article-discription {
+    margin-left: 1em;
+    font-family: $simple-text;
+    padding: .5em 0;
+  }
+  .article-link {
+    margin-left: 1em;
+    font-family: $elements-text;
+    padding: .5em 0;
+    color: $links-text-color;
+  }
+}
