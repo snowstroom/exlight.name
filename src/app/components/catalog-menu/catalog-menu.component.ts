@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-catalog-menu',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalog-menu.component.scss']
 })
 export class CatalogMenuComponent implements OnInit {
+  public selectCat: number = null;
+  public categories: CategoriesApiData[] = [];
 
-  constructor() { }
+  constructor(
+    private apiService: AppStateService
+  ) { }
 
   ngOnInit() {
+    this.apiService.categories$.subscribe(categories => this.categories = categories);
   }
 
+  public selectCategory(i: number) {
+    this.selectCat = i;
+  }
 }

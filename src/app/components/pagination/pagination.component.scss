@@ -1,0 +1,13 @@
+@import '../../variables';
+.pagination {
+  padding: 1em;
+  .pagination-wrapper {
+    display: flex;
+    .pagination-item {
+      padding: 1em;
+      font-family: $elements-text;
+      color: $element-text-color;
+      text-shadow: $text-shadow;
+    }
+  }
+}

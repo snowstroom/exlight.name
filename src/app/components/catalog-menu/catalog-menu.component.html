@@ -2,10 +2,12 @@
   <div class="head">Каталог</div>
   <div class="page">Страница: 1</div>
   <div class="categories">
-      <div class="category active">Все</div>
-      <div class="category">Музыка</div>
-      <div class="category">Блог</div>
-      <div class="category">Разработка</div>
-      <div class="category">Стихи</div>
+      <div class="category"
+        (click)="selectCategory(null)"
+        [ngClass]="{'active': selectCat === null}">Все</div>
+      <div class="category"
+        [ngClass]="{'active': selectCat === i}"
+        *ngFor="let cat of categories; let i = index"
+        (click)="selectCategory(i)">{{cat.name}}</div>
   </div>
 </div>

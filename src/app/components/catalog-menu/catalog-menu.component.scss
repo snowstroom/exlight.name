@@ -15,6 +15,10 @@
   .categories {
     display: flex;
     .category {
+      &.active {
+        background: $active-element-bg;
+      }
+      cursor: pointer;
       color: $element-text-color;
       padding: 0.5em 1em;
     }

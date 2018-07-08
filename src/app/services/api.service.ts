@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
 import { TrackApiData } from '../interfaces/TrackApiData.interface';
+import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
 import { Http } from '@angular/http';
 
 @Injectable({
@@ -45,5 +46,22 @@ export class ApiService {
 
   public getTracks(): Promise<TrackApiData[]> {
     return Promise.resolve([]);
+  }
+
+  public getCategoies(): Promise<CategoriesApiData[]> {
+    return Promise.resolve([
+      {
+        id: 1,
+        name: 'Музыка'
+      }, {
+        id: 2,
+        name: 'Блог'
+      }, {
+        id: 3,
+        name: 'Разработка'
+      }, {
+        id: 4,
+        name: 'Стихи'
+      } ]);
   }
 }
