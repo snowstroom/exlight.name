@@ -6,6 +6,7 @@ import { PhotoComponent } from './pages/photo/photo.component';
 import { VideoComponent } from './pages/video/video.component';
 import { MusicComponent } from './pages/music/music.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ArticleComponent } from './pages/article/article.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [ {
@@ -21,6 +22,9 @@ const routes: Routes = [ {
     data: {
       title: 'eXlight - Каталог статей'
     }
+  }, {
+    path: 'article/:artName',
+    component: ArticleComponent
   }, {
     path: 'video',
     component: VideoComponent,

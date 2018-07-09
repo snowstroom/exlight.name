@@ -3,6 +3,8 @@
     <div class="article-head">{{art.title}}</div>
     <div class="article-date">{{art.date}}</div>
     <div class="article-discription">{{art.discription}}</div>
-    <div class="article-link" role="link">Читать подробнее...</div>
+    <div class="article-link"
+      role="link"
+      [routerLink]="['/article', art.route]">Читать подробнее...</div>
   </div>
 </div>

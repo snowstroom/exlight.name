@@ -6,6 +6,7 @@ export interface Article {
   article: string;
   views: number;
   category: number;
+  route: string;
 }
 
 export interface ArticleApiData {

@@ -44,6 +44,7 @@ export class ApiService {
         title: 'Какой то тайтл',
         discription: 'Какое то описание',
         article: 'Контент статьи',
+        route: 'title-1'
       }, {
         id: 1,
         date: '22.05.2018',
@@ -52,6 +53,7 @@ export class ApiService {
         title: 'Какой то тайтл',
         discription: 'Какое то описание',
         article: 'Контент статьи',
+        route: 'title-2'
       }, {
         id: 1,
         date: '22.05.2018',
@@ -60,6 +62,7 @@ export class ApiService {
         title: 'Какой то тайтл',
         discription: 'Какое то описание',
         article: 'Контент статьи',
+        route: 'title-3'
       }, {
         id: 1,
         date: '22.05.2018',
@@ -68,6 +71,7 @@ export class ApiService {
         title: 'Какой то тайтл',
         discription: 'Какое то описание',
         article: 'Контент статьи',
+        route: 'title-4'
       }, {
         id: 1,
         date: '22.05.2018',
@@ -76,6 +80,7 @@ export class ApiService {
         title: 'Какой то тайтл',
         discription: 'Какое то описание',
         article: 'Контент статьи',
+        route: 'title-5'
       }]
     });
   }
