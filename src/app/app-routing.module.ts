@@ -6,27 +6,51 @@ import { PhotoComponent } from './pages/photo/photo.component';
 import { VideoComponent } from './pages/video/video.component';
 import { MusicComponent } from './pages/music/music.component';
 import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [ {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    data: {
+      title: 'eXlight - Главная'
+    }
   }, {
-    path: 'catalog',
+    path: 'catalog/:id/page/:id',
     component: CatalogComponent,
-    children: [
-    ]
+    pathMatch: 'prefix',
+    data: {
+      title: 'eXlight - Каталог статей'
+    }
   }, {
     path: 'video',
-    component: VideoComponent
+    component: VideoComponent,
+    data: {
+      title: 'eXlight - Видео'
+    }
   }, {
     path: 'photo',
-    component: PhotoComponent
+    component: PhotoComponent,
+    data: {
+      title: 'eXlight - Фото'
+    }
   }, {
     path: 'music',
-    component: MusicComponent
+    component: MusicComponent,
+    data: {
+      title: 'eXlight - Музыка'
+    }
   }, {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    data: {
+      title: 'eXlight - Об авторе'
+    }
+  }, {
+    path: '**',
+    component: NotFoundComponent,
+    data: {
+      title: 'eXlight - Не найдено'
+    }
   } ];
 
 @NgModule({

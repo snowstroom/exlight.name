@@ -19,6 +19,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ArticlesComponent } from './components/articles/articles.component';
     ArticleComponent,
     PaginationComponent,
     CatalogMenuComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

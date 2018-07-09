@@ -88,16 +88,20 @@ export class ApiService {
     return Promise.resolve([
       {
         id: 1,
-        name: 'Музыка'
+        name: 'Музыка',
+        route: 'music'
       }, {
         id: 2,
-        name: 'Блог'
+        name: 'Блог',
+        route: 'blog'
       }, {
         id: 3,
-        name: 'Разработка'
+        name: 'Разработка',
+        route: 'develop'
       }, {
         id: 4,
-        name: 'Стихи'
+        name: 'Стихи',
+        route: 'poems'
       }]);
   }
 }
