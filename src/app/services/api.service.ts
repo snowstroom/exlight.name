@@ -33,7 +33,7 @@ export class ApiService {
     }]);
   }
 
-  public getArticles(start: number, end: number, categoryId?: number): Promise<ArticleApiData> {
+  public getArticles(start: number, end: number, categoryId?: string): Promise<ArticleApiData> {
     return Promise.resolve({
       totalItems: 42,
       articles: [{

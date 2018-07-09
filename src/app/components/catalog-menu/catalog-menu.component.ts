@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface';
 import { ArticleStateService } from '../../services/article-state.service';
 
@@ -8,7 +8,8 @@ import { ArticleStateService } from '../../services/article-state.service';
   styleUrls: ['./catalog-menu.component.scss']
 })
 export class CatalogMenuComponent implements OnInit {
-  public selectCat: number = null;
+  @Output() selectedCat = new EventEmitter();
+  public selectCat: string = null;
   public categories: CategoriesApiData[] = [];
   public currentpage = 1;
 
@@ -21,8 +22,8 @@ export class CatalogMenuComponent implements OnInit {
     this.artStateSrv.page$.subscribe(page => this.currentpage = page);
   }
 
-  public selectCategory(i: number) {
-    this.selectCat = i;
-    this.artStateSrv.curCat = i;
+  public selectCategory(route: string) {
+    this.selectCat = route;
+    this.artStateSrv.curCat = route;
   }
 }

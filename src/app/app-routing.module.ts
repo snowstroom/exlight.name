@@ -15,7 +15,7 @@ const routes: Routes = [ {
       title: 'eXlight - Главная'
     }
   }, {
-    path: 'catalog/:id/page/:id',
+    path: 'catalog/:cat/page/:page',
     component: CatalogComponent,
     pathMatch: 'prefix',
     data: {

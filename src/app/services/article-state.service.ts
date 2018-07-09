@@ -13,11 +13,11 @@ export class ArticleStateService {
   private articles: Article[] = [];
   private categories: CategoriesApiData[] = [];
   private currentPage = 1;
-  private currentCategory: number = null;
-  private totalArticles: number = null;
+  private currentCategory = 'all';
+  private totalArticles = 0;
   private isLoad = false;
   private _categories$ = new BehaviorSubject(this.categories);
-  private _totalArticles$ = new BehaviorSubject(null);
+  private _totalArticles$ = new BehaviorSubject(this.totalArticles);
   private _page$ = new BehaviorSubject(this.currentPage);
   private _category$ = new BehaviorSubject(this.currentCategory);
   private _articles$ = new BehaviorSubject(this.articles);
@@ -50,7 +50,7 @@ export class ArticleStateService {
     return this._page$.asObservable();
   }
 
-  get category$(): Observable<number> {
+  get category$(): Observable<string> {
     return this._category$.asObservable();
   }
 
@@ -75,7 +75,7 @@ export class ArticleStateService {
       });
   }
 
-  set curCat(catId: number) {
+  set curCat(catId: string) {
     this.isLoad = true;
     this.apiSrv.getArticles(this.curPage, this.curPage * ITEMS_ON_PAGE_ART, this.curCat)
       .then(data => {
