@@ -24,12 +24,17 @@
       }
     }
     .content {
-
+      min-height: calc(100% - 12em);
     }
     .share {
+      color: $element-text-color;
+      font-size: 1.8em;
       .icon-wrapper {
         display: flex;
         justify-content: center;
+        .icon-item {
+          padding: .5em;
+        }
       }
     }
   }
