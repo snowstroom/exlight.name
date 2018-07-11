@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title, Meta } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -46,7 +46,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    Title,
+    Meta
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

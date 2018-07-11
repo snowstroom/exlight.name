@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleSrv: Title,
+    private metaSrv: Meta
+  ) { }
 
   ngOnInit() {
+    this.titleSrv.setTitle('eXligth - Страница не найдена');
   }
 
 }

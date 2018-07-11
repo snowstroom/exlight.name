@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ArticleStateService } from '../../services/article-state.service';
 import { Article } from '../../interfaces/ArticleApiData.interface';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-catalog',
@@ -17,10 +18,13 @@ export class CatalogComponent implements OnInit {
   public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(
     private artStateSrv: ArticleStateService,
-    private router: Router
+    private router: Router,
+    private titleSrv: Title,
+    private metaSrv: Meta
   ) { }
 
   ngOnInit() {
+    this.titleSrv.setTitle('eXlight - Каталог статей');
     this.artStateSrv.articles$.subscribe(articles => this.articles = articles);
     this.artStateSrv.totalarticles$.subscribe(total => this.total = total);
     this.artStateSrv.category$.subscribe(cat => {
