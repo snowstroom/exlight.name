@@ -7,6 +7,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
+  public currentpage: number;
 
   constructor(
     private titleSrv: Title,

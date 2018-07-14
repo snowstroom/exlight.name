@@ -7,6 +7,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
+  public currentpage: number;
 
   constructor(
     private titleSrv: Title,
