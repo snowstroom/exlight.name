@@ -3,6 +3,10 @@
     <app-catalog-menu [showMenu]="false"
     [catalogName]="'Каталог музыки'"
     [currentpage]="currentpage"></app-catalog-menu>
+    <app-pagination [itemCount]="30"
+      [onPage]="15"
+      [activePage]="1"
+      (selectPage)="setActivePage($event)"></app-pagination>
   </div>
   <div class="right"></div>
 </div>

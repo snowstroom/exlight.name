@@ -18,4 +18,8 @@ export class VideoComponent implements OnInit {
     this.titleSrv.setTitle('eXlight - Видео');
   }
 
+  public setActivePage(page: number): void {
+
+  }
+
 }

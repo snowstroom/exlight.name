@@ -3,6 +3,10 @@
     <app-catalog-menu [showMenu]="false"
     [catalogName]="'Видео каталог'"
     [currentpage]="currentpage"></app-catalog-menu>
+    <app-pagination [itemCount]="50"
+      [onPage]="10"
+      [activePage]="1"
+      (selectPage)="setActivePage($event)"></app-pagination>
   </div>
   <div class="right"></div>
 </div>

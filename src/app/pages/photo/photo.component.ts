@@ -18,4 +18,8 @@ export class PhotoComponent implements OnInit {
     this.titleSrv.setTitle('eXlight - Фотоальбом');
   }
 
+  public setActivePage(page: number): void {
+
+  }
+
 }

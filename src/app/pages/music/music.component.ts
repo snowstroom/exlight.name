@@ -18,4 +18,8 @@ export class MusicComponent implements OnInit {
     this.titleSrv.setTitle('eXligth - Музыка');
   }
 
+  public setActivePage(page: number): void {
+
+  }
+
 }
