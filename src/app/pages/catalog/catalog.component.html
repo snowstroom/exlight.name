@@ -1,6 +1,10 @@
 <div class="content-wrapper">
   <div class="main">
-    <app-catalog-menu></app-catalog-menu>
+    <app-catalog-menu [showMenu]="true"
+    [catalogName]="'Каталог статей'"
+    [categories]="categories"
+    [currentpage]="page"
+    (selectedCat)="selectedCatHandler($event)"></app-catalog-menu>
     <app-articles [articles]="articles"></app-articles>
     <app-pagination [itemCount]="total"
       [onPage]="itemsOnPage"

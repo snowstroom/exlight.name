@@ -7,6 +7,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./music.component.scss']
 })
 export class MusicComponent implements OnInit {
+  public currentpage: number;
 
   constructor(
     private titleSrv: Title,

@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface';
-import { ArticleStateService } from '../../services/article-state.service';
 
 @Component({
   selector: 'app-catalog-menu',
@@ -8,22 +7,17 @@ import { ArticleStateService } from '../../services/article-state.service';
   styleUrls: ['./catalog-menu.component.scss']
 })
 export class CatalogMenuComponent implements OnInit {
+  @Input() showMenu: boolean;
+  @Input() catalogName: string;
+  @Input() categories: CategoriesApiData[];
+  @Input() currentpage: number;
   @Output() selectedCat = new EventEmitter();
   public selectCat: string = null;
-  public categories: CategoriesApiData[] = [];
-  public currentpage = 1;
 
-  constructor(
-    private artStateSrv: ArticleStateService
-  ) { }
-
-  ngOnInit() {
-    this.artStateSrv.categories$.subscribe(categories => this.categories = categories);
-    this.artStateSrv.page$.subscribe(page => this.currentpage = page);
-  }
+  ngOnInit() { }
 
   public selectCategory(route: string) {
     this.selectCat = route;
-    this.artStateSrv.curCat = route;
+    this.selectedCat.emit(route);
   }
 }
