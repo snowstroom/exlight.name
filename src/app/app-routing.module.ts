@@ -11,50 +11,32 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [ {
     path: '',
-    component: MainComponent,
-    data: {
-      title: 'eXlight - Главная'
-    }
+    component: MainComponent
+  }, {
+    path: 'catalog',
+    redirectTo: 'catalog/all/page/1'
   }, {
     path: 'catalog/:cat/page/:page',
     component: CatalogComponent,
     pathMatch: 'prefix',
-    data: {
-      title: 'eXlight - Каталог статей'
-    }
   }, {
     path: 'article/:artName',
     component: ArticleComponent
   }, {
     path: 'video',
     component: VideoComponent,
-    data: {
-      title: 'eXlight - Видео'
-    }
   }, {
     path: 'photo',
     component: PhotoComponent,
-    data: {
-      title: 'eXlight - Фото'
-    }
   }, {
     path: 'music',
     component: MusicComponent,
-    data: {
-      title: 'eXlight - Музыка'
-    }
   }, {
     path: 'about',
     component: AboutComponent,
-    data: {
-      title: 'eXlight - Об авторе'
-    }
   }, {
     path: '**',
-    component: NotFoundComponent,
-    data: {
-      title: 'eXlight - Не найдено'
-    }
+    component: NotFoundComponent
   } ];
 
 @NgModule({
@@ -66,4 +48,5 @@ const routes: Routes = [ {
   ],
   declarations: []
 })
+
 export class AppRoutingModule { }
