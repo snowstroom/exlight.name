@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
 import { TrackApiData } from '../interfaces/TrackApiData.interface';
+import { MediaItem } from '../interfaces/MediaItem.interface';
 import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
 import { Http } from '@angular/http';
 
@@ -85,8 +86,20 @@ export class ApiService {
     });
   }
 
-  public getTracks(): Promise<TrackApiData[]> {
-    return Promise.resolve([]);
+  public getTracks(): Promise<MediaItem[]> {
+    return Promise.resolve([ {
+      type: 'music',
+      coverUrl: '',
+      title: '',
+      discription: '',
+      shows: 256
+    }, {
+      type: 'music',
+      coverUrl: '',
+      title: '',
+      discription: '',
+      shows: 256
+    } ]);
   }
 
   public getCategoies(): Promise<CategoriesApiData[]> {

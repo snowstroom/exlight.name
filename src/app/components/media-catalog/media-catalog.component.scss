@@ -1,0 +1,36 @@
+@import '../../variables';
+.media-item {
+  box-shadow: $box-shadow;
+  padding: 1em;
+  width: 200px;
+  height: 300px;
+  .cover{
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .media-info {
+    .media-info-head {
+      .media-title {
+
+      }
+      .icons {
+        .play {
+
+        }
+        .download {
+
+        }
+      }
+    }
+    .media-info-body {
+      .shows {
+
+      }
+      .media-discription {
+
+      }
+    }
+  }
+}

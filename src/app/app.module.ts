@@ -20,6 +20,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MediaCatalogComponent } from './components/media-catalog/media-catalog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     PaginationComponent,
     CatalogMenuComponent,
     ArticlesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MediaCatalogComponent
   ],
   imports: [
     BrowserModule,

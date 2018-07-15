@@ -3,6 +3,9 @@
     <app-catalog-menu [showMenu]="false"
     [catalogName]="'Каталог музыки'"
     [currentpage]="currentpage"></app-catalog-menu>
+    <div class="media-catalog" *ngFor="let mItem of mediaItems">
+        <app-media-catalog [mediaItem]="mItem"></app-media-catalog>
+    </div>
     <app-pagination [itemCount]="30"
       [onPage]="15"
       [activePage]="1"
