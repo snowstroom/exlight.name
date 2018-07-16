@@ -1,7 +1,8 @@
 @import '../../variables';
 .media-item {
+  background: #ffffff;
   box-shadow: $box-shadow;
-  padding: 1em;
+  margin: .5em;
   width: 200px;
   height: 300px;
   .cover{
@@ -11,11 +12,16 @@
     }
   }
   .media-info {
+    color: #000000;
+    font-family: $elements-text;
+    padding: 1em;
     .media-info-head {
+      display: flex;
       .media-title {
-
+        margin-right: 1em;
       }
       .icons {
+        display: flex;
         .play {
 
         }

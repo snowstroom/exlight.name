@@ -89,14 +89,14 @@ export class ApiService {
   public getTracks(): Promise<MediaItem[]> {
     return Promise.resolve([ {
       type: 'music',
-      coverUrl: '',
-      title: '',
-      discription: '',
+      coverUrl: '/assets/albom.jpg',
+      title: 'eXlight - По началу',
+      discription: 'Ля ля ля ля',
       shows: 256
     }, {
       type: 'music',
       coverUrl: '',
-      title: '',
+      title: 'eXlight - таблетка от скуки',
       discription: '',
       shows: 256
     } ]);
