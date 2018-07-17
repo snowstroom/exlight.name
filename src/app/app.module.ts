@@ -18,9 +18,10 @@ import { ArticleComponent } from './pages/article/article.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
-import { ArticlesComponent } from './components/articles/articles.component';
+import { ArticleItemComponent } from './components/article-item/article-item.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { MediaCatalogComponent } from './components/media-catalog/media-catalog.component';
+import { MusicItemComponent } from './components/music-item/music-item.component';
+import { PhotoItemComponent } from './components/photo-item/photo-item.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,10 @@ import { MediaCatalogComponent } from './components/media-catalog/media-catalog.
     ArticleComponent,
     PaginationComponent,
     CatalogMenuComponent,
-    ArticlesComponent,
+    ArticleItemComponent,
     NotFoundComponent,
-    MediaCatalogComponent
+    MusicItemComponent,
+    PhotoItemComponent
   ],
   imports: [
     BrowserModule,

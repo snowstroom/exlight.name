@@ -3,10 +3,10 @@ import { MediaItem } from '../../interfaces/MediaItem.interface';
 
 @Component({
   selector: 'app-media-catalog',
-  templateUrl: './media-catalog.component.html',
-  styleUrls: ['./media-catalog.component.scss']
+  templateUrl: './music-item.component.html',
+  styleUrls: ['./music-item.component.scss']
 })
-export class MediaCatalogComponent implements OnInit {
+export class MusicItemComponent implements OnInit {
   @Input() mediaItem: MediaItem;
   @Output() play = new EventEmitter();
   @Output() download = new EventEmitter();

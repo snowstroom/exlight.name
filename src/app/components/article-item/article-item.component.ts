@@ -3,10 +3,10 @@ import { Article } from '../../interfaces/ArticleApiData.interface';
 
 @Component({
   selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  templateUrl: './article-item.component.html',
+  styleUrls: ['./article-item.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticleItemComponent implements OnInit {
   @Input() articles: Article;
 
   constructor() { }
