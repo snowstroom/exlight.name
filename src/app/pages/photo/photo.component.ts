@@ -9,7 +9,7 @@ import { PhotoStateService } from '../../services/photo-state.service';
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
-  public photos: PhotoData;
+  public photos: PhotoData [];
   public currentpage: number;
 
   constructor(
@@ -20,6 +20,7 @@ export class PhotoComponent implements OnInit {
 
   ngOnInit() {
     this.titleSrv.setTitle('eXlight - Фотоальбом');
+    this.photoStateSrv.$photos.subscribe(photos => this.photos = photos);
   }
 
   public setActivePage(page: number): void {

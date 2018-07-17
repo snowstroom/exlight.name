@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SliderApiData } from '../interfaces/SliderApiData.interface';
 import { ArticleApiData } from '../interfaces/ArticleApiData.interface';
+import { PhotoData } from '../interfaces/PhotoData.interface';
 import { TrackApiData } from '../interfaces/TrackApiData.interface';
 import { MediaItem } from '../interfaces/MediaItem.interface';
 import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
@@ -121,5 +122,19 @@ export class ApiService {
         name: 'Стихи',
         route: 'poems'
       }]);
+  }
+
+  public getPhotos(): Promise<PhotoData[]> {
+    return Promise.resolve([ {
+        id: 1,
+        description: 'Самая расчудесная фотография',
+        url: 'assets/slider_1.jpg',
+        shows: 102
+      }, {
+        id: 1,
+        description: 'Самая расчудесная',
+        url: 'assets/slider_1.jpg',
+        shows: 102
+      } ]);
   }
 }
