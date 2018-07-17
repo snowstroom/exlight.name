@@ -1,0 +1,25 @@
+@import '../../variables';
+.photo-item {
+  background: #ffffff;
+  box-shadow: $box-shadow;
+  margin: .5em;
+  width: 200px;
+  height: 300px;
+  .photo {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .photo-info {
+    color: #000000;
+    font-family: $elements-text;
+    padding: 1em;
+    .photo-description {
+
+    }
+    .photo-shows {
+
+    }
+  }
+}

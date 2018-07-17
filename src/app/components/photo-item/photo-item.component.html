@@ -1,3 +1,13 @@
-<p>
-  photo-item works!
-</p>
+<div class="photo-item">
+  <div class="photo">
+    <img [src]="photo.url" alt="">
+  </div>
+  <div class="photo-info">
+    <div class="photo-discription">
+      {{photo.description}}
+    </div>
+    <div class="shows">
+      Просмотров: <span>{{photo.shows}}</span>
+    </div>
+  </div>
+</div>
