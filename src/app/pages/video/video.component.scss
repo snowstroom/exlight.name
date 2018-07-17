@@ -6,11 +6,11 @@
   .main {
     box-shadow: $box-shadow;
     background: $blocks-color-bg;
-    width: 75%;
+    width: calc(100% - 1em - 300px);
     margin-right: 1em;
   }
   .right {
-    width: calc(25% - 1em);
+    width: 300px;
     background: $blocks-color-bg;
     box-shadow: $box-shadow;
   }
