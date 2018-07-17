@@ -7,7 +7,7 @@ import { Article } from '../../interfaces/ArticleApiData.interface';
   styleUrls: ['./article-item.component.scss']
 })
 export class ArticleItemComponent implements OnInit {
-  @Input() articles: Article;
+  @Input() article: Article;
 
   constructor() { }
 

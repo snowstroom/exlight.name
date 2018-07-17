@@ -5,7 +5,10 @@
     [categories]="categories"
     [currentpage]="page"
     (selectedCat)="selectedCatHandler($event)"></app-catalog-menu>
-    <app-articles [articles]="articles"></app-articles>
+    <div class="articles">
+      <app-articles *ngFor="let article of articles"
+      [article]="article"></app-articles>
+    </div>
     <app-pagination [itemCount]="total"
       [onPage]="itemsOnPage"
       [activePage]="page"

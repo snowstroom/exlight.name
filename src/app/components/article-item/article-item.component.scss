@@ -1,11 +1,7 @@
 @import '../../variables';
-.articles {
-  height: calc(100% - 15em);
+.article {
   padding: 1em;
-  .article {
-    padding: 1em;
-    color: $element-text-color;
-  }
+  color: $element-text-color;
   .article-head {
     font-family: $elements-text;
     padding: .5em 0;
