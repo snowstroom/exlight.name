@@ -59,5 +59,19 @@
   }
   .list {
     height: 20em;
+    .playlist {
+      overflow-y: auto;
+      height: 18em;
+      .track {
+        cursor: pointer;
+        padding: .5em 1em;
+        &.active {
+          background: $active-element-bg;
+          color: $simple-text-color;
+        }
+        font-family: $simple-text;
+        display: flex;
+      }
+    }
   }
 }

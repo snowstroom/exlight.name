@@ -12,4 +12,20 @@ export class AudioPlayerComponent implements OnInit {
   ngOnInit() {
   }
 
+  public prevTrack() {
+    console.log('prev');
+  }
+
+  public playTrack() {
+    console.log('play');
+  }
+
+  public pauseTrack() {
+    console.log('pause');
+  }
+
+  public nextTrack() {
+    console.log('next');
+  }
+
 }

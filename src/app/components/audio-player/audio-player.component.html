@@ -5,10 +5,16 @@
     </div>
     <div class="audio-manager">
       <div class="player-buttons">
-        <div class="player-button">Назад</div>
-        <div *ngIf="true" class="player-button active">Играть</div>
-        <div *ngIf="false" class="player-button active">Пауза</div>
-        <div class="player-button">Вперед</div>
+        <div class="player-button"
+        (click)="prevTrack()">Назад</div>
+        <div *ngIf="true"
+        class="player-button active"
+        (click)="playTrack()">Играть</div>
+        <div *ngIf="false"
+        class="player-button active"
+        (click)="pauseTrack()">Пауза</div>
+        <div class="player-button"
+        (click)="nextTrack()">Вперед</div>
       </div>
       <div class="player-volume">
         <div class="volume-title">Громкость</div>
@@ -22,6 +28,17 @@
     </div>
   </div>
   <div class="list">
-
+    <div class="playlist">
+      <div class="track">
+        <div class="performer">eXligth</div>
+        <div> - </div>
+        <div class="name">Твоя улыбка</div>
+      </div>
+      <div class="track active">
+          <div class="performer">eXligth</div>
+          <div> - </div>
+          <div class="name">Твоя улыбка</div>
+        </div>
+    </div>
   </div>
 </div>
