@@ -1,2 +1,28 @@
-<div class="widget-audio">
+<div class="audio-player">
+  <div class="player">
+    <div class="audio-cover">
+      <img src="assets/albom.jpg" alt="">
+    </div>
+    <div class="audio-manager">
+      <div class="player-buttons">
+        <div class="player-button">Назад</div>
+        <div *ngIf="true" class="player-button">Играть</div>
+        <div *ngIf="false" class="player-button">Пауза</div>
+        <div class="player-button">Вперед</div>
+      </div>
+      <div class="player-volume">
+        <div class="volume-title">Громкость</div>
+        <div class="volume-navigator">
+          <div class="navigator"></div>
+        </div>
+      </div>
+      <div class="player-navigation">
+        <div class="audio-navigator"></div>
+      </div>
+      <div class="player-options"></div>
+    </div>
+  </div>
+  <div class="list">
+
+  </div>
 </div>

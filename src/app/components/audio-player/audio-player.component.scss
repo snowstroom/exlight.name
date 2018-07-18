@@ -1,6 +1,60 @@
 @import '../../variables';
-.widget-audio {
-  margin: 1em 0;
-  height: 5em;
-  background: $blocks-color-bg;
+.audio-player {
+  background: $alt-block-color-bg;
+  .player {
+    display: flex;
+    .audio-cover {
+      img {
+        width: 5.5em;
+        height: 5.5em;
+      }
+    }
+    .audio-manager {
+      width: 100%;
+      font-family: $elements-text;
+      .player-buttons {
+        display: flex;
+        .player-button {
+          color: $element-text-color;
+          background: $blocks-color-bg;
+          width: 100%;
+          text-align: center;
+          padding: .5em;
+        }
+      }
+      .player-volume {
+        display: flex;
+        padding: .5em;
+        .volume-title {
+          margin-right: .5em;
+        }
+        .volume-navigator {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          .navigator {
+            cursor: pointer;
+            height: 1em;
+            width: 80%;
+            background: $active-element-bg;
+          }
+        }
+      }
+      .player-navigation {
+        padding: .5em;
+        .audio-navigator {
+          height: .5em;
+          background: $active-element-bg;
+          width: 50%;
+        }
+      }
+      .player-option {
+
+      }
+    }
+  }
+  .list {
+
+  }
 }
