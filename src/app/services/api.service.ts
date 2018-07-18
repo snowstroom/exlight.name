@@ -89,17 +89,21 @@ export class ApiService {
 
   public getTracks(): Promise<MediaItem[]> {
     return Promise.resolve([ {
+      id: 1,
       type: 'music',
       coverUrl: '/assets/albom.jpg',
       fileUrl: '/assets/Элэм - Fools.mp3',
-      title: 'eXlight - По началу',
+      performer: 'eXlight',
+      name: 'По началу',
       discription: 'Ля ля ля ля',
       shows: 256
     }, {
+      id: 2,
       type: 'music',
-      coverUrl: '',
-      fileUrl: 'Элэм - Forgive.mp3',
-      title: 'eXlight - таблетка от скуки',
+      coverUrl: '/assets/albom.jpg',
+      fileUrl: '/assets/Элэм - Forgive.mp3',
+      performer: 'eXlight',
+      name: 'По началу',
       discription: '',
       shows: 256
     } ]);

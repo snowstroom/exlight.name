@@ -9,9 +9,12 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class MusicStateService {
   private musicItems: MediaItem[] = [];
   private musicItems$ = new BehaviorSubject<MediaItem[]>(this.musicItems);
-  private play$ = new Subject<MediaItem>();
-  private pause$ = new Subject<MediaItem>();
-  private currentTime = new Subject();
+  private currentPlayTrack: MediaItem = null;
+  private play$ = new BehaviorSubject<MediaItem>(this.currentPlayTrack);
+  private isPlay = false;
+  private isPlay$ = new BehaviorSubject<boolean>(this.isPlay);
+  private pause$ = new BehaviorSubject<MediaItem>(null);
+  private currentTime = new BehaviorSubject(0);
   constructor(
     private apiSrv: ApiService
   ) {
@@ -22,6 +25,11 @@ export class MusicStateService {
       });
   }
 
+  set isPlaying(value) {
+    this.isPlay = value;
+    this.isPlay$.next(this.isPlay);
+  }
+
   get $musicItems(): Observable<MediaItem[]> {
     return this.musicItems$.asObservable();
   }
@@ -30,9 +38,40 @@ export class MusicStateService {
     return this.play$.asObservable();
   }
 
+  get $isPlay(): Observable<boolean> {
+    return this.isPlay$.asObservable();
+  }
+
   public playTrack(track: MediaItem) {
     this.play$.next(track);
   }
 
+  public play() {
+    this.isPlay = true;
+    this.isPlay$.next(this.isPlay);
+  }
+
+  public pause() {
+    this.isPlay = false;
+    this.isPlay$.next(this.isPlay);
+  }
+
+  public next() {
+    this.isPlay = true;
+    this.isPlay$.next(this.isPlay);
+  }
+
+  public prev() {
+    this.isPlay = true;
+    this.isPlay$.next(this.isPlay);
+  }
+
+  public navByTrack() {
+
+  }
+
+  public changeVolume() {
+
+  }
 
 }

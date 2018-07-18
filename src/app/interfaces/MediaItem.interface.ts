@@ -1,8 +1,11 @@
 export interface MediaItem {
-  type: string; //'photo' | 'video' | 'music';
+  id: number;
+  type: string;
   coverUrl: string;
   fileUrl: string;
-  title: string;
-  discription: string;
+  performer: string;
   shows: number;
+  name: string;
+  text?: string;
+  discription?: string;
 }

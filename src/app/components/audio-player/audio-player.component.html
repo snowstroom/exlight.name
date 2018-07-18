@@ -7,12 +7,12 @@
       <div class="player-buttons">
         <div class="player-button"
         (click)="prevTrack()">Назад</div>
-        <div *ngIf="true"
+        <div *ngIf="!isPlay"
         class="player-button active"
-        (click)="playTrack()">Играть</div>
-        <div *ngIf="false"
+        (click)="play()">Играть</div>
+        <div *ngIf="isPlay"
         class="player-button active"
-        (click)="pauseTrack()">Пауза</div>
+        (click)="pause()">Пауза</div>
         <div class="player-button"
         (click)="nextTrack()">Вперед</div>
       </div>
@@ -29,16 +29,14 @@
   </div>
   <div class="list">
     <div class="playlist">
-      <div class="track">
-        <div class="performer">eXligth</div>
+      <div class="track"
+      *ngFor="let track of tracks"
+      [ngClass]="{active: track.id === currentTrack?.id}"
+      (click)="playTrack(track)">
+        <div class="performer">{{track.performer}}</div>
         <div> - </div>
-        <div class="name">Твоя улыбка</div>
+        <div class="name">{{track.name}}</div>
       </div>
-      <div class="track active">
-          <div class="performer">eXligth</div>
-          <div> - </div>
-          <div class="name">Твоя улыбка</div>
-        </div>
     </div>
   </div>
 </div>

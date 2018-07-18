@@ -3,9 +3,7 @@
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>
-<audio #htmlPlayer>
-  <source *ngFor="let track of tracks"
-  [src]="track.fileUrl"
-  type="audio/mpeg"/>
-</audio>
+<audio #htmlPlayer [src]="track?.fileUrl"
+(ended)="trackEnd()"
+(play)="trackPlay()"></audio>
 
