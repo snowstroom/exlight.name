@@ -9,18 +9,24 @@ import { MediaItem } from './interfaces/MediaItem.interface';
 })
 export class AppComponent implements OnInit {
   @ViewChild('htmlPlayer') htmlPlayer: ElementRef<HTMLAudioElement>;
-  public tracks: MediaItem[];
   public track: MediaItem;
+  public isPlay: boolean;
+  public canPlay: boolean;
   public loop = false;
   constructor(
     private musicStateSrv: MusicStateService
   ) { }
 
   ngOnInit() {
-    this.musicStateSrv.$musicItems.subscribe(tracks => this.track = tracks[0]);
-    this.musicStateSrv.$play.subscribe(track => {
-      this.track = track;
-      this.htmlPlayer.nativeElement.play();
+    this.musicStateSrv.$playingTrack.subscribe(track => this.track = track);
+    this.musicStateSrv.$isPlay.subscribe(play => {
+      this.isPlay = play;
+      if (this.canPlay && play) {
+        this.htmlPlayer.nativeElement.play();
+      }
+      if (!play) {
+        this.htmlPlayer.nativeElement.pause();
+      }
     });
   }
 
@@ -29,6 +35,17 @@ export class AppComponent implements OnInit {
   }
 
   public trackPlay() {
-    this.musicStateSrv.isPlaying = true;
+    // this.musicStateSrv.isPlaying = true;
+  }
+
+  public play() {
+    this.canPlay = true;
+    if (this.isPlay) {
+      this.htmlPlayer.nativeElement.play();
+    }
+  }
+
+  public loadstart() {
+    this.canPlay = false;
   }
 }

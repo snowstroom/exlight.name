@@ -10,7 +10,7 @@ import { MediaItem } from '../../interfaces/MediaItem.interface';
 export class AudioPlayerComponent implements OnInit {
   public isPlay: boolean;
   public tracks: MediaItem[];
-  public currentTrack: MediaItem;
+  public playingTrack: MediaItem;
 
   constructor(
     private musicStateSrv: MusicStateService
@@ -18,6 +18,7 @@ export class AudioPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.musicStateSrv.$musicItems.subscribe(tracks => this.tracks = tracks);
+    this.musicStateSrv.$playingTrack.subscribe(playingTrack => this.playingTrack = playingTrack);
     this.musicStateSrv.$isPlay.subscribe(play => this.isPlay = play);
   }
 

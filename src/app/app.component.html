@@ -5,5 +5,7 @@
 </div>
 <audio #htmlPlayer [src]="track?.fileUrl"
 (ended)="trackEnd()"
-(play)="trackPlay()"></audio>
+(play)="trackPlay()"
+(canplay)="play()"
+(loadstart)="loadstart()"></audio>
 

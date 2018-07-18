@@ -9,11 +9,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class MusicStateService {
   private musicItems: MediaItem[] = [];
   private musicItems$ = new BehaviorSubject<MediaItem[]>(this.musicItems);
-  private currentPlayTrack: MediaItem = null;
-  private play$ = new BehaviorSubject<MediaItem>(this.currentPlayTrack);
-  private isPlay = false;
-  private isPlay$ = new BehaviorSubject<boolean>(this.isPlay);
-  private pause$ = new BehaviorSubject<MediaItem>(null);
+  private playingTrack: MediaItem;
+  private playingTrack$ = new BehaviorSubject<MediaItem>(this.playingTrack);
+  private isPlay$ = new BehaviorSubject<boolean>(false);
   private currentTime = new BehaviorSubject(0);
   constructor(
     private apiSrv: ApiService
@@ -22,20 +20,19 @@ export class MusicStateService {
       .then(musicList => {
         this.musicItems = musicList;
         this.musicItems$.next(this.musicItems);
+        if (musicList.length) {
+          this.playingTrack = musicList[0];
+          this.playingTrack$.next(this.playingTrack);
+        }
       });
-  }
-
-  set isPlaying(value) {
-    this.isPlay = value;
-    this.isPlay$.next(this.isPlay);
   }
 
   get $musicItems(): Observable<MediaItem[]> {
     return this.musicItems$.asObservable();
   }
 
-  get $play(): Observable<MediaItem> {
-    return this.play$.asObservable();
+  get $playingTrack(): Observable<MediaItem> {
+    return this.playingTrack$.asObservable();
   }
 
   get $isPlay(): Observable<boolean> {
@@ -43,27 +40,37 @@ export class MusicStateService {
   }
 
   public playTrack(track: MediaItem) {
-    this.play$.next(track);
+    this.playingTrack = track;
+    this.playingTrack$.next(track);
+    this.isPlay$.next(true);
   }
 
   public play() {
-    this.isPlay = true;
-    this.isPlay$.next(this.isPlay);
+    this.isPlay$.next(true);
   }
 
   public pause() {
-    this.isPlay = false;
-    this.isPlay$.next(this.isPlay);
+    this.isPlay$.next(false);
   }
 
   public next() {
-    this.isPlay = true;
-    this.isPlay$.next(this.isPlay);
+    const index = this.musicItems.indexOf(this.playingTrack);
+    const nextIndex = index + 1;
+    if (nextIndex < this.musicItems.length) {
+      this.playingTrack = this.musicItems[nextIndex];
+      this.playingTrack$.next(this.playingTrack);
+      this.isPlay$.next(true);
+    }
   }
 
   public prev() {
-    this.isPlay = true;
-    this.isPlay$.next(this.isPlay);
+    const index = this.musicItems.indexOf(this.playingTrack);
+    const prevIndex = index - 1;
+    if (prevIndex >= 0) {
+      this.playingTrack = this.musicItems[prevIndex];
+      this.playingTrack$.next(this.playingTrack);
+      this.isPlay$.next(true);
+    }
   }
 
   public navByTrack() {
