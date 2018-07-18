@@ -1,4 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { MusicStateService } from './services/music-state.service';
+import { MediaItem } from './interfaces/MediaItem.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,14 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   @ViewChild('htmlPlayer') htmlPlayer: ElementRef<HTMLAudioElement>;
-  constructor() { }
+  public tracks: MediaItem[];
+  constructor(
+    private musicStateSrv: MusicStateService
+  ) { }
 
   ngOnInit() {
+    this.musicStateSrv.$musicItems.subscribe(tracks => this.tracks = tracks);
     console.log(this.htmlPlayer);
-    // this.htmlPlayer.nativeElement.play();
+    this.htmlPlayer.nativeElement.play();
   }
 }

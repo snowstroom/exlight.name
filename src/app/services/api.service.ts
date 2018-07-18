@@ -91,12 +91,14 @@ export class ApiService {
     return Promise.resolve([ {
       type: 'music',
       coverUrl: '/assets/albom.jpg',
+      fileUrl: '/assets/Элэм - Fools.mp3',
       title: 'eXlight - По началу',
       discription: 'Ля ля ля ля',
       shows: 256
     }, {
       type: 'music',
       coverUrl: '',
+      fileUrl: 'Элэм - Forgive.mp3',
       title: 'eXlight - таблетка от скуки',
       discription: '',
       shows: 256
