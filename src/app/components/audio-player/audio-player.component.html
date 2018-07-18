@@ -6,8 +6,8 @@
     <div class="audio-manager">
       <div class="player-buttons">
         <div class="player-button">Назад</div>
-        <div *ngIf="true" class="player-button">Играть</div>
-        <div *ngIf="false" class="player-button">Пауза</div>
+        <div *ngIf="true" class="player-button active">Играть</div>
+        <div *ngIf="false" class="player-button active">Пауза</div>
         <div class="player-button">Вперед</div>
       </div>
       <div class="player-volume">
@@ -19,7 +19,6 @@
       <div class="player-navigation">
         <div class="audio-navigator"></div>
       </div>
-      <div class="player-options"></div>
     </div>
   </div>
   <div class="list">

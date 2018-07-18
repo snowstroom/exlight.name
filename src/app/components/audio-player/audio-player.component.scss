@@ -2,6 +2,7 @@
 .audio-player {
   background: $alt-block-color-bg;
   .player {
+    height: 5.5em;
     display: flex;
     .audio-cover {
       img {
@@ -10,11 +11,16 @@
       }
     }
     .audio-manager {
+      height: 100%;
       width: 100%;
       font-family: $elements-text;
       .player-buttons {
+        cursor: pointer;
         display: flex;
         .player-button {
+          &.active {
+            background: $active-element-bg;
+          }
           color: $element-text-color;
           background: $blocks-color-bg;
           width: 100%;
@@ -42,19 +48,16 @@
         }
       }
       .player-navigation {
-        padding: .5em;
+        padding: 0em .5em .5em .5em;
         .audio-navigator {
           height: .5em;
           background: $active-element-bg;
           width: 50%;
         }
       }
-      .player-option {
-
-      }
     }
   }
   .list {
-
+    height: 20em;
   }
 }
