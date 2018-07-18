@@ -13,12 +13,16 @@ export class AppComponent implements OnInit {
   public isPlay: boolean;
   public canPlay: boolean;
   public loop = false;
+  public currentTime = 0;
+  public timer: any;
   constructor(
     private musicStateSrv: MusicStateService
   ) { }
 
   ngOnInit() {
     this.musicStateSrv.$playingTrack.subscribe(track => this.track = track);
+    this.musicStateSrv.$volume.subscribe(volume => this.htmlPlayer.nativeElement.volume = volume);
+    this.musicStateSrv.$intTime.subscribe(currentTime => this.htmlPlayer.nativeElement.currentTime = currentTime);
     this.musicStateSrv.$isPlay.subscribe(play => {
       this.isPlay = play;
       if (this.canPlay && play) {
@@ -31,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   public trackEnd() {
-    console.log('track end');
+    this.musicStateSrv.next();
   }
 
   public trackPlay() {
@@ -40,6 +44,7 @@ export class AppComponent implements OnInit {
 
   public play() {
     this.canPlay = true;
+    this.musicStateSrv.setDuration(this.htmlPlayer.nativeElement.duration);
     if (this.isPlay) {
       this.htmlPlayer.nativeElement.play();
     }
@@ -47,5 +52,12 @@ export class AppComponent implements OnInit {
 
   public loadstart() {
     this.canPlay = false;
+  }
+
+  public timeupdate(e) {
+    if (e.target.currentTime - this.currentTime > 1) {
+      this.musicStateSrv.showTime(e.target.currentTime);
+      this.currentTime = e.target.currentTime;
+    }
   }
 }

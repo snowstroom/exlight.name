@@ -12,7 +12,13 @@ export class MusicStateService {
   private playingTrack: MediaItem;
   private playingTrack$ = new BehaviorSubject<MediaItem>(this.playingTrack);
   private isPlay$ = new BehaviorSubject<boolean>(false);
-  private currentTime = new BehaviorSubject(0);
+  private volume = 1;
+  private volume$ = new BehaviorSubject<number>(this.volume);
+  private currentTime = 0;
+  private currentTime$ = new BehaviorSubject(this.currentTime);
+  private intTime$ = new BehaviorSubject(this.currentTime);
+  private duration = null;
+  private duration$ = new BehaviorSubject(this.duration);
   constructor(
     private apiSrv: ApiService
   ) {
@@ -39,8 +45,26 @@ export class MusicStateService {
     return this.isPlay$.asObservable();
   }
 
+  get $volume(): Observable<number> {
+    return this.volume$.asObservable();
+  }
+
+  get $currentTime(): Observable<number> {
+    return this.currentTime$.asObservable();
+  }
+
+  get $intTime(): Observable<number> {
+    return this.intTime$.asObservable();
+  }
+
+  get $duration(): Observable<number> {
+    return this.duration$.asObservable();
+  }
+
   public playTrack(track: MediaItem) {
     this.playingTrack = track;
+    this.currentTime = 0;
+    this.currentTime$.next(this.currentTime);
     this.playingTrack$.next(track);
     this.isPlay$.next(true);
   }
@@ -58,6 +82,8 @@ export class MusicStateService {
     const nextIndex = index + 1;
     if (nextIndex < this.musicItems.length) {
       this.playingTrack = this.musicItems[nextIndex];
+      this.currentTime = 0;
+      this.currentTime$.next(this.currentTime);
       this.playingTrack$.next(this.playingTrack);
       this.isPlay$.next(true);
     }
@@ -68,17 +94,31 @@ export class MusicStateService {
     const prevIndex = index - 1;
     if (prevIndex >= 0) {
       this.playingTrack = this.musicItems[prevIndex];
+      this.currentTime = 0;
+      this.currentTime$.next(this.currentTime);
       this.playingTrack$.next(this.playingTrack);
       this.isPlay$.next(true);
     }
   }
 
-  public navByTrack() {
-
+  public navByTrack(time: number) {
+    this.currentTime = time;
+    this.intTime$.next(this.currentTime);
   }
 
-  public changeVolume() {
+  public showTime(time: number) {
+    this.currentTime = time;
+    this.currentTime$.next(this.currentTime);
+  }
 
+  public changeVolume(volume: number) {
+    this.volume = volume;
+    this.volume$.next(volume);
+  }
+
+  public setDuration(duration: number) {
+    this.duration = duration;
+    this.duration$.next(this.duration);
   }
 
 }

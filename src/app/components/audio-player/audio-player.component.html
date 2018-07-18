@@ -19,11 +19,18 @@
       <div class="player-volume">
         <div class="volume-title">Громкость</div>
         <div class="volume-navigator">
-          <div class="navigator"></div>
+          <input type="range" class="navigator"
+          min="0" max="1"
+          step="0.05" [value]="volume"
+          (input)="changeVolume($event)" >
         </div>
       </div>
       <div class="player-navigation">
-        <div class="audio-navigator"></div>
+        <input type="range"
+        class="audio-navigator"
+        min="0" [max]="duration"
+        step="1" [value]="currentTime"
+        (input)="changePosition($event)">
       </div>
     </div>
   </div>
