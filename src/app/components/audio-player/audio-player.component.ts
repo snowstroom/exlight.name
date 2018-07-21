@@ -49,7 +49,6 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   public changeVolume(e: any) {
-    console.log(e.target.value);
     this.musicStateSrv.changeVolume(e.target.value);
   }
 
