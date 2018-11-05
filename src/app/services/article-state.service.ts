@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { ArticleApiData, Article } from '../interfaces/ArticleApiData.interface';
 import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
@@ -22,8 +23,10 @@ export class ArticleStateService {
   private _category$ = new BehaviorSubject(this.currentCategory);
   private _articles$ = new BehaviorSubject(this.articles);
   constructor(
-    private apiSrv: ApiService
+    private apiSrv: ApiService,
+    private router: Router
   ) {
+    this.router.events.subscribe(evt => console.log(evt));
     this.apiSrv.getArticles(this.curPage, this.curPage * ITEMS_ON_PAGE_ART)
       .then((data: ArticleApiData) => {
           this.articles = data.articles;
