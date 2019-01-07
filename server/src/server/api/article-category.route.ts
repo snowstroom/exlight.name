@@ -2,17 +2,21 @@ import { Router } from 'express';
 import { server } from '../';
 import { ICategoryModel, CategoryModel } from '../models/categories.model';
 import { DbModel } from '../classes/db-model.class';
-import { ARTICLES } from '../consts/tables.const';
+import { CAROUSEL_ITEMS } from '../consts/tables.const';
 import { QueryResult } from 'pg';
 
 export const categoriesApi = Router();
 
 categoriesApi.get('/article-categories', async (req, res, next) => {
     console.log(req.params);
-    const fields = [];
-    const query = DbModel.createSelectQuery(fields, ARTICLES);
-    const qyeryResult: QueryResult = await server.dbClient.query(query);
-    console.log(qyeryResult);
+    const fields = ['id', 'category_name', 'category_route'];
+    const query = DbModel.createSelectQuery(fields, CAROUSEL_ITEMS);
+    try {
+        const qyeryResult: QueryResult = await server.dbClient.query(query);
+        console.log(qyeryResult.rows);
+    } catch (err) {
+        console.log(err);
+    }
     res.end();
     next();
 });
