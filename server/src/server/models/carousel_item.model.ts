@@ -15,7 +15,7 @@ export class CarouselItemModel extends DbModel {
     public data: IDataModel = {
         img_url: null,
         article_id: null,
-        active:  false
+        active: false
     }
     
     constructor(data?: Partial<ICarouselItemModel>) {

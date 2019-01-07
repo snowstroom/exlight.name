@@ -7,14 +7,26 @@ export abstract class DbModel implements IDbModel {
 
     public abstract init(): void;
 
+    public static createSelectQuery(fields: string[], table: string, start?: number, limit?: number): string {
+        let fieldsStr = fields.join(', ');
+        fieldsStr = fieldsStr.slice(0, fieldsStr.length - 2);
+        let query = `SELECT ${fieldsStr} FROM ${table}`;
+        if (limit) {
+            query += ` LIMIT ${limit}`;
+        }
+        if (start) {
+            query += ` OFFSET ${start}`;
+        }
+        return query;
+    }
+
     public getFields(): string[] {
         return Object.keys(this.data);
     }
 
-    public createSelectQuery(fields: string[]): string {
-        let fieldsStr = fields.join(', ');
-        fieldsStr = fieldsStr.slice(0, fieldsStr.length - 2);
-        return `SELECT ${fieldsStr} FROM ${this.tableName}`;
+    public createSelectQuery(start?: number, limit?: number): string {
+        const fields = this.getFields();
+        return DbModel.createSelectQuery(fields, this.tableName, start, limit);
     }
 
     public createInsertQuery(): string {

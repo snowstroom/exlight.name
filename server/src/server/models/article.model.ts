@@ -9,6 +9,7 @@ export interface IArticleModel {
     publication_date: string;
     article_description: string;
     category_id: number;
+    carousel_item_id: number;
     content: number;
     views: number;
 }
@@ -22,6 +23,7 @@ export class ArticleModel extends DbModel {
         publication_date: null,
         article_description: null,
         category_id: null,
+        carousel_item_id: null,
         content: null,
         views: null
     }
