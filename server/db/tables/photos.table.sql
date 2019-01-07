@@ -1,4 +1,4 @@
-CREATE TABLE photos 
+CREATE TABLE photo
 (
     id SERIAL PRIMARY KEY,
 	img_url VARCHAR(1000) NOT NULL,

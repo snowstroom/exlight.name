@@ -1,5 +1,6 @@
-import { IModel } from '../interfaces/model.inteface';
+import { IDataModel } from '../interfaces/model.inteface';
 import { CATEGORIES } from '../consts/tables.const';
+import { DbModel } from '../classes/db-model.class';
  
 export interface ICategoryModel {
     id?: number;
@@ -7,24 +8,24 @@ export interface ICategoryModel {
     category_route: string
 }
 
-export class CategoryModel implements ICategoryModel, IModel {
+export class CategoryModel extends DbModel {
     public id: number = null;
-    public category_name: string = null;
-    public category_route: string = null;
-
+    public tableName: string = CATEGORIES;
+    public data: IDataModel = {
+        category_name: null,
+        category_route: null
+    }
+    
     constructor(data?: ICategoryModel) {
+        super();
         this.init(data);
     }
 
     public init(data?: ICategoryModel) {
         if (data) {
             this.id = data.id || null;
-            this.category_name = data.category_name;
-            this.category_route = data.category_route;
+            this.data.category_name = data.category_name;
+            this.data.category_route = data.category_route;
         }
-    }
-
-    public getInsertQuery(): string {
-        return `INSERT INTO ${CATEGORIES} (${this.category_name || 'NULL'}, ${this.category_route || ''})`;
-    }    
+    }   
 }

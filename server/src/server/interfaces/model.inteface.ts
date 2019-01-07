@@ -1,5 +1,13 @@
-export interface IModel {
+export interface IDbModel {
     id: number;
-    init(data: any): void;
-    getInsertQuery(): string;
+    data: IDataModel;
+    init(data: IDataModel): void;
+    getFields(): string[];
+    createInsertQuery(): string;
+    createUpdateQuery(): string;
+    createDeleteQuery(): string;
+}
+
+export interface IDataModel {
+    [field: string]: any;
 }
