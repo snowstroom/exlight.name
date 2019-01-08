@@ -9,7 +9,7 @@ export abstract class DbModel implements IDbModel {
 
     public static createSelectQuery(fields: string[], table: string, start?: number, limit?: number): string {
         let fieldsStr = fields.join(', ');
-        fieldsStr = fieldsStr.slice(0, fieldsStr.length - 2);
+        fieldsStr = fieldsStr.slice(0, fieldsStr.length);
         let query = `SELECT ${fieldsStr} FROM ${table}`;
         if (limit) {
             query += ` LIMIT ${limit}`;
@@ -36,13 +36,13 @@ export abstract class DbModel implements IDbModel {
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             keysStr += `${key}, `;
-            valStr += `${this.data[key] || 'NULL'}, `;
+            valStr += `${this.data[key] ? `'${this.data[key]}'` : 'NULL'}, `;
         }
         keysStr = keysStr.slice(0, keysStr.length - 2);
         valStr = valStr.slice(0, valStr.length - 2);
-        return `INSERT INTO ${this.tableName} 
-        (NULL, ${keysStr}) VALUES (${valStr}) 
-        RETURNING id`;
+        return `INSERT INTO ${this.tableName} ` + 
+        `(${keysStr}) VALUES (${valStr}) `+
+        `RETURNING id`;
     };
 
     public createUpdateQuery(): string {

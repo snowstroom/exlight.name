@@ -1,11 +1,21 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
         "target": "es5",
         "module": "commonjs",
         "sourceMap": true,
         "outDir": "build",
         "rootDir": "src",
-        "lib": ["es2015"]
+        "lib": ["es2015"],
+        "paths": {
+            "@server-app": ["server"],
+            "@api": ["server/api"],
+            "@classes": ["server/classes"],
+            "@consts": ["server/consts"],
+            "@enums": ["server/enums"],
+            "@intefaces": ["server/interfaces"],
+            "@models": ["server/models"]
+        }
     },
     "allowSyntheticDefaultImports": true,
     //указывает что включаться должны только файлы из папки /src
