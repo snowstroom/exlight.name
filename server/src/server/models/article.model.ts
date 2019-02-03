@@ -1,49 +1,18 @@
-import { ARTICLES } from '../consts/tables.const';
-import { DbModel } from '../classes/db-model.class';
-import { IDataModel } from '../interfaces/model.inteface';
+import { sequelize } from '../consts/db.const';
+import * as Sequelize from 'sequelize';
 
-export interface IArticleModel {
-    id?: number;
-    article_title: string;
-    article_route: string;
-    publication_date: string;
-    article_description: string;
-    category_id: number;
-    carousel_item_id: number;
-    content: number;
-    views: number;
-}
-
-export class ArticleModel extends DbModel {
-    public id: number = null;
-    public tableName: string = ARTICLES;
-    public data: IDataModel = {
-        article_title: null,
-        article_route: null,
-        publication_date: null,
-        article_description: null,
-        category_id: null,
-        carousel_item_id: null,
-        content: null,
-        views: null
-    }
-
-    constructor(data?: Partial<IArticleModel>) {
-        super();
-        this.init(data);
-    }
-
-    public init(data?: Partial<IArticleModel>) {
-        if (data) {
-            this.id = data.id;
-            this.data.article_title = data.article_title || null;
-            this.data.article_route = data.article_route || null;
-            this.data.publication_date = data.publication_date || null;
-            this.data.article_description = data.article_description || null;
-            this.data.category_id = data.category_id || null;
-            this.data.content = data.content || null;
-            this.data.views = data.views || null;
-        }
-    }
-
-}
+export const Article = sequelize.define('article', {
+    id: {
+        type: Sequelize.NUMBER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    article_title: Sequelize.STRING,
+    article_route: Sequelize.STRING,
+    publication_date: Sequelize.DATE,
+    article_description: Sequelize.STRING,
+    category_id: Sequelize.NUMBER,
+    carousel_item_id: Sequelize.NUMBER,
+    content: Sequelize.TEXT,
+    views: Sequelize.NUMBER
+});

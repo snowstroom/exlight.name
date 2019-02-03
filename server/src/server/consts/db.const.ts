@@ -1,9 +1,7 @@
-import { ClientConfig } from 'pg';
+import * as Sequelize from 'sequelize';
 
-export const dbConf: ClientConfig = {
-    database: 'exlight_name',
-    user: 'postgres',
-    password: '2016postgresqlMinsk',
+export const sequelize = new Sequelize('exlight_name', 'postgres', '2016postgresqlMinsk', {
     host: '127.0.0.1',
+    dialect: 'postgres',
     port: 5432
-};
+});

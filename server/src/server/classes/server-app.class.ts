@@ -1,13 +1,11 @@
 import * as express from 'express';
 import { json } from 'body-parser';
-import { Client } from 'pg';
 import { routes } from '../api';
-import { dbConf } from '../consts/db.const';
+import { sequelize } from '../consts/db.const';
 import { PORT } from '../consts/server.const';
 
 export class Server {
     private app = express();
-    public dbClient = new Client(dbConf);
 
     constructor() {
     }
@@ -17,9 +15,10 @@ export class Server {
         this.app.use('/', ...routes);
         this.app.listen(PORT, 'localhost', () => console.log(`Server is start! Port ${PORT}`));
         try {
-            await this.dbClient.connect();
+            await sequelize.authenticate();
+            console.log('Connection has been established successfully.');
         } catch (err) {
-            console.log(err);
+            console.error('Unable to connect to the database:', err);
         }
     }
 
