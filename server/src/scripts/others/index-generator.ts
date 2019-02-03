@@ -5,7 +5,7 @@ const isIndex = (file: string): boolean => {
     if (file === 'index.ts' || file === 'index.js') {
         return true;
     } else {
-        return false
+        return false;
     }
 }
 
