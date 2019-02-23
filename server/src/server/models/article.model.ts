@@ -1,5 +1,6 @@
 import { sequelize } from '../consts/db.const';
 import * as Sequelize from 'sequelize';
+import { CarouselItem } from './carousel_item.model';
 
 export const Article = sequelize.define('article', {
     id: {
@@ -15,4 +16,6 @@ export const Article = sequelize.define('article', {
     carousel_item_id: Sequelize.NUMBER,
     content: Sequelize.TEXT,
     views: Sequelize.NUMBER
+}).hasOne(CarouselItem.source, {
+    foreignKey: 'article_id'
 });
