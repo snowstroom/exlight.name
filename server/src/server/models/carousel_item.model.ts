@@ -4,13 +4,13 @@ import { Article } from './article.model';
 
 export const CarouselItem = sequelize.define('carousel_item', {
     id: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     img_url: Sequelize.STRING,
-    article_id: Sequelize.NUMBER,
+    article_id: Sequelize.INTEGER,
     active: Sequelize.BOOLEAN
-}).hasOne(Article.source, {
-    foreignKey: 'carousel_item_id'
 });
+
+CarouselItem.belongsTo(Article, { as: 'carousel_item_id' });

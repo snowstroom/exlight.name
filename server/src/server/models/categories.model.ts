@@ -4,7 +4,7 @@ import { Article } from './article.model';
  
 export const Category = sequelize.define('category', {
     id: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
@@ -12,6 +12,6 @@ export const Category = sequelize.define('category', {
     category_route: Sequelize.STRING
 });
 
-Category.hasMany(Article.source, {
+Category.hasMany(Article, {
     foreignKey: 'category_id'
 });

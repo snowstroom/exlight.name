@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { server } from '@server-app';
-import { QueryResult } from 'pg';
+import { Category } from '../models/categories.model';
 
 export const categoriesApi = Router();
 
 categoriesApi.get('/article-categories', async (req, res, next) => {
-    const fields = ['id', 'category_name', 'category_route'];
+    const dbaAnsw = await Category.findAll();
+    console.warn(dbaAnsw);
     res.end();
     next();
 });

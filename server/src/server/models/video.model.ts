@@ -5,7 +5,7 @@ export const Video = sequelize.define('video', {
     id: {
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
     },
     video_url: Sequelize.STRING
 });

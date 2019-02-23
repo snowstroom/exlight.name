@@ -4,7 +4,7 @@
   "description": "server exlight.name ",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/server/index.ts",
     "dev:ts": "nodemon",
     "compile": "tsc",
     "init-migration": "tsc && node build/scripts/migrations/init"
@@ -25,10 +25,11 @@
     "@types/express": "^4.16.0",
     "@types/node": "^10.12.18",
     "@types/pg": "^7.4.11",
-    "nodemon": "^1.18.9",
     "@types/sequelize": "^4.27.34",
+    "nodemon": "^1.18.9",
     "source-map-support": "^0.5.9",
     "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.8.0",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   }

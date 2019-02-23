@@ -5,9 +5,9 @@ export const Photo = sequelize.define('photo', {
     id: {
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
     },
     img_url: Sequelize.STRING,
     photo_description: Sequelize.STRING,
-    views: Sequelize.NUMBER
+    views: Sequelize.INTEGER
 });

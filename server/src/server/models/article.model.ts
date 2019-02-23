@@ -1,10 +1,11 @@
 import { sequelize } from '../consts/db.const';
 import * as Sequelize from 'sequelize';
 import { CarouselItem } from './carousel_item.model';
+import { Category } from './categories.model';
 
 export const Article = sequelize.define('article', {
     id: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
@@ -12,10 +13,10 @@ export const Article = sequelize.define('article', {
     article_route: Sequelize.STRING,
     publication_date: Sequelize.DATE,
     article_description: Sequelize.STRING,
-    category_id: Sequelize.NUMBER,
-    carousel_item_id: Sequelize.NUMBER,
+    category_id: Sequelize.INTEGER,
+    carousel_item_id: Sequelize.INTEGER,
     content: Sequelize.TEXT,
-    views: Sequelize.NUMBER
-}).hasOne(CarouselItem.source, {
-    foreignKey: 'article_id'
+    views: Sequelize.INTEGER
 });
+
+Article.belongsToMany(CarouselItem, { through: 'article_id' });
