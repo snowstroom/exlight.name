@@ -19,4 +19,4 @@ export const Article = sequelize.define('article', {
     views: Sequelize.INTEGER
 });
 
-Article.belongsToMany(CarouselItem, { through: 'article_id' });
+Article.hasOne(CarouselItem, { foreignKey: 'article_id' });

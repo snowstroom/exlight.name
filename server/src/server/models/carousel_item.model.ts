@@ -13,4 +13,4 @@ export const CarouselItem = sequelize.define('carousel_item', {
     active: Sequelize.BOOLEAN
 });
 
-CarouselItem.belongsTo(Article, { as: 'carousel_item_id' });
+// CarouselItem.hasOne(Article, { foreignKey: 'carousel_item_id' });
