@@ -7,10 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     content: DataTypes.TEXT,
     views: DataTypes.INTEGER,
+    category: DataTypes.INTEGER,
     carouselItem: DataTypes.INTEGER
   }, {});
   Article.associate = function(models) {
-    Article.hasOne(models.CarouselItem, { foreignKey: 'article_id' });
+    Article.hasOne(models.CarouselItem, { foreignKey: 'article' });
     // associations can be defined here
   };
   return Article;

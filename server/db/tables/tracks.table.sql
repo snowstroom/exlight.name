@@ -1,4 +1,0 @@
-CREATE TABLE tracks 
-(
-    id SERIAL PRIMARY KEY
-)

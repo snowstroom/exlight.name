@@ -12,4 +12,4 @@ export const Category = sequelize.define('Category', {
     categoryRoute: Sequelize.STRING
 });
 
-Category.hasMany(Article, { foreignKey: 'category_id' });
+Category.hasMany(Article, { foreignKey: 'category' });
