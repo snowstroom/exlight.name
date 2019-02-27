@@ -3,14 +3,14 @@ import { server } from '../';
 
 export const musicApi = Router();
 
-musicApi.get('/track-list', (req, res) => {
+musicApi.get('/track-list', async (req, res, next) => {
 
 });
 
-musicApi.post('/track', (req, res) => {
+musicApi.post('/track', async (req, res, next) => {
 
 });
 
-musicApi.delete('/track', (req, res) => {
+musicApi.delete('/track', async (req, res, next) => {
 
 });

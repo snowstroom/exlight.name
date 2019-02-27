@@ -3,14 +3,14 @@ import { server } from '../';
 
 export const videoApi = Router();
 
-videoApi.get('/video-list', (req, res) => {
+videoApi.get('/video-list', async (req, res, next) => {
 
 });
 
-videoApi.post('/video', (req, res) => {
+videoApi.post('/video', async (req, res, next) => {
 
 });
 
-videoApi.delete('/video/:id', (req, res) => {
+videoApi.delete('/video/:id', async (req, res, next) => {
 
 });

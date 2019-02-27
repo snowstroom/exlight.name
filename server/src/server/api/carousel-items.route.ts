@@ -1,20 +1,20 @@
 import { Router } from 'express';
-import { server } from '../';
+import { CarouselItem } from '../models';
 
 export const carouselApi = Router();
 
-carouselApi.get('/carousel-items', (req, res) => {
+carouselApi.get('/carousel-items', async (req, res, next) => {
 
 });
 
-carouselApi.post('/carousel-item', (req, res) => {
+carouselApi.post('/carousel-item', async (req, res, next) => {
 
 });
 
-carouselApi.put('/carousel-item', (req, res) => {
+carouselApi.put('/carousel-item', async (req, res, next) => {
 
 });
 
-carouselApi.delete('/carousel-item', (req, res) => {
+carouselApi.delete('/carousel-item', async (req, res, next) => {
 
 });
