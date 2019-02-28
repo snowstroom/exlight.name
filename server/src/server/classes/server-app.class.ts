@@ -7,8 +7,7 @@ import { PORT } from '../consts/server.const';
 export class Server {
     private app = express();
 
-    constructor() {
-    }
+    constructor() {}
 
     public async start() {
         this.app.use(json());

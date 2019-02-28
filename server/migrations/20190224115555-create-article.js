@@ -26,9 +26,6 @@ module.exports = {
       views: {
         type: Sequelize.INTEGER
       },
-      carouselItem: {
-        type: Sequelize.INTEGER
-      },
       category: {
         type: Sequelize.INTEGER
       },

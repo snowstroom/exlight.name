@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import { Article } from '../models';
+import { sequelize } from '../consts/db.const';
+import * as Sequelize from 'sequelize';
+import * as Model from '../../../models/article';
 
+const Article: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
 export const articleApi = Router();
 
 articleApi.get('/article/:id', async (req, res, next) => {
@@ -17,8 +20,9 @@ articleApi.get('/article/:id', async (req, res, next) => {
 
 articleApi.get('/articles', async (req, res, next) => {
     try {
-        await Article.findAll({ offset: req.query.start, limit: req.query.limit });
+        const dbAnsw = await Article.findAll({ offset: req.query.start, limit: req.query.limit });
         res.header({ 'Content-Type': 'application/json' });
+        res.send(dbAnsw);
     } catch (err) {
         console.warn(err)
     }

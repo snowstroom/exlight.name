@@ -1,16 +1,20 @@
 import { Router } from 'express';
-import { Category } from '../models/categories.model';
+import { sequelize } from '../consts/db.const';
+import * as Sequelize from 'sequelize';
+import * as Model from '../../../models/category';
 
+const Category: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
 export const categoriesApi = Router();
 
 categoriesApi.get('/article-categories', async (req, res, next) => {
     try {
-        const dbaAnsw = await Category.findAll();
+        const dbAnsw = await Category.findAll();
         res.header({ 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(dbaAnsw));
+        res.send(dbAnsw);
     } catch (err) {
         console.error(err);
     }
+    res.end();
     next();
 });
 

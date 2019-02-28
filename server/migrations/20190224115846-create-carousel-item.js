@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable('CarouselItems', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
@@ -13,6 +12,9 @@ module.exports = {
       },
       active: {
         type: Sequelize.BOOLEAN
+      },
+      articleId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

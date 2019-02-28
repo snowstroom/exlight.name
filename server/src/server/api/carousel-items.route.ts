@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { CarouselItem } from '../models';
+import { sequelize } from '../consts/db.const';
+import * as Sequelize from 'sequelize';
+import * as Model from '../../../models/carouselitem';
+
+const CarouselItem: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
 
 export const carouselApi = Router();
 
