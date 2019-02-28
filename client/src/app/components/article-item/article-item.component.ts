@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Article } from '../../interfaces/ArticleApiData.interface';
 
 @Component({
   selector: 'app-articles',
@@ -7,7 +6,7 @@ import { Article } from '../../interfaces/ArticleApiData.interface';
   styleUrls: ['./article-item.component.scss']
 })
 export class ArticleItemComponent implements OnInit {
-  @Input() article: Article;
+  @Input() article: any;
 
   constructor() { }
 

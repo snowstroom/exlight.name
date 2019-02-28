@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoData } from '../../interfaces/photo-item.interface';
 import { Title, Meta } from '@angular/platform-browser';
 import { PhotoStateService } from '../../services/photo-state.service';
 
@@ -9,7 +8,7 @@ import { PhotoStateService } from '../../services/photo-state.service';
   styleUrls: ['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit {
-  public photos: PhotoData [];
+  public photos: any [];
   public currentpage: number;
 
   constructor(

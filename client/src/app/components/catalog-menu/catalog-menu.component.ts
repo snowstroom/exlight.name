@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface';
 
 @Component({
   selector: 'app-catalog-menu',
@@ -9,7 +8,7 @@ import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface'
 export class CatalogMenuComponent implements OnInit {
   @Input() showMenu: boolean;
   @Input() catalogName: string;
-  @Input() categories: CategoriesApiData[];
+  @Input() categories: any[];
   @Input() currentpage: number;
   @Output() selectedCat = new EventEmitter();
   public selectCat: string = null;

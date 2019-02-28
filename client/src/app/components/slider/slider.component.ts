@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
-import { SliderApiData } from '../../interfaces/slider-item.interface';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
@@ -10,9 +9,9 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 })
 export class SliderComponent implements OnInit {
   private timer: any;
-  private currentSlide: SliderApiData;
+  private currentSlide: any;
   private currentIndex: number;
-  private slides: SliderApiData[] = [];
+  private slides: any[] = [];
 
   constructor(
     private appStateSrv: AppStateService,

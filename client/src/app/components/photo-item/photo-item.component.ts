@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PhotoData } from '../../interfaces/photo-item.interface';
 
 @Component({
   selector: 'app-photo-item',
@@ -7,7 +6,7 @@ import { PhotoData } from '../../interfaces/photo-item.interface';
   styleUrls: ['./photo-item.component.scss']
 })
 export class PhotoItemComponent implements OnInit {
-  @Input() photo: PhotoData;
+  @Input() photo: any;
 
   constructor() { }
 

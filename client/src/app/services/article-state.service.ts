@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
-import { ArticleApiData, Article } from '../interfaces/ArticleApiData.interface';
-import { CategoriesApiData } from '../interfaces/CategoriesApiData.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITEMS_ON_PAGE_ART } from '../consts/ItemsOnPage.const';
 
@@ -11,8 +9,8 @@ import { ITEMS_ON_PAGE_ART } from '../consts/ItemsOnPage.const';
   providedIn: 'root'
 })
 export class ArticleStateService {
-  private articles: Article[] = [];
-  private categories: CategoriesApiData[] = [];
+  private articles: any[] = [];
+  private categories: any[] = [];
   private currentPage = 1;
   private currentCategory = 'all';
   private totalArticles = 0;
@@ -28,24 +26,24 @@ export class ArticleStateService {
   ) {
     this.router.events.subscribe(evt => console.log(evt));
     this.apiSrv.getArticles(this.curPage, this.curPage * ITEMS_ON_PAGE_ART)
-      .then((data: ArticleApiData) => {
+      .then((data: any) => {
           this.articles = data.articles;
           this.totalArticles = data.totalItems;
           this._totalArticles$.next(this.totalArticles);
           this._articles$.next(this.articles);
       }).catch(err => console.log(err));
     this.apiSrv.getCategoies()
-      .then((data: CategoriesApiData[]) => {
+      .then((data: any[]) => {
         this.categories = data;
         this._categories$.next(data);
       });
   }
 
-  get articles$(): Observable<Article[]> {
+  get articles$(): Observable<any[]> {
     return this._articles$.asObservable();
   }
 
-  get categories$(): Observable<CategoriesApiData[]> {
+  get categories$(): Observable<any[]> {
     return this._categories$.asObservable();
   }
 

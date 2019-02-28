@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { PhotoData } from '../interfaces/photo-item.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoStateService {
-  private photos: PhotoData[] = [];
-  private photos$ = new BehaviorSubject<PhotoData[]>(this.photos);
+  private photos: any[] = [];
+  private photos$ = new BehaviorSubject<any[]>(this.photos);
   constructor(
     private apiSrv: ApiService
   ) {
@@ -19,7 +18,7 @@ export class PhotoStateService {
       }).catch(err => console.log(err));
    }
 
-  get $photos(): Observable<PhotoData[]> {
+  get $photos(): Observable<any[]> {
     return this.photos$.asObservable();
   }
 }

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleStateService } from '../../services/article-state.service';
-import { Article } from '../../interfaces/ArticleApiData.interface';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
 import { Title, Meta } from '@angular/platform-browser';
-import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface';
 
 @Component({
   selector: 'app-catalog',
@@ -14,8 +12,8 @@ import { CategoriesApiData } from '../../interfaces/CategoriesApiData.interface'
 export class CatalogComponent implements OnInit {
   public page: number;
   public cat: string;
-  public articles: Article[] = [];
-  public categories: CategoriesApiData[];
+  public articles: any[] = [];
+  public categories: any[];
   public total = 0;
   public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(

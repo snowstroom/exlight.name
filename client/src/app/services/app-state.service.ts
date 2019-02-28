@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { SliderApiData } from '../interfaces/slider-item.interface';
-import { TrackApiData } from '../interfaces/TrackApiData.interface';
 import { MediaItem } from '../interfaces/MediaItem.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -9,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppStateService {
-  private slider: SliderApiData[] = [];
+  private slider: any[] = [];
   private traks: MediaItem[] = [];
   private _slider$ = new BehaviorSubject(this.slider);
   private _traks$ = new BehaviorSubject(this.traks);
@@ -17,7 +15,7 @@ export class AppStateService {
     private apiService: ApiService
   ) {
     this.apiService.getSliderData()
-      .then((data: SliderApiData[]) => {
+      .then((data: any[]) => {
         this.slider = data;
         this._slider$.next(this.slider);
       }).catch(err => console.log(err));
@@ -28,7 +26,7 @@ export class AppStateService {
       }).catch(err => console.log(err));
   }
 
-  get slider$(): Observable<SliderApiData[]> {
+  get slider$(): Observable<any[]> {
     return this._slider$.asObservable();
   }
 
