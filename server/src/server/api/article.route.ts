@@ -18,9 +18,15 @@ articleApi.get('/article/:id', async (req, res, next) => {
     next();
 });
 
-articleApi.get('/articles', async (req, res, next) => {
+articleApi.post('/articles', async (req, res, next) => {
     try {
-        const dbAnsw = await Article.findAll({ offset: req.query.start, limit: req.query.limit });
+        const dbAnsw = await Article.findAll({ 
+            offset: req.body.start,
+            limit: req.body.limit,
+            where: {
+                category: req.body.categoryId
+            }
+        });
         res.header({ 'Content-Type': 'application/json' });
         res.send(dbAnsw);
     } catch (err) {

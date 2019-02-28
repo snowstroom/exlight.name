@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
@@ -13,7 +12,7 @@ export class AboutComponent implements OnInit {
     private metaSrv: Meta
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.titleSrv.setTitle('eXlight - О себе');
   }
 

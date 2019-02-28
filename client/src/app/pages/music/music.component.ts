@@ -4,7 +4,6 @@ import { MediaItem } from '../../interfaces/MediaItem.interface';
 import { MusicStateService } from '../../services/music-state.service';
 
 @Component({
-  selector: 'app-music',
   templateUrl: './music.component.html',
   styleUrls: ['./music.component.scss']
 })
@@ -18,7 +17,7 @@ export class MusicComponent implements OnInit {
     private musicStateSrv: MusicStateService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.titleSrv.setTitle('eXligth - Музыка');
     this.musicStateSrv.$musicItems.subscribe(musicList => this.mediaItems = musicList);
   }

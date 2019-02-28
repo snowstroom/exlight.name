@@ -1,22 +1,20 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { CategoriesItem } from '@app/classes/categories';
 
 @Component({
-  selector: 'app-catalog-menu',
+  selector: 'ex-catalog-menu',
   templateUrl: './catalog-menu.component.html',
   styleUrls: ['./catalog-menu.component.scss']
 })
 export class CatalogMenuComponent implements OnInit {
-  @Input() showMenu: boolean;
-  @Input() catalogName: string;
-  @Input() categories: any[];
-  @Input() currentpage: number;
-  @Output() selectedCat = new EventEmitter();
-  public selectCat: string = null;
+  @Input() public showMenu: boolean;
+  @Input() public catalogName: string;
+  @Input() public categories: CategoriesItem[] = [];
+  @Input() public currentpage: number;
+  @Output() public selectedCat = new EventEmitter();
 
-  ngOnInit() { }
+  public ngOnInit(): void { }
 
-  public selectCategory(route: string) {
-    this.selectCat = route;
-    this.selectedCat.emit(route);
+  public selectCategory(route: string): void {
   }
 }

@@ -1,17 +1,114 @@
 {
-    "extends": "../tslint.json",
-    "rules": {
-        "directive-selector": [
-            true,
-            "attribute",
-            "app",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "app",
-            "kebab-case"
+  "extends": "../tslint.json",
+  "rules": {
+    "member-access": {
+      "severity": "warning"
+    },
+    "member-ordering": {
+      "options": {
+        "order": [
+          "public-static-field",
+          "public-instance-field",
+          "private-static-field",
+          "private-instance-field",
+          "public-constructor",
+          "private-constructor",
+          "protected-instance-method",
+          "public-instance-method",
+          "private-instance-method"
         ]
+      },
+      "severity": "warning"
+    },
+    "promise-function-async": {
+      "severity": "warning"
+    },
+    "typedef": {
+      "options": ["call-signature", "parameter"],
+      "severity": "warning"
+    },
+    "typedef-whitespace": {
+      "severity": "warning"
+    },
+    "no-console": {
+      "options": ["log"],
+      "severity": "error"
+    },
+    "await-promise": {
+      "severity": "warning"
+    },
+    "no-conditional-assignment": {
+      "severity": "warning"
+    },
+    "no-duplicate-super": {
+      "severity": "error"
+    },
+    "no-duplicate-variable": {
+      "severity": "error"
+    },
+    "no-invalid-template-strings": {
+      "severity": "error"
+    },
+    "no-invalid-this": {
+      "severity": "error"
+    },
+    "no-misused-new": {
+      "severity": "error"
+    },
+    "no-return-await": {
+      "severity": "warning"
+    },
+    "prefer-object-spread": {
+      "severity": "warning"
+    },
+    "triple-equals": {
+      "severity": "warning"
+    },
+    "indent": {
+      "options": ["spaces", 2],
+      "severity": "warning"
+    },
+    "linebreak-style": {
+      "options": "LF",
+      "severity": "warning"
+    },
+    "no-duplicate-imports": {
+      "severity": "warning"
+    },
+    "array-type": {
+      "options": "array",
+      "severity": "warning"
+    },
+    "comment-format": {
+      "options": ["check-space"],
+      "severity": "warning"
+    },
+    "no-boolean-literal-compare": {
+      "severity": "warning"
+    },
+    "quotemark": {
+      "options": "single",
+      "severity": "warning"
+    },
+    "variable-name": {
+      "options": ["ban-keywords"],
+      "severity": "warning"
+    },
+    "directive-selector": [
+      true,
+      "attribute",
+      "ex",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "ex",
+      "kebab-case"
+    ],
+    "interface-name": {
+      "options": "always-prefix",
+      "severity": "error"
     }
+  }
 }

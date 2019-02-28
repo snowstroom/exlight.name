@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ArticleStateService } from '../../services/article-state.service';
+import { ArticleService } from '../../services/article.service';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
 import { Title, Meta } from '@angular/platform-browser';
+import { CategoriesItem } from '@app/classes/categories';
 
 @Component({
-  selector: 'app-catalog',
+  selector: 'ex-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
@@ -13,37 +14,29 @@ export class CatalogComponent implements OnInit {
   public page: number;
   public cat: string;
   public articles: any[] = [];
-  public categories: any[];
+  public categories: CategoriesItem[];
   public total = 0;
   public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(
-    private artStateSrv: ArticleStateService,
+    private articlesSrv: ArticleService,
     private router: Router,
     private titleSrv: Title,
     private metaSrv: Meta
-  ) { }
+  ) {
+    this.articlesSrv.$categories
+      .subscribe(categories => this.categories = categories);
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.titleSrv.setTitle('eXlight - Каталог статей');
-    this.artStateSrv.categories$.subscribe(categories => this.categories = categories);
-    this.artStateSrv.articles$.subscribe(articles => this.articles = articles);
-    this.artStateSrv.totalarticles$.subscribe(total => this.total = total);
-    this.artStateSrv.category$.subscribe(cat => {
-      this.cat = cat;
-      this.router.navigate(['/catalog/' + this.cat + '/page', 1]);
-    });
-    this.artStateSrv.page$.subscribe(page => {
-      this.page = page;
-      this.router.navigate(['/catalog/' + this.cat + '/page', this.page]);
-    });
   }
 
-  public setActivePage(page: number) {
-    this.artStateSrv.curPage = page;
+  public setActivePage(page: number): void {
+
   }
 
-  public selectedCatHandler(category: string) {
-    this.artStateSrv.curCat = category;
+  public selectedCatHandler(cat: CategoriesItem): void {
+    this.articlesSrv.getArticles(this.articlesSrv.pagination, cat);
   }
 
 }

@@ -2,17 +2,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MediaItem } from '../../interfaces/MediaItem.interface';
 
 @Component({
-  selector: 'app-media-catalog',
+  selector: 'ex-media-catalog',
   templateUrl: './music-item.component.html',
   styleUrls: ['./music-item.component.scss']
 })
 export class MusicItemComponent implements OnInit {
-  @Input() mediaItem: MediaItem;
-  @Output() play = new EventEmitter();
-  @Output() download = new EventEmitter();
+  @Input() public mediaItem: MediaItem;
+  @Output() public play = new EventEmitter();
+  @Output() public download = new EventEmitter();
   constructor() { }
 
-  ngOnInit() { }
+  public ngOnInit(): void { }
 
   public onPlay(): void {
     this.play.emit(this.mediaItem);

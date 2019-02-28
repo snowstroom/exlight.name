@@ -1,47 +1,47 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'ex-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit, OnChanges {
-  @Input() itemCount: number;
-  @Input() onPage: number;
-  @Input() activePage: number;
-  @Output() selectPage = new EventEmitter<number>();
+  @Input() public itemCount: number;
+  @Input() public onPage: number;
+  @Input() public activePage: number;
+  @Output() public selectPage = new EventEmitter<number>();
   public items: number[] = [];
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.buildPagination();
   }
 
-  ngOnChanges() {
+  public ngOnChanges(): void {
     this.buildPagination();
   }
 
-  public toPage(page: number) {
+  public toPage(page: number): void {
     this.activePage = page;
     this.selectPage.emit(this.activePage);
   }
 
-  public nextPage() {
+  public nextPage(): void {
     if (this.activePage < this.items.length) {
       this.activePage++;
       this.selectPage.emit(this.activePage);
     }
   }
 
-  public prevPage() {
+  public prevPage(): void {
     if (this.activePage > 1) {
       this.activePage--;
       this.selectPage.emit(this.activePage);
     }
   }
 
-  private buildPagination() {
+  private buildPagination(): void {
     const pageCount = Math.ceil(this.itemCount / this.onPage);
     for (let i = 1; i < pageCount; i++) {
       this.items[i - 1] = i;

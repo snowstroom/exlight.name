@@ -1,18 +1,18 @@
 <div class="content-wrapper">
   <div class="main">
-    <app-catalog-menu [showMenu]="false"
+    <ex-catalog-menu [showMenu]="false"
     [catalogName]="'Каталог музыки'"
-    [currentpage]="currentpage"></app-catalog-menu>
+    [currentpage]="currentpage"></ex-catalog-menu>
     <div class="media-catalog">
-        <app-media-catalog *ngFor="let mItem of mediaItems"
-          [mediaItem]="mItem" ></app-media-catalog>
+        <ex-media-catalog *ngFor="let mItem of mediaItems"
+          [mediaItem]="mItem" ></ex-media-catalog>
     </div>
-    <app-pagination [itemCount]="30"
+    <ex-pagination [itemCount]="30"
       [onPage]="15"
       [activePage]="1"
-      (selectPage)="setActivePage($event)"></app-pagination>
+      (selectPage)="setActivePage($event)"></ex-pagination>
   </div>
   <div class="right">
-    <app-audio-player></app-audio-player>
+    <ex-audio-player></ex-audio-player>
   </div>
 </div>

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
 import { MediaItem } from '../interfaces/MediaItem.interface';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
@@ -19,9 +18,8 @@ export class MusicStateService {
   private intTime$ = new BehaviorSubject(this.currentTime);
   private duration = null;
   private duration$ = new BehaviorSubject(this.duration);
-  constructor(
-    private apiSrv: ApiService
-  ) {
+  constructor() {
+    /*
     this.apiSrv.getTracks()
       .then(musicList => {
         this.musicItems = musicList;
@@ -30,7 +28,7 @@ export class MusicStateService {
           this.playingTrack = musicList[0];
           this.playingTrack$.next(this.playingTrack);
         }
-      });
+      });*/
   }
 
   get $musicItems(): Observable<MediaItem[]> {

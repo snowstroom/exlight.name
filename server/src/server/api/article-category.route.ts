@@ -6,7 +6,7 @@ import * as Model from '../../../models/category';
 const Category: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
 export const categoriesApi = Router();
 
-categoriesApi.get('/article-categories', async (req, res, next) => {
+categoriesApi.get('/categories-of-articles', async (req, res, next) => {
     try {
         const dbAnsw = await Category.findAll();
         res.header({ 'Content-Type': 'application/json' });
@@ -18,7 +18,7 @@ categoriesApi.get('/article-categories', async (req, res, next) => {
     next();
 });
 
-categoriesApi.post('/article-category', async (req, res, next) => {
+categoriesApi.post('/category-of-articles', async (req, res, next) => {
     try {
         await Category.create(req.body);
     } catch (err) {
@@ -28,7 +28,7 @@ categoriesApi.post('/article-category', async (req, res, next) => {
     next();
 });
 
-categoriesApi.put('/article-category', async (req, res, next) => {
+categoriesApi.put('/category-of-articles', async (req, res, next) => {
     try {
         await Category.update(req.body, { where: {
             id: req.body.id
@@ -40,7 +40,7 @@ categoriesApi.put('/article-category', async (req, res, next) => {
     next();
 });
 
-categoriesApi.delete('/article-category/:id', async (req, res, next) => {
+categoriesApi.delete('/category-of-articles/:id', async (req, res, next) => {
     try {
         await Category.destroy({ where: {
             id: req.params.id

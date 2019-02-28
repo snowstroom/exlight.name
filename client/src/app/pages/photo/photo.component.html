@@ -1,16 +1,16 @@
 <div class="content-wrapper">
   <div class="main">
-    <app-catalog-menu [showMenu]="false"
+    <ex-catalog-menu [showMenu]="false"
     [catalogName]="'Фото каталог'"
-    [currentpage]="currentpage"></app-catalog-menu>
+    [currentpage]="currentpage"></ex-catalog-menu>
     <div class="photos">
-      <app-photo-item *ngFor="let photo of photos"
-      [photo]="photo"></app-photo-item>
+      <ex-photo-item *ngFor="let photo of photos"
+      [photo]="photo"></ex-photo-item>
     </div>
-    <app-pagination [itemCount]="50"
+    <ex-pagination [itemCount]="50"
       [onPage]="10"
       [activePage]="2"
-      (selectPage)="setActivePage($event)"></app-pagination>
+      (selectPage)="setActivePage($event)"></ex-pagination>
   </div>
   <div class="right"></div>
 </div>

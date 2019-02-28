@@ -3,7 +3,7 @@ import { MusicStateService } from '../../services/music-state.service';
 import { MediaItem } from '../../interfaces/MediaItem.interface';
 
 @Component({
-  selector: 'app-audio-player',
+  selector: 'ex-audio-player',
   templateUrl: './audio-player.component.html',
   styleUrls: ['./audio-player.component.scss']
 })
@@ -19,7 +19,7 @@ export class AudioPlayerComponent implements OnInit {
     private musicStateSrv: MusicStateService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.musicStateSrv.$musicItems.subscribe(tracks => this.tracks = tracks);
     this.musicStateSrv.$playingTrack.subscribe(playingTrack => this.playingTrack = playingTrack);
     this.musicStateSrv.$isPlay.subscribe(play => this.isPlay = play);
@@ -28,31 +28,31 @@ export class AudioPlayerComponent implements OnInit {
     this.musicStateSrv.$duration.subscribe(duration => this.duration = duration);
   }
 
-  public play() {
+  public play(): void {
     this.musicStateSrv.play();
   }
 
-  public pause() {
+  public pause(): void {
     this.musicStateSrv.pause();
   }
 
-  public prevTrack() {
+  public prevTrack(): void {
     this.musicStateSrv.prev();
   }
 
-  public nextTrack() {
+  public nextTrack(): void {
     this.musicStateSrv.next();
   }
 
-  public playTrack(track: MediaItem) {
+  public playTrack(track: MediaItem): void {
       this.musicStateSrv.playTrack(track);
   }
 
-  public changeVolume(e: any) {
+  public changeVolume(e: any): void {
     this.musicStateSrv.changeVolume(e.target.value);
   }
 
-  public changePosition(e: any) {
+  public changePosition(e: any): void {
     this.musicStateSrv.navByTrack(e.target.value);
   }
 
