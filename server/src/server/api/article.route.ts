@@ -32,7 +32,8 @@ articleApi.get('/article/:id', async (req, res, next) => {
 
 articleApi.get('/article-by-route/:route', async (req, res, next) => {
   try {
-    const dbAnsw: Sequelize. = await Article.findOne({
+    await sequelize.transaction()
+    const dbAnsw = await Article.findOne({
       where: { route: req.params.route }, attributes: [
         'id',
         'title',
@@ -42,16 +43,13 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
         'content',
         'views',
         'category'
-      ]
+      ], raw: true
     });
-    Article.update({
-
-    }, {
+    await Article.update({ views: ++dbAnsw.views }, {
       where: {
         route: req.params.route
       }
-    })
-    console.warn(dbAnsw)
+    });
     res.send(dbAnsw);
   } catch (err) {
     console.warn(err)

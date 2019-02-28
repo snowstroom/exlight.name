@@ -31,11 +31,11 @@ export class ArticleService extends Api {
     }
   }
 
-  public async getArticles(pagination: PaginationParams, cat: CategoriesItem): Promise<Article[]> {
+  public async getArticles(pagination: PaginationParams, catId?: number): Promise<Article[]> {
     try {
       const answ: IArticle[] = await this.post('articles', {
         ...pagination.getParamsObject(),
-        categoryId: cat.id
+        categoryId: catId
       });
       return answ.map(art => new Article(art));
     } catch (err) {

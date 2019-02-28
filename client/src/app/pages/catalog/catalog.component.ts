@@ -25,6 +25,8 @@ export class CatalogComponent implements OnInit {
   ) {
     this.articlesSrv.$categories
       .subscribe(categories => this.categories = categories);
+    this.articlesSrv.getArticles(this.articlesSrv.pagination)
+      .then(articles => this.articles = articles);
   }
 
   public ngOnInit(): void {
@@ -37,7 +39,7 @@ export class CatalogComponent implements OnInit {
 
   public async selectedCatHandler(cat: CategoriesItem): Promise<void> {
     this.curCategory = cat;
-    this.articles = await this.articlesSrv.getArticles(this.articlesSrv.pagination, cat);
+    this.articles = await this.articlesSrv.getArticles(this.articlesSrv.pagination, cat.id);
   }
 
   public navigateToArticle(route: string): void {

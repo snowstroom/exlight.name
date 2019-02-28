@@ -25,7 +25,6 @@ export class ArticleComponent implements OnInit {
 
   public async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
-    console.warn(this.article);
   }
 
 }
