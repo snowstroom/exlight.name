@@ -8,7 +8,9 @@ export const categoriesApi = Router();
 
 categoriesApi.get('/categories-of-articles', async (req, res, next) => {
     try {
-        const dbAnsw = await Category.findAll();
+        const dbAnsw = await Category.findAll({
+            attributes: ['id', 'categoryName', 'categoryRoute']
+        });
         res.header({ 'Content-Type': 'application/json' });
         res.send(dbAnsw);
     } catch (err) {
