@@ -17,7 +17,7 @@ const routes: Routes = [ {
     component: CatalogComponent,
     pathMatch: 'prefix',
   }, {
-    path: 'article/:artName',
+    path: 'article/:cat/:article',
     component: ArticleComponent
   }, {
     path: 'video',

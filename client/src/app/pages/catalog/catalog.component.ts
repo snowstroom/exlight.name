@@ -4,6 +4,7 @@ import { ArticleService } from '../../services/article.service';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
 import { Title, Meta } from '@angular/platform-browser';
 import { CategoriesItem } from '@app/classes/categories';
+import { Article } from '@app/classes/article';
 
 @Component({
   selector: 'ex-catalog',
@@ -12,10 +13,9 @@ import { CategoriesItem } from '@app/classes/categories';
 })
 export class CatalogComponent implements OnInit {
   public page: number;
-  public cat: string;
-  public articles: any[] = [];
+  public curCategory: CategoriesItem;
+  public articles: Article[] = [];
   public categories: CategoriesItem[];
-  public total = 0;
   public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(
     private articlesSrv: ArticleService,
@@ -32,11 +32,16 @@ export class CatalogComponent implements OnInit {
   }
 
   public setActivePage(page: number): void {
-
+    this.articlesSrv.pagination.page = page;
   }
 
-  public selectedCatHandler(cat: CategoriesItem): void {
-    this.articlesSrv.getArticles(this.articlesSrv.pagination, cat);
+  public async selectedCatHandler(cat: CategoriesItem): Promise<void> {
+    this.curCategory = cat;
+    this.articles = await this.articlesSrv.getArticles(this.articlesSrv.pagination, cat);
+  }
+
+  public navigateToArticle(route: string): void {
+    this.router.navigate(['article', this.curCategory.categoryRoute, route]);
   }
 
 }

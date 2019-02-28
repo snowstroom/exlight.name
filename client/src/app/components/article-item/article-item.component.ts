@@ -1,16 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Article } from '@app/classes/article';
 
 @Component({
   selector: 'ex-articles',
   templateUrl: './article-item.component.html',
   styleUrls: ['./article-item.component.scss']
 })
-export class ArticleItemComponent implements OnInit {
-  @Input() public article: any;
+export class ArticleItemComponent {
+  @Input() public article: Article;
+  @Output() private navigate = new EventEmitter<string>();
 
-  constructor() { }
-
-  public ngOnInit(): void {
+  public onNavigate(): void {
+    this.navigate.emit(this.article.route);
   }
 
 }

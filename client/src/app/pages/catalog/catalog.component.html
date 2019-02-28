@@ -7,7 +7,7 @@
     (selectedCat)="selectedCatHandler($event)"></ex-catalog-menu>
     <div class="articles">
       <ex-articles *ngFor="let article of articles"
-      [article]="article"></ex-articles>
+      [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
     </div>
     <ex-pagination [itemCount]="total"
       [onPage]="itemsOnPage"

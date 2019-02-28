@@ -14,12 +14,8 @@ export class ArticleService extends Api {
   public pagination = new PaginationParams({ limit: 10 });
   private categories: CategoriesItem[] = [];
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
-  constructor(
-    private router: Router,
-    protected injector: Injector
-  ) {
+  constructor(injector: Injector) {
     super(injector, environment.domain);
-    this.router.events.subscribe(evt => console.warn(evt));
     this.getCategories().then(categories => {
       this.categories = categories;
       this.categories$.next(this.categories);
@@ -52,6 +48,16 @@ export class ArticleService extends Api {
       const answ: IArticle = await this.get(`article/${id}`);
       return new Article(answ);
     } catch (err) {
+      return null;
+    }
+  }
+
+  public async getArticleByRoute(route: string): Promise<Article> {
+    try {
+      const answ: IArticle = await this.get(`article-by-route/${route}`);
+      return new Article(answ);
+    } catch (err) {
+      console.warn(err);
       return null;
     }
   }

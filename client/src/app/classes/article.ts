@@ -1,9 +1,11 @@
+import * as dateformat from 'dateformat';
+
 export interface IArticle {
     id: number;
     title: string;
-    date: string;
-    discription: string;
-    article: string;
+    publicationDate: string;
+    description: string;
+    content: string;
     views: number;
     category: number;
     route: string;
@@ -16,23 +18,14 @@ export interface IArticleApiData {
 }
 
 export class Article implements IArticle {
-    public readonly id: number;
-    public title: string;
-    public date: string;
-    public discription: string;
-    public article: string;
-    public views: number;
-    public category: number;
-    public route: string;
+    public readonly id: number = this.__data.id;
+    public title: string = this.__data.title;
+    public publicationDate: string = dateformat(new Date(this.__data.publicationDate), 'dd.mm.yyyy');
+    public description: string = this.__data.description;
+    public content: string = this.__data.content;
+    public views: number = this.__data.views;
+    public category: number  = this.__data.category;
+    public route: string = this.__data.route;
 
-    constructor(private itemData: IArticle) {
-        this.id = itemData.id;
-        this.title = itemData.title;
-        this.date = itemData.date;
-        this.discription = itemData.discription;
-        this.article = itemData.article;
-        this.views = itemData.views;
-        this.category = itemData.category;
-        this.route = itemData.route;
-    }
+    constructor(private __data: IArticle) {}
 }

@@ -1,6 +1,6 @@
 <div class="article">
   <div class="article-head">{{article.title}}</div>
-  <div class="article-date">{{article.date}}</div>
-  <div class="article-discription">{{article.discription}}</div>
-  <div class="article-link" role="link" [routerLink]="['/article', article.route]">Читать подробнее...</div>
+  <div class="article-date">{{article.publicationDate}}</div>
+  <div class="article-discription">{{article.description}}</div>
+  <div class="article-link" role="link" (click)="onNavigate()">Читать подробнее...</div>
 </div>

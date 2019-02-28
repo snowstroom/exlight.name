@@ -8,7 +8,7 @@ export const articleApi = Router();
 
 articleApi.get('/article/:id', async (req, res, next) => {
   try {
-    await Article.findOne({
+    const dbAnsw = await Article.findOne({
       where: {
         id: req.params.id
       }, attributes: [
@@ -22,6 +22,37 @@ articleApi.get('/article/:id', async (req, res, next) => {
         'category'
       ]
     });
+    res.send(dbAnsw);
+  } catch (err) {
+    console.warn(err)
+  }
+  res.end();
+  next();
+});
+
+articleApi.get('/article-by-route/:route', async (req, res, next) => {
+  try {
+    const dbAnsw: Sequelize. = await Article.findOne({
+      where: { route: req.params.route }, attributes: [
+        'id',
+        'title',
+        'route',
+        'publicationDate',
+        'description',
+        'content',
+        'views',
+        'category'
+      ]
+    });
+    Article.update({
+
+    }, {
+      where: {
+        route: req.params.route
+      }
+    })
+    console.warn(dbAnsw)
+    res.send(dbAnsw);
   } catch (err) {
     console.warn(err)
   }
@@ -35,7 +66,8 @@ articleApi.post('/articles', async (req, res, next) => {
     const dbAnsw = await Article.findAll({
       offset: req.body.start,
       limit: req.body.limit,
-      ...where
+      attributes: ['id','title', 'route', 'publicationDate', 'description', 'views', 'category'],
+      where: where
     });
     res.header({ 'Content-Type': 'application/json' });
     res.send(dbAnsw);
