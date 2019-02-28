@@ -11,7 +11,6 @@ export class Server {
     public async start() {
         this.app.use(json());
         this.app.use(cors({
-            allowedHeaders: 'Access-Control-Allow-Origin',
             origin: 'http://127.0.0.1:4200'
         }));
         this.app.use('/', ...routes);

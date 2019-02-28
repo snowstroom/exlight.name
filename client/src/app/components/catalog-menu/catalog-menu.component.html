@@ -2,12 +2,8 @@
   <div class="head" role="heading">{{catalogName}}</div>
   <div class="page">Страница: {{currentpage}}</div>
   <div class="categories" *ngIf="showMenu">
-      <div class="category"
-        (click)="selectCategory('all')"
-        [ngClass]="{'active': selectCat === 'all'}">Все</div>
-      <div class="category"
-        [ngClass]="{'active': selectCat === cat.route}"
-        *ngFor="let cat of categories"
-        (click)="selectCategory(cat.route)">{{cat.name}}</div>
+      <div class="category" *ngFor="let item of categoryItems"
+        (click)="selectCategory(item)"
+        [ngClass]="{'active': item.isActive}">{{item.categoryName}}</div>
   </div>
 </div>

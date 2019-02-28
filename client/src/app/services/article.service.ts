@@ -22,7 +22,11 @@ export class ArticleService extends Api {
   ) {
     super(injector, environment.domain);
     this.router.events.subscribe(evt => console.warn(evt));
-    this.getCategories().then(categories => this.categories = categories);
+    this.getCategories().then(categories => {
+      console.warn(categories);
+      this.categories = categories;
+      this.categories$.next(categories);
+    });
   }
 
   public async getCategories(): Promise<CategoriesItem[]> {

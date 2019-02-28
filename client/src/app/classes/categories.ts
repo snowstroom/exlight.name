@@ -1,17 +1,15 @@
 export interface ICategoriesItem {
     id: number;
-    name: string;
-    route: string;
+    categoryName: string;
+    categoryRoute: string;
 }
 
 export class CategoriesItem implements ICategoriesItem {
-    public readonly id: number;
-    public name: string;
-    public route: string;
+    public readonly id: number = this.__data.id;
+    public categoryName: string = this.__data.categoryName;
+    public categoryRoute: string = this.__data.categoryRoute;
 
-    constructor(private itemData: ICategoriesItem) {
-        this.id = itemData.id || null;
-        this.name = itemData.name || null;
-        this.route = itemData.route || null;
-    }
+    public isActive: boolean;
+
+    constructor(private __data: ICategoriesItem) {}
 }
