@@ -13,7 +13,7 @@ export class CatalogMenuComponent {
   @Input() public currentpage: number;
   @Output() public selectedCat = new EventEmitter<CategoriesItem>();
   private defItem = new CategoriesItem({
-    id: null,
+    id: undefined,
     categoryName: 'Все',
     categoryRoute: 'all'
   });

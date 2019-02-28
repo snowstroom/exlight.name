@@ -12,9 +12,7 @@ import { Article, IArticle } from '@app/classes/article';
 })
 export class ArticleService extends Api {
   public pagination = new PaginationParams({ limit: 10 });
-  private articles: any[] = [];
   private categories: CategoriesItem[] = [];
-  private curCat: number;
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
   constructor(
     private router: Router,
@@ -23,9 +21,8 @@ export class ArticleService extends Api {
     super(injector, environment.domain);
     this.router.events.subscribe(evt => console.warn(evt));
     this.getCategories().then(categories => {
-      console.warn(categories);
       this.categories = categories;
-      this.categories$.next(categories);
+      this.categories$.next(this.categories);
     });
   }
 
@@ -61,24 +58,6 @@ export class ArticleService extends Api {
 
   get $categories(): Observable<any[]> {
     return this.categories$.asObservable();
-  }
-
-  set curCategory(catId: string) { /*
-    this.apiSrv.getArticles(this.curPage, this.curPage * ITEMS_ON_PAGE_ART, this.curCat)
-      .then(data => {
-        this.curPage = 1;
-        this.isLoad = false;
-        this.currentCategory = catId;
-        this.articles = data.articles;
-        this.totalArticles = data.totalItems;
-        this._totalArticles$.next(this.totalArticles);
-        this._articles$.next(this.articles);
-        this._category$.next(catId);
-      }).catch(err => {
-        this._category$.next(this.curCat);
-        this.isLoad = false;
-        console.log(err);
-      });*/
   }
 
 }
