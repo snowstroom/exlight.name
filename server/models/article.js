@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.INTEGER
   }, {});
   Article.associate = function(models) {
-    Article.hasOne(models.CarouselItem, { foreignKey: 'id' });
+    Article.hasOne(models.CarouselItem, { foreignKey: 'articleId' });
   };
   return Article;
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { CarouselItem } from '@app/classes/carousel-item';
 
@@ -7,34 +7,22 @@ import { CarouselItem } from '@app/classes/carousel-item';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit {
-  private timer: any;
-  private currentSlide: CarouselItem = new CarouselItem({
-    data: 'Пусто',
+export class SliderComponent {
+  @Input() public items: CarouselItem[];
+  public currentSlide: CarouselItem = new CarouselItem({
+    description: 'Пусто',
     id: null,
     title: 'Пусто',
-    urlImg: ''
+    imgUrl: ''
   });
+  private timer: any;
   private currentIndex: number;
   private slides: any[] = [];
 
-  constructor(
-    private domSanitizer: DomSanitizer
-  ) { }
+  constructor(private domSanitizer: DomSanitizer) { }
 
-  public ngOnInit(): void {
-    /*
-    this.appStateSrv.slider$.subscribe(slides => {
-      if (slides.length) {
-        this.slides = slides;
-        this.currentIndex = 0;
-        this.currentSlide = slides[0];
-        this.autoNext();
-      }
-    });*/
-  }
   get background(): SafeStyle {
-    return this.domSanitizer.bypassSecurityTrustStyle(`url(${this.currentSlide.urlImg})`);
+    return this.domSanitizer.bypassSecurityTrustStyle(`url(${this.currentSlide.imgUrl})`);
   }
 
   public nextSlide(): void {

@@ -5,6 +5,7 @@ import { environment } from 'environments/environment';
 import { ITEMS_ON_PAGE_ART } from '../consts/ItemsOnPage.const';
 import { CategoriesItem, ICategoriesItem } from '@app/classes/categories';
 import { Article, IArticle } from '@app/classes/article';
+import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ import { Article, IArticle } from '@app/classes/article';
 export class ArticleService extends Api {
   public pagination = new PaginationParams({ limit: 10 });
   public categoriesMap = new Map<string, CategoriesItem>();
-  private categories: CategoriesItem[] = [];
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
+  private carouselItems$ = new BehaviorSubject<CarouselItem[]>([]);
+  private categories: CategoriesItem[] = [];
+  private carouselItems: CarouselItem[] = [];
   constructor(injector: Injector) {
     super(injector, environment.domain);
     const defCat = new CategoriesItem({
@@ -27,6 +30,20 @@ export class ArticleService extends Api {
       this.initCategoriesMap(this.categories);
       this.categories$.next(this.categories);
     });
+
+    this.getCarouselItems().then(items => {
+      console.warn(items);
+      this.carouselItems = items;
+      this.carouselItems$.next(this.carouselItems);
+    });
+  }
+
+  get $categories(): Observable<CategoriesItem[]> {
+    return this.categories$.asObservable();
+  }
+
+  get $carouselItems(): Observable<CarouselItem[]> {
+    return this.carouselItems$.asObservable();
   }
 
   public async getCategories(): Promise<CategoriesItem[]> {
@@ -68,12 +85,17 @@ export class ArticleService extends Api {
     }
   }
 
-  private initCategoriesMap(categories: CategoriesItem[]): void {
-    categories.forEach(c => this.categoriesMap.set(c.categoryRoute, c));
+  public async getCarouselItems(): Promise<CarouselItem[]> {
+    try {
+      const answ: ICarouselItem[] = await this.get('carousel-items');
+      return answ.map(i => new CarouselItem(i));
+    } catch (err) {
+      return [];
+    }
   }
 
-  get $categories(): Observable<any[]> {
-    return this.categories$.asObservable();
+  private initCategoriesMap(categories: CategoriesItem[]): void {
+    categories.forEach(c => this.categoriesMap.set(c.categoryRoute, c));
   }
 
 }

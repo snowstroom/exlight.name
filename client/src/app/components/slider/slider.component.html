@@ -14,7 +14,7 @@
       <div class="controls-wrapper">
           <div class="controll" (click)="prevSlide()">Назад</div>
           <div class="controll" [ngClass]="{'active' : currentIndex === i}"
-            *ngFor="let slide of slides; let i = index"
+            *ngFor="let slide of items; let i = index"
             (click)="showSlide(i)">{{i + 1}}</div>
           <div class="controll" (click)="nextSlide()">Далее</div>
       </div>
