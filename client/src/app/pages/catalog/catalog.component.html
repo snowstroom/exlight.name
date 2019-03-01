@@ -3,13 +3,13 @@
     <ex-catalog-menu [showMenu]="true"
     [catalogName]="'Каталог статей'"
     [categories]="categories"
-    [currentpage]="page"
+    [currentpage]="articlesSrv.pagination.currentPage"
     (selectedCat)="selectedCatHandler($event)"></ex-catalog-menu>
     <div class="articles">
       <ex-articles *ngFor="let article of articles"
       [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
     </div>
-    <ex-pagination [itemCount]="total"
+    <ex-pagination [itemCount]="articlesSrv.pagination.totalPage"
       [onPage]="itemsOnPage"
       [activePage]="page"
       (selectPage)="setActivePage($event)"></ex-pagination>

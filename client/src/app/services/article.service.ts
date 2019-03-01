@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
 import { Api, PaginationParams } from 'core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
@@ -12,12 +11,20 @@ import { Article, IArticle } from '@app/classes/article';
 })
 export class ArticleService extends Api {
   public pagination = new PaginationParams({ limit: 10 });
+  public categoriesMap = new Map<string, CategoriesItem>();
   private categories: CategoriesItem[] = [];
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
   constructor(injector: Injector) {
     super(injector, environment.domain);
+    const defCat = new CategoriesItem({
+      id: undefined,
+      categoryName: 'Все',
+      categoryRoute: 'all'
+    });
+    defCat.isActive = true;
     this.getCategories().then(categories => {
-      this.categories = categories;
+      this.categories = [defCat, ...categories];
+      this.initCategoriesMap(this.categories);
       this.categories$.next(this.categories);
     });
   }
@@ -57,9 +64,12 @@ export class ArticleService extends Api {
       const answ: IArticle = await this.get(`article-by-route/${route}`);
       return new Article(answ);
     } catch (err) {
-      console.warn(err);
       return null;
     }
+  }
+
+  private initCategoriesMap(categories: CategoriesItem[]): void {
+    categories.forEach(c => this.categoriesMap.set(c.categoryRoute, c));
   }
 
   get $categories(): Observable<any[]> {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
 import { Title, Meta } from '@angular/platform-browser';
@@ -15,18 +15,28 @@ export class CatalogComponent implements OnInit {
   public page: number;
   public curCategory: CategoriesItem;
   public articles: Article[] = [];
-  public categories: CategoriesItem[];
+  public categories: CategoriesItem[] = [];
   public itemsOnPage = ITEMS_ON_PAGE_ART;
   constructor(
-    private articlesSrv: ArticleService,
+    public articlesSrv: ArticleService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private titleSrv: Title,
     private metaSrv: Meta
   ) {
-    this.articlesSrv.$categories
-      .subscribe(categories => this.categories = categories);
-    this.articlesSrv.getArticles(this.articlesSrv.pagination)
-      .then(articles => this.articles = articles);
+    this.activatedRoute.params.subscribe(params => {
+      this.articlesSrv.$categories.subscribe(categories => {
+        if (categories.length) {
+          this.categories = categories;
+          this.articlesSrv.pagination.currentPage = params.page;
+          this.curCategory = this.articlesSrv.categoriesMap.get(params.cat);
+          this.categories.forEach(item => item.isActive = false);
+          this.curCategory.isActive = true;
+          this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)
+            .then(articles => this.articles = articles);
+        }
+      });
+    });
   }
 
   public ngOnInit(): void {
@@ -38,8 +48,8 @@ export class CatalogComponent implements OnInit {
   }
 
   public async selectedCatHandler(cat: CategoriesItem): Promise<void> {
-    this.curCategory = cat;
-    this.articles = await this.articlesSrv.getArticles(this.articlesSrv.pagination, cat.id);
+
+    this.router.navigate(['catalog', cat.categoryRoute, 'page', 1]);
   }
 
   public navigateToArticle(route: string): void {
