@@ -1,21 +1,15 @@
 import { Router } from 'express';
-import { sequelize } from '../consts/db.const';
-import * as Sequelize from 'sequelize';
-import * as Model from '../../../models/carouselitem';
-import * as ArticleModel from '../../../models/article';
-
-const CarouselItem: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
-const Article: Sequelize.Model<any, any> = ArticleModel(sequelize, Sequelize);
+import * as models from '../../../models';
 
 export const carouselApi = Router();
 
 carouselApi.get('/carousel-items', async (req, res, next) => {
     try {
-        const dbAnsw = await CarouselItem.findAll({ 
+        const dbAnsw = await models.CarouselItem.findAll({ 
             raw: true,
             attributes: ['id', 'articleId', 'imgUrl'],
             include: [{
-                model: Article,
+                model: models.Article,
                 attributes: ['id', 'title', 'description', 'route']
             }],
             where: { active: true }
@@ -30,7 +24,7 @@ carouselApi.get('/carousel-items', async (req, res, next) => {
 
 carouselApi.post('/carousel-item', async (req, res, next) => {
     try {
-        await CarouselItem.create(req.body);
+        await models.CarouselItem.create(req.body);
     } catch (err) {
         console.warn(err);
     }
@@ -40,7 +34,7 @@ carouselApi.post('/carousel-item', async (req, res, next) => {
 
 carouselApi.put('/carousel-item', async (req, res, next) => {
     try {
-        await CarouselItem.update(req.body);
+        await models.CarouselItem.update(req.body);
     } catch (err) {
         console.warn(err);
     }

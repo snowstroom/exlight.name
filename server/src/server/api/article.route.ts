@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import { sequelize } from '../consts/db.const';
-import * as Sequelize from 'sequelize';
-import * as Model from '../../../models/article';
+import * as models from '../../../models';
 
-const Article: Sequelize.Model<any, any> = Model(sequelize, Sequelize);
 export const articleApi = Router();
 
-articleApi.get('/article/:id', async (req, res, next) => {
+articleApi.get('/models.Article/:id', async (req, res, next) => {
   try {
-    const dbAnsw = await Article.findOne({
+    const dbAnsw = await models.Article.findOne({
       where: {
         id: req.params.id
       }, attributes: [
@@ -30,10 +27,10 @@ articleApi.get('/article/:id', async (req, res, next) => {
   next();
 });
 
-articleApi.get('/article-by-route/:route', async (req, res, next) => {
+articleApi.get('/models.Article-by-route/:route', async (req, res, next) => {
   try {
-    await sequelize.transaction()
-    const dbAnsw = await Article.findOne({
+    await models.transaction(); // ??
+    const dbAnsw = await models.Article.findOne({
       where: { route: req.params.route }, attributes: [
         'id',
         'title',
@@ -45,7 +42,7 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
         'category'
       ], raw: true
     });
-    await Article.update({ views: ++dbAnsw.views }, {
+    await models.Article.update({ views: ++dbAnsw.views }, {
       where: {
         route: req.params.route
       }
@@ -61,7 +58,7 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
 articleApi.post('/articles', async (req, res, next) => {
   try {
     const where = req.body.categoryId ? { category: req.body.categoryId } : {};
-    const dbAnsw = await Article.findAll({
+    const dbAnsw = await models.Article.findAll({
       offset: req.body.start,
       limit: req.body.limit,
       attributes: ['id','title', 'route', 'publicationDate', 'description', 'views', 'category'],
@@ -76,9 +73,9 @@ articleApi.post('/articles', async (req, res, next) => {
   next();
 });
 
-articleApi.post('/article', async (req, res, next) => {
+articleApi.post('/models.Article', async (req, res, next) => {
   try {
-    await Article.create(req.body);
+    await models.Article.create(req.body);
   } catch (err) {
     console.warn(err);
   }
@@ -86,9 +83,9 @@ articleApi.post('/article', async (req, res, next) => {
   next();
 });
 
-articleApi.put('/article', async (req, res, next) => {
+articleApi.put('/models.Article', async (req, res, next) => {
   try {
-    Article.update(req.body, { where: { id: req.body.id } });
+    models.Article.update(req.body, { where: { id: req.body.id } });
   } catch (err) {
     console.warn(err);
   }
@@ -96,9 +93,9 @@ articleApi.put('/article', async (req, res, next) => {
   next();
 })
 
-articleApi.delete('/article/:id', async (req, res, next) => {
+articleApi.delete('/models.Article/:id', async (req, res, next) => {
   try {
-    Article.destroy({ where: { id: req.params.id } });
+    models.Article.destroy({ where: { id: req.params.id } });
   } catch (err) {
     console.warn(err)
   }
