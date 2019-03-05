@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     articleId: DataTypes.INTEGER
   }, {});
   CarouselItem.associate = function(models) {
-    CarouselItem.hasOne(models.Article, { foreignKey: 'id' })
+    CarouselItem.belongTo(models.Article, { foreignKey: 'id' })
   };
   return CarouselItem;
 };

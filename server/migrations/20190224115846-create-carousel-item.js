@@ -14,9 +14,12 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       articleId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        references: {
+          model: 'Articles',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

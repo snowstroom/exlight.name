@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     categoryRoute: DataTypes.STRING
   }, {});
   Category.associate = function(models) {
-    Category.hasMany(models.Article, { foreignKey: 'category' });
+    Category.hasMany(models.Article, { as: 'category', foreignKey: 'categoryId' });
   };
   return Category;
 };

@@ -6,11 +6,16 @@ module.exports = (sequelize, DataTypes) => {
     publicationDate: DataTypes.DATE,
     description: DataTypes.STRING,
     content: DataTypes.TEXT,
-    views: DataTypes.INTEGER,
-    category: DataTypes.INTEGER
+    views: DataTypes.INTEGER
   }, {});
   Article.associate = function(models) {
-    Article.hasOne(models.CarouselItem, { foreignKey: 'articleId' });
+    models.Article.belongTo(models.Category, { foreignKey: {
+      name: 'categoryId',
+      allowNull: false
+    }});
+    models.Article.hasOne(models.CarouselItem, { foreignKey: {
+      name: 'articleId'
+    }})
   };
   return Article;
 };

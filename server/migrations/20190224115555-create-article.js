@@ -12,7 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       route: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       publicationDate: {
         type: Sequelize.DATE
@@ -26,8 +28,22 @@ module.exports = {
       views: {
         type: Sequelize.INTEGER
       },
-      category: {
-        type: Sequelize.INTEGER
+      carouselId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: true,
+        references: {
+          model: 'CarouselItems',
+          key: 'id'
+        }
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
