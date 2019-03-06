@@ -7,10 +7,11 @@ carouselApi.get('/carousel-items', async (req, res, next) => {
     try {
         const dbAnsw = await models.CarouselItem.findAll({ 
             raw: true,
-            attributes: ['id', 'articleId', 'imgUrl'],
+            attributes: ['articleId', 'imgUrl'],
             include: [{
                 model: models.Article,
-                attributes: ['id', 'title', 'description', 'route']
+                as: 'article',
+                attributes: ['title', 'description', 'route']
             }],
             where: { active: true }
         });

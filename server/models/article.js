@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     views: DataTypes.INTEGER
   }, {});
   Article.associate = function(models) {
-    models.Article.belongTo(models.Category, { foreignKey: {
+    Article.belongsTo(models.Category, { foreignKey: {
       name: 'categoryId',
       allowNull: false
     }});
-    models.Article.hasOne(models.CarouselItem, { foreignKey: {
+    Article.hasOne(models.CarouselItem, { foreignKey: {
       name: 'articleId'
     }})
   };

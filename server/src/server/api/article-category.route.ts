@@ -17,7 +17,7 @@ categoriesApi.get('/categories-of-articles', async (req, res, next) => {
     next();
 });
 
-categoriesApi.post('/models.Category-of-articles', async (req, res, next) => {
+categoriesApi.post('/category-of-articles', async (req, res, next) => {
     try {
         await models.Category.create(req.body);
     } catch (err) {
@@ -27,7 +27,7 @@ categoriesApi.post('/models.Category-of-articles', async (req, res, next) => {
     next();
 });
 
-categoriesApi.put('/models.Category-of-articles', async (req, res, next) => {
+categoriesApi.put('/category-of-articles', async (req, res, next) => {
     try {
         await models.Category.update(req.body, { where: {
             id: req.body.id
@@ -39,7 +39,7 @@ categoriesApi.put('/models.Category-of-articles', async (req, res, next) => {
     next();
 });
 
-categoriesApi.delete('/models.Category-of-articles/:id', async (req, res, next) => {
+categoriesApi.delete('/category-of-articles/:id', async (req, res, next) => {
     try {
         await models.Category.destroy({ where: {
             id: req.params.id

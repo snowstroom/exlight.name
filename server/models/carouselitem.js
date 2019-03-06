@@ -1,12 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const CarouselItem = sequelize.define('CarouselItem', {
+    articleId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     imgUrl: DataTypes.STRING,
-    active: DataTypes.BOOLEAN,
-    articleId: DataTypes.INTEGER
+    active: DataTypes.BOOLEAN
   }, {});
   CarouselItem.associate = function(models) {
-    CarouselItem.belongTo(models.Article, { foreignKey: 'id' })
+    CarouselItem.belongsTo(models.Article, { foreignKey: 'articleId',  as: 'article' })
   };
   return CarouselItem;
 };

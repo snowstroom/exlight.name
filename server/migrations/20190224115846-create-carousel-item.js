@@ -2,24 +2,19 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('CarouselItems', {
-      id: {
+      articleId: {
         primaryKey: true,
-        autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Articles',
+          key: 'id'
+        }
       },
       imgUrl: {
         type: Sequelize.STRING
       },
       active: {
         type: Sequelize.BOOLEAN
-      },
-      articleId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Articles',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,

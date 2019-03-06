@@ -28,15 +28,6 @@ module.exports = {
       views: {
         type: Sequelize.INTEGER
       },
-      carouselId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'CarouselItems',
-          key: 'id'
-        }
-      },
       categoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -3,7 +3,7 @@ import * as models from '../../../models';
 
 export const articleApi = Router();
 
-articleApi.get('/models.Article/:id', async (req, res, next) => {
+articleApi.get('/article/:id', async (req, res, next) => {
   try {
     const dbAnsw = await models.Article.findOne({
       where: {
@@ -27,7 +27,7 @@ articleApi.get('/models.Article/:id', async (req, res, next) => {
   next();
 });
 
-articleApi.get('/models.Article-by-route/:route', async (req, res, next) => {
+articleApi.get('/article-by-route/:route', async (req, res, next) => {
   try {
     await models.transaction(); // ??
     const dbAnsw = await models.Article.findOne({
@@ -73,7 +73,7 @@ articleApi.post('/articles', async (req, res, next) => {
   next();
 });
 
-articleApi.post('/models.Article', async (req, res, next) => {
+articleApi.post('/article', async (req, res, next) => {
   try {
     await models.Article.create(req.body);
   } catch (err) {
@@ -83,7 +83,7 @@ articleApi.post('/models.Article', async (req, res, next) => {
   next();
 });
 
-articleApi.put('/models.Article', async (req, res, next) => {
+articleApi.put('/article', async (req, res, next) => {
   try {
     models.Article.update(req.body, { where: { id: req.body.id } });
   } catch (err) {
@@ -93,7 +93,7 @@ articleApi.put('/models.Article', async (req, res, next) => {
   next();
 })
 
-articleApi.delete('/models.Article/:id', async (req, res, next) => {
+articleApi.delete('/article/:id', async (req, res, next) => {
   try {
     models.Article.destroy({ where: { id: req.params.id } });
   } catch (err) {
