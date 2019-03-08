@@ -36,6 +36,12 @@ module.exports = {
           key: 'id'
         }
       },
+      carouselImg: {
+        type: Sequelize.STRING,
+      },
+      inCarousel: {
+        type: Sequelize.BOOLEAN
+      }, 
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

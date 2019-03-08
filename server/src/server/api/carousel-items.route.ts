@@ -5,17 +5,11 @@ export const carouselApi = Router();
 
 carouselApi.get('/carousel-items', async (req, res, next) => {
     try {
-        const dbAnsw = await models.CarouselItem.findAll({ 
-            raw: true,
-            attributes: ['articleId', 'imgUrl'],
-            include: [{
-                model: models.Article,
-                as: 'article',
-                attributes: ['title', 'description', 'route']
-            }],
-            where: { active: true }
+       const answ = await models.Article.findAll({
+            where: { inCarousel: true },
+            attributes: ['title', 'route', 'description', 'carouselImg']
         });
-        res.send(dbAnsw);
+        res.send(answ);
     } catch (err) {
         console.warn(err);
     }
@@ -23,9 +17,11 @@ carouselApi.get('/carousel-items', async (req, res, next) => {
     next();
 });
 
-carouselApi.post('/carousel-item', async (req, res, next) => {
+carouselApi.post('/carousel-item/:id', async (req, res, next) => {
     try {
-        await models.CarouselItem.create(req.body);
+        await models.Article.update(req.body, {
+            where: { id: req.params.id }
+        })
     } catch (err) {
         console.warn(err);
     }
