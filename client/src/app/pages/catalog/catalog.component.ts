@@ -24,7 +24,7 @@ export class CatalogComponent implements OnInit {
     private titleSrv: Title,
     private metaSrv: Meta
   ) {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params =>
       this.articlesSrv.$categories.subscribe(categories => {
         if (categories.length) {
           this.categories = categories;
@@ -35,8 +35,7 @@ export class CatalogComponent implements OnInit {
           this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)
             .then(articles => this.articles = articles);
         }
-      });
-    });
+      }));
   }
 
   public ngOnInit(): void {

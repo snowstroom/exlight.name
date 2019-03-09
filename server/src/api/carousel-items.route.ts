@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as models from '../../../models';
+import * as models from '../models';
 
 export const carouselApi = Router();
 

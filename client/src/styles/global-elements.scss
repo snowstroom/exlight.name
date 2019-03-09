@@ -1,4 +1,52 @@
+@import '../app/variables';
 body {
   font-size: 16px;
   background: url('assets/fon.jpg');
+}
+
+@keyframes HoverItemPulce {
+  0% {
+    box-shadow: 0 0 10px $active-element-bg;
+    text-shadow: 0 0 10px $active-element-bg;
+  }
+
+  25% {
+    box-shadow: 0 0 30px $active-element-bg;
+    text-shadow: 0 0 30px $active-element-bg;
+  }
+
+  50% {
+    box-shadow: 0 0 20px $active-element-bg;
+    text-shadow: 0 0 20px $active-element-bg;
+  }
+
+  75% {
+    box-shadow: 0 0 30px $active-element-bg;
+    text-shadow: 0 0 30px $active-element-bg;
+  }
+
+  100% {
+    box-shadow: 0 0 10px $active-element-bg;
+    text-shadow: 0 0 10px $active-element-bg;
+  }
+}
+
+@keyframes textShadow {
+  0% {}
+
+  25% {
+    text-shadow: 0 0 30px $active-element-bg;
+  }
+
+  50% {
+    text-shadow: 0 0 20px $active-element-bg;
+  }
+
+  75% {
+    text-shadow: 0 0 30px $active-element-bg;
+  }
+
+  100% {
+    text-shadow: 0 0 10px #ffffff;
+  }
 }

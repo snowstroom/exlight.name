@@ -22,10 +22,17 @@
   }
   .items-wrapper {
     display: flex;
+    position: relative;
+    .item-decorator {
+      position: absolute;
+      height: 100%;
+      background: $active-element-bg;
+      z-index: 1;
+      transition: .3s width, .5s left;
+      box-shadow: 0 0 10px $active-element-bg;
+    }
     .menu-item {
-      &.active {
-        background: $active-element-bg;
-      }
+      z-index: 2;
       cursor: pointer;
       font-family: $elements-text;
       padding: 1em;
@@ -35,8 +42,8 @@
       text-shadow: $text-shadow;
     }
     .menu-item:hover {
-      animation-name: animation-items;
-      animation-duration: 8s;
+      animation-name: HoverItemPulce;
+      animation-duration: 4s;
       animation-iteration-count: infinite;
     }
   }

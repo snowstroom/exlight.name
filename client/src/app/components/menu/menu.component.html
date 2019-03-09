@@ -3,30 +3,9 @@
     <div class="menu-item name">eXlight</div>
   </div>
   <div class="items-wrapper">
-    <div routerLink="/"
-      [routerLinkActiveOptions]="{ exact: true }"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Главная</div>
-    <div routerLink="catalog/all/page/1"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Каталог</div>
-    <div routerLink="/video"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Видео</div>
-    <div routerLink="/music"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Музыка</div>
-    <div routerLink="/photo"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Фото</div>
-    <div routerLink="/about"
-      routerLinkActive="active"
-      role="link"
-      class="menu-item">Ссылки</div>
+    <div class="item-decorator" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
+    <div *ngFor="let item of menuItems"
+      [routerLink]="item.route" role="link"
+      class="menu-item" (click)="moveDecorator($event)">{{item.name}}</div>
   </div>
 </div>
