@@ -2,20 +2,20 @@ import { IMenuItem } from '@app/interfaces/menu-item';
 
 export const MENU_ITEMS: IMenuItem[] = [{
     name: 'Главная',
-    route: '/'
+    route: ['']
 }, {
     name: 'Каталог',
-    route: 'catalog/all/page/1'
+    route: ['catalog', 'all', 'page', '1']
 }, {
     name: 'Видео',
-    route: '/video'
+    route: ['video']
 }, {
     name: 'Музыка',
-    route: '/music'
+    route: ['music']
 }, {
     name: 'Фото',
-    route: '/photo'
+    route: ['photo']
 }, {
     name: 'Ссылки',
-    route: '/about'
+    route: ['about']
 }];

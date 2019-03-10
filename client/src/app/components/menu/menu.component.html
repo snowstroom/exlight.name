@@ -3,9 +3,9 @@
     <div class="menu-item name">eXlight</div>
   </div>
   <div class="items-wrapper">
-    <div class="item-decorator" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
-    <div *ngFor="let item of menuItems"
+    <div class="item-decorator" *ngIf="leftDec" [style.left.px]="leftDec"></div>
+    <div *ngFor="let item of menuItems; let i = index"
       [routerLink]="item.route" role="link"
-      class="menu-item" (click)="moveDecorator($event)">{{item.name}}</div>
+      class="menu-item">{{item.name}}</div>
   </div>
 </div>

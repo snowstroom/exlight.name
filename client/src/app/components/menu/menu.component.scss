@@ -1,4 +1,6 @@
 @import '../../variables';
+$menu-item-p: 20px;
+$menu-item-w: 45px;
 
 .main-menu {
   display: flex;
@@ -24,6 +26,7 @@
     display: flex;
     position: relative;
     .item-decorator {
+      width: $menu-item-w + $menu-item-p * 2;
       position: absolute;
       height: 100%;
       background: $active-element-bg;
@@ -32,10 +35,12 @@
       box-shadow: 0 0 10px $active-element-bg;
     }
     .menu-item {
+      text-align: center;
+      width: $menu-item-w;
+      padding: $menu-item-p;
       z-index: 2;
       cursor: pointer;
       font-family: $elements-text;
-      padding: 1em;
       color: $element-text-color;
       font-size: 1.2em;
       text-transform: uppercase;
