@@ -6,7 +6,7 @@
   font-family: $elements-text;
   .head {
     color: $element-text-color;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
   .page {
     color: $element-text-color;
@@ -14,13 +14,22 @@
   }
   .categories {
     display: flex;
+    position: relative;
+    .item-decorator {
+      position: absolute;
+      height: 32px;
+      background: $active-element-bg;
+      z-index: 1;
+      transition: .3s width, .5s left;
+      box-shadow: 0 0 10px $active-element-bg;
+    }
     .category {
-      &.active {
-        background: $active-element-bg;
-      }
+      font-size: 1rem;
+      z-index: 2;
+      text-align: center;
       cursor: pointer;
       color: $element-text-color;
-      padding: 0.5em 1em;
+      padding: 8px 10px;
     }
   }
 }

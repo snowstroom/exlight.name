@@ -2,8 +2,8 @@
   <div class="head" role="heading">{{catalogName}}</div>
   <div class="page">Страница: {{currentpage}}</div>
   <div class="categories" *ngIf="showMenu">
-      <div class="category" *ngFor="let item of categories"
-        (click)="selectCategory(item)"
-        [ngClass]="{'active': item.isActive}">{{item.categoryName}}</div>
+    <div class="item-decorator" *ngIf="widthDec" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
+    <div class="category" *ngFor="let item of categoriesItems"
+      (click)="selectCategory(item)">{{item.categoryName}}</div>
   </div>
 </div>
