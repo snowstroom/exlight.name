@@ -53,7 +53,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   private buildPagination(): void {
     const pageCount = Math.ceil(this.itemCount / this.onPage);
-    for (let i = 1; i < pageCount; i++) {
+    for (let i = 1; i <= pageCount; i++) {
       this.items[i - 1] = i;
     }
   }

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as models from '../models';
+import { IPaginationContent } from '../interfaces/pagination-content';
 
 export const articleApi = Router();
 
@@ -57,15 +58,20 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
 
 articleApi.post('/articles', async (req, res, next) => {
   try {
-    const where = req.body.categoryId ? { category: req.body.categoryId } : {};
+    const where = req.body.categoryId ? { categoryId: req.body.categoryId } : {};
     const dbAnsw = await models.Article.findAll({
       offset: req.body.start,
       limit: req.body.limit,
       attributes: ['id','title', 'route', 'publicationDate', 'description', 'views', 'categoryId'],
       where: where
     });
+    const recordsCount = await models.Article.count({ where: where });
     res.header({ 'Content-Type': 'application/json' });
-    res.send(dbAnsw);
+    const answ: IPaginationContent<any> = {
+      content: dbAnsw,
+      count: recordsCount
+    }
+    res.send(answ);
   } catch (err) {
     console.warn(err)
   }

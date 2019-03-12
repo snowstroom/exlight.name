@@ -6,6 +6,7 @@ import { ITEMS_ON_PAGE_ART } from '../consts/ItemsOnPage.const';
 import { CategoriesItem, ICategoriesItem } from '@app/classes/categories';
 import { Article, IArticle } from '@app/classes/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
+import { IPaginationContent } from '@app/interfaces/pagination-content';
 
 @Injectable({
   providedIn: 'root'
@@ -58,11 +59,12 @@ export class ArticleService extends Api {
 
   public async getArticles(pagination: PaginationParams, catId?: number): Promise<Article[]> {
     try {
-      const answ: IArticle[] = await this.post('articles', {
+      const answ: IPaginationContent<IArticle> = await this.post('articles', {
         ...pagination.getParamsObject(),
         categoryId: catId
       });
-      return answ.map(art => new Article(art));
+      this.pagination.total = answ.count;
+      return answ.content.map(art => new Article(art));
     } catch (err) {
       return [];
     }
