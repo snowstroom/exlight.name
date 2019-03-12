@@ -3,7 +3,7 @@
     <ex-catalog-menu [showMenu]="false"
     [catalogName]="'Видео каталог'"
     [currentpage]="currentpage"></ex-catalog-menu>
-    <ex-pagination [itemCount]="50"
+    <ex-pagination [recordCount]="50"
       [onPage]="10"
       [activePage]="1"
       (selectPage)="setActivePage($event)"></ex-pagination>

@@ -2,7 +2,6 @@ import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from 'core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { ITEMS_ON_PAGE_ART } from '../consts/ItemsOnPage.const';
 import { CategoriesItem, ICategoriesItem } from '@app/classes/categories';
 import { Article, IArticle } from '@app/classes/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';

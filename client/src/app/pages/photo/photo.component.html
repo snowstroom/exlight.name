@@ -7,7 +7,7 @@
       <ex-photo-item *ngFor="let photo of photos"
       [photo]="photo"></ex-photo-item>
     </div>
-    <ex-pagination [itemCount]="50"
+    <ex-pagination [recordCount]="50"
       [onPage]="10"
       [activePage]="2"
       (selectPage)="setActivePage($event)"></ex-pagination>

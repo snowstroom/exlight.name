@@ -10,7 +10,7 @@ const ELEMENT_WIDTH = 52;
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit, OnChanges {
-  @Input() public itemCount: number;
+  public itemCount: number;
   @Input() public onPage: number;
   @Input() public activePage: number;
   @Output() public selectPage = new EventEmitter<number>();
@@ -22,6 +22,11 @@ export class PaginationComponent implements OnInit, OnChanges {
       const page = numberParam(params.page);
       this.leftDec = page * ELEMENT_WIDTH - ELEMENT_WIDTH;
     });
+  }
+
+  @Input() set recordCount(val: number) {
+    this.itemCount = val;
+    this.buildPagination();
   }
 
   public ngOnInit(): void {
@@ -53,6 +58,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   private buildPagination(): void {
     const pageCount = Math.ceil(this.itemCount / this.onPage);
+    this.items = [1];
     for (let i = 1; i <= pageCount; i++) {
       this.items[i - 1] = i;
     }
