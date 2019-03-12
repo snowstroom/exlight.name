@@ -9,7 +9,8 @@
       <ex-articles *ngFor="let article of articles"
       [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
     </div>
-    <ex-pagination [itemCount]="articlesSrv.pagination.totalPage"
+    <!--TODO-->
+    <ex-pagination [itemCount]="30" 
       [onPage]="itemsOnPage"
       [activePage]="page"
       (selectPage)="setActivePage($event)"></ex-pagination>

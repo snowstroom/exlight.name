@@ -16,7 +16,7 @@ articleApi.get('/article/:id', async (req, res, next) => {
         'description',
         'content',
         'views',
-        'category'
+        'categoryId'
       ]
     });
     res.send(dbAnsw);
@@ -39,7 +39,7 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
         'description',
         'content',
         'views',
-        'category'
+        'categoryId'
       ], raw: true
     });
     await models.Article.update({ views: ++dbAnsw.views }, {
@@ -61,7 +61,7 @@ articleApi.post('/articles', async (req, res, next) => {
     const dbAnsw = await models.Article.findAll({
       offset: req.body.start,
       limit: req.body.limit,
-      attributes: ['id','title', 'route', 'publicationDate', 'description', 'views', 'category'],
+      attributes: ['id','title', 'route', 'publicationDate', 'description', 'views', 'categoryId'],
       where: where
     });
     res.header({ 'Content-Type': 'application/json' });

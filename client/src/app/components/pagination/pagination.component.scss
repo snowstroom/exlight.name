@@ -3,12 +3,25 @@
   padding: 1em;
   .pagination-wrapper {
     display: flex;
-    .pagination-item {
-      &.active {
+    .numbers-wrapper {
+      display: flex;
+      position: relative;
+      .item-decorator {
+        position: absolute;
+        width: 52px;
+        box-shadow: 0 0 10px $active-element-bg;
         background: $active-element-bg;
+        z-index: 1;
+        transition: .3s width, .5s left;
+        height: 32px;
       }
+    }
+    .pagination-item {
+      z-index: 2;
+      width: 20px;
+      text-align: center;
       cursor: pointer;
-      padding: .5em 1em;
+      padding: 8px 16px;
       font-family: $elements-text;
       color: $element-text-color;
       text-shadow: $text-shadow;

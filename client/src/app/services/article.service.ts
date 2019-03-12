@@ -11,12 +11,13 @@ import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
   providedIn: 'root'
 })
 export class ArticleService extends Api {
-  public pagination = new PaginationParams({ limit: 10 });
+  public pagination = new PaginationParams({ limit: 5 });
   public categoriesMap = new Map<string, CategoriesItem>();
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
   private carouselItems$ = new BehaviorSubject<CarouselItem[]>([]);
   private categories: CategoriesItem[] = [];
   private carouselItems: CarouselItem[] = [];
+
   constructor(injector: Injector) {
     super(injector, environment.domain);
     const defCat = new CategoriesItem({

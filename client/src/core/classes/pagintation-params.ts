@@ -53,7 +53,7 @@ export class PaginationParams implements IPaginationParams {
      * Устанавливает текущую страницу
      */
     set page(page: number) {
-        this.currentPage = page;
+        this.currentPage = Math.ceil(page);
         this.startItem = (page - 1) * this.limit;
     }
     /**

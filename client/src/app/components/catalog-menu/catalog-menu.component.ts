@@ -35,7 +35,6 @@ export class CatalogMenuComponent {
   }
 
   public calcDecorator(category: string): void {
-    console.warn(this.categoriesItems);
     let isFind = false;
     let offsetLeft = 0;
     this.categoriesItems.forEach((item, i) => {

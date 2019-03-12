@@ -1,4 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { numberParam } from '@core/functions/number-param';
+
+const ELEMENT_WIDTH = 52;
 
 @Component({
   selector: 'ex-pagination',
@@ -11,8 +15,14 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Input() public activePage: number;
   @Output() public selectPage = new EventEmitter<number>();
   public items: number[] = [];
+  public leftDec: number;
 
-  constructor() { }
+  constructor(private actRouter: ActivatedRoute) {
+    this.actRouter.params.subscribe(params => {
+      const page = numberParam(params.page);
+      this.leftDec = page * ELEMENT_WIDTH - ELEMENT_WIDTH;
+    });
+  }
 
   public ngOnInit(): void {
     this.buildPagination();

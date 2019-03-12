@@ -2,10 +2,14 @@
   <div class="pagination-wrapper">
     <div class="pagination-item"
       (click)="prevPage()">Назад</div>
-    <div class="pagination-item"
-      [ngClass]="{'active': item === activePage}"
-      *ngFor="let item of items"
-      (click)="toPage(item)">{{item}}</div>
+    <div class="numbers-wrapper">
+      <div class="item-decorator"
+        [style.left.px]="leftDec"></div>
+      <div class="pagination-item"
+        [ngClass]="{'active': item === activePage}"
+        *ngFor="let item of items"
+        (click)="toPage(item)">{{item}}</div>
+    </div>
     <div class="pagination-item"
       (click)="nextPage()">Далее</div>
   </div>
