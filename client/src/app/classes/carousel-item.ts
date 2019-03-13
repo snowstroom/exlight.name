@@ -1,15 +1,15 @@
 export interface ICarouselItem {
-    id: number;
     title: string;
+    route: string;
     description: string;
-    imgUrl: string;
+    carouselImg: string;
 }
 
 export class CarouselItem implements ICarouselItem {
-    public readonly id: number = this.__data.id;
     public title: string = this.__data.title;
+    public route: string = this.__data.route;
     public description: string = this.__data.description;
-    public imgUrl: string = this.imgUrl;
+    public carouselImg: string = this.__data.carouselImg;
 
     constructor(private __data: ICarouselItem) {}
 }

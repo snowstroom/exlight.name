@@ -4,10 +4,12 @@
   box-sizing: border-box;
   padding: 2em;
   height: 35em;
+
   .content-wrapper {
     display: flex;
     justify-content: flex-end;
     height: calc(100% - 4em);
+
     .content {
       padding: 1em;
       box-sizing: border-box;
@@ -17,36 +19,50 @@
       background: $blocks-color-bg;
       display: flex;
       flex-direction: column;
-      .content-head {
-        font-family: $elements-text;
-        color: $simple-text-color;
-        padding: 0.5em 0;
-        font-size: 1.6em;
+      justify-content: space-between;
+
+      .top {
+        display: flex;
+        flex-direction: column;
+
+        .content-head {
+          font-family: $elements-text;
+          color: $simple-text-color;
+          padding: 0.5em 0;
+          font-size: 1.6em;
+        }
+
+        .content-body {
+          font-family: $simple-text;
+          color: $simple-text-color;
+        }
       }
-      .content-body {
-        font-family: $simple-text;
-        color: $simple-text-color;
-      }
+
       .content-footer {
         font-family: $elements-text;
         padding: 0.5em 0;
         color: $links-text-color;
+
         .link {
           cursor: pointer;
         }
       }
     }
   }
+
   .controls {
     height: 4em;
     display: flex;
     justify-content: center;
+
     .controls-wrapper {
       display: flex;
+
       .controll {
         &.active {
           background: $active-element-bg;
         }
+
         cursor: pointer;
         font-family: $elements-text;
         font-size: 1.2em;

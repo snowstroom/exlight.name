@@ -8,14 +8,14 @@ import { CarouselItem } from '@app/classes/carousel-item';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public carouselItem: CarouselItem[];
+  public carouselItems: CarouselItem[] = [];
 
   constructor(
     private articleSrv: ArticleService,
     private titleSrv: Title,
     private metaSrv: Meta
   ) {
-    this.articleSrv.$carouselItems.subscribe(items => this.carouselItem = items);
+    this.articleSrv.$carouselItems.subscribe(items => this.carouselItems = items);
   }
 
   public ngOnInit(): void {

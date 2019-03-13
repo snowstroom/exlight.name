@@ -1,20 +1,20 @@
-<div class="slider" [style.backgroundImage]="background">
+<div *ngIf="currentSlide" class="slider" [style.backgroundImage]="background">
   <div class="content-wrapper">
       <div class="content">
+        <div class="top">
           <div class="content-head">{{currentSlide.title}}</div>
-          <div class="content-body">
-              {{currentSlide.data}}
-          </div>
-          <div class="content-footer">
-            <span class="link" role="link">Читать подробнее...</span>
-          </div>
+          <div class="content-body">{{currentSlide.description}}</div>
+        </div>
+        <div class="content-footer">
+          <span class="link" [routerLink]="['article', 'all', currentSlide.route]" role="link">Читать подробнее...</span>
+        </div>
       </div>
   </div>
   <div class="controls">
       <div class="controls-wrapper">
-          <div class="controll" (click)="prevSlide()">Назад</div>
+        <div class="controll" (click)="prevSlide()">Назад</div>
           <div class="controll" [ngClass]="{'active' : currentIndex === i}"
-            *ngFor="let slide of items; let i = index"
+            *ngFor="let slide of carouselItems; let i = index"
             (click)="showSlide(i)">{{i + 1}}</div>
           <div class="controll" (click)="nextSlide()">Далее</div>
       </div>

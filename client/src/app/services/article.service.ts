@@ -33,7 +33,6 @@ export class ArticleService extends Api {
     });
 
     this.getCarouselItems().then(items => {
-      console.warn(items);
       this.carouselItems = items;
       this.carouselItems$.next(this.carouselItems);
     });
@@ -90,7 +89,7 @@ export class ArticleService extends Api {
   public async getCarouselItems(): Promise<CarouselItem[]> {
     try {
       const answ: ICarouselItem[] = await this.get('carousel-items');
-      return answ.map(i => new CarouselItem(i));
+      return answ.map(item => new CarouselItem(item));
     } catch (err) {
       return [];
     }
