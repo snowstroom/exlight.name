@@ -16,15 +16,16 @@ export class ArticleComponent implements OnInit {
     private articleSrv: ArticleService,
     private titleSrv: Title,
     private metaSrv: Meta
-  ) { }
-
-  public ngOnInit(): void {
+  ) {
     this.titleSrv.setTitle('Статья');
     this.activatedRoute.params.subscribe(params => this.getArticleByRoute(params.article));
   }
 
+  public ngOnInit(): void { }
+
   public async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
+    console.warn(this.article);
   }
 
 }

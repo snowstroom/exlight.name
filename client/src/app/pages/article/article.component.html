@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <div class="main">
-    <div class="article-head">
+    <div class="article-head" *ngIf="article">
       <div class="article-title">{{article.title}}</div>
       <div class="info">
         Дата: <span class="active">{{article.publicationDate}}</span>
@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="content">
-      {{article.content}}
+      <markdown [data]=article?.content></markdown>
     </div>
     <div class="share">
       <div class="icon-wrapper">

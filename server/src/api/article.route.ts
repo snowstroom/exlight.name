@@ -30,7 +30,7 @@ articleApi.get('/article/:id', async (req, res, next) => {
 
 articleApi.get('/article-by-route/:route', async (req, res, next) => {
   try {
-    await models.transaction(); // ??
+    await models.sequelize.transaction(); 
     const dbAnsw = await models.Article.findOne({
       where: { route: req.params.route }, attributes: [
         'id',
@@ -50,7 +50,7 @@ articleApi.get('/article-by-route/:route', async (req, res, next) => {
     });
     res.send(dbAnsw);
   } catch (err) {
-    console.warn(err)
+    console.warn(err);
   }
   res.end();
   next();
