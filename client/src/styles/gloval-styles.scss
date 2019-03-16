@@ -1,0 +1,116 @@
+@import '../app/variables';
+$margin-bottom: 10px;
+
+h1 {
+  font-size: 1.4em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+h3 {
+  font-size: 1.1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+h4 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+h5 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+h6 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+}
+
+body {
+  color: $element-text-color;
+  font-family: $simple-text;
+}
+
+a {
+  color: $links-text-color;
+  font-family: $elements-text;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: $active-element-bg;
+}
+
+blockquote {
+  margin: 15px;
+  position: relative;
+  font-style: italic;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    width: 2px;
+    background: $active-element-bg;
+    height: 100%;
+  }
+}
+
+p {
+    margin-bottom: 10px;
+    line-height: 1.5em;
+}
+
+ul {
+    li {
+        line-height: 1.5em;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    background: #0000008a;
+    margin-bottom: $margin-bottom;
+    thead {
+        font-family: $elements-text;
+        color: $links-text-color;
+        tr {
+            th {
+                padding: 10px 5px;
+                border: 1px solid #fff;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                padding: 10px 5px;
+                border: 1px solid #fff;
+            }
+        }
+    }
+}

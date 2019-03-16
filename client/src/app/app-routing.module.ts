@@ -9,7 +9,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-const routes: Routes = [ {
+const routes: Routes = [{
     path: '',
     component: MainComponent
   }, {

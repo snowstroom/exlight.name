@@ -34,15 +34,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public trackEnd() {
+  public trackEnd(): void {
     this.musicStateSrv.next();
   }
 
-  public trackPlay() {
+  public trackPlay(): void {
     // this.musicStateSrv.isPlaying = true;
   }
 
-  public play() {
+  public play(): void {
     this.canPlay = true;
     this.musicStateSrv.setDuration(this.htmlPlayer.nativeElement.duration);
     if (this.isPlay) {
@@ -50,11 +50,11 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public loadstart() {
+  public loadstart(): void {
     this.canPlay = false;
   }
 
-  public timeupdate(e) {
+  public timeupdate(e): void {
     if (e.target.currentTime - this.currentTime > 1) {
       this.musicStateSrv.showTime(e.target.currentTime);
       this.currentTime = e.target.currentTime;
