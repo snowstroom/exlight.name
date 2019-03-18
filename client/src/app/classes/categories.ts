@@ -5,6 +5,7 @@ export interface ICategoriesItem {
 }
 
 export class CategoriesItem implements ICategoriesItem {
+    public readonly isReady: Promise<void>;
     public readonly id: number = this.__data.id;
     public readonly itemWidth: number;
     public categoryName: string = this.__data.categoryName;
@@ -13,6 +14,7 @@ export class CategoriesItem implements ICategoriesItem {
     public isActive: boolean;
 
     constructor(private __data: ICategoriesItem) {
+        console.warn('!');
         const element = document.createElement('div');
         const wrapper = document.createElement('div');
         wrapper.style.display = 'flex';

@@ -1,6 +1,6 @@
 import { BrowserModule, Title, Meta } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -23,6 +23,7 @@ import { ArticleItemComponent } from './components/article-item/article-item.com
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MusicItemComponent } from './components/music-item/music-item.component';
 import { PhotoItemComponent } from './components/photo-item/photo-item.component';
+import { InitService } from './services/init.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,14 @@ import { PhotoItemComponent } from './components/photo-item/photo-item.component
   ],
   providers: [
     Title,
-    Meta
+    Meta,
+    InitService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (srv: InitService) => () => srv.initFonts(),
+      deps: [InitService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

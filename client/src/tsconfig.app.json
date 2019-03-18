@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": []
+    "types": [
+      "css-font-loading-module"
+    ]
   },
   "exclude": [
     "src/test.ts",
