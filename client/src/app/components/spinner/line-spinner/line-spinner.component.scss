@@ -1,0 +1,29 @@
+@import 'src/app/variables';
+
+.ex-line-spinner {
+  height: 5px;
+  position: relative;
+
+  .line {
+    height: 5px;
+    position: absolute;
+    width: 20%;
+    background: $active-element-bg;
+    animation: spinner 5s infinite;
+    box-shadow: $active-box-shadow;
+  }
+}
+
+@keyframes spinner {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 80%;
+    }
+
+    100% {
+        left: 0;
+    }
+}

@@ -36,6 +36,7 @@
     "@types/dateformat": "^3.0.0",
     "@types/jasmine": "^2.8.16",
     "@types/jasminewd2": "^2.0.6",
+    "@types/node": "^11.12.2",
     "@types/webfontloader": "^1.6.29",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",

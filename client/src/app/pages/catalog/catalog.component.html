@@ -1,13 +1,20 @@
 <div class="content-wrapper">
   <div class="main">
+    <div class="spinner">
+        <ex-line-spinner [wait]="wait"></ex-line-spinner>
+    </div>
+    
     <ex-catalog-menu [showMenu]="true"
     [catalogName]="'Каталог статей'"
     [categories]="categories"
     [currentpage]="articlesSrv.pagination.currentPage"
     (selectedCat)="selectedCatHandler($event)"></ex-catalog-menu>
     <div class="articles">
-      <ex-articles *ngFor="let article of articles"
-      [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
+      <ex-spinner [wait]="wait"></ex-spinner>
+      <ng-container *ngIf="!wait">
+        <ex-articles *ngFor="let article of articles"
+          [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
+    </ng-container>
     </div>
     <ex-pagination [recordCount]="articlesSrv.pagination.total" 
       [onPage]="itemsOnPage"

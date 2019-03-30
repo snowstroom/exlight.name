@@ -25,6 +25,8 @@ import { MusicItemComponent } from './components/music-item/music-item.component
 import { PhotoItemComponent } from './components/photo-item/photo-item.component';
 import { InitService } from './services/init.service';
 import { ArticleProgressComponent } from './components/article-progress/article-progress.component';
+import { SpinnerComponent } from './components/spinner/text-spinner/spinner.component';
+import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spinner.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ArticleProgressComponent } from './components/article-progress/article-
     ArticleItemComponent,
     NotFoundComponent,
     MusicItemComponent,
-    PhotoItemComponent
+    PhotoItemComponent,
+    SpinnerComponent,
+    LineSpinnerComponent
   ],
   imports: [
     BrowserModule,

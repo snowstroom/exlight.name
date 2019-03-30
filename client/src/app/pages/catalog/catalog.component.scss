@@ -8,9 +8,15 @@
     background: $blocks-color-bg;
     width: calc(100% - 1em - 300px);
     margin-right: 1em;
+    position: relative;
+    .spinner {
+      position: absolute;
+      height: 5px;
+      width: 100%;
+    }
     .articles {
       height: calc(100% - 15em);
-      padding: 1em;
+      padding: 1em 2em;
     }
   }
   .right {

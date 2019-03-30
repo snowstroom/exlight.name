@@ -32,7 +32,9 @@ body {
 }
 
 @keyframes textShadow {
-  0% {}
+  0% {
+    text-shadow: 0 0 10px $active-element-bg;
+  }
 
   25% {
     text-shadow: 0 0 30px $active-element-bg;
@@ -47,6 +49,6 @@ body {
   }
 
   100% {
-    text-shadow: 0 0 10px #ffffff;
+    text-shadow: 0 0 10px $active-element-bg;
   }
 }

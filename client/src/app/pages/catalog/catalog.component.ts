@@ -13,6 +13,7 @@ import { numberParam } from '@core/functions/number-param';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
+  public wait = true;
   public page: number;
   public curCategory: CategoriesItem;
   public articles: Article[] = [];
@@ -34,7 +35,10 @@ export class CatalogComponent implements OnInit {
           this.categories.forEach(item => item.isActive = false);
           this.curCategory.isActive = true;
           this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)
-            .then(articles => this.articles = articles);
+            .then(articles => {
+              this.articles = articles;
+              this.wait = false;
+            });
         }
       }));
   }
@@ -46,10 +50,12 @@ export class CatalogComponent implements OnInit {
   public setActivePage(page: number): void {
     this.articlesSrv.pagination.page = page;
     this.router.navigate(['catalog', this.curCategory.categoryRoute, 'page', page]);
+    this.wait = true;
   }
 
   public async selectedCatHandler(cat: CategoriesItem): Promise<void> {
     this.router.navigate(['catalog', cat.categoryRoute, 'page', 1]);
+    this.wait = true;
   }
 
   public navigateToArticle(route: string): void {
