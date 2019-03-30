@@ -5,36 +5,42 @@ h1 {
   font-size: 1.4em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 h2 {
   font-size: 1.2em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 h3 {
   font-size: 1.1em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 h4 {
   font-size: 1em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 h5 {
   font-size: 1em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 h6 {
   font-size: 1em;
   font-family: $elements-text;
   margin-bottom: $margin-bottom;
+  font-weight: bold;
 }
 
 body {
@@ -45,6 +51,7 @@ body {
 a {
   color: $links-text-color;
   font-family: $elements-text;
+  font-weight: bold;
 }
 
 strong {
@@ -77,40 +84,49 @@ blockquote {
 }
 
 p {
-    margin-bottom: 10px;
-    line-height: 1.5em;
+  margin-bottom: 10px;
+  line-height: 1.5em;
 }
 
 ul {
-    li {
-        line-height: 1.5em;
-    }
+  li {
+    line-height: 1.5em;
+  }
 }
 
 img {
-    width: 100%;
+  width: 100%;
+  transition: width 0.5s;
+  &:hover {
+    width: 110%;
+    transition: width 0.5s;
+  }
 }
 
 table {
-    width: 100%;
-    background: #0000008a;
-    margin-bottom: $margin-bottom;
-    thead {
-        font-family: $elements-text;
-        color: $links-text-color;
-        tr {
-            th {
-                padding: 10px 5px;
-                border: 1px solid #fff;
-            }
-        }
+  width: 100%;
+  background: #0000008a;
+  margin-bottom: $margin-bottom;
+
+  thead {
+    font-family: $elements-text;
+    color: $links-text-color;
+    font-weight: bold;
+
+    tr {
+      th {
+        padding: 10px 5px;
+        border: 1px solid #fff;
+      }
     }
-    tbody {
-        tr {
-            td {
-                padding: 10px 5px;
-                border: 1px solid #fff;
-            }
-        }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 10px 5px;
+        border: 1px solid #fff;
+      }
     }
+  }
 }

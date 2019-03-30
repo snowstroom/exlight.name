@@ -16,6 +16,7 @@
       .footer-menu-item {
         cursor: pointer;
         margin: 0 0.5em;
+        font-weight: bold;
         text-transform: uppercase;
         text-decoration: underline;
       }
@@ -26,6 +27,7 @@
       cursor: pointer;
       font-family: $elements-text;
       color: $links-text-color;
+      font-weight: bold;
     }
   }
 }

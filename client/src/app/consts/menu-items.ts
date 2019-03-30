@@ -6,7 +6,7 @@ export const MENU_ITEMS: IMenuItem[] = [{
 }, {
     name: 'Каталог',
     route: ['catalog', 'all', 'page', '1']
-}, {
+}, /* {
     name: 'Видео',
     route: ['video']
 }, {
@@ -15,7 +15,7 @@ export const MENU_ITEMS: IMenuItem[] = [{
 }, {
     name: 'Фото',
     route: ['photo']
-}, {
+},*/ {
     name: 'Ссылки',
     route: ['about']
 }];

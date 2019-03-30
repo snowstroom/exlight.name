@@ -1,0 +1,29 @@
+@import '../../variables';
+$progres-height: 5px;
+
+.ex-article-progress {
+  width: 100%;
+  height: $progres-height;
+  top: -$progres-height;
+  background: $blocks-color-bg;
+  box-shadow: $box-shadow;
+  position: fixed;
+  transition: top .5s;
+
+  &.visible {
+    top: 0;
+    transition: top .5s;
+  }
+
+  .progress {
+    background: $active-element-bg;
+    height: $progres-height;
+    transition: width 1s box-shadow 1s;
+
+    &.change {
+      box-shadow: $active-box-shadow;
+      transition: width 1s box-shadow 1s;
+    }
+  }
+
+}

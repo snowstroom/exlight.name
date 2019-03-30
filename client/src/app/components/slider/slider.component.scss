@@ -27,6 +27,7 @@
 
         .content-head {
           font-family: $elements-text;
+          font-weight: bold;
           color: $simple-text-color;
           padding: 0.5em 0;
           font-size: 1.6em;
@@ -40,6 +41,7 @@
 
       .content-footer {
         font-family: $elements-text;
+        font-weight: bold;
         padding: 0.5em 0;
         color: $links-text-color;
 

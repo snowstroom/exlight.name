@@ -29,8 +29,7 @@ articleApi.get('/article/:id', async (req, res, next) => {
 });
 
 articleApi.get('/article-by-route/:route', async (req, res, next) => {
-  try {
-    await models.sequelize.transaction(); 
+  try { 
     const dbAnsw = await models.Article.findOne({
       where: { route: req.params.route }, attributes: [
         'id',

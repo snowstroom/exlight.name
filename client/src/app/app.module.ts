@@ -24,6 +24,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MusicItemComponent } from './components/music-item/music-item.component';
 import { PhotoItemComponent } from './components/photo-item/photo-item.component';
 import { InitService } from './services/init.service';
+import { ArticleProgressComponent } from './components/article-progress/article-progress.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { InitService } from './services/init.service';
     PhotoComponent,
     AboutComponent,
     SliderComponent,
+    ArticleProgressComponent,
     ArticleComponent,
     PaginationComponent,
     CatalogMenuComponent,

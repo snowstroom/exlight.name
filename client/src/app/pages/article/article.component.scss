@@ -13,6 +13,7 @@
       padding: 1em;
       color: $element-text-color;
       font-family: $elements-text;
+      font-weight: bold;
       .article-title, .info {
         padding: .5em 0;
         .active {
@@ -25,7 +26,7 @@
     }
     .content {
       min-height: calc(100% - 12em);
-      padding: 20px 30px;
+      padding: 2em 8em;
     }
     .share {
       color: $element-text-color;

@@ -1,9 +1,10 @@
 @import '../../variables';
 .main-head {
   padding: 1em;
-  box-shadow: 0 0 1em;
+  box-shadow: $box-shadow;
   text-shadow: $text-shadow;
   font-family: $elements-text;
+  font-weight: bold;
   .head {
     color: $element-text-color;
     font-size: 1.5rem;
