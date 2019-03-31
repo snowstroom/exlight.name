@@ -1,5 +1,5 @@
 @import '../../variables';
-$progres-height: 5px;
+$progres-height: 7px;
 
 .ex-article-progress {
   width: 100%;
@@ -10,6 +10,7 @@ $progres-height: 5px;
   position: fixed;
   transition: top .5s;
   z-index: 1;
+  cursor: pointer;
 
   &.visible {
     top: 0;

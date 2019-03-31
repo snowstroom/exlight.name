@@ -2,7 +2,7 @@ import { BrowserModule, Title, Meta } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -27,6 +27,7 @@ import { InitService } from './services/init.service';
 import { ArticleProgressComponent } from './components/article-progress/article-progress.component';
 import { SpinnerComponent } from './components/spinner/text-spinner/spinner.component';
 import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spinner.component';
+import { markedOptionsFactory } from './markdown.config';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,12 @@ import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spi
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useFactory: markedOptionsFactory
+      }
+    })
   ],
   providers: [
     Title,

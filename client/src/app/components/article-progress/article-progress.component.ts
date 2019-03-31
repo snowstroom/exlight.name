@@ -21,8 +21,17 @@ export class ArticleProgressComponent {
             this.visible = false;
         }
         this.change = true;
-        this.progress = (scroll + innerHeight) * 100 / document.body.scrollHeight;
+        this.progress = scroll * 100 / (document.body.scrollHeight - innerHeight);
         setTimeout(() => this.change = false, 200);
+    }
+
+    public navigate(e: MouseEvent): void {
+        const progress = e.clientX * 100 / innerWidth;
+        const scrollTo = (document.body.scrollHeight - innerHeight) * progress / 100;
+        window.scrollTo({
+            top: scrollTo,
+            behavior: 'smooth'
+        });
     }
 
 }

@@ -1,6 +1,23 @@
 @import '../app/variables';
 $margin-bottom: 10px;
 
+.ex-img {
+  width: auto;
+  min-width: calc(50% - 52px);
+  height: 400px;
+  background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  transition: background-size .5s;
+  margin: 25px 25px;
+  display: inline-block;
+
+  &:hover {
+    background-size: 110% auto;
+    transition: background-size .5s;
+  }
+}
+
 h1 {
   font-size: 1.4em;
   font-family: $elements-text;
@@ -97,6 +114,7 @@ ul {
 img {
   width: 100%;
   transition: width 0.5s;
+
   &:hover {
     width: 110%;
     transition: width 0.5s;

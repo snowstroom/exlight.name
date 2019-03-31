@@ -35,7 +35,7 @@ export class ArticleComponent {
   }
 
   public toogleShare(scroll: number): void {
-    const progress = (scroll + innerHeight) * 100 / document.body.scrollHeight;
+    const progress = scroll * 100 / (document.body.scrollHeight - innerHeight);
     if (progress <= 15) {
       this.visibleShare = false;
     } else if (progress > 15 && progress < 90) {
