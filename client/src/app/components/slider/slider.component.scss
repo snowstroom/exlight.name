@@ -3,19 +3,27 @@
 .slider {
   box-sizing: border-box;
   padding: 2em;
-  height: 35em;
+  height: calc(100vh - 4em);
+  background-position: center;
+  background-size: cover;
+  transition: background-image 1s;
+  display: flex;
+    flex-direction: column;
+    min-height: 600px;
 
   .content-wrapper {
     display: flex;
     justify-content: flex-end;
     height: calc(100% - 4em);
+    min-height: 600px;
 
     .content {
       padding: 1em;
       box-sizing: border-box;
       box-shadow: $box-shadow;
       width: 25em;
-      height: calc(100% - 2em);
+      height: calc(60% - 2em);
+      min-height: 400px;
       background: $blocks-color-bg;
       display: flex;
       flex-direction: column;
