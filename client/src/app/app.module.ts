@@ -28,6 +28,7 @@ import { ArticleProgressComponent } from './components/article-progress/article-
 import { SpinnerComponent } from './components/spinner/text-spinner/spinner.component';
 import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spinner.component';
 import { markedOptionsFactory } from './markdown.config';
+import { ShareContentComponent } from './components/share-content/share-content.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { markedOptionsFactory } from './markdown.config';
     MusicItemComponent,
     PhotoItemComponent,
     SpinnerComponent,
-    LineSpinnerComponent
+    LineSpinnerComponent,
+    ShareContentComponent
   ],
   imports: [
     BrowserModule,

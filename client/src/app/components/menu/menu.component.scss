@@ -54,3 +54,22 @@ $menu-item-w: 45px;
     }
   }
 }
+
+@media (min-width: 0px) and (max-width: 620px) {
+  .main-menu {
+    // position: fixed;
+    width: 100%;
+    z-index: 3;
+    .logo {
+      .name {
+        padding: .5em 1em;
+      }
+    }
+    .items-wrapper {
+      display: none;
+      .menu-item {
+        padding: .5em 1em;
+      }
+    }
+  }
+}

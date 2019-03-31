@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { ArticleService } from '@app/services/article.service';
@@ -9,10 +9,9 @@ import { ApplicationService } from '@app/services/app.service';
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss']
 })
-export class ArticleComponent {
+export class ArticleComponent implements OnDestroy {
   public wait = true;
   public article: Article;
-  public visibleShare = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,26 +22,41 @@ export class ArticleComponent {
   ) {
     this.titleSrv.setTitle('Статья');
     this.activatedRoute.params.subscribe(params => this.getArticleByRoute(params.article));
-    this.appSrv.$scroll.subscribe(scroll => this.toogleShare(scroll));
+    this.appSrv.$scroll.subscribe(scroll => {
+      this.toogleShare(scroll);
+      this.toogleProgress(scroll);
+    });
   }
 
-  public async getArticleByRoute(route: string): Promise<void> {
+  public ngOnDestroy(): void {
+    this.appSrv.hideScrollProgress();
+    this.appSrv.hideShareBlock();
+  }
+
+  private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
     this.wait = false;
-    setTimeout(() => {
-      this.visibleShare = innerHeight === document.body.scrollHeight ? true : false;
-    }, 0);
+    setTimeout(() => innerHeight === document.body.scrollHeight ?
+        this.appSrv.showShareBlock() :
+        this.appSrv.hideShareBlock(), 0);
   }
 
-  public toogleShare(scroll: number): void {
-    const progress = scroll * 100 / (document.body.scrollHeight - innerHeight);
+  private toogleShare(scroll: number): void {
+    const progress = ApplicationService.scrollPageToPrecent(scroll);
     if (progress <= 15) {
-      this.visibleShare = false;
+      this.appSrv.hideShareBlock();
     } else if (progress > 15 && progress < 90) {
-      this.visibleShare = true;
+      this.appSrv.showShareBlock();
     } else if (progress >= 90) {
-      this.visibleShare = false;
+      this.appSrv.hideShareBlock();
     }
   }
 
+  private toogleProgress(scroll: number) {
+    if (scroll > 100) {
+      this.appSrv.showScrollProgress();
+    } else {
+      this.appSrv.hideScrollProgress();
+    }
+  }
 }

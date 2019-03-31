@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MENU_ITEMS } from '@app/consts/menu-items';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
+import { ApplicationService } from '@app/services/app.service';
 
 @Component({
   selector: 'ex-menu',
@@ -11,8 +12,12 @@ import { Router, NavigationStart } from '@angular/router';
 export class MenuComponent {
   public readonly menuItems = MENU_ITEMS;
   public leftDec: number;
+  public isFixed = 'static';
 
-  constructor(private activatedRoute: Router) {
+  constructor(
+    private activatedRoute: Router,
+    private appSrv: ApplicationService
+  ) {
     this.activatedRoute.events.pipe(filter(e => e instanceof NavigationStart))
       .subscribe((e: NavigationStart) => {
         const urlParts = e.url.split('/');
@@ -22,6 +27,14 @@ export class MenuComponent {
             this.leftDec = 85 * i || 1;
           }
         });
+      });
+      this.appSrv.$scroll.subscribe(scroll => {
+        if (scroll < 50) {
+          this.isFixed = 'static';
+        }
+        if (scroll > 50) {
+          this.isFixed = 'fixed';
+        }
       });
   }
 

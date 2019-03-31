@@ -12,22 +12,18 @@ export class ArticleProgressComponent {
     public change = false;
     constructor(private appSrv: ApplicationService) {
         this.appSrv.$scroll.subscribe(scroll => this.scrollPage(scroll));
+        this.appSrv.$scrollProgressState.subscribe(state => this.visible = state);
     }
 
     public scrollPage(scroll: number): void {
-        if (scroll > 100) {
-            this.visible = true;
-        } else {
-            this.visible = false;
-        }
         this.change = true;
-        this.progress = scroll * 100 / (document.body.scrollHeight - innerHeight);
+        this.progress = ApplicationService.scrollPageToPrecent(scroll);
         setTimeout(() => this.change = false, 200);
     }
 
     public navigate(e: MouseEvent): void {
         const progress = e.clientX * 100 / innerWidth;
-        const scrollTo = (document.body.scrollHeight - innerHeight) * progress / 100;
+        const scrollTo =  ApplicationService.scrollPrecentToPX(progress);
         window.scrollTo({
             top: scrollTo,
             behavior: 'smooth'

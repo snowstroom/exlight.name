@@ -31,3 +31,11 @@
     }
   }
 }
+
+@media (min-width: 0px) and (max-width: 620px) {
+  .footer {
+    .footer-menu {
+      margin-bottom: 1em;
+    }
+  }
+}

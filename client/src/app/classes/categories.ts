@@ -14,7 +14,6 @@ export class CategoriesItem implements ICategoriesItem {
     public isActive: boolean;
 
     constructor(private __data: ICategoriesItem) {
-        console.warn('!');
         const element = document.createElement('div');
         const wrapper = document.createElement('div');
         wrapper.style.display = 'flex';

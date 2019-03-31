@@ -28,36 +28,26 @@
       min-height: calc(100% - 108px - 4em);
       padding: 2em 8em;
     }
-    .share {
-      color: $element-text-color;
-      font-size: 1.8em;
-      position: fixed;
-      top: calc(50% - 113px);
-      left: -65px;
-      transition: left .5s;
-      // box-shadow: $active-box-shadow;
-      &.visible {
-        left: 0;
-        transition: left .5s;
-      }
-      .icon-wrapper {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        .icon-item {
-          padding: .5em;
-          text-align: center;
-          cursor: pointer;
-          &:hover {
-            animation: textShadow 3s infinite;
-          }
-        }
-      }
-    }
   }
   .right {
     width: 300px;
     background: $blocks-color-bg;
     box-shadow: $box-shadow;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 620px) {
+  .content-wrapper {
+    flex-direction: column;
+    .main {
+      width: 100%;
+      margin-right: 0;
+      .content {
+        padding: 1em;
+      }
+      .article-head {
+        padding: 0 1em;
+      }
+    }
   }
 }

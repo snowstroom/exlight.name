@@ -1,14 +1,16 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MusicStateService } from './services/music-state.service';
 import { MediaItem } from './interfaces/MediaItem.interface';
+import { EnviromentService } from './services/envirement.service';
+import { E_SCREEN_TYPE } from './enums/screen-type';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ex-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('htmlPlayer') htmlPlayer: ElementRef<HTMLAudioElement>;
+  @ViewChild('htmlPlayer') public  htmlPlayer: ElementRef<HTMLAudioElement>;
   public track: MediaItem;
   public isPlay: boolean;
   public canPlay: boolean;
@@ -16,10 +18,13 @@ export class AppComponent implements OnInit {
   public currentTime = 0;
   public timer: any;
   constructor(
-    private musicStateSrv: MusicStateService
-  ) { }
+    private musicStateSrv: MusicStateService,
+    private envSrv: EnviromentService
+  ) {
+    this.envSrv.$screenType.subscribe(type => console.warn(E_SCREEN_TYPE[type]));
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.musicStateSrv.$playingTrack.subscribe(track => this.track = track);
     this.musicStateSrv.$volume.subscribe(volume => this.htmlPlayer.nativeElement.volume = volume);
     this.musicStateSrv.$intTime.subscribe(currentTime => this.htmlPlayer.nativeElement.currentTime = currentTime);
