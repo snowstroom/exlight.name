@@ -31,7 +31,7 @@ export class CatalogComponent implements OnInit {
         if (categories.length) {
           this.categories = categories;
           this.articlesSrv.pagination.currentPage = numberParam(params.page);
-          this.curCategory = this.articlesSrv.categoriesMap.get(params.cat);
+          this.curCategory = this.articlesSrv.categoriesMap.get(params.cat); // Если категории не существует???
           this.categories.forEach(item => item.isActive = false);
           this.curCategory.isActive = true;
           this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)

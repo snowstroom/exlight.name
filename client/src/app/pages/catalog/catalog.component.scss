@@ -17,6 +17,12 @@
     .articles {
       height: calc(100% - 15em);
       padding: 1em 2em;
+      .empty {
+        font-family: $elements-text;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-align: center;
+      }
     }
   }
   .right {

@@ -9,6 +9,7 @@ $progres-height: 5px;
   box-shadow: $box-shadow;
   position: fixed;
   transition: top .5s;
+  z-index: 1;
 
   &.visible {
     top: 0;

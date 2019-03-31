@@ -14,6 +14,7 @@
       <ng-container *ngIf="!wait">
         <ex-articles *ngFor="let article of articles"
           [article]="article" (navigate)="navigateToArticle($event)"></ex-articles>
+        <div class="empty" *ngIf="!wait && !articles.length">Сожалеем, здесь немного пусто. Будьте уверены, когда нибудь здесь что то появится!</div>
     </ng-container>
     </div>
     <ex-pagination [recordCount]="articlesSrv.pagination.total" 
