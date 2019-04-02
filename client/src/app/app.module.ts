@@ -3,6 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -60,6 +61,7 @@ import { ShareContentComponent } from './components/share-content/share-content.
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FontAwesomeModule,
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,

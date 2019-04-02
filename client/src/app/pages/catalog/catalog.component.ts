@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
-import { Title, Meta } from '@angular/platform-browser';
 import { CategoriesItem } from '@app/classes/categories';
 import { Article } from '@app/classes/article';
 import { numberParam } from '@core/functions/number-param';
+import { ApplicationService } from '@app/services/app.service';
 
 @Component({
   selector: 'ex-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent {
   public wait = true;
   public page: number;
   public curCategory: CategoriesItem;
@@ -23,12 +23,19 @@ export class CatalogComponent implements OnInit {
     public articlesSrv: ArticleService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleSrv: Title,
-    private metaSrv: Meta
+    private appSrv: ApplicationService
   ) {
     this.activatedRoute.params.subscribe(params =>
       this.articlesSrv.$categories.subscribe(categories => {
         if (categories.length) {
+          this.appSrv.pageDescription = {
+            description: 'eXlight - блог разработчкиа о творчестве, музыке,\
+             поэзии, программировании и событиях в жизни. Каталог статей.',
+            img: '',
+            keywords: this.categories.map(c => c.categoryName),
+            title: 'Каталог статей',
+            url: ''
+          };
           this.categories = categories;
           this.articlesSrv.pagination.currentPage = numberParam(params.page);
           this.curCategory = this.articlesSrv.categoriesMap.get(params.cat); // Если категории не существует???
@@ -41,10 +48,6 @@ export class CatalogComponent implements OnInit {
             });
         }
       }));
-  }
-
-  public ngOnInit(): void {
-    this.titleSrv.setTitle('eXlight - Каталог статей');
   }
 
   public setActivePage(page: number): void {

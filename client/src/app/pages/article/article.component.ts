@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { ArticleService } from '@app/services/article.service';
 import { Article } from '@app/classes/article';
 import { ApplicationService } from '@app/services/app.service';
@@ -16,11 +16,9 @@ export class ArticleComponent implements OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private articleSrv: ArticleService,
-    private titleSrv: Title,
     private appSrv: ApplicationService,
-    private metaSrv: Meta
+    private router: Router
   ) {
-    this.titleSrv.setTitle('Статья');
     this.activatedRoute.params.subscribe(params => this.getArticleByRoute(params.article));
     this.appSrv.$scroll.subscribe(scroll => {
       this.toogleShare(scroll);
@@ -39,6 +37,15 @@ export class ArticleComponent implements OnDestroy {
     setTimeout(() => innerHeight === document.body.scrollHeight ?
         this.appSrv.showShareBlock() :
         this.appSrv.hideShareBlock(), 0);
+    if (this.article) {
+      this.appSrv.pageInfo = {
+        title: this.article.title,
+        description: this.article.description,
+        keywords: [],
+        url: this.router.url,
+        img: ''
+      };
+    }
   }
 
   private toogleShare(scroll: number): void {
@@ -52,7 +59,7 @@ export class ArticleComponent implements OnDestroy {
     }
   }
 
-  private toogleProgress(scroll: number) {
+  private toogleProgress(scroll: number): void {
     if (scroll > 100) {
       this.appSrv.showScrollProgress();
     } else {

@@ -7,6 +7,7 @@ import { E_SCREEN_TYPE } from '@app/enums/screen-type';
     providedIn: 'root'
 })
 export class EnviromentService {
+    public readonly DOMAIN = 'exlight.name';
     public readonly PLATFORM = Platform.parse(navigator.userAgent);
     private screenType = new BehaviorSubject<E_SCREEN_TYPE>(this.initMediaListen());
 
