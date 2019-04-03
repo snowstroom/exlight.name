@@ -38,7 +38,7 @@ export class ApplicationService {
         addEventListener('scroll', this.windowScroll.bind(this));
     }
 
-    set pageInfo(val: IPageDescription) {
+    public setPageInfo(val: IPageDescription): void {
         this.pageDescription = val;
         this.pageDescription$.next(this.pageDescription);
         this.titleSrv.setTitle(`eXlight - ${this.pageDescription.title}`);

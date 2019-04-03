@@ -38,13 +38,13 @@ export class ArticleComponent implements OnDestroy {
         this.appSrv.showShareBlock() :
         this.appSrv.hideShareBlock(), 0);
     if (this.article) {
-      this.appSrv.pageInfo = {
+      this.appSrv.setPageInfo({
         title: this.article.title,
         description: this.article.description,
         keywords: [],
         url: this.router.url,
         img: ''
-      };
+      });
     }
   }
 

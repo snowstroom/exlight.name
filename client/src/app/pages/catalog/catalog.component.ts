@@ -29,8 +29,8 @@ export class CatalogComponent {
       this.articlesSrv.$categories.subscribe(categories => {
         if (categories.length) {
           this.appSrv.pageDescription = {
-            description: 'eXlight - блог разработчкиа о творчестве, музыке,\
-             поэзии, программировании и событиях в жизни. Каталог статей.',
+            description: 'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
+             поэзии, программировании и событиях в жизни. ',
             img: '',
             keywords: this.categories.map(c => c.categoryName),
             title: 'Каталог статей',
