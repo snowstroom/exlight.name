@@ -28,24 +28,28 @@ export class CatalogComponent {
     this.activatedRoute.params.subscribe(params =>
       this.articlesSrv.$categories.subscribe(categories => {
         if (categories.length) {
-          this.appSrv.pageDescription = {
+          this.appSrv.setPageInfo({
             description: 'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
              поэзии, программировании и событиях в жизни. ',
             img: '',
             keywords: this.categories.map(c => c.categoryName),
             title: 'Каталог статей',
             url: ''
-          };
+          });
           this.categories = categories;
           this.articlesSrv.pagination.currentPage = numberParam(params.page);
-          this.curCategory = this.articlesSrv.categoriesMap.get(params.cat); // Если категории не существует???
-          this.categories.forEach(item => item.isActive = false);
-          this.curCategory.isActive = true;
-          this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)
-            .then(articles => {
-              this.articles = articles;
-              this.wait = false;
-            });
+          this.curCategory = this.articlesSrv.categoriesMap.get(params.cat);
+          if (this.curCategory) {
+            this.categories.forEach(item => item.isActive = false);
+            this.curCategory.isActive = true;
+            this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id)
+              .then(articles => {
+                this.articles = articles;
+                this.wait = false;
+              });
+          } else {
+            this.selectedCatHandler(this.articlesSrv.DEF_CAT);
+          }
         }
       }));
   }

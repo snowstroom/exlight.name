@@ -7,10 +7,16 @@ import { Article, IArticle } from '@app/classes/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
 import { IPaginationContent } from '@app/interfaces/pagination-content';
 
+const DEF_CAT: ICategoriesItem = {
+  id: undefined,
+  categoryName: 'Все',
+  categoryRoute: 'all'
+};
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService extends Api {
+  public readonly DEF_CAT = new CategoriesItem(DEF_CAT);
   public pagination = new PaginationParams({ limit: 5 });
   public categoriesMap = new Map<string, CategoriesItem>();
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
@@ -20,14 +26,9 @@ export class ArticleService extends Api {
 
   constructor(injector: Injector) {
     super(injector, environment.domain);
-    const defCat = new CategoriesItem({
-      id: undefined,
-      categoryName: 'Все',
-      categoryRoute: 'all'
-    });
-    defCat.isActive = true;
+    this.DEF_CAT.isActive = true;
     this.getCategories().then(categories => {
-      this.categories = [defCat, ...categories];
+      this.categories = [this.DEF_CAT, ...categories];
       this.initCategoriesMap(this.categories);
       this.categories$.next(this.categories);
     });
