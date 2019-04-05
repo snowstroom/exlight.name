@@ -1,6 +1,7 @@
 @import '../../variables';
 $menu-item-p: 20px;
 $menu-item-w: 45px;
+$item-font-size: 1.2em;
 
 .main-menu {
   display: flex;
@@ -20,7 +21,7 @@ $menu-item-w: 45px;
       animation-duration: 8s;
       animation-iteration-count: infinite;
       text-transform: none;
-      font-size: 1.2em;
+      font-size: $item-font-size;
     }
   }
   .items-wrapper {
@@ -43,7 +44,7 @@ $menu-item-w: 45px;
       cursor: pointer;
       font-family: $elements-text;
       color: $element-text-color;
-      font-size: 1.2em;
+      font-size: $item-font-size;
       text-transform: uppercase;
       text-shadow: $text-shadow;
     }
@@ -53,13 +54,19 @@ $menu-item-w: 45px;
       animation-iteration-count: infinite;
     }
   }
+  .gamburger {
+    display: none;
+  }
 }
-
-@media (min-width: 0px) and (max-width: 620px) {
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
   .main-menu {
-    // position: fixed;
     width: 100%;
     z-index: 3;
+    position: fixed;
+    
     .logo {
       .name {
         padding: .5em 1em;
@@ -71,5 +78,15 @@ $menu-item-w: 45px;
         padding: .5em 1em;
       }
     }
+    .gamburger {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: $item-font-size + 1em;
+    }
+  }
+
+  .pillow {
+    height: $item-font-size + 1em;
   }
 }

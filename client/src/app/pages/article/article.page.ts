@@ -6,8 +6,8 @@ import { Article } from '@app/classes/article';
 import { ApplicationService } from '@app/services/app.service';
 
 @Component({
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  templateUrl: './article.page.html',
+  styleUrls: ['./article.page.scss']
 })
 export class ArticleComponent implements OnDestroy {
   public wait = true;

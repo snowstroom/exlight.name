@@ -31,8 +31,26 @@
     box-shadow: $box-shadow;
   }
 }
-
-@media (min-width: 0px) and (max-width: 620px) {
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .content-wrapper {
+    flex-direction: column;
+    .main {
+      width: 100%;
+      margin-right: 0;
+      .articles {
+        min-height: 500px;
+        padding: 1em;
+      }
+    }
+  }
+}
+/**
+ * Small devices
+**/
+@media (min-width: $min-sm) and (max-width: $max-sm) {
   .content-wrapper {
     flex-direction: column;
     .main {

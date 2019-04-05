@@ -3,6 +3,7 @@ import { MENU_ITEMS } from '@app/consts/menu-items';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
 import { ApplicationService } from '@app/services/app.service';
+import { faBars } from '@fortawesome/fontawesome-free-solid';
 
 @Component({
   selector: 'ex-menu',
@@ -10,9 +11,9 @@ import { ApplicationService } from '@app/services/app.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+  public readonly MENU_ICO = faBars;
   public readonly menuItems = MENU_ITEMS;
   public leftDec: number;
-  public isFixed = 'static';
 
   constructor(
     private activatedRoute: Router,
@@ -28,14 +29,10 @@ export class MenuComponent {
           }
         });
       });
-      this.appSrv.$scroll.subscribe(scroll => {
-        if (scroll < 50) {
-          this.isFixed = 'static';
-        }
-        if (scroll > 50) {
-          this.isFixed = 'fixed';
-        }
-      });
+  }
+
+  public openMobileMenu(): void {
+    console.warn('open mobile menu');
   }
 
 }

@@ -3,8 +3,8 @@ import { ApplicationService } from '@app/services/app.service';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  templateUrl: './about.page.html',
+  styleUrls: ['./about.page.scss']
 })
 export class AboutComponent {
 

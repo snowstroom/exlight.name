@@ -22,10 +22,19 @@
       width: 20px;
       text-align: center;
       cursor: pointer;
-      padding: 8px 16px;
+      padding: .5em 1em;
       font-family: $elements-text;
       color: $element-text-color;
       text-shadow: $text-shadow;
     }
+  }
+}
+
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .pagination {
+    padding: 1em .5em;
   }
 }

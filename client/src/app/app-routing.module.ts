@@ -5,8 +5,8 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { PhotoComponent } from './pages/photo/photo.component';
 import { VideoComponent } from './pages/video/video.component';
 import { MusicComponent } from './pages/music/music.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ArticleComponent } from './pages/article/article.component';
+import { AboutComponent } from './pages/about/about.page';
+import { ArticleComponent } from './pages/article/article.page';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [{

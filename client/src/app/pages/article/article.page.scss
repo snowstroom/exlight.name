@@ -36,7 +36,7 @@
   }
 }
 
-@media (min-width: 0px) and (max-width: 620px) {
+@media (min-width: $min-exs) and (max-width: $max-exs) {
   .content-wrapper {
     flex-direction: column;
     .main {
@@ -50,4 +50,8 @@
       }
     }
   }
+}
+
+@media (min-width: $min-sm) and (max-width: $max-sm) {
+
 }

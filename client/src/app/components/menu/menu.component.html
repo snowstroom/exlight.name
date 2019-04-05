@@ -1,4 +1,4 @@
-<div class="main-menu" [ngStyle]="{'position': isFixed}">
+<div class="main-menu">
   <div class="logo">
     <div class="menu-item name">eXlight</div>
   </div>
@@ -8,4 +8,8 @@
       [routerLink]="item.route" role="link"
       class="menu-item">{{item.name}}</div>
   </div>
+  <div class="gamburger" (click)="openMobileMenu()">
+    <fa-icon [icon]="MENU_ICO" class="icon"></fa-icon>
+  </div>
 </div>
+<div class="pillow"></div>
