@@ -1,10 +1,11 @@
 <ex-article-progress></ex-article-progress>
-<div class="container">
+<div class="container" (click)="hideSideNav()">
   <ex-menu></ex-menu>
   <router-outlet></router-outlet>
   <ex-footer></ex-footer>
 </div>
 <ex-share-content></ex-share-content>
+<ex-side-nav></ex-side-nav>
 <audio #htmlPlayer [src]="track?.fileUrl"
 (ended)="trackEnd()"
 (play)="trackPlay()"

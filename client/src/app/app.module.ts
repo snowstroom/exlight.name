@@ -30,6 +30,7 @@ import { SpinnerComponent } from './components/spinner/text-spinner/spinner.comp
 import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spinner.component';
 import { markedOptionsFactory } from './markdown.config';
 import { ShareContentComponent } from './components/share-content/share-content.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ShareContentComponent } from './components/share-content/share-content.
     PhotoItemComponent,
     SpinnerComponent,
     LineSpinnerComponent,
-    ShareContentComponent
+    ShareContentComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,

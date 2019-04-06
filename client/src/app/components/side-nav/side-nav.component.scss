@@ -1,0 +1,26 @@
+@import 'src/app/variables';
+.ex-side-nav {
+    &.visible {
+        right: 0;
+        transition: right .5s;
+    }
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    right: -55%;
+    width: 50%;
+    height: 100vh;
+    background: $blocks-color-bg;
+    box-shadow: $box-shadow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: right .5s;
+    .side-nav-item {
+        color: $element-text-color;
+        padding: 1em;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+}

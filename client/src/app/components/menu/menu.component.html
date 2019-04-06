@@ -8,7 +8,7 @@
       [routerLink]="item.route" role="link"
       class="menu-item">{{item.name}}</div>
   </div>
-  <div class="gamburger" (click)="openMobileMenu()">
+  <div class="gamburger" (click)="openMobileMenu($event)">
     <fa-icon [icon]="MENU_ICO" class="icon"></fa-icon>
   </div>
 </div>

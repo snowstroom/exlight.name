@@ -64,7 +64,7 @@ $item-font-size: 1.2em;
 @media (min-width: $min-exs) and (max-width: $max-exs) {
   .main-menu {
     width: 100%;
-    z-index: 3;
+    z-index: 4;
     position: fixed;
     
     .logo {

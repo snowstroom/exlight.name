@@ -1,0 +1,8 @@
+<div class="ex-side-nav" [ngClass]="{ visible: visible }">
+  <div class="side-nav-item-wrapper">
+    <a class="side-nav-item" 
+        [routerLink]="item.route" 
+        role="link" 
+        *ngFor="let item of MENU">{{item.name}}</a>
+  </div>
+</div>

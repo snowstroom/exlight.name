@@ -24,11 +24,13 @@ export interface IShareButton {
 })
 export class ApplicationService {
     public pageDescription: IPageDescription;
+    public sideNavIsShown = false;
     private scroll = new Subject<number>();
     private share = new  BehaviorSubject<boolean>(false);
     private scrollProgress = new BehaviorSubject<boolean>(false);
     private pageDescription$ = new Subject<IPageDescription>();
     private shareButtons = new BehaviorSubject<IShareButton[]>([]);
+    private sideNavState = new BehaviorSubject<boolean>(false);
 
     constructor(
         private envSrv: EnviromentService,
@@ -65,6 +67,25 @@ export class ApplicationService {
 
     get $shareButtons(): Observable<IShareButton[]> {
         return this.shareButtons.asObservable();
+    }
+
+    public hideSideNav(): void {
+        this.sideNavIsShown = false;
+        this.sideNavState.next(false);
+    }
+
+    public showSideNav(): void {
+        this.sideNavIsShown = true;
+        this.sideNavState.next(true);
+    }
+
+    public toogleSideNav(): void {
+        this.sideNavIsShown = !this.sideNavIsShown;
+        this.sideNavState.next(this.sideNavIsShown);
+    }
+
+    get $sideNavState(): Observable<boolean> {
+        return this.sideNavState.asObservable();
     }
 
     public static scrollPageToPrecent(scroll: number): number {

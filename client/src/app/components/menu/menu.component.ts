@@ -31,8 +31,9 @@ export class MenuComponent {
       });
   }
 
-  public openMobileMenu(): void {
-    console.warn('open mobile menu');
+  public openMobileMenu(e: MouseEvent): void {
+    e.stopPropagation();
+    this.appSrv.toogleSideNav();
   }
 
 }

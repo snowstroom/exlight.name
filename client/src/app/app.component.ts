@@ -3,6 +3,7 @@ import { MusicStateService } from './services/music-state.service';
 import { MediaItem } from './interfaces/MediaItem.interface';
 import { EnviromentService } from './services/envirement.service';
 import { E_SCREEN_TYPE } from './enums/screen-type';
+import { ApplicationService } from './services/app.service';
 
 @Component({
   selector: 'ex-app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   public timer: any;
   constructor(
     private musicStateSrv: MusicStateService,
-    private envSrv: EnviromentService
+    private envSrv: EnviromentService,
+    private appSrv: ApplicationService
   ) {
     this.envSrv.$screenType.subscribe(type => console.warn(E_SCREEN_TYPE[type]));
   }
@@ -37,6 +39,10 @@ export class AppComponent implements OnInit {
         this.htmlPlayer.nativeElement.pause();
       }
     });
+  }
+
+  public hideSideNav(): void {
+    this.appSrv.hideSideNav();
   }
 
   public trackEnd(): void {
