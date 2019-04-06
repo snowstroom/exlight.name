@@ -36,6 +36,7 @@
 **/
 @media (min-width: $min-exs) and (max-width: $max-exs) {
   .content-wrapper {
+    margin: 0;
     flex-direction: column;
     .main {
       width: 100%;

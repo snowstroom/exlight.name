@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  domain: 'http://127.0.0.1:8081'
+  domain: 'http://192.168.1.200:1050'
 };
 
 /*
