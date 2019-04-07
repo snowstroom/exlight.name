@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MENU_ITEMS } from '@app/consts/menu-items';
 import { ApplicationService } from '@app/services/app.service';
-import { E_SCREEN_TYPE } from '@app/enums/screen-type';
 import { EnviromentService } from '@app/services/envirement.service';
 
 @Component({

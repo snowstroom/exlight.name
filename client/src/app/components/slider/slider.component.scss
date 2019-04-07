@@ -8,13 +8,13 @@
   background-size: cover;
   transition: background-image 1s;
   display: flex;
-    flex-direction: column;
-    min-height: 600px;
+  flex-direction: column;
+  min-height: 600px;
 
   .content-wrapper {
     display: flex;
     justify-content: flex-end;
-    height: calc(100% - 4em);
+    height: 100%;
     min-height: 600px;
 
     .content {
@@ -61,26 +61,81 @@
   }
 
   .controls {
-    height: 4em;
     display: flex;
     justify-content: center;
 
     .controls-wrapper {
       display: flex;
+      box-shadow: $box-shadow;
+      background: $blocks-color-bg;
 
-      .controll {
-        &.active {
-          background: $active-element-bg;
+      .item-wrapper {
+        display: flex;
+        position: relative;
+
+        .number-controll {
+          cursor: pointer;
+          font-family: $elements-text;
+          font-size: 1.2em;
+          padding: 1em;
+          color: $simple-text-color;
+          font-weight: bold;
+          text-shadow: $text-shadow;
+          text-align: center;
+          width: 1em;
+          z-index: 2;
         }
 
+        .item-decorator {
+          position: absolute;
+          width: 57px;
+          height: 57px;
+          background: $active-element-bg;
+          z-index: 1;
+          transition: .3s width, .5s left;
+          box-shadow: 0 0 10px $active-element-bg;
+        }
+      }
+
+      .controll {
         cursor: pointer;
         font-family: $elements-text;
         font-size: 1.2em;
         padding: 1em;
         color: $simple-text-color;
         font-weight: bold;
-        background: $blocks-color-bg;
         text-shadow: $text-shadow;
+        text-align: center;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .slider {
+    .content-wrapper {
+      min-height: auto;
+    }
+
+    .controls {
+      .controls-wrapper {
+        .controll {
+          padding: .5em;
+        }
+
+        .item-wrapper {
+          .number-controll {
+            padding: .5em;
+          }
+          .item-decorator {
+            width: 38px;
+            height: 38px;
+          }
+        }
       }
     }
   }
