@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { MediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../interfaces/MediaItem.interface';
 import { MusicStateService } from '../../services/music-state.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MusicStateService } from '../../services/music-state.service';
 })
 export class MusicComponent implements OnInit {
   public currentpage: number;
-  public mediaItems: MediaItem[];
+  public mediaItems: IMediaItem[];
 
   constructor(
     private titleSrv: Title,

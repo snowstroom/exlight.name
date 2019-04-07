@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../interfaces/MediaItem.interface';
 
 @Component({
   selector: 'ex-media-catalog',
@@ -7,7 +7,7 @@ import { MediaItem } from '../../interfaces/MediaItem.interface';
   styleUrls: ['./music-item.component.scss']
 })
 export class MusicItemComponent implements OnInit {
-  @Input() public mediaItem: MediaItem;
+  @Input() public mediaItem: IMediaItem;
   @Output() public play = new EventEmitter();
   @Output() public download = new EventEmitter();
   constructor() { }

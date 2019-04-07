@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { MediaItem } from '../interfaces/MediaItem.interface';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { IMediaItem } from '@app/interfaces/MediaItem.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicStateService {
-  private musicItems: MediaItem[] = [];
-  private musicItems$ = new BehaviorSubject<MediaItem[]>(this.musicItems);
-  private playingTrack: MediaItem;
-  private playingTrack$ = new BehaviorSubject<MediaItem>(this.playingTrack);
+  private musicItems: IMediaItem[] = [];
+  private musicItems$ = new BehaviorSubject<IMediaItem[]>(this.musicItems);
+  private playingTrack: IMediaItem;
+  private playingTrack$ = new BehaviorSubject<IMediaItem>(this.playingTrack);
   private isPlay$ = new BehaviorSubject<boolean>(false);
   private volume = 1;
   private volume$ = new BehaviorSubject<number>(this.volume);
@@ -31,11 +31,11 @@ export class MusicStateService {
       });*/
   }
 
-  get $musicItems(): Observable<MediaItem[]> {
+  get $musicItems(): Observable<IMediaItem[]> {
     return this.musicItems$.asObservable();
   }
 
-  get $playingTrack(): Observable<MediaItem> {
+  get $playingTrack(): Observable<IMediaItem> {
     return this.playingTrack$.asObservable();
   }
 
@@ -59,7 +59,7 @@ export class MusicStateService {
     return this.duration$.asObservable();
   }
 
-  public playTrack(track: MediaItem) {
+  public playTrack(track: IMediaItem) {
     this.playingTrack = track;
     this.currentTime = 0;
     this.currentTime$.next(this.currentTime);

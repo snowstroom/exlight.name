@@ -1,4 +1,4 @@
-import { BrowserModule, Title, Meta } from '@angular/platform-browser';
+import { BrowserModule, Title, Meta, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +31,9 @@ import { LineSpinnerComponent } from './components/spinner/line-spinner/line-spi
 import { markedOptionsFactory } from './markdown.config';
 import { ShareContentComponent } from './components/share-content/share-content.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { HummerConfig } from './hammer-config';
+
+
 
 @NgModule({
   declarations: [
@@ -80,6 +83,9 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
       useFactory: (srv: InitService) => () => srv.initFonts(),
       deps: [InitService],
       multi: true
+    }, {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HummerConfig
     }
   ],
   bootstrap: [AppComponent]

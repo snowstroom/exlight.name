@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicStateService } from '../../services/music-state.service';
-import { MediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../interfaces/MediaItem.interface';
 
 @Component({
   selector: 'ex-audio-player',
@@ -9,8 +9,8 @@ import { MediaItem } from '../../interfaces/MediaItem.interface';
 })
 export class AudioPlayerComponent implements OnInit {
   public isPlay: boolean;
-  public tracks: MediaItem[];
-  public playingTrack: MediaItem;
+  public tracks: IMediaItem[];
+  public playingTrack: IMediaItem;
   public volume = 1;
   public currentTime = 0;
   public duration: number;
@@ -44,7 +44,7 @@ export class AudioPlayerComponent implements OnInit {
     this.musicStateSrv.next();
   }
 
-  public playTrack(track: MediaItem): void {
+  public playTrack(track: IMediaItem): void {
       this.musicStateSrv.playTrack(track);
   }
 

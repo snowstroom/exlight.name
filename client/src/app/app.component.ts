@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MusicStateService } from './services/music-state.service';
-import { MediaItem } from './interfaces/MediaItem.interface';
+import { IMediaItem } from './interfaces/MediaItem.interface';
 import { EnviromentService } from './services/envirement.service';
 import { E_SCREEN_TYPE } from './enums/screen-type';
 import { ApplicationService } from './services/app.service';
@@ -12,7 +12,7 @@ import { ApplicationService } from './services/app.service';
 })
 export class AppComponent implements OnInit {
   @ViewChild('htmlPlayer') public  htmlPlayer: ElementRef<HTMLAudioElement>;
-  public track: MediaItem;
+  public track: IMediaItem;
   public isPlay: boolean;
   public canPlay: boolean;
   public loop = false;
@@ -70,5 +70,10 @@ export class AppComponent implements OnInit {
       this.musicStateSrv.showTime(e.target.currentTime);
       this.currentTime = e.target.currentTime;
     }
+  }
+
+  public showSideNav(e: any): void {
+    console.warn(e);
+    this.appSrv.showSideNav();
   }
 }

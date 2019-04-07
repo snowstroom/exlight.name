@@ -1,5 +1,5 @@
 <ex-article-progress></ex-article-progress>
-<div class="container" (click)="hideSideNav()">
+<div class="container" (click)="hideSideNav()" (swipeleft)="showSideNav($event)">
   <ex-menu></ex-menu>
   <router-outlet></router-outlet>
   <ex-footer></ex-footer>

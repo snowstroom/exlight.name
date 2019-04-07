@@ -1,4 +1,4 @@
-export interface MediaItem {
+export interface IMediaItem {
   id: number;
   type: string;
   coverUrl: string;
