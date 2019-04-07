@@ -2,8 +2,9 @@
   (swiperight)="hideSideNav()">
   <div class="side-nav-item-wrapper">
     <a class="side-nav-item" 
-        [routerLink]="item.route" 
-        role="link" 
+        [routerLink]="item.route"
+        role="link"
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.exact}"
         *ngFor="let item of MENU"
         (click)="hideSideNav()">{{item.name}}</a>
   </div>

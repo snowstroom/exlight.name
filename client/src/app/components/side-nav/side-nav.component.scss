@@ -22,5 +22,8 @@
         display: block;
         text-align: center;
         text-decoration: none;
+        &.active {
+            background: $active-element-bg;
+        }
     }
 }

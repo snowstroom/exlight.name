@@ -13,9 +13,12 @@ const routes: Routes = [{
     path: '',
     component: MainComponent
   }, {
+    path: 'catalog',
+    pathMatch: 'full',
+    redirectTo: 'catalog/all/page/1'
+  }, {
     path: 'catalog/:cat/page/:page',
-    component: CatalogComponent,
-    pathMatch: 'prefix',
+    component: CatalogComponent
   }, {
     path: 'article/:cat/:article',
     component: ArticleComponent

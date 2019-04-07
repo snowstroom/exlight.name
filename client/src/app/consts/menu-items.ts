@@ -2,10 +2,11 @@ import { IMenuItem } from '@app/interfaces/menu-item';
 
 export const MENU_ITEMS: IMenuItem[] = [{
     name: 'Главная',
-    route: ['']
+    route: [''],
+    exact: true
 }, {
     name: 'Каталог',
-    route: ['catalog', 'all', 'page', '1']
+    route: ['catalog']
 }, /* {
     name: 'Видео',
     route: ['video']

@@ -34,3 +34,16 @@
     }
   }
 }
+
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .share {
+    .icon-wrapper {
+      .icon-item {
+        font-size: .6em;
+      }
+    }
+  }
+}

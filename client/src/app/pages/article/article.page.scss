@@ -43,7 +43,7 @@
       width: 100%;
       margin-right: 0;
       .content {
-        padding: 1em;
+        padding: 1em 1em 1em 3em;
       }
       .article-head {
         padding: 0 1em;
@@ -52,6 +52,11 @@
   }
 }
 
-@media (min-width: $min-sm) and (max-width: $max-sm) {
-
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .content-wrapper {
+    margin: 0;
+  }
 }
