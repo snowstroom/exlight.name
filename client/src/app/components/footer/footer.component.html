@@ -1,16 +1,11 @@
 <div class="footer">
   <div class="footer-menu">
     <div class="footer-menu-items">
-      <div class="footer-menu-item" routerLink="/" role="link">Главная</div>
-      <div class="footer-menu-item" routerLink="/catalog" role="link">Каталог</div>
-      <div class="footer-menu-item" routerLink="/video" role="link">Видео</div>
-      <div class="footer-menu-item" routerLink="/photo" role="link">Фото</div>
-      <div class="footer-menu-item" routerLink="/music" role="link">Музыка</div>
-      <div class="footer-menu-item" routerLink="/about" role="link">Ссылки</div>
+      <div class="footer-menu-item" *ngFor="let item of MENU" 
+        [routerLink]="item.route" role="link">{{item.name}}</div>
     </div>
   </div>
   <div class="info">
-
     <div>
       <span class="link">develop.exligth.name</span> - по вопросам разработки</div>
     <div>

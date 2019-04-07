@@ -41,5 +41,8 @@
 @media (min-width: $min-exs) and (max-width: $max-exs) {
   .main-head {
     padding: 1em .5em;
+    .categories {
+      overflow: auto;
+    }
   }
 }

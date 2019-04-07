@@ -1,9 +1,7 @@
-import * as dateformat from 'dateformat';
-
 export interface IArticle {
     id: number;
     title: string;
-    publicationDate: string;
+    publicationDate: string | Date;
     description: string;
     content: string;
     views: number;
@@ -20,7 +18,7 @@ export interface IArticleApiData {
 export class Article implements IArticle {
     public readonly id: number = this.__data.id;
     public title: string = this.__data.title;
-    public publicationDate: string = dateformat(new Date(this.__data.publicationDate), 'dd.mm.yyyy');
+    public publicationDate = new Date(this.__data.publicationDate);
     public description: string = this.__data.description;
     public content: string = this.__data.content;
     public views: number = this.__data.views;
