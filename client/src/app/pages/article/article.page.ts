@@ -1,9 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { ArticleService } from '@app/services/article.service';
 import { Article } from '@app/classes/article';
 import { ApplicationService } from '@app/services/app.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   templateUrl: './article.page.html',
@@ -12,6 +13,7 @@ import { ApplicationService } from '@app/services/app.service';
 export class ArticleComponent implements OnDestroy {
   public wait = true;
   public article: Article;
+  private unsubscribe = new Subject();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -19,24 +21,28 @@ export class ArticleComponent implements OnDestroy {
     private appSrv: ApplicationService,
     private router: Router
   ) {
-    this.activatedRoute.params.subscribe(params => this.getArticleByRoute(params.article));
-    this.appSrv.$scroll.subscribe(scroll => {
-      this.toogleShare(scroll);
-      this.toogleProgress(scroll);
-    });
+    this.activatedRoute.params.pipe(takeUntil(this.unsubscribe))
+      .subscribe(params => this.getArticleByRoute(params.article));
+    this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe))
+      .subscribe(scroll => {
+        this.toogleShare(scroll);
+        this.toogleProgress(scroll);
+      });
   }
 
   public ngOnDestroy(): void {
     this.appSrv.hideScrollProgress();
     this.appSrv.hideShareBlock();
+    this.unsubscribe.next(null);
+    this.unsubscribe.complete();
   }
 
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
     this.wait = false;
     setTimeout(() => innerHeight === document.body.scrollHeight ?
-        this.appSrv.showShareBlock() :
-        this.appSrv.hideShareBlock(), 0);
+      this.appSrv.showShareBlock() :
+      this.appSrv.hideShareBlock(), 0);
     if (this.article) {
       this.appSrv.setPageInfo({
         title: this.article.title,
