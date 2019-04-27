@@ -20,7 +20,7 @@ const routes: Routes = [{
     path: 'catalog/:cat/page/:page',
     component: CatalogComponent
   }, {
-    path: 'article/:cat/:article',
+    path: 'article/:article',
     component: ArticleComponent
   }, {
     path: 'video',

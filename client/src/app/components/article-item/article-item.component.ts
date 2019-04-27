@@ -8,10 +8,5 @@ import { Article } from '@app/classes/article';
 })
 export class ArticleItemComponent {
   @Input() public article: Article;
-  @Output() private navigate = new EventEmitter<string>();
-
-  public onNavigate(): void {
-    this.navigate.emit(this.article.route);
-  }
-
+  @Input() public route: (a: Article) => string[];
 }

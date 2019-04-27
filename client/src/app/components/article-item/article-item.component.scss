@@ -3,6 +3,9 @@
   padding: 0 1em;
   color: $element-text-color;
   .article-head {
+    color: $element-text-color;
+    text-decoration: none;
+    display: block;
     font-family: $elements-text;
     padding: .5em 0;
     font-size: 1.2em;
@@ -18,6 +21,8 @@
     padding: .5em 0;
   }
   .article-link {
+    text-decoration: none;
+    display: block;
     cursor: pointer;
     margin-left: 1em;
     font-family: $elements-text;
