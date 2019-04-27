@@ -14,6 +14,7 @@
     .footer-menu-items {
       display: flex;
       .footer-menu-item {
+        color: $element-text-color;
         cursor: pointer;
         margin: 0 0.5em;
         font-weight: bold;
@@ -24,6 +25,7 @@
   }
   .info {
     .link {
+      text-decoration: none;
       cursor: pointer;
       font-family: $elements-text;
       color: $links-text-color;

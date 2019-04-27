@@ -6,6 +6,7 @@
         role="link"
         routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.exact}"
         *ngFor="let item of MENU"
+        [rel]="item.rel"
         (click)="hideSideNav()">{{item.name}}</a>
   </div>
 </div>

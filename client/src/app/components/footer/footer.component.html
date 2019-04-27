@@ -1,15 +1,21 @@
 <div class="footer">
   <div class="footer-menu">
     <div class="footer-menu-items">
-      <div class="footer-menu-item" *ngFor="let item of MENU" 
-        [routerLink]="item.route" role="link">{{item.name}}</div>
+      <a class="footer-menu-item" 
+        *ngFor="let item of MENU"
+        [routerLink]="item.route"
+        role="link"
+        [rel]="item.rel">{{item.name}}</a>
     </div>
   </div>
   <div class="info">
     <div>
-      <span class="link">develop.exligth.name</span> - по вопросам разработки</div>
+      <a rel="friend" 
+        href="http://develop.exligth.name"
+        class="link">develop.exligth.name</a> - по вопросам разработки
+    </div>
     <div>
-      <span class="link">exligth.name</span> - блог разработчкиа о творчестве, музыке, поэзии, программировании и
+      <a routerLink="/" class="link">exligth.name</a> - блог разработчкиа о творчестве, музыке, поэзии, программировании и
       событиях в жизни.</div>
     <div>Копирование материалов с сайта разрешено только с согласия автора и владельца сайта. © По всем вопросам и
       предложениям обращатся на admin@exligth.ru</div>
