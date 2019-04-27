@@ -4,9 +4,10 @@
   </div>
   <div class="items-wrapper">
     <div class="item-decorator" *ngIf="leftDec" [style.left.px]="leftDec"></div>
-    <div *ngFor="let item of menuItems; let i = index"
+    <a *ngFor="let item of menuItems; let i = index" 
       [routerLink]="item.route" role="link"
-      class="menu-item">{{item.name}}</div>
+      class="menu-item"
+      [rel]="item.rel">{{item.name}}</a>
   </div>
   <div class="gamburger" (click)="openMobileMenu($event)">
     <fa-icon [icon]="MENU_ICO" class="icon"></fa-icon>

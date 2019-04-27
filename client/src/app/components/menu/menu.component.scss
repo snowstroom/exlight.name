@@ -37,6 +37,7 @@ $item-font-size: 1.2em;
       box-shadow: 0 0 10px $active-element-bg;
     }
     .menu-item {
+      text-decoration: none;
       text-align: center;
       width: $menu-item-w;
       padding: $menu-item-p;

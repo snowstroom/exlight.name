@@ -18,5 +18,6 @@ export const MENU_ITEMS: IMenuItem[] = [{
     route: ['photo']
 },*/ {
     name: 'Ссылки',
-    route: ['about']
+    route: ['about'],
+    rel: 'contact'
 }];
