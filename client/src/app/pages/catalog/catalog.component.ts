@@ -65,6 +65,10 @@ export class CatalogComponent {
     this.wait = true;
   }
 
+  public catalogItemRoute(cat: CategoriesItem): string[] {
+      return ['/', 'catalog', cat.categoryRoute, 'page', '1'];
+  }
+
   public navigateToArticle(route: string): void {
     this.router.navigate(['article', this.curCategory.categoryRoute, route]);
   }

@@ -12,7 +12,7 @@ export class CatalogMenuComponent {
   @Input() public showMenu: boolean;
   @Input() public catalogName: string;
   @Input() public currentpage: number;
-  @Output() public selectedCat = new EventEmitter<CategoriesItem>();
+  @Input() public route: (cat: CategoriesItem) => string[];
 
   public leftDec = 1;
   public widthDec: number;
@@ -28,10 +28,6 @@ export class CatalogMenuComponent {
     this.categoriesItems = items;
     const param = this.router.url.split('/')[2];
     this.calcDecorator(param);
-  }
-
-  public selectCategory(category: CategoriesItem): void {
-    this.selectedCat.emit(category);
   }
 
   public calcDecorator(category: string): void {

@@ -3,7 +3,8 @@
   <div class="page">Страница: {{currentpage}}</div>
   <div class="categories" *ngIf="showMenu">
     <div class="item-decorator" *ngIf="widthDec" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
-    <div class="category" *ngFor="let item of categoriesItems"
-      (click)="selectCategory(item)">{{item.categoryName}}</div>
+    <a [routerLink]="route(item)" 
+      class="category" 
+      *ngFor="let item of categoriesItems">{{item.categoryName}}</a>
   </div>
 </div>

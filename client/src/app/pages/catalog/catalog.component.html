@@ -8,7 +8,7 @@
     [catalogName]="'Каталог статей'"
     [categories]="categories"
     [currentpage]="articlesSrv.pagination.currentPage"
-    (selectedCat)="selectedCatHandler($event)"></ex-catalog-menu>
+    [route]="catalogItemRoute"></ex-catalog-menu>
     <div class="articles">
       <ex-spinner [wait]="wait"></ex-spinner>
       <ng-container *ngIf="!wait">
