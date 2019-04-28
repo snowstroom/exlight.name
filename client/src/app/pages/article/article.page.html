@@ -1,17 +1,17 @@
 <div class="content-wrapper">
-  <div class="main">
+  <main class="main">
     <ex-line-spinner [wait]="wait"></ex-line-spinner>
     <div class="article-head" *ngIf="article">
       <div class="article-title" role="heading">{{article.title}}</div>
       <div class="info">
-        Дата: <span class="active">{{article.publicationDate | date: 'dd.mm.yyyy'}}</span>
+        Дата: <time datetime="article.publicationDate" class="active">{{article.publicationDate | date: 'dd.mm.yyyy'}}</time>
         Просмотров: <span class="active">{{article.views}}</span>
       </div>
     </div>
-    <div class="content">
+    <article class="content">
       <ex-spinner [wait]="wait"></ex-spinner>
       <markdown [data]=article?.content></markdown>
-    </div>
-  </div>
+    </article>
+  </main>
   <div class="right"></div>
 </div>
