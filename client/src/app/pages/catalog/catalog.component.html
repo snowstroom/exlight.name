@@ -7,20 +7,18 @@
     <ex-catalog-menu [showMenu]="true"
     [catalogName]="'Каталог статей'"
     [categories]="categories"
-    [currentpage]="articlesSrv.pagination.currentPage"
-    [route]="catalogItemRoute"></ex-catalog-menu>
+    [currentpage]="articlesSrv.pagination.currentPage"></ex-catalog-menu>
     <div class="articles">
       <ex-spinner [wait]="wait"></ex-spinner>
       <ng-container *ngIf="!wait">
         <ex-articles *ngFor="let article of articles"
-          [article]="article" [route]="getArticleRoute"></ex-articles>
+          [article]="article"></ex-articles>
         <div class="empty" *ngIf="!wait && !articles.length">Сожалеем, здесь немного пусто. Будьте уверены, когда нибудь здесь что то появится!</div>
     </ng-container>
     </div>
     <ex-pagination [recordCount]="articlesSrv.pagination.total" 
-      [onPage]="itemsOnPage"
-      [activePage]="page"
-      (selectPage)="setActivePage($event)"></ex-pagination>
+      [onPage]="PAGE_LENGTH"
+      [activePage]="page"></ex-pagination>
   </div>
   <div class="right"></div>
 </div>

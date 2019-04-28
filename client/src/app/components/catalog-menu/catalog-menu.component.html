@@ -3,7 +3,7 @@
   <div class="page">Страница: {{currentpage}}</div>
   <div class="categories" *ngIf="showMenu">
     <div class="item-decorator" *ngIf="widthDec" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
-    <a [routerLink]="route(item)" 
+    <a [routerLink]="item.fullRoute" 
       class="category" 
       *ngFor="let item of categoriesItems">{{item.categoryName}}</a>
   </div>

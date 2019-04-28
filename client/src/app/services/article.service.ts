@@ -6,17 +6,17 @@ import { CategoriesItem, ICategoriesItem } from '@app/classes/categories';
 import { Article, IArticle } from '@app/classes/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
 import { IPaginationContent } from '@app/interfaces/pagination-content';
+import { CAT_ROUTE_TEMPLATE } from '@app/consts/urls';
 
 const DEF_CAT: ICategoriesItem = {
   id: undefined,
   categoryName: 'Все',
   categoryRoute: 'all'
 };
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable()
 export class ArticleService extends Api {
-  public readonly DEF_CAT = new CategoriesItem(DEF_CAT);
+  public readonly DEF_CAT = new CategoriesItem(DEF_CAT, CAT_ROUTE_TEMPLATE);
   public pagination = new PaginationParams({ limit: 5 });
   public categoriesMap = new Map<string, CategoriesItem>();
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
@@ -50,7 +50,7 @@ export class ArticleService extends Api {
   public async getCategories(): Promise<CategoriesItem[]> {
     try {
       const answ: ICategoriesItem[] = await this.get('categories-of-articles');
-      return answ.map(item => new CategoriesItem(item));
+      return answ.map(item => new CategoriesItem(item, CAT_ROUTE_TEMPLATE));
     } catch (err) {
       return [];
     }

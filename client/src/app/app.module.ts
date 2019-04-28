@@ -32,6 +32,7 @@ import { markedOptionsFactory } from './markdown.config';
 import { ShareContentComponent } from './components/share-content/share-content.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HummerConfig } from './hammer-config';
+import { ArticleService } from './services/article.service';
 
 
 
@@ -78,9 +79,10 @@ import { HummerConfig } from './hammer-config';
     Title,
     Meta,
     InitService,
+    ArticleService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (srv: InitService) => () => srv.initFonts(),
+      useFactory: (srv: InitService) => () => srv.initApplication(),
       deps: [InitService],
       multi: true
     }, {

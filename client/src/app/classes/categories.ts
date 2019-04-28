@@ -11,9 +11,11 @@ export class CategoriesItem implements ICategoriesItem {
     public categoryName: string = this.__data.categoryName;
     public categoryRoute: string = this.__data.categoryRoute;
 
+    public readonly fullRoute: string;
     public isActive: boolean;
 
-    constructor(private __data: ICategoriesItem) {
+    constructor(private __data: ICategoriesItem, template: string) {
+        this.fullRoute = template.replace('%', this.__data.categoryRoute);
         const element = document.createElement('div');
         const wrapper = document.createElement('div');
         wrapper.style.display = 'flex';

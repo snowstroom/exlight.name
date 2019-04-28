@@ -1,16 +1,19 @@
 <div class="pagination">
-  <div class="pagination-wrapper">
-    <div class="pagination-item"
-      (click)="prevPage()">Назад</div>
+  <div class="pagination-wrapper" *ngIf="itemsCount">
+    <a class="pagination-item" rel="prev"
+      [routerLink]="prevPageItem.url"
+      (click)="prevPage()">Назад</a>
     <div class="numbers-wrapper">
       <div class="item-decorator"
         [style.left.px]="leftDec"></div>
-      <div class="pagination-item"
-        [ngClass]="{'active': item === activePage}"
+      <a class="pagination-item"
+        [routerLink]="item.url"
+        [ngClass]="{'active': item.orderNumber === activePage}"
         *ngFor="let item of items"
-        (click)="toPage(item)">{{item}}</div>
+        (click)="toPage(item.orderNumber)">{{item.orderNumber}}</a>
     </div>
-    <div class="pagination-item"
-      (click)="nextPage()">Далее</div>
+    <a class="pagination-item" rel="next"
+      [routerLink]="nextPageItem.url"
+      (click)="nextPage()">Далее</a>
   </div>
 </div>

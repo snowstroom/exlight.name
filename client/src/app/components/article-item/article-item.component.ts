@@ -8,5 +8,4 @@ import { Article } from '@app/classes/article';
 })
 export class ArticleItemComponent {
   @Input() public article: Article;
-  @Input() public route: (a: Article) => string[];
 }

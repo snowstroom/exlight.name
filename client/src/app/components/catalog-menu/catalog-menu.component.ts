@@ -12,7 +12,6 @@ export class CatalogMenuComponent {
   @Input() public showMenu: boolean;
   @Input() public catalogName: string;
   @Input() public currentpage: number;
-  @Input() public route: (cat: CategoriesItem) => string[];
 
   public leftDec = 1;
   public widthDec: number;
