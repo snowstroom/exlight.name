@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { numberParam } from '@core/functions/number-param';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PaginationItem } from '@app/classes/pagintaion-item';
+import { LinkService } from '@core/services/link-service.service';
 
 const ELEMENT_WIDTH = 52;
 
@@ -24,7 +25,10 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
   public nextPageItem = new PaginationItem(this.template, 1);
   private subscriber = new Subject();
 
-  constructor(private actRouter: ActivatedRoute) {
+  constructor(
+    private actRouter: ActivatedRoute,
+    private linkSrv: LinkService
+  ) {
     this.actRouter.params.pipe(takeUntil(this.subscriber))
       .subscribe(params => {
         const page = numberParam(params.page);
@@ -37,6 +41,7 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
           .replace(new RegExp(/page\/\d/), 'page/%');
         this.buildPagination();
       });
+
   }
 
   @Input() set recordCount(val: number) {
@@ -55,6 +60,8 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
   public ngOnDestroy(): void {
     this.subscriber.next(null);
     this.subscriber.complete();
+    this.linkSrv.deleteTag(this.prevPageItem.link);
+    this.linkSrv.deleteTag(this.nextPageItem.link);
   }
 
   public toPage(page: number): void {
@@ -92,15 +99,29 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private initPrev(): void {
-    this.activePage === 1 ?
-      this.prevPageItem = new PaginationItem(this.template, this.activePage) :
+    this.linkSrv.deleteTag(this.prevPageItem.link);
+    if (this.activePage === 1) {
+      this.prevPageItem = new PaginationItem(this.template, this.activePage);
+    } else {
       this.prevPageItem = new PaginationItem(this.template, this.activePage - 1);
+      this.prevPageItem.link = this.linkSrv.addTag({
+        rel: 'prev',
+        href: this.prevPageItem.url.join('/').slice(1)
+      });
+    }
   }
 
   private initNext(): void {
-    this.pageCount === this.activePage ?
-      this.nextPageItem = new PaginationItem(this.template, this.pageCount) :
+    this.linkSrv.deleteTag(this.nextPageItem.link);
+    if (this.pageCount === this.activePage) {
+      this.nextPageItem = new PaginationItem(this.template, this.pageCount);
+    } else {
       this.nextPageItem = new PaginationItem(this.template, this.activePage + 1);
+      this.nextPageItem.link = this.linkSrv.addTag({
+        rel: 'next',
+        href: this.nextPageItem.url.join('/').slice(1)
+      });
+    }
   }
 
 }
