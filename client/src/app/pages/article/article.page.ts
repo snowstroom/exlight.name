@@ -37,6 +37,10 @@ export class ArticleComponent implements OnDestroy {
     this.unsubscribe.complete();
   }
 
+  public setRating(r: number): void {
+    console.warn(r);
+  }
+
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
     this.wait = false;

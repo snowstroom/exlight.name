@@ -23,6 +23,13 @@
       .article-title {
         font-size: 1.4em
       }
+      .article-rating {
+        display: flex;
+        padding: .5em 0;
+        .rating-value {
+          margin: 0 5px;
+        }
+      }
     }
     .content {
       min-height: calc(100% - 108px - 4em);

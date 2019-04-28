@@ -33,6 +33,7 @@ import { ShareContentComponent } from './components/share-content/share-content.
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HummerConfig } from './hammer-config';
 import { ArticleService } from './services/article.service';
+import { RatingComponent } from './components/rating/rating.component';
 
 
 
@@ -61,7 +62,8 @@ import { ArticleService } from './services/article.service';
     SpinnerComponent,
     LineSpinnerComponent,
     ShareContentComponent,
-    SideNavComponent
+    SideNavComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

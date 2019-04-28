@@ -7,6 +7,8 @@ export interface IArticle {
     views: number;
     category: number;
     route: string;
+    rating: number;
+    isAppreciated: boolean;
 }
 
 export interface IArticleApiData {
@@ -24,6 +26,8 @@ export class Article implements IArticle {
     public views: number = this.__data.views;
     public category: number  = this.__data.category;
     public route: string = this.__data.route;
+    public rating: number = this.__data.rating;
+    public isAppreciated: boolean = this.__data.isAppreciated;
 
     constructor(private __data: IArticle) {}
 }

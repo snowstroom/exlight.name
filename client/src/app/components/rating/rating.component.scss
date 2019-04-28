@@ -1,0 +1,21 @@
+@import '../../variables';
+
+.ex-rating {
+  .active {
+    color: $rating-active-color;
+    cursor: pointer;
+  }
+
+  .inactive {
+    color: $rating-inactive-color;
+    cursor: pointer;
+  }
+
+  fa-layers {
+    width: 18px;
+  }
+
+  .readonly {
+    cursor: auto;
+  }
+}

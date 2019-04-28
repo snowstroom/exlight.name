@@ -1,0 +1,15 @@
+<div class="ex-rating">
+  <ng-container *ngFor="let r of rating; let i = index">
+    <ng-container [ngSwitch]="r">
+      <fa-icon *ngSwitchCase="0" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()" (click)="estimate(i)"
+        class="inactive" [ngClass]="{readonly: readonly}" [icon]="STAR_ICO"></fa-icon>
+      <fa-layers [fixedWidth]="true" *ngSwitchCase="0.5" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()"
+        (click)="estimate(i)">
+        <fa-icon class="active" [ngClass]="{readonly: readonly}" [icon]="HALF_ICO"></fa-icon>
+        <fa-icon class="inactive" [ngClass]="{readonly: readonly}" [icon]="HALF_ICO" flip="horizontal"></fa-icon>
+      </fa-layers>
+      <fa-icon *ngSwitchCase="1" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()" (click)="estimate(i)"
+        class="active" [ngClass]="{readonly: readonly}" [icon]="STAR_ICO"></fa-icon>
+    </ng-container>
+  </ng-container>
+</div>

@@ -13,9 +13,20 @@
       color: $element-text-color;
       text-decoration: none;
       font-family: $elements-text;
+
       h1 {
         font-size: inherit;
+        margin-bottom: 0;
       }
+    }
+  }
+
+  .article-rating {
+    padding: .5em 0;
+    display: flex;
+
+    .rating-value {
+      margin: 0 5px;
     }
   }
 
