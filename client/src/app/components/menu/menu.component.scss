@@ -11,9 +11,12 @@ $item-font-size: 1.2em;
   z-index: 1;
   box-shadow: $box-shadow;
   font-weight: bold;
+
   .logo {
     .name {
       cursor: pointer;
+      display: block;
+      text-decoration: none;
       padding: 1em;
       font-family: $elements-text;
       color: $element-text-color;
@@ -24,9 +27,11 @@ $item-font-size: 1.2em;
       font-size: $item-font-size;
     }
   }
+
   .items-wrapper {
     display: flex;
     position: relative;
+
     .item-decorator {
       width: $menu-item-w + $menu-item-p * 2;
       position: absolute;
@@ -36,6 +41,7 @@ $item-font-size: 1.2em;
       transition: .3s width, .5s left;
       box-shadow: 0 0 10px $active-element-bg;
     }
+
     .menu-item {
       text-decoration: none;
       text-align: center;
@@ -49,16 +55,19 @@ $item-font-size: 1.2em;
       text-transform: uppercase;
       text-shadow: $text-shadow;
     }
+
     .menu-item:hover {
       animation-name: HoverItemPulce;
       animation-duration: 4s;
       animation-iteration-count: infinite;
     }
   }
+
   .gamburger {
     display: none;
   }
 }
+
 /**
  * Extra small devices
 **/
@@ -67,18 +76,21 @@ $item-font-size: 1.2em;
     width: 100%;
     z-index: 4;
     position: fixed;
-    
+
     .logo {
       .name {
         padding: .5em 1em;
       }
     }
+
     .items-wrapper {
       display: none;
+
       .menu-item {
         padding: .5em 1em;
       }
     }
+
     .gamburger {
       display: flex;
       justify-content: center;

@@ -1,6 +1,12 @@
 <section class="article">
-  <a [routerLink]="[ '/', 'article', article.route ]" class="article-head">{{article.title}}</a>
+  <div class="article-head">
+    <a [routerLink]="[ '/', 'article', article.route ]" role="heading">
+      <h1>{{article.title}}</h1>
+    </a>
+  </div>
   <time datetime="article.publicationDate" class="article-date">{{article.publicationDate | date:'dd.mm.yyyy'}}</time>
   <div class="article-discription">{{article.description}}</div>
-  <a [routerLink]="[ '/', 'article', article.route ]" class="article-link" role="link">Читать подробнее...</a>
+  <div class="article-link">
+    <a [routerLink]="[ '/', 'article', article.route ]" role="link">Читать подробнее...</a>
+  </div>
 </section>

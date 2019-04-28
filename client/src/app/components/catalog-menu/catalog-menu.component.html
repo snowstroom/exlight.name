@@ -1,10 +1,10 @@
 <div class="main-head">
   <div class="head" role="heading">{{catalogName}}</div>
   <div class="page">Страница: {{currentpage}}</div>
-  <div class="categories" *ngIf="showMenu">
+  <div class="categories" role="menubar" *ngIf="showMenu">
     <div class="item-decorator" *ngIf="widthDec" [style.width.px]="widthDec" [style.left.px]="leftDec"></div>
     <a [routerLink]="item.fullRoute" 
-      class="category" 
+      class="category" role="menuitem"
       *ngFor="let item of categoriesItems">{{item.categoryName}}</a>
   </div>
 </div>

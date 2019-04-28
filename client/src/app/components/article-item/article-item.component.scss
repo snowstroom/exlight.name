@@ -1,33 +1,44 @@
 @import '../../variables';
+
 .article {
   padding: 0 1em;
   color: $element-text-color;
+
   .article-head {
-    color: $element-text-color;
-    text-decoration: none;
-    display: block;
-    font-family: $elements-text;
     padding: .5em 0;
-    font-size: 1.2em;
-    font-weight: bold;
+
+    a {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: $element-text-color;
+      text-decoration: none;
+      font-family: $elements-text;
+      h1 {
+        font-size: inherit;
+      }
+    }
   }
+
   .article-date {
     font-family: $simple-text;
     padding: .25em 0;
   }
+
   .article-discription {
     margin-left: 1em;
     font-family: $simple-text;
     padding: .5em 0;
   }
+
   .article-link {
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
     margin-left: 1em;
-    font-family: $elements-text;
-    font-weight: bold;
     padding: .5em 0;
-    color: $links-text-color;
+
+    a {
+      color: $links-text-color;
+      text-decoration: none;
+      font-family: $elements-text;
+      font-weight: bold;
+    }
   }
 }
