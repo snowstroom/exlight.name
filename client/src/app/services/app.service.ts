@@ -31,6 +31,7 @@ export class ApplicationService {
     private pageDescription$ = new Subject<IPageDescription>();
     private shareButtons = new BehaviorSubject<IShareButton[]>([]);
     private sideNavState = new BehaviorSubject<boolean>(false);
+    private currentLdJsonSchema = new BehaviorSubject({});
 
     constructor(
         private envSrv: EnviromentService,
@@ -67,6 +68,10 @@ export class ApplicationService {
 
     get $shareButtons(): Observable<IShareButton[]> {
         return this.shareButtons.asObservable();
+    }
+
+    get $ldJsonSchema(): Observable<any> {
+        return this.currentLdJsonSchema.asObservable();
     }
 
     public hideSideNav(): void {
@@ -122,6 +127,10 @@ export class ApplicationService {
 
     public hideScrollProgress(): void {
         this.scrollProgress.next(false);
+    }
+
+    public setLdJsonShema(shema: any): void {
+        this.currentLdJsonSchema.next(shema);
     }
 
     private windowScroll(): void {

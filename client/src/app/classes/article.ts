@@ -1,6 +1,8 @@
+import { Article as SchemaOrgArticle } from 'schema-dts';
 export interface IArticle {
     id: number;
     title: string;
+    structData: SchemaOrgArticle;
     publicationDate: string | Date;
     description: string;
     content: string;
@@ -19,6 +21,7 @@ export interface IArticleApiData {
 
 export class Article implements IArticle {
     public readonly id: number = this.__data.id;
+    public readonly structData: JSON = new JSON()
     public title: string = this.__data.title;
     public publicationDate = new Date(<string>this.__data.publicationDate);
     public description: string = this.__data.description;

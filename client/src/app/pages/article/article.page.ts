@@ -35,6 +35,7 @@ export class ArticleComponent implements OnDestroy {
     this.appSrv.hideShareBlock();
     this.unsubscribe.next(null);
     this.unsubscribe.complete();
+    this.appSrv.setLdJsonShema(null);
   }
 
   public setRating(r: number): void {
@@ -55,6 +56,7 @@ export class ArticleComponent implements OnDestroy {
         url: this.router.url,
         img: ''
       });
+      this.appSrv.setLdJsonShema(this.article.structData);
     }
   }
 

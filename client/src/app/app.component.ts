@@ -18,12 +18,16 @@ export class AppComponent implements OnInit {
   public loop = false;
   public currentTime = 0;
   public timer: any;
+  public ldJsonSchema: any;
   constructor(
     private musicStateSrv: MusicStateService,
     private envSrv: EnviromentService,
     private appSrv: ApplicationService
   ) {
     this.envSrv.$screenType.subscribe(type => console.warn(E_SCREEN_TYPE[type]));
+    this.appSrv.$ldJsonSchema.subscribe(schema => {
+      this.ldJsonSchema = schema;
+    });
   }
 
   public ngOnInit(): void {

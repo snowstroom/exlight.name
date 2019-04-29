@@ -6,6 +6,7 @@
 </div>
 <ex-share-content></ex-share-content>
 <ex-side-nav></ex-side-nav>
+<ngx-json-ld [json]="ldJsonSchema"></ngx-json-ld>
 <audio #htmlPlayer [src]="track?.fileUrl"
 (ended)="trackEnd()"
 (play)="trackPlay()"

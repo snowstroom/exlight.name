@@ -4,6 +4,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -34,8 +35,6 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HummerConfig } from './hammer-config';
 import { ArticleService } from './services/article.service';
 import { RatingComponent } from './components/rating/rating.component';
-
-
 
 @NgModule({
   declarations: [
@@ -70,6 +69,7 @@ import { RatingComponent } from './components/rating/rating.component';
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
+    NgxJsonLdModule,
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
