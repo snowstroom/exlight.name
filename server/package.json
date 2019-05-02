@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev:ts": "nodemon",
-    "compile": "tsc"
+    "build": "tsc",
+    "migrate": "tsc && node build/src/migrate.js"
   },
   "author": "eXlight",
   "license": "ISC",
