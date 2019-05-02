@@ -1,16 +1,16 @@
 import { createConnection } from 'typeorm';
 import { Provider } from '@nestjs/common';
+import { Category } from 'src/models/category.model';
 
 export const PgProvider: Provider = {
     provide: 'DATABASE_CONNECTION',
     useFactory: async () => await createConnection({
         type: 'postgres',
         host: '127.0.0.1',
-        port: 3306,
-        username: 'root',
-        password: 'test',
-        database: 'test',
-        entities: [`${__dirname}//../**/*.entity{.ts,.js}`],
+        username: 'postgres',
+        password: '2016postgresqlMinsk',
+        database: 'exlight_name',
+        entities: [Category],
         synchronize: true,
     }),
 };

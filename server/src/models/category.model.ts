@@ -8,5 +8,8 @@ export interface ICategory {
 @Entity()
 export class Category implements ICategory {
     @PrimaryGeneratedColumn() public id: number;
-    @Column() public route: string;
+    @Column({
+        unique: true,
+        nullable: false,
+    }) public route: string;
 }

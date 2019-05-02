@@ -11,7 +11,7 @@ export class DbCategoryService {
     }
 
     public async createCategory(category: Partial<ICategory>) {
-        return this.categoryRep.create(category);
+        return this.categoryRep.insert(category);
     }
 
     public async updateCategory(category: Partial<ICategory>) {
