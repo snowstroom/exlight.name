@@ -1,24 +1,14 @@
 {
-    "compilerOptions": {
-        "baseUrl": "/",
-        "target": "es5",
-        "module": "commonjs",
-        "sourceMap": true,
-        "outDir": "build",
-        "rootDir": "./",
-        "lib": ["es2015"],
-        "types": ["node"],
-        "paths": {
-            "@server-app": ["server"],
-            "@api": ["server/api"],
-            "@classes": ["server/classes"],
-            "@consts": ["server/consts"],
-            "@enums": ["server/enums"],
-            "@intefaces": ["server/interfaces"],
-            "@models": ["server/models"]
-        }
-    },
-    "allowSyntheticDefaultImports": true,
-    //указывает что включаться должны только файлы из папки /src
-    "include": ["src/**/*", ""]
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"]
 }
