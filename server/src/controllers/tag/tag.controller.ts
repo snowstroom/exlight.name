@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@nestjs/common';
-import { TAG } from 'src/consts/provider-names';
+import { TAG } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
-import { Tag } from 'src/models/tag.model';
+import { Tag } from '../../models/tag.model';
 
 @Controller({ path: 'tag' })
 export class TagController {

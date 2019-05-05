@@ -1,7 +1,7 @@
 import { Provider } from '@nestjs/common';
-import { DB_CONECTION, USER } from 'src/consts/provider-names';
+import { DB_CONECTION, USER } from '../consts/provider-names';
 import { Connection } from 'typeorm';
-import { User } from 'src/models/user.model';
+import { User } from '../models/user.model';
 
 export const UserProvider: Provider = {
     provide: USER,

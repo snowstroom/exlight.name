@@ -1,7 +1,7 @@
 import { Controller, Inject } from '@nestjs/common';
-import { RATING } from 'src/consts/provider-names';
+import { RATING } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
-import { Rating } from 'src/models/rating.model';
+import { Rating } from '../../models/rating.model';
 
 @Controller({ path: 'rating' })
 export class RatingController {

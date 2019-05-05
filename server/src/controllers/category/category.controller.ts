@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus } from '@nestjs/common';
-import { ICategory, Category } from 'src/models/category.model';
-import { CATEGORY } from 'src/consts/provider-names';
+import { ICategory, Category } from '../../models/category.model';
+import { CATEGORY } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
 
 @Controller({ path: 'category' })
