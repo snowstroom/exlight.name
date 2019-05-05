@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 import { IsEmail } from 'class-validator';
 export interface IUser {
     id?: number;
@@ -17,7 +17,11 @@ export class User implements IUser {
         unique: true,
         nullable: false,
     }) public email: string;
-    @Column() public firstname: string;
-    @Column() public secondname: string;
+    @Column({
+        nullable: true,
+    }) public firstname: string;
+    @Column({
+        nullable: true,
+    }) public secondname: string;
     @Column({ nullable: false }) public password: string;
 }

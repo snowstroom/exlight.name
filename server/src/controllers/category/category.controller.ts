@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus, UseGuards } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { ICategory, Category } from '../../models/category.model';
 import { CATEGORY } from '../../consts/provider-names';
-import { Repository } from 'typeorm';
+import { AuthGuardService } from '../../guards/auth.guard';
 
 @Controller({ path: 'category' })
+@UseGuards(AuthGuardService)
 export class CategoryController {
     constructor(@Inject(CATEGORY) private categoryRep: Repository<Category>) { }
 
@@ -14,10 +16,7 @@ export class CategoryController {
                 this.categoryRep.find() :
                 this.categoryRep.findOne({ id: params.id });
         } catch (err) {
-            throw new HttpException({
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
-                error: err,
-            }, 500);
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -28,10 +27,7 @@ export class CategoryController {
             const [{ id }] = res.identifiers;
             return id;
         } catch (err) {
-            throw new HttpException({
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
-                error: err,
-            }, 500);
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -41,10 +37,7 @@ export class CategoryController {
             await this.categoryRep.update({ id: params.id }, body);
             return;
         } catch (err) {
-            throw new HttpException({
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
-                error: err,
-            }, 500);
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -54,10 +47,7 @@ export class CategoryController {
             await this.categoryRep.delete({ id: params.id });
             return;
         } catch (err) {
-            throw new HttpException({
-                status: HttpStatus.INTERNAL_SERVER_ERROR,
-                error: err,
-            }, 500);
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
