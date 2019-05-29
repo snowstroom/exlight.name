@@ -4,7 +4,7 @@ import { ICategory, Category } from '../../models/category.model';
 import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
 
-@Controller({ path: 'category' })
+@Controller({ path: 'api/category' })
 @UseGuards(AuthGuardService)
 export class CategoryController {
     constructor(@Inject(CATEGORY) private categoryRep: Repository<Category>) { }
