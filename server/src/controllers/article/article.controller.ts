@@ -3,7 +3,6 @@ import { ARTICLE, COMMENTARY } from 'src/consts/provider-names';
 import { Repository } from 'typeorm';
 import { Atricle, IArticle } from 'src/models/article.model';
 import { IArticleApiList, IItemApi } from 'src/interfaces/articles-api';
-import { ICommentary, Commentary } from 'src/models/commentary.model';
 
 @Controller({ path: 'api/article' })
 export class ArticleController {

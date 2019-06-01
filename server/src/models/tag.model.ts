@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 export interface ITag {
     id?: number;
@@ -7,4 +7,8 @@ export interface ITag {
 @Entity()
 export class Tag implements ITag {
     @PrimaryGeneratedColumn() public id: number;
+    @Column({
+        nullable: false,
+        unique: true,
+    }) public name: string;
 }
