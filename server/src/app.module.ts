@@ -20,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { JwtStrategyService } from './services/jwt-strategy.service';
 import { TOKEN_ALIVE_TIME } from './classes/configs';
 import { AuthGuardService } from './guards/auth.guard';
+import { MailerService } from './services/mailer.service';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { AuthGuardService } from './guards/auth.guard';
     RatingProvier,
     RoleProvier,
     UserProvider,
+    MailerService,
   ],
 })
 export class AppModule {}

@@ -7,3 +7,4 @@ export const USER = 'USER';
 export const RATING = 'RATING';
 export const ROLE = 'ROLE';
 export const ACCESS = 'ACCESS';
+export const FILE_MANAGER = 'FILE_MANAGER';
