@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { User } from './user.model';
 
 export interface ICommentary {
     id?: number;
@@ -15,6 +16,9 @@ export class Commentary implements ICommentary {
     @Column() public articleId: number;
     @Column() public comment: string;
     @Column() public commentId: number;
-    @Column({ type: 'datetime', default: new Date() }) public createDate: Date;
-    @Column({ type: 'datetime' }) public updateDate: Date;
+    @Column({ type: 'date', default: new Date() }) public createDate: Date;
+    @Column({ type: 'date' }) public updateDate: Date;
+
+    @ManyToOne(type => User, user => user.comments)
+    public user: User;
 }

@@ -10,13 +10,7 @@ export interface ICategory {
 @Entity({ name: 'categories' })
 export class Category implements ICategory {
     @PrimaryGeneratedColumn() public id: number;
-    @Column({
-        unique: true,
-        nullable: false,
-    }) public route: string;
-    @Column({
-        unique: true,
-        nullable: false,
-    }) public name: string;
+    @Column({ unique: true, nullable: false }) public route: string;
+    @Column({ unique: true, nullable: false }) public name: string;
     @Column() public description: string;
 }

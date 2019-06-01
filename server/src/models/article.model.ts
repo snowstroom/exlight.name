@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { Category } from './category.model';
+import { Tag } from './tag.model';
 
 export interface IArticle {
     id: number;
@@ -26,5 +27,8 @@ export class Atricle implements IArticle {
 
     @OneToMany(type => Category, category => category.id)
     public categoryId: number;
+
+    @ManyToMany(type => Tag) @JoinTable({ name: 'articles_tags' })
+    public tags: Tag[];
 
 }
