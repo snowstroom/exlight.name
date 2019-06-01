@@ -6,3 +6,4 @@ export const TAG = 'TAG';
 export const USER = 'USER';
 export const RATING = 'RATING';
 export const ROLE = 'ROLE';
+export const ACCESS = 'ACCESS';

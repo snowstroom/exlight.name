@@ -14,7 +14,7 @@ export interface IArticle {
     // isAppreciated: boolean;
 }
 
-@Entity()
+@Entity({ name: 'articles' })
 export class Atricle implements IArticle {
     @PrimaryColumn() public id: number;
     @Column() public title: string;

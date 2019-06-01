@@ -7,5 +7,8 @@ export interface IRole {
 @Entity()
 export class Role implements IRole {
     @PrimaryGeneratedColumn() public id: number;
-    @Column() public name: string;
+    @Column({
+        unique: true,
+    }) public name: string;
+    @Column() public description: string;
 }

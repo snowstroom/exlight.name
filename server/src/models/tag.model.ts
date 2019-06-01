@@ -4,11 +4,8 @@ export interface ITag {
     id?: number;
 }
 
-@Entity()
+@Entity({ name: 'tag' })
 export class Tag implements ITag {
     @PrimaryGeneratedColumn() public id: number;
-    @Column({
-        nullable: false,
-        unique: true,
-    }) public name: string;
+    @Column({ nullable: false, unique: true }) public name: string;
 }

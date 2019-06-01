@@ -8,6 +8,7 @@ import { Role } from '../models/role.model';
 import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
 import { Atricle } from '../models/article.model';
+import { Access } from 'src/models/access.model';
 
 export const PgProvider: Provider = {
     provide: DB_CONECTION,
@@ -25,6 +26,7 @@ export const PgProvider: Provider = {
             Role,
             Tag,
             User,
+            Access,
         ],
         synchronize: true,
     }),

@@ -7,7 +7,7 @@ export interface ICategory {
     description: string;
 }
 
-@Entity()
+@Entity({ name: 'categories' })
 export class Category implements ICategory {
     @PrimaryGeneratedColumn() public id: number;
     @Column({
