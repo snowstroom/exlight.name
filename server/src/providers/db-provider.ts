@@ -16,10 +16,10 @@ export const PgProvider: Provider = {
     useFactory: async () => {
         const connection = await createConnection({
             type: 'postgres',
-            host: '127.0.0.1',
-            username: 'postgres',
-            password: '2016postgresqlMinsk',
-            database: 'exlight_name',
+            host: process.env.POSTGRES_HOST,
+            username: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+            database: process.env.POSTRGES_DB,
             entities: [
                 Atricle,
                 Category,

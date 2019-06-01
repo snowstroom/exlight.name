@@ -10,13 +10,15 @@ import { ARTICLE_COMMENTS_ENTITY } from 'src/models/commentary.model';
 
 export const ADMIN_USER: Partial<IUser> = {
     email: 'admin@xlight.name',
-    password: MD5('2016exlightMinsk').toString(),
+    password: MD5(process.env.APP_ADMIN_PASSWORD).toString(),
     firstname: 'Admin',
     secondname: 'Admin',
 };
 
+export const DEFAULT_ROLE_NAME = 'ADMIN';
+
 export const ADMIN_ROLE: IRole = {
-    name: 'ADMIN',
+    name: DEFAULT_ROLE_NAME,
     description: 'Administrator of resourcse',
 };
 /**
