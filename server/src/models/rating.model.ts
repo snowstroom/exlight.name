@@ -2,6 +2,8 @@ import { Entity, PrimaryColumn, Column, OneToMany, ManyToOne } from 'typeorm';
 import { Min, Max } from 'class-validator';
 import { User } from './user.model';
 
+export const RATING_ENTITY = 'rating';
+
 export interface IRating {
     id?: number;
     // userId: number;
@@ -9,7 +11,7 @@ export interface IRating {
     dateOfCreate: Date;
 }
 
-@Entity({ name: 'rating '})
+@Entity({ name: RATING_ENTITY })
 export class Rating implements IRating {
     @PrimaryColumn() public id: number;
     @Max(5) @Min(1) @Column({ nullable: false, type: 'int2' }) public rating: number;

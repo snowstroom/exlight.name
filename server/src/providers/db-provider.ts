@@ -9,25 +9,30 @@ import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
 import { Atricle } from '../models/article.model';
 import { Access } from 'src/models/access.model';
+import { initDefaultRecords } from 'src/tools/init-default-records';
 
 export const PgProvider: Provider = {
     provide: DB_CONECTION,
-    useFactory: async () => await createConnection({
-        type: 'postgres',
-        host: '127.0.0.1',
-        username: 'postgres',
-        password: '2016postgresqlMinsk',
-        database: 'exlight_name',
-        entities: [
-            Atricle,
-            Category,
-            Commentary,
-            Rating,
-            Role,
-            Tag,
-            User,
-            Access,
-        ],
-        synchronize: true,
-    }),
+    useFactory: async () => {
+        const connection = await createConnection({
+            type: 'postgres',
+            host: '127.0.0.1',
+            username: 'postgres',
+            password: '2016postgresqlMinsk',
+            database: 'exlight_name',
+            entities: [
+                Atricle,
+                Category,
+                Commentary,
+                Rating,
+                Role,
+                Tag,
+                User,
+                Access,
+            ],
+            synchronize: true,
+        });
+        await initDefaultRecords(connection);
+        return connection;
+    },
 };

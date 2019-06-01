@@ -2,6 +2,8 @@ import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany, JoinTable } from 
 import { Category } from './category.model';
 import { Tag } from './tag.model';
 
+export const ARTICLE_ENTITY = 'articles';
+
 export interface IArticle {
     id: number;
     title: string;
@@ -15,7 +17,7 @@ export interface IArticle {
     // isAppreciated: boolean;
 }
 
-@Entity({ name: 'articles' })
+@Entity({ name: ARTICLE_ENTITY })
 export class Atricle implements IArticle {
     @PrimaryColumn() public id: number;
     @Column() public title: string;

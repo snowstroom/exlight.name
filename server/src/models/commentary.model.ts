@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from './user.model';
+
+export const ARTICLE_COMMENTS_ENTITY = 'article_comments';
 
 export interface ICommentary {
     id?: number;
@@ -9,15 +11,15 @@ export interface ICommentary {
     createDate: string | Date;
     updateDate: string | Date;
 }
-@Entity({ name: 'article_comments' })
+@Entity({ name: ARTICLE_COMMENTS_ENTITY })
 export class Commentary implements ICommentary {
     @PrimaryGeneratedColumn() public id: number;
 
     @Column() public articleId: number;
     @Column() public comment: string;
     @Column() public commentId: number;
-    @Column({ type: 'date', default: new Date() }) public createDate: Date;
-    @Column({ type: 'date' }) public updateDate: Date;
+    @CreateDateColumn() public createDate: Date;
+    @UpdateDateColumn() public updateDate: Date;
 
     @ManyToOne(type => User, user => user.comments)
     public user: User;
