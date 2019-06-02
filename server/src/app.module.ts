@@ -21,6 +21,9 @@ import { AuthGuardService } from './guards/auth.guard';
 import { MailerService } from './services/mailer.service';
 import { RolesAccesService } from './services/roles-access.service';
 import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
+import { AccessController } from './controllers/access/access.controller';
+import { RoleController } from './controllers/role/role.controller';
+import { AccessProvider } from './providers/access.provider';
 
 @Module({
   imports: [
@@ -34,11 +37,13 @@ import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
   ],
   controllers: [
     AuthController,
+    AccessController,
     AppController,
     CategoryController,
     UserController,
     TagController,
     RatingController,
+    RoleController,
   ],
   providers: [
     AuthService,
@@ -54,6 +59,7 @@ import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
     UserProvider,
     MailerService,
     RolesAccesService,
+    AccessProvider,
   ],
 })
 export class AppModule implements NestModule {
