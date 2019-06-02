@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { CategoryController } from './controllers/category/category.controller';
 import { PgProvider } from './providers/db-provider';
@@ -19,6 +19,8 @@ import { AuthService } from './services/auth.service';
 import { JwtStrategyService } from './services/jwt-strategy.service';
 import { AuthGuardService } from './guards/auth.guard';
 import { MailerService } from './services/mailer.service';
+import { RolesAccesService } from './services/roles-access.service';
+import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { MailerService } from './services/mailer.service';
     JwtModule.register({
       secretOrPrivateKey: process.env.JWT_SECRET_KEY,
       signOptions: {
-        expiresIn:  process.env.TOKEN_ALIVE_TIME,
+        expiresIn: process.env.TOKEN_ALIVE_TIME,
       },
     }),
   ],
@@ -51,6 +53,12 @@ import { MailerService } from './services/mailer.service';
     RoleProvier,
     UserProvider,
     MailerService,
+    RolesAccesService,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(JwtDecodeMiddleware)
+      .forRoutes(CategoryController);
+  }
+}

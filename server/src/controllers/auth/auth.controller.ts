@@ -20,7 +20,11 @@ export class AuthController {
             user.password = MD5(user.password).toString();
             const res = await this.userRep.findOne(user);
             if (res) {
-                const token = await this.authSrv.signIn({ email: user.email });
+                const token = await this.authSrv.signIn({
+                    id: res.id,
+                    email: res.email,
+                    roleId: res.roleId,
+                });
                 return token;
             } else {
                 throw new ExError('User not found or password not true');

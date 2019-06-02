@@ -1,13 +1,17 @@
 import { Controller, Get, Inject, Param, HttpException, HttpStatus, Post, Delete, Body, Put } from '@nestjs/common';
-import { ARTICLE, COMMENTARY } from 'src/consts/provider-names';
+import { ARTICLE } from 'src/consts/provider-names';
 import { Repository } from 'typeorm';
 import { Atricle, IArticle } from 'src/models/article.model';
 import { IArticleApiList, IItemApi } from 'src/interfaces/articles-api';
+import { RolesAccesService } from 'src/services/roles-access.service';
 
 @Controller({ path: 'api/article' })
 export class ArticleController {
 
-    constructor(@Inject(ARTICLE) private articleRep: Repository<Atricle>) { }
+    constructor(
+        @Inject(ARTICLE) private articleRep: Repository<Atricle>,
+        private readonly accessSrv: RolesAccesService,
+    ) { }
 
     @Get('/item/:id')
     public async getArticle(@Param() params: IItemApi): Promise<IArticle> {

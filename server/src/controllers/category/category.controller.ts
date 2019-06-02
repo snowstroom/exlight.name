@@ -9,7 +9,7 @@ import { AuthGuardService } from '../../guards/auth.guard';
 export class CategoryController {
     constructor(@Inject(CATEGORY) private categoryRep: Repository<Category>) { }
 
-    @Get(':id')
+    @Get('/:id')
     public async getCategory(@Param() params: any) {
         try {
             return params.id === 'all' ?
@@ -31,7 +31,7 @@ export class CategoryController {
         }
     }
 
-    @Put(':id')
+    @Put('/:id')
     public async updateCategory(@Body() body: ICategory, @Param() params: any) {
         try {
             await this.categoryRep.update({ id: params.id }, body);
@@ -41,7 +41,7 @@ export class CategoryController {
         }
     }
 
-    @Delete(':id')
+    @Delete('/:id')
     public async deleteCategory(@Param() params: any) {
         try {
             await this.categoryRep.delete({ id: params.id });

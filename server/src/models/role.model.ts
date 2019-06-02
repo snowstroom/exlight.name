@@ -18,6 +18,6 @@ export class Role implements IRole {
     @OneToMany(type => User, user => user.role)
     public users: User[];
 
-    @OneToMany(type => Access, access => access.roleId)
+    @OneToMany(type => Access, access => access.role)
     public access: Access[];
 }
