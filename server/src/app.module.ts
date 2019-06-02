@@ -15,10 +15,8 @@ import { UserProvider } from './providers/user.provider';
 import { AuthController } from './controllers/auth/auth.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JWT_SECRET_KEY } from './classes/secrets';
 import { AuthService } from './services/auth.service';
 import { JwtStrategyService } from './services/jwt-strategy.service';
-import { TOKEN_ALIVE_TIME } from './classes/configs';
 import { AuthGuardService } from './guards/auth.guard';
 import { MailerService } from './services/mailer.service';
 
@@ -26,9 +24,9 @@ import { MailerService } from './services/mailer.service';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secretOrPrivateKey: JWT_SECRET_KEY,
+      secretOrPrivateKey: process.env.JWT_SECRET_KEY,
       signOptions: {
-        expiresIn: TOKEN_ALIVE_TIME,
+        expiresIn:  process.env.TOKEN_ALIVE_TIME,
       },
     }),
   ],

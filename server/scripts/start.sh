@@ -1,0 +1,1 @@
+NODE_ENV=dev ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts dotenv_config_path=src/configs/dev.env

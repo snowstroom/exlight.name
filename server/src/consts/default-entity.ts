@@ -22,7 +22,7 @@ export const ADMIN_ROLE: IRole = {
     description: 'Administrator of resourcse',
 };
 /**
- * Super, Create, Read, Update. Where not super - can mandge other users records
+ * Super, Create, Read, Update, Delete. Where not super - can mandge other users records
  */
 const ALLOW_ALL = 0b11111;
 /**

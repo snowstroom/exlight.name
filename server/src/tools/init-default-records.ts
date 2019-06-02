@@ -14,9 +14,12 @@ export async function initDefaultRecords(connection: Connection): Promise<void> 
         });
         if (!ADMIN_ROLE_INSTANSE) {
             const { identifiers } = await roleRep.insert(ADMIN_ROLE);
-            await usersRep.insert({ ...ADMIN_USER, roleId: identifiers[0].id });
+            await usersRep.insert({
+                ...ADMIN_USER,
+                roleId: identifiers[0].id,
+            });
             const accessList = ALLOW_ALL_ACCESS.map(a => accessRep.create({ ...a, roleId: identifiers[0].id }));
-            const result = await accessRep.insert(accessList);
+            await accessRep.insert(accessList);
         }
     } catch (err) {
         throw new Error(`Init application was failed =( \n ${err}`);

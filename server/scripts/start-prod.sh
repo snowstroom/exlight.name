@@ -1,0 +1,1 @@
+NODE_ENV=prod node -r dotenv/config dist/main.js dotenv_config_path=dist/configs/prod.env

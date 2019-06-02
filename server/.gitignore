@@ -1,4 +1,4 @@
 /node_modules
 /dist
 /documentation
-/config
+/src/configs/*.env
