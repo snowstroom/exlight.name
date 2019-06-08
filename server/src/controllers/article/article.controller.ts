@@ -6,7 +6,7 @@ import { IArticleApiList, IItemApi } from 'src/interfaces/articles-api';
 import { RolesAccesService } from 'src/services/roles-access.service';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { READ, DELETE, UPDATE } from 'src/consts/route-entity-map';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 import { AuthGuardService } from 'src/guards/auth.guard';
 
 @Controller({ path: 'api/article' })
@@ -21,6 +21,7 @@ export class ArticleController {
     @Get('/item/:id')
     @SetMetadata(META_ACCESS_KEY, READ)
     @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.article)
+    @SetMetadata(META_PUBLIC_KEY, true)
     public async getArticle(@Param() params: IItemApi): Promise<IArticle> {
         try {
             if (params.id) {
@@ -40,6 +41,7 @@ export class ArticleController {
     @Get('/list')
     @SetMetadata(META_ACCESS_KEY, READ)
     @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.article)
+    @SetMetadata(META_PUBLIC_KEY, true)
     public async getList(@Param() params: IArticleApiList) {
         try {
             const dbRes = await this.articleRep.find({

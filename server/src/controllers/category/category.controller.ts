@@ -5,7 +5,7 @@ import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { CREATE, READ, UPDATE, DELETE } from 'src/consts/route-entity-map';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 
 @Controller({ path: 'api/category' })
 @UseGuards(AuthGuardService)
@@ -17,6 +17,7 @@ export class CategoryController {
     @Get('/:id')
     @SetMetadata(META_ACCESS_KEY, READ)
     @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
+    @SetMetadata(META_PUBLIC_KEY, true)
     public async getCategory(@Param() params: any) {
         try {
             return params.id === 'all' ?

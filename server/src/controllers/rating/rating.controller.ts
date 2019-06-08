@@ -2,7 +2,7 @@ import { Controller, Inject, Get, Param, Post, SetMetadata, UseGuards } from '@n
 import { RATING } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
 import { Rating } from '../../models/rating.model';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 import { READ, CREATE } from 'src/consts/route-entity-map';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';
@@ -17,6 +17,7 @@ export class RatingController {
     @Get('/avarage/article/:articleId')
     @SetMetadata(META_ACCESS_KEY, READ)
     @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.rating)
+    @SetMetadata(META_PUBLIC_KEY, true)
     public async getRating(@Param() params: any) {
         try {
             return;

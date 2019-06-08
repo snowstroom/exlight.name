@@ -3,7 +3,7 @@ import { COMMENTARY } from 'src/consts/provider-names';
 import { Repository } from 'typeorm';
 import { Commentary, ICommentary } from 'src/models/commentary.model';
 import { ICommentaryApiParams, ICommentaryApiListParams } from 'src/interfaces/commentary-api';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 import { READ, CREATE, UPDATE, DELETE } from 'src/consts/route-entity-map';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';
@@ -64,6 +64,7 @@ export class CommentaryController {
     @Get('/list/article/:articleId')
     @SetMetadata(META_ACCESS_KEY, READ)
     @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.commentary)
+    @SetMetadata(META_PUBLIC_KEY, true)
     public async commentaryList(
         @Param() params: ICommentaryApiListParams,
     ): Promise<ICommentary[]> {

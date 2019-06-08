@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { RolesAccesService } from 'src/services/roles-access.service';
 import { Reflector } from '@nestjs/core';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -16,11 +16,14 @@ export class AuthGuardService implements CanActivate {
     public async canActivate(context: ExecutionContext): Promise<boolean> {
         const routeAccess = this.reflector.get(META_ACCESS_KEY, context.getHandler());
         const routeEntity = this.reflector.get(META_ENTITY_KEY, context.getHandler());
-        console.warn(routeAccess, routeEntity);
+        const isPublic = this.reflector.get(META_PUBLIC_KEY, context.getHandler());
+        console.warn(routeAccess, routeEntity, isPublic);
         const req: any = context.switchToHttp().getRequest();
         const token = req.headers.authorization as string;
         const { url, method, authInfo } = req;
-        if (token) {
+        if (isPublic) {
+            return true;
+        } else if (token) {
             try {
                 await this.jwt.verifyAsync(token);
                 const res = this.accessSrv.checkAccess(method, url, authInfo.roleId);
