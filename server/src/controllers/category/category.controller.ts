@@ -4,7 +4,7 @@ import { ICategory, Category } from '../../models/category.model';
 import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { CREATE, READ, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { CREATE, READ, UPDATE, DELETE } from 'src/consts/access';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 
 @Controller({ path: 'api/category' })

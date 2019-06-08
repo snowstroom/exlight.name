@@ -5,7 +5,7 @@ import { Atricle, IArticle } from 'src/models/article.model';
 import { IArticleApiList, IItemApi } from 'src/interfaces/articles-api';
 import { RolesAccesService } from 'src/services/roles-access.service';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { READ, DELETE, UPDATE } from 'src/consts/route-entity-map';
+import { READ, DELETE, UPDATE } from 'src/consts/access';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
 import { AuthGuardService } from 'src/guards/auth.guard';
 

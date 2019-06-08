@@ -4,7 +4,7 @@ import { Repository, ObjectLiteral } from 'typeorm';
 import { Tag } from '../../models/tag.model';
 import { IApiList } from 'src/interfaces/base-api';
 import { ICreateTagsApi } from 'src/interfaces/tag-api';
-import { CREATE, DELETE, READ } from 'src/consts/route-entity-map';
+import { CREATE, DELETE, READ } from 'src/consts/access';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';

@@ -3,7 +3,7 @@ import { RATING } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
 import { Rating } from '../../models/rating.model';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
-import { READ, CREATE } from 'src/consts/route-entity-map';
+import { READ, CREATE } from 'src/consts/access';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';
 

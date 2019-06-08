@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Commentary, ICommentary } from 'src/models/commentary.model';
 import { ICommentaryApiParams, ICommentaryApiListParams } from 'src/interfaces/commentary-api';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
-import { READ, CREATE, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { READ, CREATE, UPDATE, DELETE } from 'src/consts/access';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';
 

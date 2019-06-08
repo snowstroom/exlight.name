@@ -5,7 +5,7 @@ import { Access, IAccess } from 'src/models/access.model';
 import { AuthGuardService } from 'src/guards/auth.guard';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { CREATE, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { CREATE, UPDATE, DELETE } from 'src/consts/access';
 
 @Controller({ path: '/api/access' })
 @UseGuards(AuthGuardService)

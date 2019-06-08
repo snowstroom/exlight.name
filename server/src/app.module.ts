@@ -24,6 +24,8 @@ import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
 import { AccessController } from './controllers/access/access.controller';
 import { RoleController } from './controllers/role/role.controller';
 import { AccessProvider } from './providers/access.provider';
+import { ArticleController } from './controllers/article/article.controller';
+import { CommentaryController } from './controllers/commentary/commentary.controller';
 
 @Module({
   imports: [
@@ -36,14 +38,15 @@ import { AccessProvider } from './providers/access.provider';
     }),
   ],
   controllers: [
-    AuthController,
-    AccessController,
     AppController,
+    AccessController,
+    ArticleController,
     CategoryController,
-    UserController,
-    TagController,
+    CommentaryController,
     RatingController,
     RoleController,
+    TagController,
+    UserController,
   ],
   providers: [
     AuthService,
@@ -65,6 +68,15 @@ import { AccessProvider } from './providers/access.provider';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(JwtDecodeMiddleware)
-      .forRoutes(CategoryController);
+      .forRoutes(
+        AccessController,
+        ArticleController,
+        CategoryController,
+        CommentaryController,
+        RatingController,
+        RoleController,
+        TagController,
+        UserController,
+      );
   }
 }

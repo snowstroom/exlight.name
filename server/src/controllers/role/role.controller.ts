@@ -4,7 +4,7 @@ import { Role, IRole } from 'src/models/role.model';
 import { Repository, ObjectLiteral } from 'typeorm';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { META_ENTITY_KEY, META_ACCESS_KEY } from 'src/consts/meta-keys';
-import { CREATE, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { CREATE, UPDATE, DELETE } from 'src/consts/access';
 import { AuthGuardService } from 'src/guards/auth.guard';
 
 @Controller({ path: '/api/role' })

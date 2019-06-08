@@ -2,7 +2,7 @@ import { Controller, Inject, Put, Param, Body, HttpException, HttpStatus, Get, S
 import { USER } from '../../consts/provider-names';
 import { Repository } from 'typeorm';
 import { User, IUser } from '../../models/user.model';
-import { READ, UPDATE } from 'src/consts/route-entity-map';
+import { READ, UPDATE } from 'src/consts/access';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
 import { E_ENTITY_TYPES } from 'src/enums/entity-types';
 import { AuthGuardService } from 'src/guards/auth.guard';
