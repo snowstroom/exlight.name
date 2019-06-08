@@ -1,8 +1,8 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { IncomingMessage } from 'http';
 import { RolesAccesService } from 'src/services/roles-access.service';
-
+import { Reflector } from '@nestjs/core';
+import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -10,9 +10,13 @@ export class AuthGuardService implements CanActivate {
     constructor(
         private readonly jwt: JwtService,
         private readonly accessSrv: RolesAccesService,
+        private readonly reflector: Reflector,
     ) { }
 
     public async canActivate(context: ExecutionContext): Promise<boolean> {
+        const routeAccess = this.reflector.get(META_ACCESS_KEY, context.getHandler());
+        const routeEntity = this.reflector.get(META_ENTITY_KEY, context.getHandler());
+        console.warn(routeAccess, routeEntity);
         const req: any = context.switchToHttp().getRequest();
         const token = req.headers.authorization as string;
         const { url, method, authInfo } = req;

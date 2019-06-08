@@ -1,13 +1,22 @@
-import { Controller, Inject, Post, Body, Delete, HttpStatus, HttpException, Param, Put } from '@nestjs/common';
+import { Controller, Inject, Post, Body, Delete, HttpStatus, HttpException, Param, Put, SetMetadata, UseGuards } from '@nestjs/common';
 import { ROLE } from 'src/consts/provider-names';
 import { Role, IRole } from 'src/models/role.model';
 import { Repository, ObjectLiteral } from 'typeorm';
+import { E_ENTITY_TYPES } from 'src/enums/entity-types';
+import { META_ENTITY_KEY, META_ACCESS_KEY } from 'src/consts/meta-keys';
+import { CREATE, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { AuthGuardService } from 'src/guards/auth.guard';
 
 @Controller({ path: '/api/role' })
+@UseGuards(AuthGuardService)
 export class RoleController {
-    constructor(@Inject(ROLE) private roleRep: Repository<Role>) { }
+    constructor(
+        @Inject(ROLE) private roleRep: Repository<Role>,
+    ) { }
 
     @Post('/')
+    @SetMetadata(META_ACCESS_KEY, CREATE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.role)
     public async addRole(@Body() role: Partial<IRole>): Promise<ObjectLiteral> {
         try {
             const roleInst = this.roleRep.create(role);
@@ -20,6 +29,8 @@ export class RoleController {
     }
 
     @Put('/:id')
+    @SetMetadata(META_ACCESS_KEY, UPDATE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.role)
     public async updateRole(@Param() params: any, @Body() role: Partial<IRole>): Promise<void> {
         try {
             await this.roleRep.update(params.id, role);
@@ -30,6 +41,8 @@ export class RoleController {
     }
 
     @Delete('/:id')
+    @SetMetadata(META_ACCESS_KEY, DELETE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.role)
     public async deleteRole(@Param() params: any): Promise<void> {
         try {
             await this.roleRep.delete({ id: params.id });

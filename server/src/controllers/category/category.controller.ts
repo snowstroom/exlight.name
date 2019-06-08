@@ -1,15 +1,22 @@
-import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus, UseGuards, SetMetadata } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ICategory, Category } from '../../models/category.model';
 import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
+import { E_ENTITY_TYPES } from 'src/enums/entity-types';
+import { CREATE, READ, UPDATE, DELETE } from 'src/consts/route-entity-map';
+import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
 
 @Controller({ path: 'api/category' })
 @UseGuards(AuthGuardService)
 export class CategoryController {
-    constructor(@Inject(CATEGORY) private categoryRep: Repository<Category>) { }
+    constructor(
+        @Inject(CATEGORY) private categoryRep: Repository<Category>,
+    ) { }
 
     @Get('/:id')
+    @SetMetadata(META_ACCESS_KEY, READ)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
     public async getCategory(@Param() params: any) {
         try {
             return params.id === 'all' ?
@@ -21,6 +28,8 @@ export class CategoryController {
     }
 
     @Post()
+    @SetMetadata(META_ACCESS_KEY, CREATE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
     public async createCategory(@Body() body: ICategory) {
         try {
             const res = await this.categoryRep.insert(body);
@@ -32,6 +41,8 @@ export class CategoryController {
     }
 
     @Put('/:id')
+    @SetMetadata(META_ACCESS_KEY, UPDATE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
     public async updateCategory(@Body() body: ICategory, @Param() params: any) {
         try {
             await this.categoryRep.update({ id: params.id }, body);
@@ -42,6 +53,8 @@ export class CategoryController {
     }
 
     @Delete('/:id')
+    @SetMetadata(META_ACCESS_KEY, DELETE)
+    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
     public async deleteCategory(@Param() params: any) {
         try {
             await this.categoryRep.delete({ id: params.id });
