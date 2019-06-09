@@ -26,6 +26,7 @@ import { RoleController } from './controllers/role/role.controller';
 import { AccessProvider } from './providers/access.provider';
 import { ArticleController } from './controllers/article/article.controller';
 import { CommentaryController } from './controllers/commentary/commentary.controller';
+import { FileService } from './services/file.service';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
   ],
   controllers: [
     AppController,
+    AuthController,
     AccessController,
     ArticleController,
     CategoryController,
@@ -63,6 +65,7 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
     MailerService,
     RolesAccesService,
     AccessProvider,
+    FileService,
   ],
 })
 export class AppModule implements NestModule {
@@ -70,6 +73,7 @@ export class AppModule implements NestModule {
     consumer.apply(JwtDecodeMiddleware)
       .forRoutes(
         AccessController,
+        AuthController,
         ArticleController,
         CategoryController,
         CommentaryController,

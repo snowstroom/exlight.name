@@ -1,19 +1,21 @@
-import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode, Get, Param } from '@nestjs/common';
 import { IUser, User } from 'src/models/user.model';
 import { Repository } from 'typeorm';
 import { MD5 } from 'crypto-js';
 import { USER } from '../../consts/provider-names';
 import { ExError } from 'src/classes/err';
 import { AuthService } from 'src/services/auth.service';
+import { MailerService } from 'src/services/mailer.service';
 
-@Controller('/api/auth')
+@Controller('/api/auth/')
 export class AuthController {
     constructor(
         @Inject(USER) private userRep: Repository<User>,
         private authSrv: AuthService,
+        private mailSrv: MailerService,
     ) { }
 
-    @Post('/')
+    @Post()
     @HttpCode(HttpStatus.OK)
     public async userAuth(@Body() user: IUser) {
         try {
@@ -32,7 +34,6 @@ export class AuthController {
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return;
     }
 
     @Post('/refresh')
@@ -43,9 +44,27 @@ export class AuthController {
     @Post('/registration')
     public async userRigistr(@Body() user: Partial<IUser>) {
         try {
-            user.password = MD5(user.password).toString();
-            await this.userRep.insert(user);
+            const userData: Partial<IUser> = {
+                email: user.email,
+                password: MD5(user.password).toString(),
+                roleId: 1, // TODO
+            };
+            await this.userRep.insert(userData);
+            await this.mailSrv.confirmReg(user.email);
             return;
+        } catch (err) {
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Get('/forgot/:email')
+    public async forgotPsw(@Param() params: any): Promise<void> {
+        try {
+            const { email } = params;
+            const usr = this.userRep.findOne({ where: { email }});
+            if (usr) {
+                await this.mailSrv.sendForgotMail(email);
+            }
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
