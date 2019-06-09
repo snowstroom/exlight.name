@@ -9,7 +9,7 @@ import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
 import { Atricle } from '../models/article.model';
 import { Access } from 'src/models/access.model';
-import { initDefaultRecords } from 'src/tools/init-default-records';
+import { initTestData, initAccessDefRec } from 'src/tools';
 
 export const PgProvider: Provider = {
     provide: DB_CONECTION,
@@ -32,7 +32,8 @@ export const PgProvider: Provider = {
             ],
             synchronize: true,
         });
-        await initDefaultRecords(connection);
+        await initAccessDefRec(connection);
+        await initTestData(connection);
         return connection;
     },
 };

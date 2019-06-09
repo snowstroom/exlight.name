@@ -4,7 +4,7 @@ import { Access } from 'src/models/access.model';
 import { User } from 'src/models/user.model';
 import { ALLOW_ALL_ACCESS, ADMIN_USER, ADMIN_ROLE, DEFAULT_ROLE_NAME } from 'src/consts/default-entity';
 
-export async function initDefaultRecords(connection: Connection): Promise<void> {
+export async function initAccessDefRec(connection: Connection): Promise<void> {
     const roleRep: Repository<Role> = connection.getRepository(Role);
     const accessRep: Repository<Access> = connection.getRepository(Access);
     const usersRep: Repository<User> = connection.getRepository(User);

@@ -1,13 +1,13 @@
-import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, OneToMany, ManyToMany, JoinTable, PrimaryGeneratedColumn } from 'typeorm';
 import { Category } from './category.model';
 import { Tag } from './tag.model';
 
 export const ARTICLE_ENTITY = 'articles';
 
 export interface IArticle {
-    id: number;
+    id?: number;
     title: string;
-    publicationDate: string | Date;
+    publicationDate?: string | Date;
     description: string;
     content: string;
     // views: number;
@@ -19,9 +19,9 @@ export interface IArticle {
 
 @Entity({ name: ARTICLE_ENTITY })
 export class Atricle implements IArticle {
-    @PrimaryColumn() public id: number;
+    @PrimaryGeneratedColumn() public id: number;
     @Column() public title: string;
-    @Column({ type: 'date' })
+    @Column({ type: 'date', default: new Date() })
     public publicationDate: Date;
     @Column() public description: string;
     @Column() public content: string;
