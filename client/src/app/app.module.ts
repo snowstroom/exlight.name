@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -35,6 +36,9 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HummerConfig } from './hammer-config';
 import { ArticleService } from './services/article.service';
 import { RatingComponent } from './components/rating/rating.component';
+import { RegistrationComponent } from './pages/registration/registration.page';
+import { AuthorizationComponent } from './pages/authorization/authorization.page';
+import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 
 @NgModule({
   declarations: [
@@ -62,7 +66,10 @@ import { RatingComponent } from './components/rating/rating.component';
     LineSpinnerComponent,
     ShareContentComponent,
     SideNavComponent,
-    RatingComponent
+    RatingComponent,
+    RegistrationComponent,
+    AuthorizationComponent,
+    ForgotPassowrdComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +77,7 @@ import { RatingComponent } from './components/rating/rating.component';
     AppRoutingModule,
     FontAwesomeModule,
     NgxJsonLdModule,
+    ReactiveFormsModule,
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
