@@ -10,6 +10,7 @@ export class InitService {
     private metaSrv: Meta,
     private articleSrv: ArticleService
   ) { }
+
   public initApplication(): Promise<any> {
     this.initMeta();
     return Promise.all([this.initFonts(), this.articleSrv.getCategories()]);

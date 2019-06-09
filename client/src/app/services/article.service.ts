@@ -26,17 +26,8 @@ export class ArticleService extends Api {
 
   constructor(injector: Injector) {
     super(injector, environment.domain);
-    this.DEF_CAT.isActive = true;
-    this.getCategories().then(categories => {
-      this.categories = [this.DEF_CAT, ...categories];
-      this.initCategoriesMap(this.categories);
-      this.categories$.next(this.categories);
-    });
-
-    this.getCarouselItems().then(items => {
-      this.carouselItems = items;
-      this.carouselItems$.next(this.carouselItems);
-    });
+    this.initCategories();
+    this.initCarousel();
   }
 
   get $categories(): Observable<CategoriesItem[]> {
@@ -49,7 +40,7 @@ export class ArticleService extends Api {
 
   public async getCategories(): Promise<CategoriesItem[]> {
     try {
-      const answ: ICategoriesItem[] = await this.get('categories-of-articles');
+      const answ: ICategoriesItem[] = await this.get('category/all');
       return answ.map(item => new CategoriesItem(item, CAT_ROUTE_TEMPLATE));
     } catch (err) {
       return [];
@@ -58,10 +49,8 @@ export class ArticleService extends Api {
 
   public async getArticles(pagination: PaginationParams, catId?: number): Promise<Article[]> {
     try {
-      const answ: IPaginationContent<IArticle> = await this.post('articles', {
-        ...pagination.getParamsObject(),
-        categoryId: catId
-      });
+      const params = pagination.getUrlString();
+      const answ: IPaginationContent<IArticle> = await this.get(`article/list${params}&category_id=${catId}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
     } catch (err) {
@@ -71,7 +60,7 @@ export class ArticleService extends Api {
 
   public async getArticle(id: number): Promise<Article> {
     try {
-      const answ: IArticle = await this.get(`article/${id}`);
+      const answ: IArticle = await this.get(`article/item/${id}`);
       return new Article(answ);
     } catch (err) {
       return null;
@@ -80,7 +69,7 @@ export class ArticleService extends Api {
 
   public async getArticleByRoute(route: string): Promise<Article> {
     try {
-      const answ: IArticle = await this.get(`article-by-route/${route}`);
+      const answ: IArticle = await this.get(`article/item?route=${route}`);
       return new Article(answ);
     } catch (err) {
       return null;
@@ -98,6 +87,19 @@ export class ArticleService extends Api {
 
   private initCategoriesMap(categories: CategoriesItem[]): void {
     categories.forEach(c => this.categoriesMap.set(c.categoryRoute, c));
+  }
+
+  private async initCategories(): Promise<void> {
+    this.DEF_CAT.isActive = true;
+    const categories = await this.getCategories();
+    this.categories = [this.DEF_CAT, ...categories];
+    this.initCategoriesMap(this.categories);
+    this.categories$.next(this.categories);
+  }
+
+  private async initCarousel(): Promise<void> {
+    this.carouselItems = await this.getCarouselItems();
+    this.carouselItems$.next(this.carouselItems);
   }
 
 }

@@ -21,7 +21,7 @@ export interface IArticleApiData {
 
 export class Article implements IArticle {
     public readonly id: number = this.__data.id;
-    public readonly structData: JSON = new JSON()
+    public readonly structData: SchemaOrgArticle;
     public title: string = this.__data.title;
     public publicationDate = new Date(<string>this.__data.publicationDate);
     public description: string = this.__data.description;
