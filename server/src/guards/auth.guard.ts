@@ -30,7 +30,7 @@ export class AuthGuardService implements CanActivate {
                 const res = this.accessSrv.isAllow(routeEntity, routeAccess, authInfo.roleId);
                 return res;
             } catch (err) {
-                console.warn(err);
+                // console.warn(err);
                 return false;
             }
         } else {
