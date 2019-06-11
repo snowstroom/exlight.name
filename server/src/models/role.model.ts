@@ -12,7 +12,7 @@ export interface IRole {
 @Entity({ name: ROLES_ENTITY })
 export class Role implements IRole {
     @PrimaryGeneratedColumn() public id: number;
-    @Column({ unique: true }) public name: string;
+    @Column({ unique: true, primary: true }) public name: string;
     @Column() public description: string;
 
     @OneToMany(type => User, user => user.role)

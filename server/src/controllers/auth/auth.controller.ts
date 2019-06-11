@@ -6,6 +6,7 @@ import { USER } from '../../consts/provider-names';
 import { ExError } from 'src/classes/err';
 import { AuthService } from 'src/services/auth.service';
 import { MailerService } from 'src/services/mailer.service';
+import { RolesAccesService } from 'src/services/roles-access.service';
 
 @Controller('/api/auth/')
 export class AuthController {
@@ -13,6 +14,7 @@ export class AuthController {
         @Inject(USER) private userRep: Repository<User>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
+        private roleSrv: RolesAccesService,
     ) { }
 
     @Post()
@@ -44,14 +46,21 @@ export class AuthController {
     @Post('/registration')
     public async userRigistr(@Body() user: Partial<IUser>) {
         try {
-            const userData: Partial<IUser> = {
-                email: user.email,
-                password: MD5(user.password).toString(),
-                roleId: 1, // TODO
-            };
-            await this.userRep.insert(userData);
-            await this.mailSrv.confirmReg(user.email);
-            return;
+            const existUser = await this.userRep.findOne({
+                where: { email: user.email },
+            });
+            if (!existUser) {
+                const userData: Partial<IUser> = {
+                    email: user.email,
+                    password: MD5(user.password).toString(),
+                    roleId: this.roleSrv.defRole.id,
+                };
+                await this.userRep.insert(userData);
+                await this.mailSrv.confirmReg(user.email);
+                return;
+            } else {
+                throw new Error('User exist');
+            }
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,7 +70,7 @@ export class AuthController {
     public async forgotPsw(@Param() params: any): Promise<void> {
         try {
             const { email } = params;
-            const usr = this.userRep.findOne({ where: { email }});
+            const usr = this.userRep.findOne({ where: { email } });
             if (usr) {
                 await this.mailSrv.sendForgotMail(email);
             }

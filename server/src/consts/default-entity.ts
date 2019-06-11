@@ -15,11 +15,17 @@ export const ADMIN_USER: Partial<IUser> = {
     secondname: 'Admin',
 };
 
-export const DEFAULT_ROLE_NAME = 'ADMIN';
+export const ADMIN_ROLE_NAME = 'ADMIN';
+export const USER_ROLE_NAME = 'USER';
 
 export const ADMIN_ROLE: IRole = {
-    name: DEFAULT_ROLE_NAME,
+    name: ADMIN_ROLE_NAME,
     description: 'Administrator of resourcse',
+};
+
+export const USER_ROLE: IRole = {
+    name: USER_ROLE_NAME,
+    description: 'Common user of resource',
 };
 /**
  * Super, Create, Read, Update, Delete. Where not super - can mandge other users records
