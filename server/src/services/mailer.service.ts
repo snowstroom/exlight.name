@@ -46,7 +46,7 @@ export class MailerService {
                 to: email,
                 from: 'eXlight.name',
                 priority: 'normal',
-                subject: 'Спаисбо за регистрацию на exlight.name',
+                subject: 'Спаcибо за регистрацию на exlight.name',
                 html: mail,
             };
             await this.transporter.sendMail(option);
