@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode, Get, Param, Req, Query } from '@nestjs/common';
 import { IUser, User } from 'src/models/user.model';
 import { Repository } from 'typeorm';
 import { MD5 } from 'crypto-js';
@@ -7,8 +7,9 @@ import { ExError } from 'src/classes/err';
 import { AuthService } from 'src/services/auth.service';
 import { MailerService } from 'src/services/mailer.service';
 import { RolesAccesService } from 'src/services/roles-access.service';
+import { AES, enc } from 'crypto-js';
 
-@Controller('/api/auth/')
+@Controller('/api/auth')
 export class AuthController {
     constructor(
         @Inject(USER) private userRep: Repository<User>,
@@ -66,7 +67,41 @@ export class AuthController {
         }
     }
 
-    @Get('/forgot/:email')
+    @Get('/confirm/email')
+    public async confirmEmail(@Query() params: any): Promise<any> {
+        try {
+            const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
+            const user = await this.userRep.findOne({ where: { email } });
+            if (user) {
+                await this.userRep.update(user.id, {
+                    ...user,
+                    roleId: this.roleSrv.defConfirmRole.id,
+                });
+                return;
+            } else {
+                return new HttpException({ error: 'Email not found'}, HttpStatus.BAD_REQUEST);
+            }
+        } catch (err) {
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Get('/disable/email')
+    public async disableEmail(@Query() params: any): Promise<any> {
+        try {
+            const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
+            const user = await this.userRep.findOne({ where: { email } });
+            if (user.roleId === this.roleSrv.defRole.id) {
+                await this.userRep.delete({ email });
+            } else {
+                return new HttpException({ error: 'You have alrady confirmed email'}, HttpStatus.BAD_REQUEST);
+            }
+        } catch (err) {
+            throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Get('/forgot/email')
     public async forgotPsw(@Param() params: any): Promise<void> {
         try {
             const { email } = params;

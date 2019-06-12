@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { createTransport, Transporter, SendMailOptions, createTestAccount } from 'nodemailer';
 import { compile } from 'handlebars';
 import { FileService } from './file.service';
+import { AES } from 'crypto-js';
 
 @Injectable()
 export class MailerService {
@@ -36,17 +37,18 @@ export class MailerService {
     public async confirmReg(email: string): Promise<boolean> {
         try {
             const tempalte = this.templates.get('welcome.hbs');
+            const emailHash = AES.encrypt(email, process.env.JWT_SECRET_KEY).toString();
             const mail = tempalte({
-                domain: 'test',
-                adminEmail: 'only_exlight@gmail.com',
-                link: 'https://vk.com',
-                disableLink: 'https://vk.com',
+                domain: process.env.CLIENT_DOMAIN,
+                adminEmail: process.env.APP_ADMIN_EMAIL,
+                link: `http://${process.env.CLIENT_DOMAIN}/registration/confirm/${emailHash}`,
+                disableLink: `http://${process.env.CLIENT_DOMAIN}/registration/disable/${emailHash}`,
             });
             const option: SendMailOptions = {
                 to: email,
-                from: 'eXlight.name',
+                from: process.env.CLIENT_DOMAIN,
                 priority: 'normal',
-                subject: 'Спаcибо за регистрацию на exlight.name',
+                subject: `Спаcибо за регистрацию на ${process.env.CLIENT_DOMAIN}`,
                 html: mail,
             };
             await this.transporter.sendMail(option);

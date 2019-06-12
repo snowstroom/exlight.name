@@ -17,6 +17,7 @@ export const ADMIN_USER: Partial<IUser> = {
 
 export const ADMIN_ROLE_NAME = 'ADMIN';
 export const USER_ROLE_NAME = 'USER';
+export const CONFIRMED_USER_ROLE_NAME = 'CONFIRMED_USER';
 
 export const ADMIN_ROLE: IRole = {
     name: ADMIN_ROLE_NAME,
@@ -26,6 +27,11 @@ export const ADMIN_ROLE: IRole = {
 export const USER_ROLE: IRole = {
     name: USER_ROLE_NAME,
     description: 'Common user of resource',
+};
+
+export const CONFIRMED_USER_ROLE: IRole = {
+    name: CONFIRMED_USER_ROLE_NAME,
+    description: 'User with confirmed email',
 };
 /**
  * Super, Create, Read, Update, Delete. Where not super - can mandge other users records
