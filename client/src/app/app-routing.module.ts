@@ -11,6 +11,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
+import { ProfilePageComponent } from './pages/profile/profile.page';
 
 const routes: Routes = [{
   path: '',
@@ -40,6 +41,9 @@ const routes: Routes = [{
 }, {
   path: 'registration',
   component: RegistrationComponent
+}, {
+  path: 'profile',
+  component: ProfilePageComponent
 }, {
   path: 'authorization',
   children: [{

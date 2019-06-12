@@ -39,6 +39,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
+import { ProfilePageComponent } from './pages/profile/profile.page';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
     RatingComponent,
     RegistrationComponent,
     AuthorizationComponent,
-    ForgotPassowrdComponent
+    ForgotPassowrdComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

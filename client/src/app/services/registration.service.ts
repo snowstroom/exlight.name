@@ -11,19 +11,19 @@ export class RegistrationService extends Api {
 
     public async registration(email: string, password: string): Promise<void> {
         try {
-            await this.post('/auth/registration', { email, password });
+            await this.post('auth/registration', { email, password });
         } catch (err) { }
     }
 
     public async forgot(email: string): Promise<void> {
         try {
-            await this.get(`/auth/forgot/${email}`);
+            await this.get(`auth/forgot/${email}`);
         } catch (err) {
 
         }
     }
 
     public async auth(email: string, password: string): Promise<void> {
-        await this.post('/auth', { email, password });
+        await this.post('auth', { email, password });
     }
 }

@@ -9,5 +9,81 @@
     box-shadow: $box-shadow;
     background: $blocks-color-bg;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .reg-form {
+      width: 20%;
+
+      .inp {
+        display: flex;
+        margin-bottom: 1.5rem;
+        position: relative;
+
+        .inp-icon {
+          position: absolute;
+          right: 5px;
+          bottom: 10px;
+        }
+
+        .input-link {
+          position: absolute;
+          font-size: .6rem;
+          bottom: -14px;
+          font-family: $simple-text;
+          right: 0;
+        }
+      }
+
+      .btn {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
+
+  input {
+    background: transparent;
+    color: $element-text-color;
+    padding: .5rem;
+    font-family: $simple-text;
+    border: none;
+    border: 2px solid transparent;
+    border-bottom: 2px solid white;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+      animation-name: HoverItemPulce;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      border-left: 2px solid white;
+    }
+  }
+}
+
+button {
+  font-family: $simple-text;
+  border: none;
+  background: transparent;
+  color: white;
+  border: 2px solid transparent;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+  padding: .5rem;
+  outline: none;
+
+  &:hover {
+    animation-name: HoverItemPulce;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    border: 2px solid white;
+  }
+}
+
+::placeholder {
+  font-family: $simple-text;
+  color: $element-text-color;
+  opacity: .7;
 }

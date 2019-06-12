@@ -1,11 +1,19 @@
 <div class="content-wrapper">
   <main class="main">
-    <div>
-      <form [formGroup]="form" (submit)="submit()">
-        <input type="text">
-        <input type="password">
+    <form [formGroup]="form" (submit)="submit()" class="reg-form">
+      <div class="inp">
+        <input formControlName="email" autofocus id="reg-email" type="text" placeholder="Ваш email">
+      </div>
+      <div class="inp">
+        <input formControlName="password"  type="{{hidePsw ? 'password' : 'text'}}" placeholder="Ваш пароль" >
+        <fa-icon [icon]="hidePsw ? EYE_SLASH_ICO : EYE_ICO" 
+          class="inp-icon"
+          (click)="hidePsw = !hidePsw"></fa-icon>
+        <a class="input-link" href="">Забыли пароль?</a>
+      </div>
+      <div class="btn">
         <button type="submit">Регистрация</button>
-      </form>
-    </div>
+      </div>
+    </form>
   </main>
 </div>
