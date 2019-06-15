@@ -5,7 +5,11 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@app/*": ["app/*"],
-      "@core/*": ["core/*"]
+      "@core/*": ["core/*"],
+      "@article-module/*": ["article-module/*"],
+      "@music-module/*": ["music-module/*"],
+      "@photo-module/*": ["photo-module/*"],
+      "@video-module/*": ["video-module/*"]
     },
     "sourceMap": true,
     "declaration": false,
