@@ -2,17 +2,19 @@ import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode, Ge
 import { IUser, User } from 'src/models/user.model';
 import { Repository } from 'typeorm';
 import { MD5 } from 'crypto-js';
-import { USER } from '../../consts/provider-names';
+import { USER, ACCESS } from '../../consts/provider-names';
 import { ExError } from 'src/classes/err';
 import { AuthService } from 'src/services/auth.service';
 import { MailerService } from 'src/services/mailer.service';
 import { RolesAccesService } from 'src/services/roles-access.service';
 import { AES, enc } from 'crypto-js';
+import { Access } from 'src/models/access.model';
 
 @Controller('/api/auth')
 export class AuthController {
     constructor(
         @Inject(USER) private userRep: Repository<User>,
+        @Inject(ACCESS) private accessRep: Repository<Access>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
         private roleSrv: RolesAccesService,
@@ -23,7 +25,7 @@ export class AuthController {
     public async userAuth(@Body() user: IUser) {
         try {
             user.password = MD5(user.password).toString();
-            const res = await this.userRep.findOne(user);
+            const res = await this.userRep.findOne();
             if (res) {
                 const token = await this.authSrv.signIn({
                     id: res.id,

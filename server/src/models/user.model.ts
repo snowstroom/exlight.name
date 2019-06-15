@@ -1,8 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { IsEmail } from 'class-validator';
 import { Commentary } from './commentary.model';
 import { Rating } from './rating.model';
-import { Role } from './role.model';
+import { Role, ROLES_ENTITY } from './role.model';
+import { Access, ACCESS_ENTITY } from './access.model';
+import { Atricle } from './article.model';
 
 export const USER_ENTITY = 'users';
 export interface IUser {
@@ -21,7 +23,7 @@ export class User implements IUser {
     @Column({ nullable: true }) public firstname: string;
     @Column({ nullable: true }) public secondname: string;
     @Column({ nullable: false }) public password: string;
-    @Column() public roleId: number;
+    @Column({ nullable: false }) public roleId: number;
 
     @OneToMany(type => Commentary, comment => comment.id)
     public comments: Commentary[];
@@ -31,4 +33,10 @@ export class User implements IUser {
 
     @ManyToOne(type => Role, role => role.id)
     public role: Role;
+
+    @OneToMany(type => Atricle, article => article.author)
+    public articles: Atricle[];
+    /*
+    @ManyToMany(type => Access, access => access.roleId) @JoinTable({ name: ACCESS_ENTITY })
+    public access: Access[];*/
 }

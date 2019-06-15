@@ -8,7 +8,7 @@ const category: ICategory = {
     route: 'test',
 };
 
-const article: IArticle = {
+const article: Partial<IArticle> = {
     categoryId: 1,
     description: 'This is article create for test',
     route: 'test-article',
@@ -33,7 +33,10 @@ export async function initTestData(connection: Connection): Promise<void> {
             const categoryRes = await categoryRep.find({ take: 1 });
             if (!categoryRes.length) {
                 const categoryIns = categoryRep.create(category);
-                const articleIns = articleRep.create(article);
+                const articleIns = articleRep.create({
+                    ...article,
+                    author: 1,
+                });
                 await categoryRep.insert(categoryIns);
                 await articleRep.insert(articleIns);
             }
