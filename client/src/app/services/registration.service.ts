@@ -22,8 +22,4 @@ export class RegistrationService extends Api {
 
         }
     }
-
-    public async auth(email: string, password: string): Promise<void> {
-        await this.post('auth', { email, password });
-    }
 }

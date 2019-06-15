@@ -1,0 +1,42 @@
+@import 'src/styles/variables';
+
+:host {
+  .inp {
+    display: flex;
+    margin-bottom: 1.5rem;
+    position: relative;
+
+    /deep/ fa-icon {
+      position: absolute;
+      right: 5px;
+      bottom: 10px;
+    }
+
+    .input-link {
+      position: absolute;
+      font-size: .6rem;
+      bottom: -14px;
+      font-family: $simple-text;
+      right: 0;
+    }
+
+    /deep/ input {
+      background: transparent;
+      color: $element-text-color;
+      padding: .5rem;
+      font-family: $simple-text;
+      border: none;
+      border: 2px solid transparent;
+      border-bottom: 2px solid white;
+      outline: none;
+      width: 100%;
+
+      &:focus {
+        animation-name: HoverItemPulce;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        border-left: 2px solid white;
+      }
+    }
+  }
+}

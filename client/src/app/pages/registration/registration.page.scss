@@ -20,6 +20,16 @@
         display: flex;
         justify-content: flex-end;
       }
+      .reg-links {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        text-align: center;
+        a {
+          &:first-child {
+            margin-right: .5rem;
+          }
+        }
+      }
     }
   }
 }
@@ -41,10 +51,4 @@ button {
     animation-iteration-count: infinite;
     border: 2px solid white;
   }
-}
-
-::placeholder {
-  font-family: $simple-text;
-  color: $element-text-color;
-  opacity: .7;
 }

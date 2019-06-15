@@ -5,6 +5,12 @@ body {
   background: url('assets/fon.jpg');
 }
 
+::placeholder {
+  font-family: $simple-text;
+  color: $element-text-color;
+  opacity: .7;
+}
+
 @keyframes HoverItemPulce {
   0% {
     box-shadow: 0 0 10px $active-element-bg;
