@@ -40,6 +40,7 @@ import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { ProfilePageComponent } from './pages/profile/profile.page';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ProfilePageComponent } from './pages/profile/profile.page';
         provide: MarkedOptions,
         useFactory: markedOptionsFactory
       }
-    })
+    }),
+    CoreModule
   ],
   providers: [
     Title,
@@ -94,7 +96,7 @@ import { ProfilePageComponent } from './pages/profile/profile.page';
     ArticleService,
     {
       provide: APP_INITIALIZER,
-      useFactory: (srv: InitService) => () => srv.initApplication(),
+      useFactory: (srv: InitService) => async () => srv.initApplication(),
       deps: [InitService],
       multi: true
     }, {
