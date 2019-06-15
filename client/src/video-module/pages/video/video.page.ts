@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  templateUrl: './video.page.html',
+  styleUrls: ['./video.page.scss']
 })
-export class VideoComponent implements OnInit {
+export class VideoPage implements OnInit {
   public currentpage: number;
 
   constructor(

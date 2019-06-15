@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { IMediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../../app/interfaces/MediaItem.interface';
 import { MusicStateService } from '../../services/music-state.service';
 
 @Component({
-  templateUrl: './music.component.html',
-  styleUrls: ['./music.component.scss']
+  templateUrl: './music.page.html',
+  styleUrls: ['./music.page.scss']
 })
-export class MusicComponent implements OnInit {
+export class MusicPage implements OnInit {
   public currentpage: number;
   public mediaItems: IMediaItem[];
 

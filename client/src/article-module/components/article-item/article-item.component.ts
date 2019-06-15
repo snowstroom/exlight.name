@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Article } from '@app/classes/article';
+import { Article } from 'article-module/models/article';
 
 @Component({
   selector: 'ex-articles',

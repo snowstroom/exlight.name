@@ -3,7 +3,7 @@ import { Api, PaginationParams } from 'core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { CategoriesItem, ICategoriesItem } from '@app/classes/categories';
-import { Article, IArticle } from '@app/classes/article';
+import { Article, IArticle } from 'article-module/models/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
 import { IPaginationContent } from '@app/interfaces/pagination-content';
 import { CAT_ROUTE_TEMPLATE } from '@app/consts/urls';
@@ -14,7 +14,9 @@ const DEF_CAT: ICategoriesItem = {
   categoryRoute: 'all'
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ArticleService extends Api {
   public readonly DEF_CAT = new CategoriesItem(DEF_CAT, CAT_ROUTE_TEMPLATE);
   public pagination = new PaginationParams({ limit: 5 });

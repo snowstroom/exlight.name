@@ -1,7 +1,7 @@
 import * as WebFonts from 'webfontloader';
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { ArticleService } from './article.service';
+import { ArticleService } from '../../article-module/services/article.service';
 
 @Injectable()
 export class InitService {
@@ -11,12 +11,12 @@ export class InitService {
     private articleSrv: ArticleService
   ) { }
 
-  public initApplication(): Promise<any> {
+  public async initApplication(): Promise<any> {
     this.initMeta();
     return Promise.all([this.initFonts(), this.articleSrv.getCategories()]);
   }
 
-  private initFonts(): Promise<void> {
+  private async initFonts(): Promise<any> {
     return new Promise((resolve, reject) => {
       WebFonts.load({
         google: {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicStateService } from '../../services/music-state.service';
-import { IMediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../../app/interfaces/MediaItem.interface';
 
 @Component({
   selector: 'ex-audio-player',

@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticleService } from '@app/services/article.service';
-import { Article } from '@app/classes/article';
+import { ArticleService } from 'article-module/services/article.service';
+import { Article } from 'article-module/models/article';
 import { ApplicationService } from '@app/services/app.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './article.page.html',
   styleUrls: ['./article.page.scss']
 })
-export class ArticleComponent implements OnDestroy {
+export class ArticlePage implements OnDestroy {
   public wait = true;
   public article: Article;
   private unsubscribe = new Subject();

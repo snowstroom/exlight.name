@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
-import { ITEMS_ON_PAGE_ART } from '../../consts/ItemsOnPage.const';
+import { ITEMS_ON_PAGE_ART } from '../../../app/consts/ItemsOnPage.const';
 import { CategoriesItem } from '@app/classes/categories';
-import { Article } from '@app/classes/article';
+import { Article } from 'article-module/models/article';
 import { numberParam } from '@core/functions/number-param';
 import { ApplicationService } from '@app/services/app.service';
 import { Subject, combineLatest } from 'rxjs';
@@ -11,10 +11,10 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  templateUrl: './catalog.page.html',
+  styleUrls: ['./catalog.page.scss']
 })
-export class CatalogComponent implements OnDestroy {
+export class CatalogPage implements OnDestroy {
   public wait = true;
   public curCategory: CategoriesItem = this.articlesSrv.DEF_CAT;
   public page = 1;

@@ -16,9 +16,10 @@ export class HttpInterceptorService implements HttpInterceptor {
      */
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authHeader = req.headers.get('Authorization');
-        if (this.storSrv.getItem('') && !authHeader) {
+        const token = this.storSrv.getSessionItem(TOKEN_KEY);
+        if (token && !authHeader) {
             const oAuthReq = req.clone({
-                headers: req.headers.append('Authorization', `${this.storSrv.getItem('')}`)
+                headers: req.headers.append('Authorization', token)
             });
             return next.handle(oAuthReq);
         } else {

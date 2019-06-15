@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IMediaItem } from '../../interfaces/MediaItem.interface';
+import { IMediaItem } from '../../../app/interfaces/MediaItem.interface';
 
 @Component({
   selector: 'ex-media-catalog',

@@ -23,6 +23,6 @@ export class AuthorizationComponent {
 
     public async submit(): Promise<void> {
         const { email, password } = this.form.value;
-        this.authSrv.auth(email, password);
+        await this.authSrv.auth(email, password);
     }
 }

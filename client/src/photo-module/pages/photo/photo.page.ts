@@ -3,10 +3,10 @@ import { Title, Meta } from '@angular/platform-browser';
 import { PhotoStateService } from '../../services/photo-state.service';
 
 @Component({
-  templateUrl: './photo.component.html',
-  styleUrls: ['./photo.component.scss']
+  templateUrl: './photo.page.html',
+  styleUrls: ['./photo.page.scss']
 })
-export class PhotoComponent implements OnInit {
+export class PhotoPage implements OnInit {
   public photos: any [];
   public currentpage: number;
 

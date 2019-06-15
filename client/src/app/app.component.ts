@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { MusicStateService } from './services/music-state.service';
+import { MusicStateService } from '../music-module/services/music-state.service';
 import { IMediaItem } from './interfaces/MediaItem.interface';
 import { EnviromentService } from './services/envirement.service';
 import { E_SCREEN_TYPE } from './enums/screen-type';
