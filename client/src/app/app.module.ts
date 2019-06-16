@@ -12,7 +12,7 @@ import { ExlightCommonModule } from 'common-module/common.module';
 
 // PROVIDERS
 import { HUMMER_PROVIDER } from './services/providers/hummer.provider';
-import { INIT_PROVIDER } from './services/providers/init.provider';
+import { INIT_FONTS } from './services/providers/init.provider';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -22,7 +22,6 @@ import { RightComponent } from './components/right/right.component';
 import { MainComponent } from './pages/main/main.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { InitService } from './services/init.service';
 import { ArticleProgressComponent } from './components/article-progress/article-progress.component';
 import { ShareContentComponent } from './components/share-content/share-content.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
@@ -64,8 +63,7 @@ import { AboutPage } from './pages/about/about.page';
   providers: [
     Title,
     Meta,
-    InitService,
-    INIT_PROVIDER,
+    INIT_FONTS,
     HUMMER_PROVIDER,
   ],
   bootstrap: [AppComponent]

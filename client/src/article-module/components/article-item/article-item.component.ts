@@ -8,4 +8,8 @@ import { Article } from 'article-module/models/article';
 })
 export class ArticleItemComponent {
   @Input() public article: Article;
+
+  public setRating(rating: number): void {
+    console.warn(rating);
+  }
 }

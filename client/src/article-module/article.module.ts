@@ -11,6 +11,7 @@ import { MARKDOWN_PROVIDER } from './services/providers/markdown.provider';
 import { ArticlePage } from './pages/article/article.page';
 import { CatalogPage } from './pages/catalog/catalog.page';
 import { ArticleItemComponent } from './components/article-item/article-item.component';
+import { INIT_CATEGORIES } from './services/providers/init.provider';
 
 @NgModule({
     imports: [
@@ -24,6 +25,9 @@ import { ArticleItemComponent } from './components/article-item/article-item.com
         ArticlePage,
         CatalogPage,
         ArticleItemComponent
+    ],
+    providers: [
+        INIT_CATEGORIES
     ],
     exports: [
         ArticlePage,

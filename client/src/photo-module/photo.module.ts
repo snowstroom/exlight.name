@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
+// MODULES
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { ExlightCommonModule } from 'common-module/common.module';
+// COMPONENTS
 import { PhotoPage } from './pages/photo/photo.page';
 import { PhotoItemComponent } from './components/photo-item/photo-item.component';
-import { ExlightCommonModule } from 'common-module/common.module';
 
 @NgModule({
     imports: [
-        ExlightCommonModule
+        ExlightCommonModule,
+        CommonModule,
+        BrowserModule,
     ],
     declarations: [
         PhotoPage,
         PhotoItemComponent
     ],
     exports: [
-        PhotoPage
+        PhotoPage,
     ]
 })
 export class ExlightPhotoModule { }

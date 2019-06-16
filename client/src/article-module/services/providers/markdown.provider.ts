@@ -1,7 +1,7 @@
 import { MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 import { Provider } from '@angular/compiler/src/core';
 
-function markedOptionsFactory(): MarkedOptions {
+export function markedOptionsFactory(): MarkedOptions {
     const renderer = new MarkedRenderer();
 
     renderer.image = (href: string, title: string, text: string) => {

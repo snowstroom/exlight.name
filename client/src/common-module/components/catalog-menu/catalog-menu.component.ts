@@ -33,7 +33,7 @@ export class CatalogMenuComponent {
     let isFind = false;
     let offsetLeft = 0;
     this.categoriesItems.forEach((item, i) => {
-      if (category === item.categoryRoute) {
+      if (category === item.route) {
         this.widthDec = item.itemWidth;
         isFind = true;
       }

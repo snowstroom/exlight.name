@@ -8,6 +8,7 @@ import { numberParam } from '@core/functions/number-param';
 import { ApplicationService } from '@app/services/app.service';
 import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CategoriesService } from '@article-module/services/categories.service';
 
 @Component({
   selector: 'ex-catalog',
@@ -16,7 +17,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CatalogPage implements OnDestroy {
   public wait = true;
-  public curCategory: CategoriesItem = this.articlesSrv.DEF_CAT;
+  public curCategory: CategoriesItem = this.categoriesSrv.DEF_CAT;
   public page = 1;
   public articles: Article[] = [];
   public categories: CategoriesItem[] = [];
@@ -25,11 +26,12 @@ export class CatalogPage implements OnDestroy {
 
   constructor(
     public articlesSrv: ArticleService,
+    private categoriesSrv: CategoriesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private appSrv: ApplicationService
   ) {
-    combineLatest(this.activatedRoute.params, this.articlesSrv.$categories)
+    combineLatest(this.activatedRoute.params, this.categoriesSrv.$categories)
       .pipe(takeUntil(this.subscriber))
       .subscribe(([params, categories]) => {
         this.wait = true;
@@ -54,12 +56,12 @@ export class CatalogPage implements OnDestroy {
 
   private initCategories(catURL: string, categories: CategoriesItem[]): void {
     this.categories = categories;
-    this.curCategory = this.articlesSrv.categoriesMap.get(catURL);
+    this.curCategory = this.categoriesSrv.categoriesMap.get(catURL);
     if (this.curCategory) {
       this.categories.forEach(item => item.isActive = false);
       this.curCategory.isActive = true;
     } else {
-      this.router.navigate(['catalog', this.articlesSrv.DEF_CAT.categoryRoute, 'page', 1]);
+      this.router.navigate(['catalog', this.categoriesSrv.DEF_CAT.route, 'page', 1]);
     }
   }
 
@@ -73,7 +75,7 @@ export class CatalogPage implements OnDestroy {
       description: 'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
        поэзии, программировании и событиях в жизни. ',
       img: '',
-      keywords: this.categories.map(c => c.categoryName),
+      keywords: this.categories.map(c => c.name),
       title: 'Каталог статей',
       url: ''
     });
