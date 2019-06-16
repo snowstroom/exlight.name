@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CategoriesItem } from '@app/classes/categories';
 import { Router, ActivatedRoute } from '@angular/router';
 

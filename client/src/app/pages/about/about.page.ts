@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './about.page.html',
   styleUrls: ['./about.page.scss']
 })
-export class AboutComponent {
+export class AboutPage {
 
   constructor(
     private appSrv: ApplicationService,

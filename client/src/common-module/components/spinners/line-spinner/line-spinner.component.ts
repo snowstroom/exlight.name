@@ -7,5 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class LineSpinnerComponent {
     @Input() public wait: boolean;
-
 }
