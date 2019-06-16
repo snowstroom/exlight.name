@@ -1,7 +1,7 @@
 import { Provider, APP_INITIALIZER } from '@angular/core';
 import * as WebFonts from 'webfontloader';
 
-export async function initFonts(): Promise<any> {
+const initFonts = async (): Promise<any> => {
     return new Promise((resolve, reject) => {
         WebFonts.load({
             google: {
@@ -15,10 +15,12 @@ export async function initFonts(): Promise<any> {
             inactive: () => reject()
         });
     });
-}
+};
+
+const init = () => initFonts;
 
 export const INIT_FONTS: Provider = {
     provide: APP_INITIALIZER,
-    useFactory: initFonts,
+    useFactory: init,
     multi: true
 };
