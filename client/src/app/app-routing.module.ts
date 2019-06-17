@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { AboutPage } from './pages/about/about.page';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -9,30 +9,50 @@ import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { ProfilePageComponent } from './pages/profile/profile.page';
 import { GuardService } from './guards/guard.service';
 import { ARTICLE_ROUTES } from '@article-module/routes';
+import { IExlightRoute } from './interfaces/exlight-router';
 
-const routes: Routes = [{
+const routes: IExlightRoute[] = [{
   path: '',
-  component: MainComponent
+  component: MainComponent,
+  data: {
+    showAside: false,
+    haveNoBackground: true
+  }
 },
 ...ARTICLE_ROUTES,
 {
   path: 'about',
   component: AboutPage,
+  data: {
+    showAside: true
+  }
 }, {
   path: 'registration',
-  component: RegistrationComponent
+  component: RegistrationComponent,
+  data: {
+    showAside: false
+  }
 }, {
   path: 'profile',
   component: ProfilePageComponent,
-  canActivate: [GuardService]
+  canActivate: [GuardService],
+  data: {
+    showAside: true
+  }
 }, {
   path: 'authorization',
   children: [{
     path: '',
-    component: AuthorizationComponent
+    component: AuthorizationComponent,
+    data: {
+      showAside: false
+    }
   }, {
     path: 'forgot',
-    component: ForgotPassowrdComponent
+    component: ForgotPassowrdComponent,
+    data: {
+      showAside: false
+    }
   }]
 }, {
   path: '**',

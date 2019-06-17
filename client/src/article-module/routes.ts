@@ -1,17 +1,27 @@
 import { Routes } from '@angular/router';
 import { ArticlePage } from './pages/article/article.page';
 import { CatalogPage } from './pages/catalog/catalog.page';
+import { IExlightRoute } from '@app/interfaces/exlight-router';
 
-export const ARTICLE_ROUTES: Routes = [
+export const ARTICLE_ROUTES: IExlightRoute[] = [
     {
         path: 'catalog',
         pathMatch: 'full',
-        redirectTo: 'catalog/all/page/1'
+        redirectTo: 'catalog/all/page/1',
+        data: {
+            showAside: true
+        }
     }, {
         path: 'catalog/:cat/page/:page',
-        component: CatalogPage
+        component: CatalogPage,
+        data: {
+            showAside: true
+        }
     }, {
         path: 'article/:article',
-        component: ArticlePage
+        component: ArticlePage,
+        data: {
+            showAside: true
+        }
     },
 ];

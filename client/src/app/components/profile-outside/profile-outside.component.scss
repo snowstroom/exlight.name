@@ -1,0 +1,31 @@
+@import 'src/styles/variables';
+
+.ex-outside-profile {
+    padding: 1rem;
+    box-shadow: $box-shadow;
+    width: calc(100% - 2rem);
+    height: 88px;
+    display: flex;
+    .avatar {
+        img {
+            border-radius: 50%;
+        }
+        height: 100%;
+        width: 88px;
+    }
+    .profile-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 1rem;
+        width: calc(100% - 88px - 1rem);
+        .profile-links {
+            display: flex;
+            justify-content: center;
+            a {
+                font-size: .9rem;
+                margin-right: .5rem;
+            }
+        }
+    }
+}

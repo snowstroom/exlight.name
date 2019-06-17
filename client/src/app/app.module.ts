@@ -18,7 +18,6 @@ import { INIT_FONTS } from './services/providers/init.provider';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { RightComponent } from './components/right/right.component';
 import { MainComponent } from './pages/main/main.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -30,6 +29,7 @@ import { AuthorizationComponent } from './pages/authorization/authorization.page
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { ProfilePageComponent } from './pages/profile/profile.page';
 import { AboutPage } from './pages/about/about.page';
+import { ProfileOutsideComponent } from './components/profile-outside/profile-outside.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { AboutPage } from './pages/about/about.page';
     AppComponent,
     FooterComponent,
     MenuComponent,
-    RightComponent,
     MainComponent,
     SliderComponent,
     ArticleProgressComponent,
@@ -48,6 +47,7 @@ import { AboutPage } from './pages/about/about.page';
     AuthorizationComponent,
     ForgotPassowrdComponent,
     ProfilePageComponent,
+    ProfileOutsideComponent
   ],
   imports: [
     BrowserModule,

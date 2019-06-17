@@ -2,10 +2,12 @@
 <div class="container" (click)="hideSideNav()" (swipeleft)="showSideNav($event)">
   <ex-menu></ex-menu>
   <div class="content-wrapper">
-    <main>
+    <main [ngClass]="{'full': !showAside, 'no-bg': haveNoBg}">
       <router-outlet></router-outlet>
     </main>
-    <aside class="right"></aside>
+    <aside class="right" *ngIf="showAside">
+      <ex-profile-outside></ex-profile-outside>
+    </aside>
   </div>
   <ex-footer></ex-footer>
 </div>

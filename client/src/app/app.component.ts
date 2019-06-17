@@ -1,9 +1,11 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MusicStateService } from '../music-module/services/music-state.service';
 import { IMediaItem } from './interfaces/MediaItem.interface';
 import { EnviromentService } from './services/envirement.service';
 import { E_SCREEN_TYPE } from './enums/screen-type';
 import { ApplicationService } from './services/app.service';
+import { ActivatedRoute, Router, ActivationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ex-app-root',
@@ -19,15 +21,25 @@ export class AppComponent implements OnInit {
   public currentTime = 0;
   public timer: any;
   public ldJsonSchema: any;
+
+  public showAside: boolean;
+  public haveNoBg: boolean;
   constructor(
     private musicStateSrv: MusicStateService,
     private envSrv: EnviromentService,
-    private appSrv: ApplicationService
+    private appSrv: ApplicationService,
+    private router: Router
   ) {
     this.envSrv.$screenType.subscribe(type => console.warn(E_SCREEN_TYPE[type]));
     this.appSrv.$ldJsonSchema.subscribe(schema => {
       this.ldJsonSchema = schema;
     });
+    this.router.events.pipe(filter((e) => e instanceof ActivationEnd))
+      .subscribe((data: ActivatedRoute) => {
+        console.warn(data.snapshot.data);
+        this.showAside = data.snapshot.data.showAside;
+        this.haveNoBg = data.snapshot.data.haveNoBackground;
+      });
   }
 
   public ngOnInit(): void {
