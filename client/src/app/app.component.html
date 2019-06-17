@@ -1,16 +1,22 @@
 <ex-article-progress></ex-article-progress>
 <div class="container" (click)="hideSideNav()" (swipeleft)="showSideNav($event)">
   <ex-menu></ex-menu>
-  <router-outlet></router-outlet>
+  <div class="content-wrapper">
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    <aside class="right"></aside>
+  </div>
   <ex-footer></ex-footer>
 </div>
 <ex-share-content></ex-share-content>
 <ex-side-nav></ex-side-nav>
 <ngx-json-ld [json]="ldJsonSchema"></ngx-json-ld>
-<audio #htmlPlayer [src]="track?.fileUrl"
+
+<!--<audio #htmlPlayer [src]="track?.fileUrl"
 (ended)="trackEnd()"
 (play)="trackPlay()"
 (canplay)="play()"
 (loadstart)="loadstart()"
 (timeupdate)="timeupdate($event)"></audio>
-
+-->

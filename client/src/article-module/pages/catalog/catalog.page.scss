@@ -1,65 +1,38 @@
 @import 'src/styles/variables';
-.content-wrapper {
-  display: flex;
-  min-height: 50em;
-  margin: 1em 0;
-  .main {
-    box-shadow: $box-shadow;
-    background: $blocks-color-bg;
-    width: calc(100% - 1em - 300px);
-    margin-right: 1em;
-    position: relative;
-    .spinner {
-      position: absolute;
-      height: 5px;
-      width: 100%;
-    }
-    .articles {
-      height: calc(100% - 15em);
-      padding: 1em 2em;
-      .empty {
-        font-family: $elements-text;
-        font-weight: bold;
-        font-size: 1.2em;
-        text-align: center;
-      }
-    }
-  }
-  .right {
-    width: 300px;
-    background: $blocks-color-bg;
-    box-shadow: $box-shadow;
+
+.spinner {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+}
+
+.articles {
+  height: calc(100% - 15em);
+  padding: 1em 2em;
+
+  .empty {
+    font-family: $elements-text;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
   }
 }
+
 /**
  * Extra small devices
-**/
+ **/
 @media (min-width: $min-exs) and (max-width: $max-exs) {
-  .content-wrapper {
-    margin: 0;
-    flex-direction: column;
-    .main {
-      width: 100%;
-      margin-right: 0;
-      .articles {
-        min-height: 500px;
-        padding: 1em;
-      }
-    }
+  .articles {
+    min-height: 500px;
+    padding: 1em;
   }
 }
+
 /**
  * Small devices
-**/
+ **/
 @media (min-width: $min-sm) and (max-width: $max-sm) {
-  .content-wrapper {
-    flex-direction: column;
-    .main {
-      width: 100%;
-      margin-right: 0;
-      .articles {
-        min-height: 500px;
-      }
-    }
+  .articles {
+    min-height: 500px;
   }
 }

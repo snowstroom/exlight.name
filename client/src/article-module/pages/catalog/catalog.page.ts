@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ITEMS_ON_PAGE_ART } from '../../../app/consts/ItemsOnPage.const';
-import { CategoriesItem } from '@app/classes/categories';
+import { CategoriesItem } from '@article-module/models/categories';
 import { Article } from 'article-module/models/article';
 import { numberParam } from '@core/functions/number-param';
 import { ApplicationService } from '@app/services/app.service';

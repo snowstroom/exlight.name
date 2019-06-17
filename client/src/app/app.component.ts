@@ -11,7 +11,7 @@ import { ApplicationService } from './services/app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('htmlPlayer') public  htmlPlayer: ElementRef<HTMLAudioElement>;
+  // @ViewChild('htmlPlayer') public  htmlPlayer: ElementRef<HTMLAudioElement>;
   public track: IMediaItem;
   public isPlay: boolean;
   public canPlay: boolean;
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    /*
     this.musicStateSrv.$playingTrack.subscribe(track => this.track = track);
     this.musicStateSrv.$volume.subscribe(volume => this.htmlPlayer.nativeElement.volume = volume);
     this.musicStateSrv.$intTime.subscribe(currentTime => this.htmlPlayer.nativeElement.currentTime = currentTime);
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
       if (!play) {
         this.htmlPlayer.nativeElement.pause();
       }
-    });
+    });*/
   }
 
   public hideSideNav(): void {
@@ -58,11 +59,12 @@ export class AppComponent implements OnInit {
   }
 
   public play(): void {
+    /*
     this.canPlay = true;
     this.musicStateSrv.setDuration(this.htmlPlayer.nativeElement.duration);
     if (this.isPlay) {
       this.htmlPlayer.nativeElement.play();
-    }
+    }*/
   }
 
   public loadstart(): void {

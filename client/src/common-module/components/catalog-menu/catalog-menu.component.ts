@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CategoriesItem } from '@app/classes/categories';
+import { CategoriesItem } from '@article-module/models/categories';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

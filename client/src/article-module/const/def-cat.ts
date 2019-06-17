@@ -1,4 +1,4 @@
-import { ICategoriesItem } from '@app/classes/categories';
+import { ICategoriesItem } from '@article-module/models/categories';
 
 export const DEF_CAT: ICategoriesItem = {
     id: undefined,
