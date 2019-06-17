@@ -26,7 +26,8 @@ export class ArticleService extends Api {
   public async getArticles(pagination: PaginationParams, catId?: number): Promise<Article[]> {
     try {
       const params = pagination.getUrlString();
-      const answ: IPaginationContent<IArticle> = await this.get(`article/list${params}&category_id=${catId}`);
+      const catParams = catId ? `&category_id=${catId}` : '';
+      const answ: IPaginationContent<IArticle> = await this.get(`article/list${params}${catParams}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
     } catch (err) {
@@ -39,7 +40,7 @@ export class ArticleService extends Api {
       const answ: IArticle = await this.get(`article/item/${id}`);
       return new Article(answ);
     } catch (err) {
-      return null;
+      return new Article();
     }
   }
 
@@ -48,7 +49,7 @@ export class ArticleService extends Api {
       const answ: IArticle = await this.get(`article/item?route=${route}`);
       return new Article(answ);
     } catch (err) {
-      return null;
+      return new Article();
     }
   }
 

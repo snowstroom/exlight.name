@@ -32,5 +32,5 @@ export class Article implements IArticle {
     public rating: number = this.__data.rating;
     public isAppreciated: boolean = this.__data.isAppreciated;
 
-    constructor(private __data: IArticle) {}
+    constructor(private __data: Partial<IArticle> = {}) {}
 }
