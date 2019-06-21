@@ -2,14 +2,16 @@ import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { environment } from 'environments/environment';
 import { StorageService } from '@core/services/storage.service';
+import { EnviromentService } from './envirement.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends Api {
     constructor(
         injector: Injector,
+        envSrv: EnviromentService,
         private storageSrv: StorageService
     ) {
-        super(injector, environment.domain);
+        super(injector, envSrv.API_DOMAIN);
     }
 
     public async auth(email: string, password: string): Promise<void> {
@@ -20,4 +22,5 @@ export class AuthService extends Api {
 
         }
     }
+
 }

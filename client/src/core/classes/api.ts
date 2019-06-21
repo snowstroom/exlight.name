@@ -57,8 +57,8 @@ export abstract class Api {
     /**
      * Отправляет GET запрос на сервер
      */
-    protected async get(suffix: string, headers?: HttpHeaders, binary?: boolean): Promise<any> {
-        return this.httpClient.get(this.getUrl(suffix), {
+    protected async get<T>(suffix: string, headers?: HttpHeaders, binary?: boolean): Promise<T> {
+        return this.httpClient.get<T>(this.getUrl(suffix), {
                 headers: headers,
                 responseType: binary ? 'arraybuffer' as 'json' : 'json' as 'json'
         } /* TODO: Angular, what is it ??? */ ).toPromise();

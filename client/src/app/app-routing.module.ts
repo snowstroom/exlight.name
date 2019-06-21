@@ -41,7 +41,8 @@ const routes: IExlightRoute[] = [{
     data: {
       showAside: false
     }
-  },/* {
+  }]
+},/* {
     path: 'settings'
   }, {
     path: 'articles',

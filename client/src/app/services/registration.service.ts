@@ -1,12 +1,15 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { environment } from 'environments/environment';
+import { EnviromentService } from './envirement.service';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService extends Api {
 
-    constructor(injector: Injector) {
-        super(injector, environment.domain);
+    constructor(
+        injector: Injector,
+        envSrv: EnviromentService
+    ) {
+        super(injector, envSrv.API_DOMAIN);
     }
 
     public async registration(email: string, password: string): Promise<void> {

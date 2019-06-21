@@ -13,7 +13,6 @@ const EXS_DECORATOR_WIDTH = 38;
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent {
-  public leftDec = 1;
   public carouselItems: CarouselItem[];
   public currentSlide: CarouselItem;
   private timer: any;
@@ -24,10 +23,7 @@ export class SliderComponent {
     private domSanitizer: DomSanitizer,
     private envSrv: EnviromentService
   ) {
-    this.envSrv.$screenType.subscribe(type => {
-      this.screenType = type;
-      this.calcDecorator();
-    });
+    this.envSrv.$screenType.subscribe(type => this.screenType = type);
     this.autoNext();
   }
 
@@ -50,7 +46,6 @@ export class SliderComponent {
       this.currentIndex++;
       this.currentSlide = this.carouselItems[this.currentIndex];
     }
-    this.calcDecorator();
     clearInterval(this.timer);
     this.autoNext();
   }
@@ -63,7 +58,6 @@ export class SliderComponent {
       this.currentIndex--;
       this.currentSlide = this.carouselItems[this.currentIndex];
     }
-    this.calcDecorator();
     clearInterval(this.timer);
     this.autoNext();
   }
@@ -72,16 +66,10 @@ export class SliderComponent {
     this.currentIndex = index;
     this.currentSlide = this.carouselItems[index];
     clearInterval(this.timer);
-    this.calcDecorator();
     this.autoNext();
   }
 
   private autoNext(): void {
     this.timer = setInterval(() => this.nextSlide(), TIME);
-  }
-
-  private calcDecorator(): void {
-    const DEC_WIDTH = this.screenType < 1 ? EXS_DECORATOR_WIDTH : DECORATOR_WIDTH;
-    this.leftDec = (this.currentIndex * DEC_WIDTH) || 1;
   }
 }

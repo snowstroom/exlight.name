@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  domain: 'http://192.168.1.200:3000/api'
+  apiDomain: 'http://192.168.1.200:3000/api',
+  domain: '192.168.1.200:3000'
 };
 
 /*

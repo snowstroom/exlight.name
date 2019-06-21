@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import * as Platform from 'platform';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { E_SCREEN_TYPE } from '@app/enums/screen-type';
+import { environment } from 'environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class EnviromentService {
-    public readonly DOMAIN = 'exlight.name';
+    public readonly API_DOMAIN = environment.apiDomain;
+    public readonly DOMAIN = environment.domain;
     public readonly PLATFORM = Platform.parse(navigator.userAgent);
     private screenType = new BehaviorSubject<E_SCREEN_TYPE>(this.initMediaListen());
 

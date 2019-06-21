@@ -5,6 +5,7 @@ import { DEF_CAT } from '@article-module/const/def-cat';
 import { CAT_ROUTE_TEMPLATE } from '@article-module/const/urls';
 import { CategoriesItem, ICategoriesItem } from '@article-module/models/categories';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { EnviromentService } from '@app/services/envirement.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +16,11 @@ export class CategoriesService extends Api {
     private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
     private categories: CategoriesItem[] = [];
 
-    constructor(injector: Injector) {
-        super(injector, environment.domain);
+    constructor(
+        injector: Injector,
+        envSrv: EnviromentService
+    ) {
+        super(injector, envSrv.API_DOMAIN);
     }
 
     get $categories(): Observable<CategoriesItem[]> {
@@ -25,7 +29,7 @@ export class CategoriesService extends Api {
 
     public async getCategories(): Promise<CategoriesItem[]> {
         try {
-            const answ: ICategoriesItem[] = await this.get('category/all');
+            const answ: ICategoriesItem[] = await this.get <ICategoriesItem[]>('category/all');
             return answ.map(item => new CategoriesItem(item, CAT_ROUTE_TEMPLATE));
         } catch (err) {
             return [];

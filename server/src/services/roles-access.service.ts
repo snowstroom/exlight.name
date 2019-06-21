@@ -40,7 +40,7 @@ export class RolesAccesService {
 
     public isAllow(entity: E_ENTITY_TYPES, access: number, roleId: number): boolean {
         const role = this.rolesByIdMap.get(roleId);
-        const result = role.access.find(acc => acc.entity === entity &&  acc.access >= access);
+        const result = role.access.find(acc => acc.entity === entity && acc.access >= access);
         return !!result;
     }
 
