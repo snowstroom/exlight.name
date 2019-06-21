@@ -14,25 +14,25 @@ import { ArticleItemComponent } from './components/article-item/article-item.com
 import { INIT_CATEGORIES } from './services/providers/init.provider';
 
 @NgModule({
-    imports: [
-        ExlightCommonModule,
-        CommonModule,
-        BrowserModule,
-        RouterModule,
-        MarkdownModule.forRoot({ markedOptions: MARKDOWN_PROVIDER }),
-    ],
-    declarations: [
-        ArticlePage,
-        CatalogPage,
-        ArticleItemComponent
-    ],
-    providers: [
-        INIT_CATEGORIES
-    ],
-    exports: [
-        ArticlePage,
-        CatalogPage,
-        ArticleItemComponent
-    ]
+  imports: [
+    ExlightCommonModule,
+    CommonModule,
+    BrowserModule,
+    RouterModule,
+    MarkdownModule.forRoot({ markedOptions: MARKDOWN_PROVIDER }),
+  ],
+  declarations: [
+    ArticlePage,
+    CatalogPage,
+    ArticleItemComponent
+  ],
+  providers: [
+    INIT_CATEGORIES
+  ],
+  exports: [
+    ArticlePage,
+    CatalogPage,
+    ArticleItemComponent
+  ]
 })
 export class ExlightArticleModule { }
