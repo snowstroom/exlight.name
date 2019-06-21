@@ -7,7 +7,7 @@ import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { ProfilePageComponent } from './pages/profile/profile.page';
-import { GuardService } from './guards/guard.service';
+import { GuardService } from './services/guards/guard.service';
 import { ARTICLE_ROUTES } from '@article-module/routes';
 import { IExlightRoute } from './interfaces/exlight-router';
 
@@ -34,11 +34,34 @@ const routes: IExlightRoute[] = [{
   }
 }, {
   path: 'profile',
-  component: ProfilePageComponent,
-  canActivate: [GuardService],
-  data: {
-    showAside: true
-  }
+  children: [{
+    path: '',
+    component: ProfilePageComponent,
+    canActivate: [GuardService],
+    data: {
+      showAside: false
+    }
+  }, {
+    path: 'settings'
+  }, {
+    path: 'articles',
+    children: [{
+      path: 'create'
+    }, {
+      path: 'statistic'
+    }]
+  }, {
+    path: 'roles',
+    children: [{
+      path: ''
+    }, {
+      path: 'create'
+    }]
+  }, {
+    path: 'categories'
+  }, {
+
+  }]
 }, {
   path: 'authorization',
   children: [{
