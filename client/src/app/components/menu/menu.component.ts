@@ -13,7 +13,7 @@ import { faBars } from '@fortawesome/fontawesome-free-solid';
 export class MenuComponent {
   public readonly MENU_ICO = faBars;
   public readonly menuItems = MENU_ITEMS;
-  public leftDec: number;
+  public active: number;
 
   constructor(
     private activatedRoute: Router,
@@ -24,8 +24,8 @@ export class MenuComponent {
         const urlParts = e.url.split('/');
         this.menuItems.forEach((item, i) => {
           if (item.route[0] === urlParts[1]) {
+            this.active = i;
             item.active = true;
-            this.leftDec = 85 * i || 1;
           }
         });
       });

@@ -41,7 +41,7 @@ const routes: IExlightRoute[] = [{
     data: {
       showAside: false
     }
-  }, {
+  },/* {
     path: 'settings'
   }, {
     path: 'articles',
@@ -62,7 +62,7 @@ const routes: IExlightRoute[] = [{
   }, {
 
   }]
-}, {
+},*/ {
   path: 'authorization',
   children: [{
     path: '',

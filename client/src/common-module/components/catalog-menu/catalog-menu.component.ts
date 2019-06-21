@@ -13,8 +13,7 @@ export class CatalogMenuComponent {
   @Input() public catalogName: string;
   @Input() public currentpage: number;
 
-  public leftDec = 1;
-  public widthDec: number;
+  public active: number;
 
   constructor(
     private router: Router,
@@ -30,17 +29,6 @@ export class CatalogMenuComponent {
   }
 
   public calcDecorator(category: string): void {
-    let isFind = false;
-    let offsetLeft = 0;
-    this.categoriesItems.forEach((item, i) => {
-      if (category === item.route) {
-        this.widthDec = item.itemWidth;
-        isFind = true;
-      }
-      if (!isFind) {
-        offsetLeft += item.itemWidth;
-      }
-    });
-    this.leftDec = offsetLeft;
+    this.active = this.categoriesItems.findIndex(item => category === item.route);
   }
 }

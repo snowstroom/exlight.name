@@ -4,13 +4,13 @@
       [routerLink]="prevPageItem.url"
       (click)="prevPage()">Назад</a>
     <div class="numbers-wrapper">
-      <div class="item-decorator"
-        [style.left.px]="leftDec"></div>
-      <a class="pagination-item"
-        [routerLink]="item.url"
-        [ngClass]="{'active': item.orderNumber === activePage}"
-        *ngFor="let item of items"
-        (click)="toPage(item.orderNumber)">{{item.orderNumber}}</a>
+      <ex-button-decorator [activeIndex]="active">
+        <a class="pagination-item"
+          [routerLink]="item.url"
+          [ngClass]="{'active': item.orderNumber === activePage}"
+          *ngFor="let item of items"
+          (click)="toPage(item.orderNumber)">{{item.orderNumber}}</a>
+      </ex-button-decorator>
     </div>
     <a class="pagination-item" rel="next"
       [routerLink]="nextPageItem.url"

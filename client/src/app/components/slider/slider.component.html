@@ -14,10 +14,11 @@
     <div class="controls-wrapper">
       <div role="button" class="controll" (click)="prevSlide()">Назад</div>
       <div class="item-wrapper">
-        <div class="item-decorator" *ngIf="leftDec" [style.left.px]="leftDec"></div>
-        <div class="number-controll" *ngFor="let slide of carouselItems; let i = index" 
-          (click)="showSlide(i)" role="button">{{i + 1}}
-        </div>
+        <ex-button-decorator [activeIndex]="currentIndex">
+          <div class="number-controll" *ngFor="let slide of carouselItems; let i = index"
+            (click)="showSlide(i)" role="button">{{i + 1}}
+          </div>
+        </ex-button-decorator>
       </div>
       <div role="button" class="controll" (click)="nextSlide()">Далее</div>
     </div>

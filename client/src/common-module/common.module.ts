@@ -10,13 +10,15 @@ import { RatingComponent } from './components/rating/rating.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
+import { ExlightCoreModule } from '@core/core.module';
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserModule,
         FontAwesomeModule,
-        RouterModule
+        RouterModule,
+        ExlightCoreModule
     ],
     declarations: [
         LineSpinnerComponent,

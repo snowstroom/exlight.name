@@ -6,8 +6,6 @@ import { takeUntil } from 'rxjs/operators';
 import { PaginationItem } from '@app/classes/pagintaion-item';
 import { LinkService } from '@core/services/link-service.service';
 
-const ELEMENT_WIDTH = 52;
-
 @Component({
   selector: 'ex-pagination',
   templateUrl: './pagination.component.html',
@@ -18,11 +16,11 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public activePage: number;
   public itemsCount: number;
   public items: PaginationItem[] = [];
-  public leftDec: number;
   public template: string;
   public pageCount: number;
   public prevPageItem = new PaginationItem(this.template, 1);
   public nextPageItem = new PaginationItem(this.template, 1);
+  public active: number;
   private subscriber = new Subject();
 
   constructor(
@@ -30,10 +28,7 @@ export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
     private linkSrv: LinkService
   ) {
     this.actRouter.params.pipe(takeUntil(this.subscriber))
-      .subscribe(params => {
-        const page = numberParam(params.page);
-        this.leftDec = page * ELEMENT_WIDTH - ELEMENT_WIDTH;
-      });
+      .subscribe(params => this.active = numberParam(params.page) - 1);
     this.actRouter.url.pipe(takeUntil(this.subscriber))
       .subscribe(url => {
         this.template = url.map(s => s.path)

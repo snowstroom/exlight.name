@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExlightArticleModule } from '@article-module/article.module';
-import { CoreModule } from '@core/core.module';
+import { ExlightCoreModule } from '@core/core.module';
 import { ExlightCommonModule } from 'common-module/common.module';
 
 // PROVIDERS
@@ -57,7 +57,7 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
     NgxJsonLdModule,
     ReactiveFormsModule,
     ExlightArticleModule,
-    CoreModule,
+    ExlightCoreModule,
     ExlightCommonModule,
   ],
   providers: [

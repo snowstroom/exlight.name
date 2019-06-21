@@ -3,11 +3,12 @@
     <a routerLink="/" class="menu-item name">eXlight</a>
   </div>
   <div class="items-wrapper">
-    <div class="item-decorator" *ngIf="leftDec" [style.left.px]="leftDec"></div>
-    <a *ngFor="let item of menuItems; let i = index" 
-      [routerLink]="item.route" role="link"
-      class="menu-item"
-      [rel]="item.rel">{{item.name}}</a>
+    <ex-button-decorator [activeIndex]="active">
+      <a *ngFor="let item of menuItems"
+        [routerLink]="item.route" role="link"
+        class="menu-item"
+        [rel]="item.rel || ''">{{item.name}}</a>
+    </ex-button-decorator>
   </div>
   <div class="gamburger" (click)="openMobileMenu($event)">
     <fa-icon [icon]="MENU_ICO" class="icon"></fa-icon>
