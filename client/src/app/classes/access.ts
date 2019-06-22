@@ -1,15 +1,10 @@
-export interface IAccess {
-    id?: number;
-    roleId: number;
-    entity: string;
-    access: number;
-}
+import { AccessNamespace } from '@share/access.namespace';
 
-export class Access implements IAccess {
+export class Access implements AccessNamespace.IAccess {
     public id = this.__data.id;
     public roleId = this.__data.roleId;
     public entity = this.__data.entity;
     public access = this.__data.access;
 
-    constructor(private __data: IAccess) { }
+    constructor(private __data: AccessNamespace.IAccess) { }
 }

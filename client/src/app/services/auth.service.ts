@@ -1,6 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { environment } from 'environments/environment';
 import { StorageService } from '@core/services/storage.service';
 import { EnviromentService } from './envirement.service';
 

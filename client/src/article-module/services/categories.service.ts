@@ -1,6 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { environment } from 'environments/environment';
 import { DEF_CAT } from '@article-module/const/def-cat';
 import { CAT_ROUTE_TEMPLATE } from '@article-module/const/urls';
 import { CategoriesItem, ICategoriesItem } from '@article-module/models/categories';

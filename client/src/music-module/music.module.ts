@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 // MODULES
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { ExlightCommonModule } from 'common-module/common.module';
+import { ExlightCommonModule } from '@common-module/common.module';
 // COMPONENTS
 import { MusicPage } from './pages/music/music.page';
 import { AudioPlayerComponent } from './components/audio-player/audio-player.component';

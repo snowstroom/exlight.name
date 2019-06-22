@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticleService } from 'article-module/services/article.service';
-import { Article } from 'article-module/models/article';
+import { ArticleService } from '@article-module/services/article.service';
+import { Article } from '@article-module/models/article';
 import { ApplicationService } from '@app/services/app.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

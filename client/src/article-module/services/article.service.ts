@@ -1,11 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
-import { Api, PaginationParams } from 'core/classes';
+import { Api, PaginationParams } from '@core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'environments/environment';
-import { Article, IArticle } from 'article-module/models/article';
+import { Article, IArticle } from '@article-module/models/article';
 import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
-import { IPaginationContent } from '@app/interfaces/pagination-content';
 import { EnviromentService } from '@app/services/envirement.service';
+import { ApiNamespace as API } from '@share/';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,7 @@ export class ArticleService extends Api {
     try {
       const params = pagination.getUrlString();
       const catParams = catId ? `&category_id=${catId}` : '';
-      const answ: IPaginationContent<IArticle> = await this.get <IPaginationContent<IArticle>>(`article/list${params}${catParams}`);
+      const answ: API.IPaginationContent<IArticle> = await this.get<API.IPaginationContent<IArticle>>(`article/list${params}${catParams}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
     } catch (err) {

@@ -1,14 +1,15 @@
 import { Connection, Repository } from 'typeorm';
-import { Atricle, IArticle } from 'src/models/article.model';
-import { Category, ICategory } from 'src/models/category.model';
+import { Atricle } from 'src/models/article.model';
+import { Category } from 'src/models/category.model';
+import { ArticleNamespace } from '@share/';
 
-const category: ICategory = {
+const category: ArticleNamespace.ICategory = {
     name: 'Test',
     description: 'This is test category',
     route: 'test',
 };
 
-const article: Partial<IArticle> = {
+const article: Partial<ArticleNamespace.IArticle> = {
     categoryId: 1,
     description: 'This is article create for test',
     route: 'test-article',

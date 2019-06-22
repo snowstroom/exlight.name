@@ -1,15 +1,18 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@app/*": ["app/*"],
-      "@core/*": ["core/*"],
-      "@article-module/*": ["article-module/*"],
-      "@music-module/*": ["music-module/*"],
-      "@photo-module/*": ["photo-module/*"],
-      "@video-module/*": ["video-module/*"]
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/core/*"],
+      "@share/*": ["../share"],
+      "@common-module/*": ["src/common-module/*"],
+      "@article-module/*": ["src/article-module/*"],
+      "@music-module/*": ["src/music-module/*"],
+      "@photo-module/*": ["src/photo-module/*"],
+      "@video-module/*": ["src/video-module/*"],
+      "@env/*": ["src/environments/*"]
     },
     "sourceMap": true,
     "declaration": false,

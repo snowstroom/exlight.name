@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as Platform from 'platform';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { E_SCREEN_TYPE } from '@app/enums/screen-type';
-import { environment } from 'environments/environment';
+import { environment } from '@env/environment';
 
 @Injectable({
     providedIn: 'root'

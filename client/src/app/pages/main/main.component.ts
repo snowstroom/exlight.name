@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { ArticleService } from 'article-module/services/article.service';
+import { ArticleService } from '@article-module/services/article.service';
 import { CarouselItem } from '@app/classes/carousel-item';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { EnviromentService } from './envirement.service';
-import { IRole, Role } from '@app/classes/role';
-import { IAccess } from '@app/classes/access';
+import { Role } from '@app/classes/role';
+import { AccessNamespace } from '@share/access.namespace';
 
 @Injectable({ providedIn: 'root' })
 export class RolesAccessService extends Api {
@@ -16,7 +16,7 @@ export class RolesAccessService extends Api {
         this.init();
     }
 
-    public isAllow(entity: any /*E_ENTITY_TYPES*/, access: number, roleId: number): boolean {
+    public isAllow(entity: AccessNamespace.E_ENTITY_TYPES, access: number, roleId: number): boolean {
         const role = this.rolesByIdMap.get(roleId);
         const result = role.access.find(acc => acc.entity === entity && acc.access >= access);
         return !!result;
@@ -24,14 +24,14 @@ export class RolesAccessService extends Api {
 
     public async getRoles(): Promise<Role[]> {
         try {
-            const roles = await this.get<IRole[]>('role/list');
+            const roles = await this.get<AccessNamespace.IRole[]>('role/list');
             return roles.map(r => new Role(r));
         } catch {
             return [];
         }
     }
 
-    public async addRole(role: IRole): Promise<boolean> {
+    public async addRole(role: AccessNamespace.IRole): Promise<boolean> {
         try {
             await this.post('role', role);
             return true;
@@ -40,7 +40,7 @@ export class RolesAccessService extends Api {
         }
     }
 
-    public async updateRole(role: IRole): Promise<boolean> {
+    public async updateRole(role: AccessNamespace.IRole): Promise<boolean> {
         try {
             await this.put(`role/${role.id}`, role);
             return true;
@@ -58,7 +58,7 @@ export class RolesAccessService extends Api {
         }
     }
 
-    public async addAccess(access: IAccess): Promise<boolean> {
+    public async addAccess(access: AccessNamespace.IAccess): Promise<boolean> {
         try {
             await this.post('access', access);
             return true;
@@ -67,7 +67,7 @@ export class RolesAccessService extends Api {
         }
     }
 
-    public async updateAccess(access: IAccess): Promise<boolean> {
+    public async updateAccess(access: AccessNamespace.IAccess): Promise<boolean> {
         try {
             await this.put(`access/${access.id}`, access);
             return true;
