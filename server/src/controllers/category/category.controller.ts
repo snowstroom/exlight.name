@@ -1,16 +1,16 @@
-import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus, UseGuards, SetMetadata } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, HttpException, Body, HttpStatus, UseGuards, SetMetadata } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Category } from '../../models/category.model';
-import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
 import { ArticleNamespace, AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/category' })
 @UseGuards(AuthGuardService)
 export class CategoryController {
     constructor(
-        @Inject(CATEGORY) private categoryRep: Repository<Category>,
+        @InjectRepository(Category) private categoryRep: Repository<Category>,
     ) { }
 
     @Get('/:id')

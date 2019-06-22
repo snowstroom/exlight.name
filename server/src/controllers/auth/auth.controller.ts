@@ -1,8 +1,7 @@
-import { Controller, Post, Body, Inject, HttpException, HttpStatus, HttpCode, Get, Param, Req, Query } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, HttpStatus, HttpCode, Get, Param, Query } from '@nestjs/common';
 import { User } from 'server/src/models/user.model';
 import { Repository } from 'typeorm';
 import { MD5 } from 'crypto-js';
-import { USER, ACCESS } from '../../consts/provider-names';
 import { ExError } from 'server/src/classes/err';
 import { AuthService } from 'server/src/services/auth.service';
 import { MailerService } from 'server/src/services/mailer.service';
@@ -10,12 +9,13 @@ import { RolesAccesService } from 'server/src/services/roles-access.service';
 import { AES, enc } from 'crypto-js';
 import { Access } from 'server/src/models/access.model';
 import { UserNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller('/api/auth')
 export class AuthController {
     constructor(
-        @Inject(USER) private userRep: Repository<User>,
-        @Inject(ACCESS) private accessRep: Repository<Access>,
+        @InjectRepository(User) private userRep: Repository<User>,
+        @InjectRepository(Access) private accessRep: Repository<Access>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
         private roleSrv: RolesAccesService,

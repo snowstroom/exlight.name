@@ -1,18 +1,18 @@
-import { Controller, Inject, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards } from '@nestjs/common';
-import { COMMENTARY } from 'server/src/consts/provider-names';
+import { Controller, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import { ICommentaryApiParams, ICommentaryApiListParams } from 'server/src/interfaces/commentary-api';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace, ArticleNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/commentary' })
 @UseGuards(AuthGuardService)
 export class CommentaryController {
 
     constructor(
-        @Inject(COMMENTARY) private commentaryRep: Repository<Commentary>,
+        @InjectRepository(Commentary) private commentaryRep: Repository<Commentary>,
     ) { }
 
     @Post('/item/article/:articleId')

@@ -1,9 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Role } from 'server/src/models/role.model';
-import { ROLE } from 'server/src/consts/provider-names';
 import { CONFIRMED_USER_ROLE_NAME } from 'server/src/consts/default-entity';
 import { AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class RolesAccesService {
     private roles: Role[];
@@ -11,7 +11,7 @@ export class RolesAccesService {
     private defaultRole: Role;
     private defaultConfirmRole: Role;
 
-    constructor(@Inject(ROLE) private readonly rolesRep: Repository<Role>) {
+    constructor(@InjectRepository(Role) private readonly rolesRep: Repository<Role>) {
         this.init();
     }
 

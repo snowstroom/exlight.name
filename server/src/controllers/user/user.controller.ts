@@ -1,15 +1,15 @@
-import { Controller, Inject, Put, Param, Body, HttpException, HttpStatus, Get, SetMetadata, UseGuards } from '@nestjs/common';
-import { USER } from '../../consts/provider-names';
+import { Controller, Put, Param, Body, HttpException, HttpStatus, Get, SetMetadata, UseGuards } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../../models/user.model';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace, UserNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/user' })
 @UseGuards(AuthGuardService)
 export class UserController {
-    constructor(@Inject(USER) private userRep: Repository<User>) { }
+    constructor(@InjectRepository(User) private userRep: Repository<User>) { }
 
     @Get('/:id')
     @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)

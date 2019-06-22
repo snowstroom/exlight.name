@@ -1,16 +1,16 @@
-import { Controller, Inject, Get, Param, Post, SetMetadata, UseGuards } from '@nestjs/common';
-import { RATING } from '../../consts/provider-names';
+import { Controller, Get, Param, Post, SetMetadata, UseGuards } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Rating } from '../../models/rating.model';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/rating' })
 @UseGuards(AuthGuardService)
 export class RatingController {
     constructor(
-        @Inject(RATING) private ratingRep: Repository<Rating>,
+        @InjectRepository(Rating) private ratingRep: Repository<Rating>,
     ) { }
 
     @Get('/avarage/article/:articleId')

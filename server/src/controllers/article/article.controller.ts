@@ -1,5 +1,4 @@
 import { Controller, Get, Inject, Param, HttpException, HttpStatus, Post, Delete, Body, Put, SetMetadata, UseGuards, Query } from '@nestjs/common';
-import { ARTICLE } from 'server/src/consts/provider-names';
 import { Repository } from 'typeorm';
 import { Atricle } from 'server/src/models/article.model';
 import { IArticleApiList, IItemApi } from 'server/src/interfaces/articles-api';
@@ -7,13 +6,14 @@ import { RolesAccesService } from 'server/src/services/roles-access.service';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { ApiNamespace, ArticleNamespace, AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/article' })
 @UseGuards(AuthGuardService)
 export class ArticleController {
 
     constructor(
-        @Inject(ARTICLE) private articleRep: Repository<Atricle>,
+        @InjectRepository(Atricle) private articleRep: Repository<Atricle>,
         private readonly accessSrv: RolesAccesService,
     ) { }
 

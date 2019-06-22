@@ -1,17 +1,17 @@
 import { Controller, Inject, Post, Body, HttpStatus, HttpException, Put, Param, Delete, SetMetadata, UseGuards } from '@nestjs/common';
-import { ACCESS } from 'server/src/consts/provider-names';
 import { Repository, ObjectLiteral, DeepPartial } from 'typeorm';
 import { Access } from 'server/src/models/access.model';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
 import { AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: '/api/access' })
 @UseGuards(AuthGuardService)
 export class AccessController {
 
     constructor(
-        @Inject(ACCESS) private accessRep: Repository<Access>,
+        @InjectRepository(Access) private accessRep: Repository<Access>,
     ) { }
 
     @Post()

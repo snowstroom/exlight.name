@@ -1,16 +1,16 @@
-import { Controller, Inject, Post, Body, Delete, HttpStatus, HttpException, Param, Put, SetMetadata, UseGuards, Get } from '@nestjs/common';
-import { ROLE } from 'server/src/consts/provider-names';
+import { Controller, Post, Body, Delete, HttpStatus, HttpException, Param, Put, SetMetadata, UseGuards, Get } from '@nestjs/common';
 import { Role } from 'server/src/models/role.model';
 import { Repository, ObjectLiteral, DeepPartial } from 'typeorm';
 import { META_ENTITY_KEY, META_ACCESS_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: '/api/role' })
 @UseGuards(AuthGuardService)
 export class RoleController {
     constructor(
-        @Inject(ROLE) private roleRep: Repository<Role>,
+        @InjectRepository(Role) private roleRep: Repository<Role>,
     ) { }
 
     @Get('/list')

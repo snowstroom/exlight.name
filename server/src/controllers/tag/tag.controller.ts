@@ -1,5 +1,4 @@
 import { Controller, Inject, Post, Body, HttpStatus, HttpException, Delete, Param, Get, SetMetadata, UseGuards } from '@nestjs/common';
-import { TAG } from '../../consts/provider-names';
 import { Repository, ObjectLiteral } from 'typeorm';
 import { Tag } from '../../models/tag.model';
 import { IApiList } from 'server/src/interfaces/base-api';
@@ -7,13 +6,14 @@ import { ICreateTagsApi } from 'server/src/interfaces/tag-api';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace } from 'share';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/tag' })
 @UseGuards(AuthGuardService)
 export class TagController {
 
     constructor(
-        @Inject(TAG) private tagRep: Repository<Tag>,
+        @InjectRepository(Tag) private tagRep: Repository<Tag>,
     ) { }
 
     @Post()
