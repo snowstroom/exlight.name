@@ -1,11 +1,10 @@
 import { Controller, Inject, Post, Body, HttpStatus, HttpException, Put, Param, Delete, SetMetadata, UseGuards } from '@nestjs/common';
-import { ACCESS } from 'src/consts/provider-names';
-import { Repository, ObjectLiteral } from 'typeorm';
-import { Access, IAccess } from 'src/models/access.model';
-import { AuthGuardService } from 'src/guards/auth.guard';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { CREATE, UPDATE, DELETE } from 'src/consts/access';
+import { ACCESS } from 'server/src/consts/provider-names';
+import { Repository, ObjectLiteral, DeepPartial } from 'typeorm';
+import { Access } from 'server/src/models/access.model';
+import { AuthGuardService } from 'server/src/guards/auth.guard';
+import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
+import { AccessNamespace } from 'share';
 
 @Controller({ path: '/api/access' })
 @UseGuards(AuthGuardService)
@@ -16,9 +15,9 @@ export class AccessController {
     ) { }
 
     @Post()
-    @SetMetadata(META_ACCESS_KEY, CREATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.access)
-    public async addAccess(@Body() access: Partial<IAccess>): Promise<ObjectLiteral> {
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.CREATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.access)
+    public async addAccess(@Body() access: DeepPartial<Access>): Promise<ObjectLiteral> {
         try {
             const accessInst = this.accessRep.create(access);
             const dbRes = await this.accessRep.insert(accessInst);
@@ -30,9 +29,9 @@ export class AccessController {
     }
 
     @Put('/:id')
-    @SetMetadata(META_ACCESS_KEY, UPDATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.access)
-    public async updateAccess(@Body() access: Partial<IAccess>, @Param() params: any) {
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.access)
+    public async updateAccess(@Body() access: DeepPartial<Access>, @Param() params: any) {
         try {
             await this.accessRep.update(params.id, access);
             return;
@@ -42,8 +41,8 @@ export class AccessController {
     }
 
     @Delete('/:id')
-    @SetMetadata(META_ACCESS_KEY, DELETE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.access)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.access)
     public async deleteAccess(@Param() params: any): Promise<void> {
         try {
             await this.accessRep.delete(params.id);

@@ -8,8 +8,8 @@ import { Role } from '../models/role.model';
 import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
 import { Atricle } from '../models/article.model';
-import { Access } from 'src/models/access.model';
-import { initTestData, initAccessDefRec } from 'src/tools';
+import { Access } from 'server/src/models/access.model';
+import { initTestData, initAccessDefRec } from 'server/src/tools';
 
 export const PgProvider: Provider = {
     provide: DB_CONECTION,

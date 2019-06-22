@@ -1,11 +1,10 @@
 import { Controller, Get, Post, Put, Delete, Param, Inject, HttpException, Body, HttpStatus, UseGuards, SetMetadata } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { ICategory, Category } from '../../models/category.model';
+import { Category } from '../../models/category.model';
 import { CATEGORY } from '../../consts/provider-names';
 import { AuthGuardService } from '../../guards/auth.guard';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { CREATE, READ, UPDATE, DELETE } from 'src/consts/access';
-import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
+import { ArticleNamespace, AccessNamespace } from 'share';
 
 @Controller({ path: 'api/category' })
 @UseGuards(AuthGuardService)
@@ -15,8 +14,8 @@ export class CategoryController {
     ) { }
 
     @Get('/:id')
-    @SetMetadata(META_ACCESS_KEY, READ)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.category)
     @SetMetadata(META_PUBLIC_KEY, true)
     public async getCategory(@Param() params: any) {
         try {
@@ -29,9 +28,9 @@ export class CategoryController {
     }
 
     @Post()
-    @SetMetadata(META_ACCESS_KEY, CREATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
-    public async createCategory(@Body() body: ICategory) {
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.CREATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.category)
+    public async createCategory(@Body() body: ArticleNamespace.ICategory) {
         try {
             const res = await this.categoryRep.insert(body);
             const [{ id }] = res.identifiers;
@@ -42,9 +41,9 @@ export class CategoryController {
     }
 
     @Put('/:id')
-    @SetMetadata(META_ACCESS_KEY, UPDATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
-    public async updateCategory(@Body() body: ICategory, @Param() params: any) {
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.category)
+    public async updateCategory(@Body() body: ArticleNamespace.ICategory, @Param() params: any) {
         try {
             await this.categoryRep.update({ id: params.id }, body);
             return;
@@ -54,8 +53,8 @@ export class CategoryController {
     }
 
     @Delete('/:id')
-    @SetMetadata(META_ACCESS_KEY, DELETE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.category)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.category)
     public async deleteCategory(@Param() params: any) {
         try {
             await this.categoryRep.delete({ id: params.id });

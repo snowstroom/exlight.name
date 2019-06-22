@@ -2,25 +2,12 @@ import { Entity, Column, OneToMany, ManyToMany, JoinTable, PrimaryGeneratedColum
 import { Category } from './category.model';
 import { Tag } from './tag.model';
 import { User } from './user.model';
+import { ArticleNamespace } from 'share';
 
-export const ARTICLE_ENTITY = 'articles';
+export const ARTICLE_TABLE_NAME = 'articles';
 
-export interface IArticle {
-    id?: number;
-    title: string;
-    publicationDate?: string | Date;
-    description: string;
-    content: string;
-    views: number;
-    categoryId: number;
-    author: number;
-    route: string;
-    // rating: number;
-    // isAppreciated: boolean;
-}
-
-@Entity({ name: ARTICLE_ENTITY })
-export class Atricle implements IArticle {
+@Entity({ name: ARTICLE_TABLE_NAME })
+export class Atricle implements ArticleNamespace.IArticle {
     @PrimaryGeneratedColumn() public id: number;
     @Column() public title: string;
     @Column({ type: 'date', default: new Date() }) public publicationDate: Date;

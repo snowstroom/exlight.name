@@ -1,18 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from './user.model';
+import { ArticleNamespace } from 'share';
 
 export const ARTICLE_COMMENTS_ENTITY = 'article_comments';
 
-export interface ICommentary {
-    id?: number;
-    articleId: number;
-    comment: string;
-    commentId: number;
-    createDate: string | Date;
-    updateDate: string | Date;
-}
 @Entity({ name: ARTICLE_COMMENTS_ENTITY })
-export class Commentary implements ICommentary {
+export class Commentary implements ArticleNamespace.ICommentary {
     @PrimaryGeneratedColumn() public id: number;
 
     @Column() public articleId: number;

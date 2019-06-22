@@ -1,10 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Role } from 'src/models/role.model';
-import { ROLE } from 'src/consts/provider-names';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { CONFIRMED_USER_ROLE_NAME } from 'src/consts/default-entity';
-
+import { Role } from 'server/src/models/role.model';
+import { ROLE } from 'server/src/consts/provider-names';
+import { CONFIRMED_USER_ROLE_NAME } from 'server/src/consts/default-entity';
+import { AccessNamespace } from 'share';
 @Injectable()
 export class RolesAccesService {
     private roles: Role[];
@@ -38,7 +37,7 @@ export class RolesAccesService {
         });
     }
 
-    public isAllow(entity: E_ENTITY_TYPES, access: number, roleId: number): boolean {
+    public isAllow(entity: AccessNamespace.E_ENTITY_TYPES, access: number, roleId: number): boolean {
         const role = this.rolesByIdMap.get(roleId);
         const result = role.access.find(acc => acc.entity === entity && acc.access >= access);
         return !!result;

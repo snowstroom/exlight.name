@@ -1,14 +1,7 @@
-import { IUser, USER_ENTITY } from 'src/models/user.model';
 import { MD5 } from 'crypto-js';
-import { IAccess, ACCESS_ENTITY } from 'src/models/access.model';
-import { IRole, ROLES_ENTITY } from 'src/models/role.model';
-import { RATING_ENTITY } from 'src/models/rating.model';
-import { CATEGORY_ENTITY } from 'src/models/category.model';
-import { TAG_ENTITY } from 'src/models/tag.model';
-import { ARTICLE_ENTITY } from 'src/models/article.model';
-import { ARTICLE_COMMENTS_ENTITY } from 'src/models/commentary.model';
+import { AccessNamespace, UserNamespace } from 'share';
 
-export const ADMIN_USER: Partial<IUser> = {
+export const ADMIN_USER: Partial<UserNamespace.IUser> = {
     email: 'admin@xlight.name',
     password: MD5(process.env.APP_ADMIN_PASSWORD).toString(),
     firstname: 'Admin',
@@ -19,17 +12,17 @@ export const ADMIN_ROLE_NAME = 'ADMIN';
 export const USER_ROLE_NAME = 'USER';
 export const CONFIRMED_USER_ROLE_NAME = 'CONFIRMED_USER';
 
-export const ADMIN_ROLE: IRole = {
+export const ADMIN_ROLE: AccessNamespace.IRole = {
     name: ADMIN_ROLE_NAME,
     description: 'Administrator of resourcse',
 };
 
-export const USER_ROLE: IRole = {
+export const USER_ROLE: AccessNamespace.IRole = {
     name: USER_ROLE_NAME,
     description: 'Common user of resource',
 };
 
-export const CONFIRMED_USER_ROLE: IRole = {
+export const CONFIRMED_USER_ROLE: AccessNamespace.IRole = {
     name: CONFIRMED_USER_ROLE_NAME,
     description: 'User with confirmed email',
 };
@@ -40,28 +33,28 @@ const ALLOW_ALL = 0b11111;
 /**
  * Allow all access for entities
  */
-export const ALLOW_ALL_ACCESS: Array<Partial<IAccess>> = [{
-    entity: ACCESS_ENTITY,
+export const ALLOW_ALL_ACCESS: Array<Partial<AccessNamespace.IAccess>> = [{
+    entity: AccessNamespace.E_ENTITY_TYPES.access,
     access: ALLOW_ALL,
 }, {
-    entity: ARTICLE_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.article,
     access: ALLOW_ALL,
 }, {
-    entity: CATEGORY_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.category,
     access: ALLOW_ALL,
 }, {
-    entity: ARTICLE_COMMENTS_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.commentary,
     access: ALLOW_ALL,
 }, {
-    entity: RATING_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.rating,
     access: ALLOW_ALL,
 }, {
-    entity: ROLES_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.role,
     access: ALLOW_ALL,
 }, {
-    entity: TAG_ENTITY,
+        entity: AccessNamespace.E_ENTITY_TYPES.tag,
     access: ALLOW_ALL,
 }, {
-    entity: USER_ENTITY,
+    entity: AccessNamespace.E_ENTITY_TYPES.user,
     access: ALLOW_ALL,
 }];

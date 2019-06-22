@@ -1,12 +1,11 @@
 import { Controller, Inject, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards } from '@nestjs/common';
-import { COMMENTARY } from 'src/consts/provider-names';
+import { COMMENTARY } from 'server/src/consts/provider-names';
 import { Repository } from 'typeorm';
-import { Commentary, ICommentary } from 'src/models/commentary.model';
-import { ICommentaryApiParams, ICommentaryApiListParams } from 'src/interfaces/commentary-api';
-import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
-import { READ, CREATE, UPDATE, DELETE } from 'src/consts/access';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { AuthGuardService } from 'src/guards/auth.guard';
+import { Commentary } from 'server/src/models/commentary.model';
+import { ICommentaryApiParams, ICommentaryApiListParams } from 'server/src/interfaces/commentary-api';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
+import { AuthGuardService } from 'server/src/guards/auth.guard';
+import { AccessNamespace, ArticleNamespace } from 'share';
 
 @Controller({ path: 'api/commentary' })
 @UseGuards(AuthGuardService)
@@ -17,10 +16,10 @@ export class CommentaryController {
     ) { }
 
     @Post('/item/article/:articleId')
-    @SetMetadata(META_ACCESS_KEY, CREATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.commentary)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.CREATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async addCommentary(
-        @Body() comment: Partial<ICommentary>,
+        @Body() comment: Partial<ArticleNamespace.ICommentary>,
         @Param() params: ICommentaryApiParams,
     ): Promise<number> {
         try {
@@ -35,11 +34,11 @@ export class CommentaryController {
     }
 
     @Put('/:id/article')
-    @SetMetadata(META_ACCESS_KEY, UPDATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.commentary)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async updateCommentarty(
         @Param() params: ICommentaryApiParams,
-        @Body() comment: Partial<ICommentary>,
+        @Body() comment: Partial<ArticleNamespace.ICommentary>,
     ): Promise<void> {
         try {
             const dbRes = await this.commentaryRep.update(params.id, comment);
@@ -49,8 +48,8 @@ export class CommentaryController {
     }
 
     @Delete('/:id/article')
-    @SetMetadata(META_ACCESS_KEY, DELETE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.commentary)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async deleteCommentary(@Param() params: ICommentaryApiParams): Promise<void> {
         // I realy want delete comments?
         // Delete if admin, mark as ddelete for users.
@@ -62,12 +61,12 @@ export class CommentaryController {
     }
 
     @Get('/list/article/:articleId')
-    @SetMetadata(META_ACCESS_KEY, READ)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.commentary)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     @SetMetadata(META_PUBLIC_KEY, true)
     public async commentaryList(
         @Param() params: ICommentaryApiListParams,
-    ): Promise<ICommentary[]> {
+    ): Promise<ArticleNamespace.ICommentary[]> {
         try {
             const dbRes = this.commentaryRep.find({
                 where: {

@@ -2,12 +2,11 @@ import { Controller, Inject, Post, Body, HttpStatus, HttpException, Delete, Para
 import { TAG } from '../../consts/provider-names';
 import { Repository, ObjectLiteral } from 'typeorm';
 import { Tag } from '../../models/tag.model';
-import { IApiList } from 'src/interfaces/base-api';
-import { ICreateTagsApi } from 'src/interfaces/tag-api';
-import { CREATE, DELETE, READ } from 'src/consts/access';
-import { META_ACCESS_KEY, META_ENTITY_KEY } from 'src/consts/meta-keys';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
-import { AuthGuardService } from 'src/guards/auth.guard';
+import { IApiList } from 'server/src/interfaces/base-api';
+import { ICreateTagsApi } from 'server/src/interfaces/tag-api';
+import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
+import { AuthGuardService } from 'server/src/guards/auth.guard';
+import { AccessNamespace } from 'share';
 
 @Controller({ path: 'api/tag' })
 @UseGuards(AuthGuardService)
@@ -18,8 +17,8 @@ export class TagController {
     ) { }
 
     @Post()
-    @SetMetadata(META_ACCESS_KEY, CREATE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.tag)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.CREATE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
     public async addTags(@Body() req: ICreateTagsApi): Promise<ObjectLiteral[]> {
         try {
             if (Array.isArray(req.tags)) {
@@ -34,8 +33,8 @@ export class TagController {
     }
 
     @Delete('/:id')
-    @SetMetadata(META_ACCESS_KEY, DELETE)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.tag)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
     public async deleteTag(@Param() params: any): Promise<void> {
         try {
             await this.tagRep.delete(params.id);
@@ -45,8 +44,8 @@ export class TagController {
     }
 
     @Get('/list')
-    @SetMetadata(META_ACCESS_KEY, READ)
-    @SetMetadata(META_ENTITY_KEY, E_ENTITY_TYPES.tag)
+    @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
     public async tagList(@Param() params: IApiList) {
         try {
             const dbRes = await this.tagRep.find({

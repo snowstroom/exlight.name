@@ -1,9 +1,9 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RolesAccesService } from 'src/services/roles-access.service';
+import { RolesAccesService } from 'server/src/services/roles-access.service';
 import { Reflector } from '@nestjs/core';
-import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'src/consts/meta-keys';
-import { E_ENTITY_TYPES } from 'src/enums/entity-types';
+import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
+import { AccessNamespace } from 'share';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
 
     public async canActivate(context: ExecutionContext): Promise<boolean> {
         const routeAccess: number = this.reflector.get(META_ACCESS_KEY, context.getHandler());
-        const routeEntity: E_ENTITY_TYPES = this.reflector.get(META_ENTITY_KEY, context.getHandler());
+        const routeEntity: AccessNamespace.E_ENTITY_TYPES = this.reflector.get(META_ENTITY_KEY, context.getHandler());
         const isPublic: boolean = this.reflector.get(META_PUBLIC_KEY, context.getHandler());
         // console.warn(routeAccess, routeEntity, isPublic);
         const req: any = context.switchToHttp().getRequest();

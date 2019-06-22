@@ -1,7 +1,7 @@
 import { Provider } from '@nestjs/common';
 import { Connection } from 'typeorm';
-import { COMMENTARY, DB_CONECTION } from 'src/consts/provider-names';
-import { Commentary } from 'src/models/commentary.model';
+import { COMMENTARY, DB_CONECTION } from 'server/src/consts/provider-names';
+import { Commentary } from 'server/src/models/commentary.model';
 
 export const CommentaryProvider: Provider = {
     provide: COMMENTARY,

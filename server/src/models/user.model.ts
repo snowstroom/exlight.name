@@ -2,22 +2,14 @@ import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany, ManyTo
 import { IsEmail } from 'class-validator';
 import { Commentary } from './commentary.model';
 import { Rating } from './rating.model';
-import { Role, ROLES_ENTITY } from './role.model';
-import { Access, ACCESS_ENTITY } from './access.model';
+import { Role } from './role.model';
 import { Atricle } from './article.model';
+import { UserNamespace } from 'share';
 
 export const USER_ENTITY = 'users';
-export interface IUser {
-    id?: number;
-    email: string;
-    firstname: string;
-    secondname: string;
-    password: string;
-    roleId: number;
-}
 
 @Entity({ name: USER_ENTITY })
-export class User implements IUser {
+export class User implements UserNamespace.IUser {
     @PrimaryGeneratedColumn() public id: number;
     @IsEmail() @Column({ unique: true, nullable: false }) public email: string;
     @Column({ nullable: true }) public firstname: string;

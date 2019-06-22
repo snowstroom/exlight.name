@@ -1,7 +1,7 @@
 import { Connection, Repository } from 'typeorm';
-import { Atricle } from 'src/models/article.model';
-import { Category } from 'src/models/category.model';
-import { ArticleNamespace } from '@share/';
+import { Atricle } from 'server/src/models/article.model';
+import { Category } from 'server/src/models/category.model';
+import { ArticleNamespace } from 'share';
 
 const category: ArticleNamespace.ICategory = {
     name: 'Test',

@@ -1,8 +1,8 @@
 import { Connection, Repository } from 'typeorm';
-import { Role } from 'src/models/role.model';
-import { Access } from 'src/models/access.model';
-import { User } from 'src/models/user.model';
-import { ALLOW_ALL_ACCESS, ADMIN_USER, ADMIN_ROLE, ADMIN_ROLE_NAME, USER_ROLE, CONFIRMED_USER_ROLE } from 'src/consts/default-entity';
+import { Role } from 'server/src/models/role.model';
+import { Access } from 'server/src/models/access.model';
+import { User } from 'server/src/models/user.model';
+import { ALLOW_ALL_ACCESS, ADMIN_USER, ADMIN_ROLE, ADMIN_ROLE_NAME, USER_ROLE, CONFIRMED_USER_ROLE } from 'server/src/consts/default-entity';
 
 export async function initAccessDefRec(connection: Connection): Promise<void> {
     const roleRep: Repository<Role> = connection.getRepository(Role);

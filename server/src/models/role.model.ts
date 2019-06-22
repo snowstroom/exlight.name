@@ -1,16 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { User } from './user.model';
 import { Access } from './access.model';
+import { AccessNamespace } from 'share';
 
-export const ROLES_ENTITY = 'roles';
-export interface IRole {
-    id?: number;
-    name: string;
-    description: string;
-}
-
-@Entity({ name: ROLES_ENTITY })
-export class Role implements IRole {
+@Entity({ name: AccessNamespace.E_ENTITY_TYPES.role })
+export class Role implements AccessNamespace.IRole {
     @PrimaryGeneratedColumn() public id: number;
     @Column({ unique: true, primary: true }) public name: string;
     @Column() public description: string;
