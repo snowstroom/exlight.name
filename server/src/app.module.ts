@@ -27,6 +27,14 @@ import { AccessController } from './controllers/access/access.controller';
 import { RoleController } from './controllers/role/role.controller';
 import { ArticleController } from './controllers/article/article.controller';
 import { CommentaryController } from './controllers/commentary/commentary.controller';
+import { DbUserService } from './services/db-user.service';
+import { DbRolesService } from './services/db-roles.service';
+import { CryptoService } from './services/crypto.service';
+import { DbAccesService } from './services/db-access.service';
+import { DbArticleService } from './services/db-article.service';
+import { DbCategoryService } from './services/db-category.service';
+import { DbCommentaryService } from './services/db-commentary.service';
+import { DbRatingService } from './services/db-rating.service';
 
 @Module({
   imports: [
@@ -53,11 +61,19 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
   ],
   providers: [
     AuthService,
-    JwtStrategyService,
-    AuthGuardService,
-    MailerService,
-    RolesAccesService,
     FileService,
+    JwtStrategyService,
+    MailerService,
+    AuthGuardService,
+    RolesAccesService,
+    DbAccesService,
+    DbArticleService,
+    DbCategoryService,
+    DbCommentaryService,
+    DbRatingService,
+    DbRolesService,
+    DbUserService,
+    CryptoService,
   ],
 })
 export class AppModule implements NestModule {

@@ -1,5 +1,4 @@
 import { Controller, Post, Body, HttpException, HttpStatus, HttpCode, Get, Param, Query } from '@nestjs/common';
-import { User } from 'server/src/models/user.model';
 import { Repository } from 'typeorm';
 import { MD5 } from 'crypto-js';
 import { ExError } from 'server/src/classes/err';
@@ -10,11 +9,12 @@ import { AES, enc } from 'crypto-js';
 import { Access } from 'server/src/models/access.model';
 import { UserNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
+import { DbUserService } from 'server/src/services/db-user.service';
 
 @Controller('/api/auth')
 export class AuthController {
     constructor(
-        @InjectRepository(User) private userRep: Repository<User>,
+        private dbUserSrv: DbUserService,
         @InjectRepository(Access) private accessRep: Repository<Access>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
@@ -26,7 +26,7 @@ export class AuthController {
     public async userAuth(@Body() user: UserNamespace.IUser) {
         try {
             user.password = MD5(user.password).toString();
-            const res = await this.userRep.findOne();
+            const res = await this.dbUserSrv.getUserByWhere(user);
             if (res) {
                 const token = await this.authSrv.signIn({
                     id: res.id,
@@ -50,16 +50,14 @@ export class AuthController {
     @Post('/registration')
     public async userRigistr(@Body() user: Partial<UserNamespace.IUser>) {
         try {
-            const existUser = await this.userRep.findOne({
-                where: { email: user.email },
-            });
+            const existUser = await this.dbUserSrv.getUserByWhere({ email: user.email });
             if (!existUser) {
                 const userData: Partial<UserNamespace.IUser> = {
                     email: user.email,
                     password: MD5(user.password).toString(),
                     roleId: this.roleSrv.defRole.id,
                 };
-                await this.userRep.insert(userData);
+                await this.dbUserSrv.addUser(userData);
                 await this.mailSrv.confirmReg(user.email);
                 return;
             } else {
@@ -74,9 +72,9 @@ export class AuthController {
     public async confirmEmail(@Query() params: any): Promise<any> {
         try {
             const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
-            const user = await this.userRep.findOne({ where: { email } });
+            const user = await this.dbUserSrv.findByEmail(email);
             if (user) {
-                await this.userRep.update(user.id, {
+                await this.dbUserSrv.updateUser(user.id, {
                     ...user,
                     roleId: this.roleSrv.defConfirmRole.id,
                 });
@@ -93,9 +91,9 @@ export class AuthController {
     public async disableEmail(@Query() params: any): Promise<any> {
         try {
             const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
-            const user = await this.userRep.findOne({ where: { email } });
+            const user = await this.dbUserSrv.findByEmail(email);
             if (user.roleId === this.roleSrv.defRole.id) {
-                await this.userRep.delete({ email });
+                await this.dbUserSrv.deleteUserByWhere({ email });
             } else {
                 return new HttpException({ error: 'You have alrady confirmed email'}, HttpStatus.BAD_REQUEST);
             }
@@ -108,7 +106,7 @@ export class AuthController {
     public async forgotPsw(@Param() params: any): Promise<void> {
         try {
             const { email } = params;
-            const usr = this.userRep.findOne({ where: { email } });
+            const usr = this.dbUserSrv.findByEmail(email);
             if (usr) {
                 await this.mailSrv.sendForgotMail(email);
             }
