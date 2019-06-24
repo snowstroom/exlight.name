@@ -30,11 +30,6 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
 import { DbUserService } from './services/db-user.service';
 import { DbRolesService } from './services/db-roles.service';
 import { CryptoService } from './services/crypto.service';
-import { DbAccesService } from './services/db-access.service';
-import { DbArticleService } from './services/db-article.service';
-import { DbCategoryService } from './services/db-category.service';
-import { DbCommentaryService } from './services/db-commentary.service';
-import { DbRatingService } from './services/db-rating.service';
 
 @Module({
   imports: [
@@ -67,11 +62,6 @@ import { DbRatingService } from './services/db-rating.service';
     MailerService,
     AuthGuardService,
     RolesAccesService,
-    DbAccesService,
-    DbArticleService,
-    DbCategoryService,
-    DbCommentaryService,
-    DbRatingService,
     DbRolesService,
     DbUserService,
     CryptoService,

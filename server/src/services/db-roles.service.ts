@@ -15,7 +15,7 @@ export class DbRolesService {
     public async addRole(role: Partial<AccessNamespace.IRole>) {
         const roleInst = this.roleRep.create(role);
         const result = await this.roleRep.insert(roleInst);
-        const [ id ] = result.identifiers;
+        const [id] = result.identifiers;
         return id;
     }
 
