@@ -1,31 +1,32 @@
 import { Controller, Post, Body, HttpException, HttpStatus, HttpCode, Get, Param, Query } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { MD5 } from 'crypto-js';
 import { ExError } from 'server/src/classes/err';
 import { AuthService } from 'server/src/services/auth.service';
 import { MailerService } from 'server/src/services/mailer.service';
 import { RolesAccesService } from 'server/src/services/roles-access.service';
-import { AES, enc } from 'crypto-js';
 import { Access } from 'server/src/models/access.model';
 import { UserNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'server/src/models/user.model';
+import { CryptoService } from 'server/src/services/crypto.service';
 
 @Controller('/api/auth')
 export class AuthController {
+
     constructor(
         @InjectRepository(User) private userRep: Repository<User>,
         @InjectRepository(Access) private accessRep: Repository<Access>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
         private roleSrv: RolesAccesService,
+        private cryptoSrv: CryptoService,
     ) { }
 
     @Post()
     @HttpCode(HttpStatus.OK)
     public async userAuth(@Body() user: UserNamespace.IUser) {
         try {
-            user.password = MD5(user.password).toString();
+            user.password = this.cryptoSrv.md5hash(user.password);
             const res = await this.userRep.findOne({ where: user });
             if (res) {
                 const token = await this.authSrv.signIn({
@@ -54,7 +55,7 @@ export class AuthController {
             if (!existUser) {
                 const userData: Partial<UserNamespace.IUser> = {
                     email: user.email,
-                    password: MD5(user.password).toString(),
+                    password: this.cryptoSrv.md5hash(user.password).toString(),
                     roleId: this.roleSrv.defRole.id,
                 };
                 await this.userRep.insert(userData);
@@ -71,7 +72,7 @@ export class AuthController {
     @Get('/confirm/email')
     public async confirmEmail(@Query() params: any): Promise<any> {
         try {
-            const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
+            const email = this.cryptoSrv.aesDecript(params.hash, process.env.JWT_SECRET_KEY);
             const user = await this.userRep.findOne({ where: { email } });
             if (user) {
                 await this.userRep.update(user.id, {
@@ -90,7 +91,7 @@ export class AuthController {
     @Get('/disable/email')
     public async disableEmail(@Query() params: any): Promise<any> {
         try {
-            const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
+            const email = this.cryptoSrv.aesDecript(params.hash, process.env.JWT_SECRET_KEY);
             const user = await this.userRep.findOne({ where: { email } });
             if (user.roleId === this.roleSrv.defRole.id) {
                 await this.userRep.delete({ email });

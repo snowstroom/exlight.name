@@ -2,14 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { createTransport, Transporter, SendMailOptions, createTestAccount } from 'nodemailer';
 import { compile } from 'handlebars';
 import { FileService } from './file.service';
-import { AES } from 'crypto-js';
+import { CryptoService } from './crypto.service';
 
 @Injectable()
 export class MailerService {
     private readonly TEMPLATES_DIR = __dirname.split('/').slice(0, -1).concat(['templates']).join('/');
     private transporter: Transporter;
     private templates = new Map<string, any>();
-    constructor(private readonly fileSrv: FileService) {
+    constructor(
+        private fileSrv: FileService,
+        private cryptoSrv: CryptoService,
+    ) {
         this.initMailer();
         this.loadTemplates();
     }
@@ -37,7 +40,7 @@ export class MailerService {
     public async confirmReg(email: string): Promise<boolean> {
         try {
             const tempalte = this.templates.get('welcome.hbs');
-            const emailHash = AES.encrypt(email, process.env.JWT_SECRET_KEY).toString();
+            const emailHash = this.cryptoSrv.aesEncrypt(email, process.env.JWT_SECRET_KEY);
             const mail = tempalte({
                 domain: process.env.CLIENT_DOMAIN,
                 adminEmail: process.env.APP_ADMIN_EMAIL,
