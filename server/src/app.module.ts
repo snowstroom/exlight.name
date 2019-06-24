@@ -1,7 +1,7 @@
 // OTHERS
 import { Connection } from 'typeorm';
 import { initAccessDefRec, initTestData } from './tools';
-import { DB_CONFIG } from './consts/db-conf';
+import { DB_CONFIG, ENTITIES } from './consts/db-conf';
 // MODULES
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
@@ -46,6 +46,7 @@ import { DbRatingService } from './services/db-rating.service';
       },
     }),
     TypeOrmModule.forRoot(DB_CONFIG),
+    TypeOrmModule.forFeature(ENTITIES),
   ],
   controllers: [
     AppController,
