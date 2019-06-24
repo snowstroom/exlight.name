@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Role } from 'server/src/models/role.model';
 import { CONFIRMED_USER_ROLE_NAME } from 'server/src/consts/default-entity';
 import { AccessNamespace } from 'share';
-import { DbRolesService } from './db-roles.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RolesAccesService {
@@ -11,7 +12,7 @@ export class RolesAccesService {
     private defaultRole: Role;
     private defaultConfirmRole: Role;
 
-    constructor(private dbUserSrv: DbRolesService) {
+    constructor(@InjectRepository(Role) private roleRep: Repository<Role>) {
         this.init();
     }
 
@@ -24,7 +25,7 @@ export class RolesAccesService {
     }
 
     private async init(): Promise<void> {
-        const roles = await this.dbUserSrv.getRolesWithAccess();
+        const roles = await this.roleRep.find({ relations: ['access'] });
         this.roles = roles;
         roles.forEach(r => {
             this.rolesByIdMap.set(r.id, r);

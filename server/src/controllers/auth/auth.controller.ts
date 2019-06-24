@@ -9,12 +9,12 @@ import { AES, enc } from 'crypto-js';
 import { Access } from 'server/src/models/access.model';
 import { UserNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DbUserService } from 'server/src/services/db-user.service';
+import { User } from 'server/src/models/user.model';
 
 @Controller('/api/auth')
 export class AuthController {
     constructor(
-        private dbUserSrv: DbUserService,
+        @InjectRepository(User) private userRep: Repository<User>,
         @InjectRepository(Access) private accessRep: Repository<Access>,
         private authSrv: AuthService,
         private mailSrv: MailerService,
@@ -26,7 +26,7 @@ export class AuthController {
     public async userAuth(@Body() user: UserNamespace.IUser) {
         try {
             user.password = MD5(user.password).toString();
-            const res = await this.dbUserSrv.getUserByWhere(user);
+            const res = await this.userRep.findOne({ where: user });
             if (res) {
                 const token = await this.authSrv.signIn({
                     id: res.id,
@@ -50,14 +50,14 @@ export class AuthController {
     @Post('/registration')
     public async userRigistr(@Body() user: Partial<UserNamespace.IUser>) {
         try {
-            const existUser = await this.dbUserSrv.getUserByWhere({ email: user.email });
+            const existUser = await this.userRep.findOne({ where: { email: user.email } });
             if (!existUser) {
                 const userData: Partial<UserNamespace.IUser> = {
                     email: user.email,
                     password: MD5(user.password).toString(),
                     roleId: this.roleSrv.defRole.id,
                 };
-                await this.dbUserSrv.addUser(userData);
+                await this.userRep.insert(userData);
                 await this.mailSrv.confirmReg(user.email);
                 return;
             } else {
@@ -72,15 +72,15 @@ export class AuthController {
     public async confirmEmail(@Query() params: any): Promise<any> {
         try {
             const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
-            const user = await this.dbUserSrv.findByEmail(email);
+            const user = await this.userRep.findOne({ where: { email } });
             if (user) {
-                await this.dbUserSrv.updateUser(user.id, {
+                await this.userRep.update(user.id, {
                     ...user,
                     roleId: this.roleSrv.defConfirmRole.id,
                 });
                 return;
             } else {
-                return new HttpException({ error: 'Email not found'}, HttpStatus.BAD_REQUEST);
+                return new HttpException({ error: 'Email not found' }, HttpStatus.BAD_REQUEST);
             }
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,11 +91,11 @@ export class AuthController {
     public async disableEmail(@Query() params: any): Promise<any> {
         try {
             const email = AES.decrypt(params.hash, process.env.JWT_SECRET_KEY).toString(enc.Utf8);
-            const user = await this.dbUserSrv.findByEmail(email);
+            const user = await this.userRep.findOne({ where: { email } });
             if (user.roleId === this.roleSrv.defRole.id) {
-                await this.dbUserSrv.deleteUserByWhere({ email });
+                await this.userRep.delete({ email });
             } else {
-                return new HttpException({ error: 'You have alrady confirmed email'}, HttpStatus.BAD_REQUEST);
+                return new HttpException({ error: 'You have alrady confirmed email' }, HttpStatus.BAD_REQUEST);
             }
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -106,7 +106,7 @@ export class AuthController {
     public async forgotPsw(@Param() params: any): Promise<void> {
         try {
             const { email } = params;
-            const usr = this.dbUserSrv.findByEmail(email);
+            const usr = this.userRep.findOne({ where: { email } });
             if (usr) {
                 await this.mailSrv.sendForgotMail(email);
             }

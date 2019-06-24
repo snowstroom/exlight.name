@@ -14,6 +14,7 @@ import { AuthGuardService } from './guards/auth.guard';
 import { MailerService } from './services/mailer.service';
 import { RolesAccesService } from './services/roles-access.service';
 import { FileService } from './services/file.service';
+import { CryptoService } from './services/crypto.service';
 // MIDLEWARES
 import { JwtDecodeMiddleware } from './middleware/jwt-decode.middleware';
 // CONTROLLERS
@@ -27,9 +28,6 @@ import { AccessController } from './controllers/access/access.controller';
 import { RoleController } from './controllers/role/role.controller';
 import { ArticleController } from './controllers/article/article.controller';
 import { CommentaryController } from './controllers/commentary/commentary.controller';
-import { DbUserService } from './services/db-user.service';
-import { DbRolesService } from './services/db-roles.service';
-import { CryptoService } from './services/crypto.service';
 
 @Module({
   imports: [
@@ -62,8 +60,6 @@ import { CryptoService } from './services/crypto.service';
     MailerService,
     AuthGuardService,
     RolesAccesService,
-    DbRolesService,
-    DbUserService,
     CryptoService,
   ],
 })

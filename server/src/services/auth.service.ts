@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserNamespace } from 'share';
-import { DbUserService } from './db-user.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from '../models/user.model';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
     constructor(
         private jwtService: JwtService,
-        private dbUserSrv: DbUserService,
+        @InjectRepository(User) private userRep: Repository<User>,
     ) { }
 
     public async signIn(user: Partial<UserNamespace.IUser>): Promise<string> {
@@ -15,6 +17,6 @@ export class AuthService {
     }
 
     public async validateUser(user: Partial<UserNamespace.IUser>): Promise<any> {
-        return this.dbUserSrv.findByEmail(user.email);
+        return this.userRep.find({ where: { email: user.email } });
     }
 }
