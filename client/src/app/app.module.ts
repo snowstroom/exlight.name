@@ -32,6 +32,8 @@ import { ProfilePageComponent } from './pages/profile/profile.page';
 import { AboutPage } from './pages/about/about.page';
 import { ProfileOutsideComponent } from './components/profile-outside/profile-outside.component';
 
+// DIRECTIVES
+import { AccessDirective } from './directives/access.directive';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
     AuthorizationComponent,
     ForgotPassowrdComponent,
     ProfilePageComponent,
-    ProfileOutsideComponent
+    ProfileOutsideComponent,
+    AccessDirective
   ],
   imports: [
     BrowserModule,
