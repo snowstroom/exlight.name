@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ExlightArticleModule } from '@article-module/article.module';
 import { ExlightCoreModule } from '@core/core.module';
 import { ExlightCommonModule } from '@common-module/common.module';
+import { ExlightAccountModule } from '@account-module/account.module';
 
 // PROVIDERS
 import { HUMMER_PROVIDER } from './services/providers/hummer.provider';
@@ -30,6 +31,7 @@ import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { ProfilePageComponent } from './pages/profile/profile.page';
 import { AboutPage } from './pages/about/about.page';
 import { ProfileOutsideComponent } from './components/profile-outside/profile-outside.component';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
     ExlightArticleModule,
     ExlightCoreModule,
     ExlightCommonModule,
+    ExlightAccountModule
   ],
   providers: [
     Title,

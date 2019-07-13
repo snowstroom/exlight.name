@@ -27,7 +27,7 @@ export class RegistrationComponent {
         if (this.form.valid) {
             const { email, password } = this.form.value;
             await this.registrationSrv.registration(email, password);
-            this.router.navigate(['/']);
+            this.router.navigate(['/catalog/all/page/1']);
         } else {
             this.form.markAsTouched();
         }

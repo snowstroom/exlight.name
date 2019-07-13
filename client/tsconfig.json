@@ -12,6 +12,7 @@
       "@music-module/*": ["src/music-module/*"],
       "@photo-module/*": ["src/photo-module/*"],
       "@video-module/*": ["src/video-module/*"],
+      "@account-module/*": ["src/account-module/*"],
       "@env/*": ["src/environments/*"]
     },
     "sourceMap": true,

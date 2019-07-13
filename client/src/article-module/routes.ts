@@ -1,4 +1,3 @@
-import { Routes } from '@angular/router';
 import { ArticlePage } from './pages/article/article.page';
 import { CatalogPage } from './pages/catalog/catalog.page';
 import { IExlightRoute } from '@app/interfaces/exlight-router';
