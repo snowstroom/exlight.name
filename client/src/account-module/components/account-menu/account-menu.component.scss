@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.account-menu {
+  display: flex;
+  font-size: 1.8em;
+  flex-direction: column;
+  box-shadow: $box-shadow;
+  height: 100%;
+  width: 4.5rem;
+
+  .account-icon {
+    .icon-item {
+      padding: 10px;
+      text-align: center;
+
+      a {
+        color: $element-text-color;
+
+
+        .icon {
+          transition: color .5s;
+          cursor: pointer;
+
+          &:hover {
+            color: $active-element-bg;
+            transition: color .5s;
+          }
+        }
+      }
+    }
+  }
+
+}

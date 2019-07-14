@@ -3,26 +3,26 @@ import { IAccountIco } from '@account-module/interfaces/account-ico';
 
 export const ICONS: IAccountIco[] = [{
     ico: faUser,
-    route: 'profile',
+    route: '/',
     title: 'Профиль'
 }, {
     ico: faCogs,
-    route: 'profile',
+    route: 'settings',
     title: 'Настройки'
 }, {
     ico: faPencilAlt,
-    route: 'profile',
+    route: 'articles',
     title: 'Статьи'
 }, {
     ico: faUserCog,
-    route: 'profile',
+    route: 'user-manage',
     title: 'Управление пользователями'
 }, {
     ico: faKey,
-    route: 'profile',
+    route: 'access-manage',
     title: 'Управление доступами'
 }, {
     ico: faSitemap,
-    route: 'profile',
+    route: 'categories-manage',
     title: 'Управление категориями'
 }];

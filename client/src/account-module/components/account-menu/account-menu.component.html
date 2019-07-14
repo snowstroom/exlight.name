@@ -1,0 +1,9 @@
+<div class="account-menu">
+  <div class="account-icon" *ngFor="let item of ICONS">
+    <div class="icon-item">
+      <a [routerLink]="item.route">
+        <fa-icon [icon]="item.ico" class="icon"></fa-icon>
+      </a>
+    </div>
+  </div>
+</div>

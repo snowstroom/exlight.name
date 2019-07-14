@@ -6,10 +6,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
-import { ProfilePageComponent } from './pages/profile/profile.page';
 import { GuardService } from './services/guards/guard.service';
 import { ARTICLE_ROUTES } from '@article-module/routes';
 import { IExlightRoute } from './interfaces/exlight-router';
+import { ACCOUNT_ROUTES } from '@account-module/routes';
 
 const routes: IExlightRoute[] = [{
   path: '',
@@ -33,37 +33,10 @@ const routes: IExlightRoute[] = [{
     showAside: false
   }
 }, {
-  path: 'profile',
-  children: [{
-    path: '',
-    component: ProfilePageComponent,
-    canActivate: [GuardService],
-    data: {
-      showAside: false
-    }
-  }]
-},/* {
-    path: 'settings'
-  }, {
-    path: 'articles',
-    children: [{
-      path: 'create'
-    }, {
-      path: 'statistic'
-    }]
-  }, {
-    path: 'roles',
-    children: [{
-      path: ''
-    }, {
-      path: 'create'
-    }]
-  }, {
-    path: 'categories'
-  }, {
-
-  }]
-},*/ {
+  path: 'account',
+  canActivate: [GuardService],
+  children: ACCOUNT_ROUTES
+}, {
   path: 'authorization',
   children: [{
     path: '',

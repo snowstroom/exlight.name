@@ -1,0 +1,56 @@
+@import 'src/styles/variables';
+
+.main-head {
+  padding: 1em;
+  box-shadow: $box-shadow;
+  text-shadow: $text-shadow;
+  font-family: $elements-text;
+  font-weight: bold;
+
+  .head {
+    color: $element-text-color;
+    font-size: 1.5rem;
+  }
+
+  .page {
+    color: $element-text-color;
+    padding: 0.5em 0;
+  }
+
+  .categories {
+    display: flex;
+    position: relative;
+
+    .item-decorator {
+      position: absolute;
+      height: 32px;
+      background: $active-element-bg;
+      z-index: 1;
+      transition: .3s width, .5s left;
+      box-shadow: 0 0 10px $active-element-bg;
+    }
+
+    .category {
+      text-decoration: none;
+      font-size: 1rem;
+      z-index: 2;
+      text-align: center;
+      cursor: pointer;
+      color: $element-text-color;
+      padding: 8px 10px;
+    }
+  }
+}
+
+/**
+ * Extra small devices
+**/
+@media (min-width: $min-exs) and (max-width: $max-exs) {
+  .main-head {
+    padding: 1em .5em;
+
+    .categories {
+      overflow: auto;
+    }
+  }
+}

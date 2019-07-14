@@ -28,7 +28,6 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
-import { ProfilePageComponent } from './pages/profile/profile.page';
 import { AboutPage } from './pages/about/about.page';
 import { ProfileOutsideComponent } from './components/profile-outside/profile-outside.component';
 
@@ -50,7 +49,6 @@ import { AccessDirective } from './directives/access.directive';
     RegistrationComponent,
     AuthorizationComponent,
     ForgotPassowrdComponent,
-    ProfilePageComponent,
     ProfileOutsideComponent,
     AccessDirective
   ],
@@ -74,4 +72,5 @@ import { AccessDirective } from './directives/access.directive';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
