@@ -17,8 +17,6 @@ import { INIT_FONTS } from './services/providers/init.provider';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { MainComponent } from './pages/main/main.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -38,8 +36,6 @@ import { AccessDirective } from './directives/access.directive';
   declarations: [
     AboutPage,
     AppComponent,
-    FooterComponent,
-    MenuComponent,
     MainComponent,
     SliderComponent,
     ArticleProgressComponent,

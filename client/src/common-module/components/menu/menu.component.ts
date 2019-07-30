@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { MENU_ITEMS } from '@app/consts/menu-items';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
-import { ApplicationService } from '@app/services/app.service';
 import { faBars } from '@fortawesome/fontawesome-free-solid';
 
 @Component({
@@ -11,14 +9,12 @@ import { faBars } from '@fortawesome/fontawesome-free-solid';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+  @Input() public menuItems = [];
+  @Output() public sidenavToogle = new EventEmitter();
   public readonly MENU_ICO = faBars;
-  public readonly menuItems = MENU_ITEMS;
   public active: number;
 
-  constructor(
-    private activatedRoute: Router,
-    private appSrv: ApplicationService
-  ) {
+  constructor(private activatedRoute: Router) {
     this.activatedRoute.events.pipe(filter(e => e instanceof NavigationStart))
       .subscribe((e: NavigationStart) => {
         const urlParts = e.url.split('/');
@@ -33,7 +29,7 @@ export class MenuComponent {
 
   public openMobileMenu(e: MouseEvent): void {
     e.stopPropagation();
-    this.appSrv.toogleSideNav();
+    this.sidenavToogle.emit();
   }
 
 }

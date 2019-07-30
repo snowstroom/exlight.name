@@ -1,8 +1,8 @@
 <footer class="footer">
   <div class="footer-menu">
     <div class="footer-menu-items">
-      <a class="footer-menu-item" 
-        *ngFor="let item of MENU"
+      <a class="footer-menu-item"
+        *ngFor="let item of menuItems"
         [routerLink]="item.route"
         role="link"
         [rel]="item.rel">{{item.name}}</a>
@@ -10,7 +10,7 @@
   </div>
   <div class="info">
     <div>
-      <a rel="friend" 
+      <a rel="friend"
         href="http://develop.exligth.name"
         class="link">develop.exligth.name</a> - по вопросам разработки
     </div>

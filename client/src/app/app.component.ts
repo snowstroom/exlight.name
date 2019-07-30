@@ -6,6 +6,7 @@ import { E_SCREEN_TYPE } from './enums/screen-type';
 import { ApplicationService } from './services/app.service';
 import { ActivatedRoute, Router, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { MENU_ITEMS } from './consts/menu-items';
 
 @Component({
   selector: 'ex-app-root',
@@ -24,6 +25,8 @@ export class AppComponent implements OnInit {
 
   public showAside: boolean;
   public haveNoBg: boolean;
+  public menuItems = MENU_ITEMS;
+
   constructor(
     private musicStateSrv: MusicStateService,
     private envSrv: EnviromentService,
@@ -93,5 +96,9 @@ export class AppComponent implements OnInit {
   public showSideNav(e: any): void {
     console.warn(e);
     this.appSrv.showSideNav();
+  }
+
+  public toogleSidenav(): void {
+    this.appSrv.toogleSideNav();
   }
 }

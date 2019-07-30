@@ -1,6 +1,6 @@
 <ex-article-progress></ex-article-progress>
 <div class="container" (click)="hideSideNav()" (swipeleft)="showSideNav($event)">
-  <ex-menu></ex-menu>
+  <ex-menu [menuItems]="menuItems" (sidenavToogle)="toogleSidenav()"></ex-menu>
   <div class="content-wrapper">
     <main [ngClass]="{'full': !showAside, 'no-bg': haveNoBg}">
       <router-outlet></router-outlet>
@@ -9,7 +9,7 @@
       <ex-profile-outside></ex-profile-outside>
     </aside>
   </div>
-  <ex-footer></ex-footer>
+  <ex-footer [menuItems]="menuItems"></ex-footer>
 </div>
 <ex-share-content></ex-share-content>
 <ex-side-nav></ex-side-nav>

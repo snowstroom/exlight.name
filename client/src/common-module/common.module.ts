@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
 import { ExlightCoreModule } from '@core/core.module';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -25,14 +27,18 @@ import { ExlightCoreModule } from '@core/core.module';
         SpinnerComponent,
         RatingComponent,
         PaginationComponent,
-        CatalogMenuComponent
+        CatalogMenuComponent,
+        FooterComponent,
+        MenuComponent
     ],
     exports: [
         LineSpinnerComponent,
         SpinnerComponent,
         RatingComponent,
         PaginationComponent,
-        CatalogMenuComponent
+        CatalogMenuComponent,
+        FooterComponent,
+        MenuComponent
     ]
 })
 export class ExlightCommonModule { }

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from '@app/consts/menu-items';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ex-footer',
@@ -7,7 +6,7 @@ import { MENU_ITEMS } from '@app/consts/menu-items';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  public readonly MENU = MENU_ITEMS;
+  @Input() public menuItems = [];
   public year = new Date().getFullYear();
   constructor() { }
 
