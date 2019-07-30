@@ -10,7 +10,7 @@
         [rel]="item.rel || ''">{{item.name}}</a>
     </ex-button-decorator>
   </div>
-  <div class="gamburger" (click)="openMobileMenu($event)">
+  <div class="gamburger" *ngIf="menuItems && menuItems.length" (click)="openMobileMenu($event)">
     <fa-icon [icon]="MENU_ICO" class="icon"></fa-icon>
   </div>
 </nav>

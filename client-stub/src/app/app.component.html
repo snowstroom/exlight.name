@@ -1,20 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container" (click)="hideSideNav()" (swipeleft)="showSideNav($event)">
+  <ex-menu (sidenavToogle)="toogleSidenav()"></ex-menu>
+  <div class="content-wrapper">
+    <main [ngClass]="{'full': !showAside, 'no-bg': haveNoBg}">
+      <section>
+        <div class="twitch">
+          <iframe src="https://player.twitch.tv/?channel=only_exlight" frameborder="0" allowfullscreen="true"
+            scrolling="no" height="378" width="620" class="full"></iframe>
+          <iframe src="https://player.twitch.tv/?channel=only_exlight" frameborder="0" allowfullscreen="true"
+            scrolling="no" class="mobile"></iframe>
+        </div>
+        <div class="description">
+          <h1>Блог находится в разработке</h1>
+          <p>
+            В данный момент сайт находиться в разработке. За процессом его разработки Вы можете понаблюдать на моем
+            twitch канале.
+            В ходе трансляции пишу проект, попутно разбирая работу с такими технологиями как:
+          </p>
+          <ul>
+            <li>Angular 2+</li>
+            <li>NodeJS</li>
+            <li>NestJS</li>
+            <li>PostgreSQL</li>
+          </ul>
+          <h1>Так же в ходе реализации пророботаем следующие особенности проекта</h1>
+          <ul>
+            <li>SEO в Angular SPA.</li>
+            <li>Организуем тесную интеграцию с популярными социальными сетями.</li>
+            <li>Реализуем собственный дизайн, компоненты UI и стили.</li>
+            <li>Реализуем админ панель</li>
+            <li>Реализация сервера на фраемворке NestJS</li>
+            <li>Реализуем настраеваемую систему доступа</li>
+            <li>Реалзуем автопубликацию в социальных сетях</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <div>
+          <img src="assets/me.jpg" width="420" alt="Фото eXlight" class="full">
+          <img src="assets/me.jpg" alt="Фото eXlight" class="mobile">
+        </div>
+        <div class="description">
+          <h1>И пару слов о себе</h1>
+          <p>Меня зовут Андрей, мне 24, я веб разработчик.
+            Закончил Каргагандинский Государственный Университет по специальности Информатика направления Информатика и
+            вычеслительная техника.
+            Обучался в Томском Политехническом Университете по направлению Информационные системы. С 2017 года живу и
+            работаю в городе Томск.
+          </p>
+          <p>Увлекаюсь музыкой, немного играю на гитаре, автор собсвенных стихов и песен. Провожу стримы посвещенные
+            программированию.</p>
+          <p>За почти 3 года поработал с такими технологиями и фреймворками как: Angular 2+, React, JQuery, NodeJS,
+            Express, NestJS, MongoDB, PostgreSQL,
+            и поучаствовал в качестве разработчика в около 10 проектах разной степени сложности.</p>
+          <div class="social">
+            <div *ngFor="let s of social" [title]="s.title">
+              <a [href]="s.href">
+                <fa-icon [icon]="s.icon" class="icon"></fa-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <ex-footer></ex-footer>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-

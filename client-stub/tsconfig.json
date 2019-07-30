@@ -20,7 +20,8 @@
       "@video-module/*": ["../client/src/video-module/*"],
       "@account-module/*": ["../client/src/account-module/*"],
       "@env/*": ["../client/src/environments/*"],
-      "@angular/*": ["node_modules/@angular/*"]
+      "@angular/*": ["node_modules/@angular/*"],
+      "@fortawesome/*": ["node_modules/@fortawesome/*"]
     },
     "target": "es5",
     "typeRoots": [

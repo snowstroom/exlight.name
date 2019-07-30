@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SOCIAL } from './consts/social';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'client-stub';
+  public readonly social = SOCIAL;
 }
