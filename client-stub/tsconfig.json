@@ -19,7 +19,8 @@
       "@photo-module/*": ["../client/src/photo-module/*"],
       "@video-module/*": ["../client/src/video-module/*"],
       "@account-module/*": ["../client/src/account-module/*"],
-      "@env/*": ["../client/src/environments/*"]
+      "@env/*": ["../client/src/environments/*"],
+      "@angular/*": ["node_modules/@angular/*"]
     },
     "target": "es5",
     "typeRoots": [

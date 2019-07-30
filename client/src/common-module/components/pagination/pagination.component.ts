@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { numberParam } from '@core/functions/number-param';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PaginationItem } from '@app/classes/pagintaion-item';
+import { PaginationItem } from '@core/classes/pagintaion-item';
 import { LinkService } from '@core/services/link-service.service';
 
 @Component({

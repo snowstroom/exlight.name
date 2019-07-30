@@ -1,0 +1,151 @@
+@import 'src/styles/variables';
+$margin-bottom: 10px;
+
+.ex-img {
+  width: auto;
+  min-width: calc(50% - 52px);
+  height: 400px;
+  background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  transition: background-size .5s;
+  margin: 25px 25px;
+  display: inline-block;
+
+  &:hover {
+    background-size: 110% auto;
+    transition: background-size .5s;
+  }
+}
+
+h1 {
+  font-size: 1.4em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1em;
+  font-family: $elements-text;
+  margin-bottom: $margin-bottom;
+  font-weight: bold;
+}
+
+body {
+  color: $element-text-color;
+  font-family: $simple-text;
+  font-size: $em;
+}
+
+a {
+  color: $links-text-color;
+  font-family: $elements-text;
+  font-weight: bold;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: $active-element-bg;
+}
+
+blockquote {
+  margin: 15px;
+  position: relative;
+  font-style: italic;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    width: 2px;
+    background: $active-element-bg;
+    height: 100%;
+  }
+}
+
+p {
+  margin-bottom: 10px;
+  line-height: 1.5em;
+}
+
+ul {
+  li {
+    line-height: 1.5em;
+  }
+}
+
+img {
+  width: 100%;
+  transition: width 0.5s;
+
+  &:hover {
+    width: 110%;
+    transition: width 0.5s;
+  }
+}
+
+table {
+  width: 100%;
+  background: #0000008a;
+  margin-bottom: $margin-bottom;
+
+  thead {
+    font-family: $elements-text;
+    color: $links-text-color;
+    font-weight: bold;
+
+    tr {
+      th {
+        padding: 10px 5px;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 10px 5px;
+        border: 1px solid #fff;
+      }
+    }
+  }
+}
