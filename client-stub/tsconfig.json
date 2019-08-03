@@ -21,7 +21,7 @@
       "@account-module/*": ["../client/src/account-module/*"],
       "@env/*": ["../client/src/environments/*"],
       "@angular/*": ["node_modules/@angular/*"],
-      "@fortawesome/*": ["node_modules/@fortawesome/*"]
+      "@fontawesome/*": ["node_modules/@fontawesome/*"]
     },
     "target": "es5",
     "typeRoots": [

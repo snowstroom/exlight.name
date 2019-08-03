@@ -1,0 +1,24 @@
+{
+  "name": "exlight-name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "scripts/build.sh",
+    "start": "scripts/start.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowstroom/exlight.name.git"
+  },
+  "author": "only-exlight",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snowstroom/exlight.name/issues"
+  },
+  "homepage": "https://github.com/snowstroom/exlight.name#readme",
+  "engines": {
+    "node": ">=8.11.4",
+    "npm": ">=5.6.0"
+  }
+}
