@@ -15,7 +15,8 @@ export class MenuComponent {
   public active: number;
 
   constructor(private activatedRoute: Router) {
-    this.activatedRoute.events.pipe(filter(e => e instanceof NavigationStart))
+    this.activatedRoute.events
+      .pipe(filter(e => e instanceof NavigationStart))
       .subscribe((e: NavigationStart) => {
         const urlParts = e.url.split('/');
         this.menuItems.forEach((item, i) => {

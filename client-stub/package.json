@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,9 +25,9 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "core-js": "^2.5.4",
-    "express": "^4.17.1",
     "prismjs": "^1.17.1",
     "rxjs": "~6.3.3",
+    "static-server": "^2.2.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
