@@ -14,6 +14,8 @@ import { AccountHeadComponent } from './components/account-head/account-head.com
 import { AccountMenuComponent } from './components/account-menu/account-menu.component';
 import { AccountSettingsPage } from './pages/settings-editor/settings-editor.page';
 import { AccountPageWrapperComponent } from './components/account-page-wrapper/account-page-wrapper.component';
+import { ArticlesPage } from './pages/articles/articles.page';
+import { CreateArticlePage } from './pages/create-article/create-article.page';
 
 @NgModule({
     imports: [
@@ -27,6 +29,8 @@ import { AccountPageWrapperComponent } from './components/account-page-wrapper/a
     declarations: [
         ProfileEditorPage,
         AccountSettingsPage,
+        ArticlesPage,
+        CreateArticlePage,
         AccountPageWrapperComponent,
         AccountHeadComponent,
         AccountMenuComponent
