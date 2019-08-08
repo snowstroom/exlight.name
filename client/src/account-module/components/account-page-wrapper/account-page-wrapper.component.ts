@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ICategory } from '@account-module/interfaces/category';
 
 @Component({
     selector: 'ex-account-page-wrapper',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class AccountPageWrapperComponent {
-
+    @Input() public sectionName: string;
+    @Input() public menuItems: ICategory[] = [];
 }
