@@ -1,6 +1,6 @@
 <div class="main-head">
   <div class="head" role="heading">{{catalogName}}</div>
-  <div class="categories" role="menubar" *ngIf="showMenu">
+  <div class="categories" role="menubar">
     <ex-button-decorator [activeIndex]="active">
       <a [routerLink]="item.fullRoute" class="category" role="menuitem"
         *ngFor="let item of categoriesItems">{{item.name}}</a>
