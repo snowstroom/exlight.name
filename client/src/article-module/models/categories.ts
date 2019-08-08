@@ -6,9 +6,7 @@ export interface ICategoriesItem {
 }
 
 export class CategoriesItem implements ICategoriesItem {
-    public readonly isReady: Promise<void>;
     public readonly id: number = this.__data.id;
-    public readonly itemWidth: number;
     public name: string = this.__data.name;
     public route: string = this.__data.route;
     public description: string = this.__data.description;
