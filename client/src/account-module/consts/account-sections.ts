@@ -2,20 +2,20 @@ import { ICategory } from '@account-module/interfaces/category';
 
 export const PROFILE_SECTIONS: ICategory[] = [{
     name: 'Профиль',
-    route: 'example',
-    template: 'example/%/example'
+    route: 'profile',
+    template: '/account/profile'
 }, {
     name: 'Настройки',
-    route: 'example',
-    template: 'example/%/example'
+    route: 'settings',
+    template: '/account/profile/%'
 }];
 
 export const ARTICLES_SECTIONS: ICategory[] = [{
     name: 'Создать',
-    route: 'example',
-    template: 'example/%/example'
+    route: 'create',
+    template: '/account/articles/%'
 }, {
     name: 'Мои статьи',
-    route: 'example',
-    template: 'example/%/example'
+    route: 'list',
+    template: '/account/articles/%'
 }];

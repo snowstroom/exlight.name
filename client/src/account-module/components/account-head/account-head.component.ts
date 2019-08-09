@@ -24,11 +24,14 @@ export class AccountHeadComponent {
 
     @Input() set categories(items: ICategory[]) {
         this.categoriesItems = items.map(i => new Category(i));
-        const param = this.router.url.split('/')[2];
+        const param = this.router.url.split('/')[3];
         this.calcDecorator(param);
     }
 
     public calcDecorator(category: string): void {
         this.active = this.categoriesItems.findIndex(item => category === item.route);
+        if (this.active === -1) {
+            this.active = 0;
+        }
     }
 }

@@ -8,17 +8,24 @@ export const ACCOUNT_ROUTES: IExlightRoute[] = [{
     path: 'account',
     children: [{
         path: '',
-        pathMatch: 'prefix',
+        pathMatch: 'full',
         redirectTo: 'profile'
     }, {
         path: 'profile',
-        component: ProfileEditorPage
-    }, {
-        path: 'settings',
-        component: AccountSettingsPage
+        children: [{
+            path: '',
+            component: ProfileEditorPage
+        }, {
+            path: 'settings',
+            component: AccountSettingsPage
+        }]
     }, {
         path: 'articles',
         children: [{
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'create',
+        }, {
             path: 'list',
             component: ArticlesPage,
         }, {

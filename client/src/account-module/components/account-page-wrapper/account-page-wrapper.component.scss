@@ -1,7 +1,7 @@
 .account-wrapper {
     height: 100%;
     .account-content {
-        height: 100%;
+        height: calc(100% - 104px);
         display: flex;
         .content {
             padding: 2em 8em;
