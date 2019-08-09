@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { APP_ROUTES } from './routes';
+
 // MODULES
 import { BrowserModule, Title, Meta } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
@@ -10,6 +11,7 @@ import { ExlightArticleModule } from '@article-module/article.module';
 import { ExlightCoreModule } from '@core/core.module';
 import { ExlightCommonModule } from '@common-module/common.module';
 import { ExlightAccountModule } from '@account-module/account.module';
+import { RouterModule } from '@angular/router';
 
 // PROVIDERS
 import { HUMMER_PROVIDER } from './services/providers/hummer.provider';
@@ -31,7 +33,6 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
 
 // DIRECTIVES
 import { AccessDirective } from './directives/access.directive';
-
 @NgModule({
   declarations: [
     AboutPage,
@@ -51,7 +52,7 @@ import { AccessDirective } from './directives/access.directive';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    RouterModule.forRoot(APP_ROUTES),
     FontAwesomeModule,
     NgxJsonLdModule,
     ReactiveFormsModule,

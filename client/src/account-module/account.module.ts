@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ACCOUNT_ROUTES } from './routes';
 // MODULES
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ import { CreateArticlePage } from './pages/create-article/create-article.page';
         CommonModule,
         BrowserModule,
         RouterModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        RouterModule.forChild(ACCOUNT_ROUTES)
     ],
     declarations: [
         ProfileEditorPage,
@@ -39,6 +41,7 @@ import { CreateArticlePage } from './pages/create-article/create-article.page';
     exports: [
         ProfileEditorPage,
         AccountSettingsPage,
+        RouterModule
     ]
 })
-export class ExlightAccountModule { }
+export class ExlightAccountModule {}

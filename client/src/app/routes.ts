@@ -1,26 +1,19 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { AboutPage } from './pages/about/about.page';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
-import { GuardService } from './services/guards/guard.service';
-import { ARTICLE_ROUTES } from '@article-module/routes';
 import { IExlightRoute } from './interfaces/exlight-router';
-import { ACCOUNT_ROUTES } from '@account-module/routes';
 
-const routes: IExlightRoute[] = [{
+export const APP_ROUTES: IExlightRoute[] = [{
   path: '',
   component: MainComponent,
   data: {
     showAside: false,
     haveNoBackground: true
   }
-},
-...ARTICLE_ROUTES,
-{
+}, {
   path: 'about',
   component: AboutPage,
   data: {
@@ -32,10 +25,6 @@ const routes: IExlightRoute[] = [{
   data: {
     showAside: false
   }
-}, {
-  path: 'account',
-  canActivate: [GuardService],
-  children: ACCOUNT_ROUTES
 }, {
   path: 'authorization',
   children: [{
@@ -55,10 +44,3 @@ const routes: IExlightRoute[] = [{
   path: '**',
   component: NotFoundComponent
 }];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-
-export class AppRoutingModule { }

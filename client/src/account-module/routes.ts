@@ -5,22 +5,26 @@ import { ArticlesPage } from './pages/articles/articles.page';
 import { CreateArticlePage } from './pages/create-article/create-article.page';
 
 export const ACCOUNT_ROUTES: IExlightRoute[] = [{
-    path: '',
-    pathMatch: 'prefix',
-    redirectTo: 'profile'
-}, {
-    path: 'profile',
-    component: ProfileEditorPage
-}, {
-    path: 'settings',
-    component: AccountSettingsPage
-}, {
-    path: 'articles',
+    path: 'account',
     children: [{
-        path: 'list',
-        component: ArticlesPage,
+        path: '',
+        pathMatch: 'prefix',
+        redirectTo: 'profile'
     }, {
-        path: 'create',
-        component: CreateArticlePage
+        path: 'profile',
+        component: ProfileEditorPage
+    }, {
+        path: 'settings',
+        component: AccountSettingsPage
+    }, {
+        path: 'articles',
+        children: [{
+            path: 'list',
+            component: ArticlesPage,
+        }, {
+            path: 'create',
+            component: CreateArticlePage
+        }]
     }]
-}];
+},
+];

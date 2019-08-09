@@ -1,3 +1,4 @@
+import { ARTICLE_ROUTES } from './routes';
 import { NgModule } from '@angular/core';
 // MODULES
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,7 @@ import { INIT_CATEGORIES } from './services/providers/init.provider';
     ExlightCommonModule,
     CommonModule,
     BrowserModule,
-    RouterModule,
+    RouterModule.forChild(ARTICLE_ROUTES),
     MarkdownModule.forRoot({ markedOptions: MARKDOWN_PROVIDER }),
   ],
   declarations: [
