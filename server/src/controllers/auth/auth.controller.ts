@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpException, HttpStatus, HttpCode, Get, Param, Query } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, HttpStatus, HttpCode, Get, Param, Query, Res } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ExError } from 'server/src/classes/err';
 import { AuthService } from 'server/src/services/auth.service';
@@ -34,7 +34,7 @@ export class AuthController {
                     email: res.email,
                     roleId: res.roleId,
                 });
-                return token;
+                return { token };
             } else {
                 throw new ExError('User not found or password not true');
             }

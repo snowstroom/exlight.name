@@ -2,6 +2,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { StorageService } from '@core/services/storage.service';
+import { TOKEN_KEY } from '@app/consts/keys';
 
 /**
  * Сервис перхватичк запросов
