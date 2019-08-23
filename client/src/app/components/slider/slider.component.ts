@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { CarouselItem } from '@app/classes/carousel-item';
+import { CarouselItem } from '@app/models/carousel-item';
 import { EnviromentService } from '@app/services/envirement.service';
 import { E_SCREEN_TYPE } from '@app/enums/screen-type';
 

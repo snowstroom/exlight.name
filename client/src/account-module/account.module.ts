@@ -7,6 +7,8 @@ import { ExlightCommonModule } from '@common-module/common.module';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ExlightCoreModule } from '@core/core.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // PROVIDERS
 
 // COMPONENTS
@@ -26,6 +28,9 @@ import { CreateArticlePage } from './pages/create-article/create-article.page';
         BrowserModule,
         RouterModule,
         FontAwesomeModule,
+        AngularEditorModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forChild(ACCOUNT_ROUTES)
     ],
     declarations: [

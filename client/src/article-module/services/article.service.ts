@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from '@core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Article, IArticle } from '@article-module/models/article';
-import { CarouselItem, ICarouselItem } from '@app/classes/carousel-item';
+import { CarouselItem, ICarouselItem } from '@app/models/carousel-item';
 import { EnviromentService } from '@app/services/envirement.service';
 import { ApiNamespace as API } from '@share/';
 

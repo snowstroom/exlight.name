@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { EnviromentService } from './envirement.service';
-import { Role } from '@app/classes/role';
+import { Role } from '@app/models/role';
 import { AccessNamespace } from '@share/access.namespace';
 
 @Injectable({ providedIn: 'root' })

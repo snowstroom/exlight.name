@@ -3,7 +3,7 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { EnviromentService } from './envirement.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { IconDefinition } from '@fortawesome/fontawesome-free-brands';
-import { VkShareButton, TwitterButton, FacebookButton, LinkedInButton, TelegramButton } from '@app/classes/share-buttons';
+import { VkShareButton, TwitterButton, FacebookButton, LinkedInButton, TelegramButton } from '@app/models/share-buttons';
 
 export interface IPageDescription {
     title: string;
