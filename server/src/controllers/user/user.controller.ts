@@ -13,7 +13,7 @@ export class UserController {
 
     @Get('/:id')
     @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
-    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.user)
     public async getUserInfo(@Param() param: any) {
         try {
             const res = await this.userRep.findOne(param.id, {
@@ -31,7 +31,7 @@ export class UserController {
 
     @Put('/:id')
     @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
-    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
+    @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.user)
     public async updateUser(@Param() params: any, @Body() user: Partial<UserNamespace.IUser>): Promise<void> {
         try {
             await this.userRep.update(params.id, user);
