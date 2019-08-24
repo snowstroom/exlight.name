@@ -19,7 +19,7 @@ export class ProfileService extends Api {
         private authSrv: AuthService
     ) {
         super(injector, envSrv.API_DOMAIN);
-        this.authSrv.$authData.subscribe(async (data: ITokenData) => this.init(data.id));
+        this.authSrv.$authData.subscribe(async (data: ITokenData) => this.init(data));
     }
 
     get $user(): Observable<User> {
@@ -44,9 +44,11 @@ export class ProfileService extends Api {
         }
     }
 
-    private async init(id: number): Promise<void> {
-        this.user = await this.getProfile(id);
-        this.user$.next(this.user);
+    private async init(tokenData: ITokenData): Promise<void> {
+        if (tokenData) {
+            this.user = await this.getProfile(tokenData.id);
+            this.user$.next(this.user);
+        }
     }
 
 }

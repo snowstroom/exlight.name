@@ -53,8 +53,10 @@ export class AuthService extends Api {
     }
 
     private init(): void {
-        const token = this.storageSrv.getSessionItem(TOKEN_KEY);
-        this.pareseToken(token);
+        const token: string = this.storageSrv.getSessionItem(TOKEN_KEY);
+        if (token) {
+            this.pareseToken(token);
+        }
     }
 
 }

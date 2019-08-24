@@ -33,6 +33,7 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
 
 // DIRECTIVES
 import { AccessDirective } from './directives/access.directive';
+import { INTERSEPTOR } from './services/providers/interseptor.provider';
 @NgModule({
   declarations: [
     AboutPage,
@@ -66,6 +67,7 @@ import { AccessDirective } from './directives/access.directive';
     Meta,
     INIT_FONTS,
     HUMMER_PROVIDER,
+    INTERSEPTOR
   ],
   bootstrap: [AppComponent]
 })

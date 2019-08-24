@@ -7,9 +7,7 @@ import { TOKEN_KEY } from '@app/consts/keys';
 /**
  * Сервис перхватичк запросов
  */
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
     constructor(private storSrv: StorageService) { }
     /**
