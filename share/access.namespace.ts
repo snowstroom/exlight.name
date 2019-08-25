@@ -18,7 +18,6 @@ export namespace AccessNamespace {
 
     export interface IAccess {
         id?: number;
-        roleId: number;
         entity: string;
         access: number;
     }

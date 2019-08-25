@@ -13,15 +13,17 @@ export async function initAccessDefRec(connection: Connection): Promise<void> {
             where: { name: ADMIN_ROLE_NAME },
         });
         if (!ADMIN_ROLE_INSTANSE) {
-            const { identifiers } = await roleRep.insert(ADMIN_ROLE);
+            const accessList = ALLOW_ALL_ACCESS.map(a => accessRep.create(a));
+            await accessRep.insert(accessList);
+            const accesses = await accessRep.find();
+            const adminRole = roleRep.create({...ADMIN_ROLE, access: accesses });
+            const { id } = await roleRep.save(adminRole);
             await roleRep.insert(USER_ROLE);
             await roleRep.insert(CONFIRMED_USER_ROLE);
             await usersRep.insert({
                 ...ADMIN_USER,
-                roleId: identifiers[0].id,
+                roleId: id,
             });
-            const accessList = ALLOW_ALL_ACCESS.map(a => accessRep.create({ ...a, roleId: identifiers[0].id }));
-            await accessRep.insert(accessList);
         }
     } catch (err) {
         throw new Error(`Init application was failed =( \n ${err}`);
