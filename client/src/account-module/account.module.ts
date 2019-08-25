@@ -19,6 +19,9 @@ import { AccountSettingsPage } from './pages/settings-editor/settings-editor.pag
 import { AccountPageWrapperComponent } from './components/account-page-wrapper/account-page-wrapper.component';
 import { ArticlesPage } from './pages/articles/articles.page';
 import { CreateArticlePage } from './pages/create-article/create-article.page';
+import { CategoriesManagePage } from './pages/categories-manage/categories-manage.page';
+import { UserManagePage } from './pages/users-manage/users-manage.page';
+import { AccessManagePage } from './pages/access-manage/access-manage.page';
 
 @NgModule({
     imports: [
@@ -38,6 +41,9 @@ import { CreateArticlePage } from './pages/create-article/create-article.page';
         AccountSettingsPage,
         ArticlesPage,
         CreateArticlePage,
+        CategoriesManagePage,
+        UserManagePage,
+        AccessManagePage,
         AccountPageWrapperComponent,
         AccountHeadComponent,
         AccountMenuComponent

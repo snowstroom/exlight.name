@@ -25,7 +25,10 @@ export class ProfileEditorPage implements OnDestroy {
 
     public async saveProfile(): Promise<void> {
         if (this.form.valid) {
-
+            await this.profileSrv.updateProfile({
+                firstname: this.form.get('firstname').value,
+                secondname: this.form.get('secondname').value,
+            });
         }
     }
 

@@ -35,9 +35,9 @@ export class ProfileService extends Api {
         }
     }
 
-    public async updateProfile(id: number, user: UserNamespace.IUser): Promise<boolean> {
+    public async updateProfile(user: Partial<UserNamespace.IUser>): Promise<boolean> {
         try {
-            await this.put(`user/${id}`, user);
+            await this.put(`user/${this.user.id}`, user);
             return true;
         } catch (error) {
             return false;
