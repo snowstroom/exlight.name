@@ -25,4 +25,22 @@ export class RegistrationService extends Api {
 
         }
     }
+
+    public async confirm(hash: string): Promise<boolean> {
+        try {
+            await this.get(`auth/confirm/email?hash=${hash}`);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
+
+    public async disable(hash: string): Promise<boolean> {
+        try {
+            await this.get(`auth/disable/email?hash=${hash}`);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
 }

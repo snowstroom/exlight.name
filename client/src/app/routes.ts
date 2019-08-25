@@ -5,6 +5,8 @@ import { RegistrationComponent } from './pages/registration/registration.page';
 import { AuthorizationComponent } from './pages/authorization/authorization.page';
 import { ForgotPassowrdComponent } from './pages/forgot/forgot.page';
 import { IExlightRoute } from './interfaces/exlight-router';
+import { RegistrationConfirmPage } from './pages/registration-confirm/registration-confirm.page';
+import { RegistrationDisablePage } from './pages/registration-disable/registration-disable.page';
 
 export const APP_ROUTES: IExlightRoute[] = [{
   path: '',
@@ -21,10 +23,26 @@ export const APP_ROUTES: IExlightRoute[] = [{
   }
 }, {
   path: 'registration',
-  component: RegistrationComponent,
-  data: {
-    showAside: false
-  }
+  children: [{
+    path: '',
+    component: RegistrationComponent,
+    data: {
+      showAside: false
+    }
+  }, {
+    path: 'confirm/:hash',
+    component: RegistrationConfirmPage,
+    data: {
+      showAside: false
+    }
+  }, {
+    path: 'disable/:hash',
+    component: RegistrationDisablePage,
+    data: {
+      showAside: false
+    }
+  }]
+
 }, {
   path: 'authorization',
   children: [{

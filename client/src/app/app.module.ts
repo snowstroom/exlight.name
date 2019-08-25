@@ -34,9 +34,13 @@ import { ProfileOutsideComponent } from './components/profile-outside/profile-ou
 // DIRECTIVES
 import { AccessDirective } from './directives/access.directive';
 import { INTERSEPTOR } from './services/providers/interseptor.provider';
+import { RegistrationConfirmPage } from './pages/registration-confirm/registration-confirm.page';
+import { RegistrationDisablePage } from './pages/registration-disable/registration-disable.page';
 @NgModule({
   declarations: [
     AboutPage,
+    RegistrationConfirmPage,
+    RegistrationDisablePage,
     AppComponent,
     MainComponent,
     SliderComponent,
