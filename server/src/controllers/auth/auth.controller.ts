@@ -72,8 +72,7 @@ export class AuthController {
     @Get('/confirm/email')
     public async confirmEmail(@Query() params: any): Promise<any> {
         try {
-            const email = this.cryptoSrv.aesDecript(params.hash, process.env.JWT_SECRET_KEY);
-            const user = await this.userRep.findOne({ where: { email } });
+            const user = await this.findNotConfirmedUser(params.hash);
             if (user) {
                 await this.userRep.update(user.id, {
                     ...user,
@@ -91,10 +90,9 @@ export class AuthController {
     @Get('/disable/email')
     public async disableEmail(@Query() params: any): Promise<any> {
         try {
-            const email = this.cryptoSrv.aesDecript(params.hash, process.env.JWT_SECRET_KEY);
-            const user = await this.userRep.findOne({ where: { email } });
+            const user = await this.findNotConfirmedUser(params.hash);
             if (user.roleId === this.roleSrv.defRole.id) {
-                await this.userRep.delete({ email });
+                await this.userRep.delete(user);
             } else {
                 return new HttpException({ error: 'You have alrady confirmed email' }, HttpStatus.BAD_REQUEST);
             }
@@ -114,5 +112,17 @@ export class AuthController {
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private async findNotConfirmedUser(hash: string): Promise<User> {
+        const users = await this.userRep.find({ where: { roleId: 2 } });
+        let user: User;
+        users.forEach(u => {
+            const eHash = this.cryptoSrv.md5hash(u.email);
+            if (eHash === hash) {
+                user = u;
+            }
+        });
+        return user;
     }
 }

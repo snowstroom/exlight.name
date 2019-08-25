@@ -40,7 +40,7 @@ export class MailerService {
     public async confirmReg(email: string): Promise<boolean> {
         try {
             const tempalte = this.templates.get('welcome.hbs');
-            const emailHash = this.cryptoSrv.aesEncrypt(email, process.env.JWT_SECRET_KEY);
+            const emailHash = this.cryptoSrv.md5hash(email);
             const mail = tempalte({
                 domain: process.env.CLIENT_DOMAIN,
                 adminEmail: process.env.APP_ADMIN_EMAIL,
