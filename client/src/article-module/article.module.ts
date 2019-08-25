@@ -13,6 +13,7 @@ import { ArticlePage } from './pages/article/article.page';
 import { CatalogPage } from './pages/catalog/catalog.page';
 import { ArticleItemComponent } from './components/article-item/article-item.component';
 import { INIT_CATEGORIES } from './services/providers/init.provider';
+import { ArticleCommentaryComponent } from './components/article-commentary/article-commentary.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { INIT_CATEGORIES } from './services/providers/init.provider';
   declarations: [
     ArticlePage,
     CatalogPage,
-    ArticleItemComponent
+    ArticleItemComponent,
+    ArticleCommentaryComponent
   ],
   providers: [
     INIT_CATEGORIES

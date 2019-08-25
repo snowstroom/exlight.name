@@ -22,7 +22,7 @@ export class ArticlePage implements OnDestroy {
     private router: Router
   ) {
     this.activatedRoute.params.pipe(takeUntil(this.unsubscribe))
-      .subscribe(params => this.getArticleByRoute(params.article));
+      .subscribe(async (params: any) => this.getArticleByRoute(params.article));
     this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe))
       .subscribe(scroll => {
         this.toogleShare(scroll);

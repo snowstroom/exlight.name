@@ -1,6 +1,6 @@
-import { ICategoriesItem } from '@article-module/models/categories';
+import { ArticleNamespace } from '@share/';
 
-export const DEF_CAT: ICategoriesItem = {
+export const DEF_CAT: ArticleNamespace.ICategory = {
     id: undefined,
     name: 'Все',
     route: 'all',

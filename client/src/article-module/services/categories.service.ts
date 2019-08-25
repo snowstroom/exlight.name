@@ -2,9 +2,10 @@ import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { DEF_CAT } from '@article-module/const/def-cat';
 import { CAT_ROUTE_TEMPLATE } from '@article-module/const/urls';
-import { CategoriesItem, ICategoriesItem } from '@article-module/models/categories';
+import { CategoriesItem } from '@article-module/models/categories';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EnviromentService } from '@app/services/envirement.service';
+import { ArticleNamespace } from '@share/';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,7 @@ export class CategoriesService extends Api {
 
     public async getCategories(): Promise<CategoriesItem[]> {
         try {
-            const answ: ICategoriesItem[] = await this.get <ICategoriesItem[]>('category/all');
+            const answ: ArticleNamespace.ICategory[] = await this.get<ArticleNamespace.ICategory[]>('category/all');
             return answ.map(item => new CategoriesItem(item, CAT_ROUTE_TEMPLATE));
         } catch (err) {
             return [];

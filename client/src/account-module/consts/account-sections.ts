@@ -16,6 +16,6 @@ export const ARTICLES_SECTIONS: ICategory[] = [{
     template: '/account/articles/%'
 }, {
     name: 'Мои статьи',
-    route: 'list',
+    route: 'list/page/1',
     template: '/account/articles/%'
 }];

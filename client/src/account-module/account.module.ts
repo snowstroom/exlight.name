@@ -22,6 +22,7 @@ import { CreateArticlePage } from './pages/create-article/create-article.page';
 import { CategoriesManagePage } from './pages/categories-manage/categories-manage.page';
 import { UserManagePage } from './pages/users-manage/users-manage.page';
 import { AccessManagePage } from './pages/access-manage/access-manage.page';
+import { ExlightArticleModule } from '@article-module/article.module';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import { AccessManagePage } from './pages/access-manage/access-manage.page';
         AngularEditorModule,
         FormsModule,
         ReactiveFormsModule,
+        ExlightArticleModule,
         RouterModule.forChild(ACCOUNT_ROUTES)
     ],
     declarations: [

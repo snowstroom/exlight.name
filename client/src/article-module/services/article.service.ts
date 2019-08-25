@@ -1,10 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from '@core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Article, IArticle } from '@article-module/models/article';
+import { Article } from '@article-module/models/article';
 import { CarouselItem, ICarouselItem } from '@app/models/carousel-item';
 import { EnviromentService } from '@app/services/envirement.service';
 import { ApiNamespace as API } from '@share/';
+import { Commentary } from '@article-module/models/commentary';
+import { ArticleNamespace } from '@share/';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +28,12 @@ export class ArticleService extends Api {
     return this.carouselItems$.asObservable();
   }
 
-  public async getArticles(pagination: PaginationParams, catId?: number): Promise<Article[]> {
+  public async getArticles(pagination: PaginationParams, catId?: number, authorId?: number): Promise<Article[]> {
     try {
       const params = pagination.getUrlString();
       const catParams = catId ? `&category_id=${catId}` : '';
-      const answ: API.IPaginationContent<IArticle> = await this.get<API.IPaginationContent<IArticle>>(`article/list${params}${catParams}`);
+      const authorParams = authorId ? `&author_id=${authorId}` : '';
+      const answ = await this.get<API.IPaginationContent<ArticleNamespace.IArticle>>(`article/list${params}${catParams}${authorParams}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
     } catch (err) {
@@ -38,9 +41,18 @@ export class ArticleService extends Api {
     }
   }
 
+  public async getArticleCommentaries(articleId: number): Promise<Commentary[]> {
+    try {
+      const answ = await this.get<API.IPaginationContent<ArticleNamespace.ICommentary>>(`commentary/list/article/${articleId}`);
+      return answ.content.map(c => new Commentary(c));
+    } catch (err) {
+      return [];
+    }
+  }
+
   public async getArticle(id: number): Promise<Article> {
     try {
-      const answ: IArticle = await this.get<IArticle>(`article/item/${id}`);
+      const answ: ArticleNamespace.IArticle = await this.get<ArticleNamespace.IArticle>(`article/item/${id}`);
       return new Article(answ);
     } catch (err) {
       return new Article();
@@ -49,7 +61,7 @@ export class ArticleService extends Api {
 
   public async getArticleByRoute(route: string): Promise<Article> {
     try {
-      const answ: IArticle = await this.get<IArticle>(`article/item?route=${route}`);
+      const answ: ArticleNamespace.IArticle = await this.get<ArticleNamespace.IArticle>(`article/item?route=${route}`);
       return new Article(answ);
     } catch (err) {
       return new Article();

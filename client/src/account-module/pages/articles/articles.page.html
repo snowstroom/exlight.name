@@ -1,3 +1,5 @@
 <ex-account-page-wrapper [menuItems]="MENU_ITEMS" sectionName="Управление статьями">
-  articles list
+  <ex-articles *ngFor="let art of articles" [article]="art"></ex-articles>
+  <ex-pagination [recordCount]="pagParams.total" [onPage]="PAGE_LENGTH" [activePage]="page">
+  </ex-pagination>
 </ex-account-page-wrapper>

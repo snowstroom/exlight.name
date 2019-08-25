@@ -31,7 +31,7 @@ export const ACCOUNT_ROUTES: IExlightRoute[] = [{
             pathMatch: 'full',
             redirectTo: 'create',
         }, {
-            path: 'list',
+            path: 'list/page/:page',
             component: ArticlesPage,
         }, {
             path: 'create',

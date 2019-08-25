@@ -1,11 +1,6 @@
-export interface ICategoriesItem {
-    id: number;
-    name: string;
-    route: string;
-    description: string;
-}
+import { ArticleNamespace } from '@share/';
 
-export class CategoriesItem implements ICategoriesItem {
+export class CategoriesItem implements ArticleNamespace.ICategory {
     public readonly id: number = this.__data.id;
     public name: string = this.__data.name;
     public route: string = this.__data.route;
@@ -14,7 +9,7 @@ export class CategoriesItem implements ICategoriesItem {
     public readonly fullRoute: string;
     public isActive: boolean;
 
-    constructor(private __data: ICategoriesItem, template: string) {
+    constructor(private __data: ArticleNamespace.ICategory, template: string) {
         this.fullRoute = template.replace('%', this.__data.route);
     }
 }
