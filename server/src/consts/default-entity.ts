@@ -2,7 +2,7 @@ import { MD5 } from 'crypto-js';
 import { AccessNamespace, UserNamespace } from 'share';
 
 export const ADMIN_USER: Partial<UserNamespace.IUser> = {
-    email: 'admin@xlight.name',
+    email: process.env.APP_ADMIN_EMAIL,
     password: MD5(process.env.APP_ADMIN_PASSWORD).toString(),
     firstname: 'Admin',
     secondname: 'Admin',
@@ -27,7 +27,7 @@ export const CONFIRMED_USER_ROLE: AccessNamespace.IRole = {
     description: 'User with confirmed email',
 };
 /**
- * Super, Create, Read, Update, Delete. Where not super - can mandge other users records
+ * Super, Create, Read, Update, Delete. Where super - can mandge other users records
  */
 const ALLOW_ALL = 0b11111;
 /**
@@ -52,7 +52,7 @@ export const ALLOW_ALL_ACCESS: Array<Partial<AccessNamespace.IAccess>> = [{
     entity: AccessNamespace.E_ENTITY_TYPES.role,
     access: ALLOW_ALL,
 }, {
-        entity: AccessNamespace.E_ENTITY_TYPES.tag,
+    entity: AccessNamespace.E_ENTITY_TYPES.tag,
     access: ALLOW_ALL,
 }, {
     entity: AccessNamespace.E_ENTITY_TYPES.user,
