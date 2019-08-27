@@ -19,3 +19,13 @@ export const ARTICLES_SECTIONS: ICategory[] = [{
     route: 'list/page/1',
     template: '/account/articles/%'
 }];
+
+export const ACCESSES_SECTION: ICategory[] = [{
+    name: 'Доступы',
+    route: 'accesses',
+    template: '/account/access-manage/%'
+}, {
+    name: 'Роли',
+    route: 'roles',
+    template: '/account/access-manage/%'
+}];

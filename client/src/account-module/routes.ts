@@ -52,9 +52,11 @@ export const ACCOUNT_ROUTES: IExlightRoute[] = [{
     }, {
         path: 'access-manage',
         children: [{
-            path: '',
+            path: 'accesses',
+            component: AccessManagePage
+        }, {
+            path: 'roles',
             component: AccessManagePage
         }]
     }]
-},
-];
+}];

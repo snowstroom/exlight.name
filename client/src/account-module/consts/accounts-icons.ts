@@ -15,7 +15,7 @@ export const ICONS: IAccountIco[] = [{
     title: 'Управление пользователями'
 }, {
     ico: faKey,
-    route: '/account/access-manage',
+    route: '/account/access-manage/accesses',
     title: 'Управление доступами'
 }, {
     ico: faSitemap,
