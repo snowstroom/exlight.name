@@ -8,12 +8,13 @@ import { MarkdownModule } from 'ngx-markdown';
 import { RouterModule } from '@angular/router';
 // PROVIDERS
 import { MARKDOWN_PROVIDER } from './services/providers/markdown.provider';
+import { INIT_CATEGORIES } from './services/providers/init.provider';
 // COMPONENTS
 import { ArticlePage } from './pages/article/article.page';
 import { CatalogPage } from './pages/catalog/catalog.page';
 import { ArticleItemComponent } from './components/article-item/article-item.component';
-import { INIT_CATEGORIES } from './services/providers/init.provider';
-import { ArticleCommentaryComponent } from './components/article-commentary/article-commentary.component';
+import { CommentControlComponent } from './components/comment-control/comment-control.component';
+import { CommentaryItemComponent } from './components/comment-item/comment-item.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ArticleCommentaryComponent } from './components/article-commentary/arti
     ArticlePage,
     CatalogPage,
     ArticleItemComponent,
-    ArticleCommentaryComponent
+    CommentControlComponent,
+    CommentaryItemComponent
   ],
   providers: [
     INIT_CATEGORIES

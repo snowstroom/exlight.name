@@ -1,12 +1,10 @@
 import { ArticleNamespace } from '@share/*';
+import { CoreNamespace } from '../../../../share/core.namespace';
 
-export class Commentary implements ArticleNamespace.ICommentary {
-    public id: number = this.__data.id;
+export class Commentary extends CoreNamespace.AbstractCommentary implements ArticleNamespace.IArticleCommentary {
     public articleId: number = this.__data.articleId;
-    public commentId: number = this.__data.commentId;
-    public comment: string = this.__data.comment;
-    public createDate: Date | string = new Date(<string>this.__data.createDate);
-    public updateDate: Date | string = new Date(<string>this.__data.updateDate);
 
-    constructor(private __data: ArticleNamespace.ICommentary) {}
+    constructor(protected __data: ArticleNamespace.IArticleCommentary) {
+        super(__data);
+    }
 }

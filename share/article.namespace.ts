@@ -1,3 +1,4 @@
+import { CoreNamespace } from './core.namespace';
 export namespace ArticleNamespace {
     export interface IArticle {
         id?: number;
@@ -20,13 +21,8 @@ export namespace ArticleNamespace {
         description: string;
     }
 
-    export interface ICommentary {
-        id?: number;
+    export interface IArticleCommentary extends CoreNamespace.ICommentary {
         articleId: number;
-        comment: string;
-        commentId: number;
-        createDate: string | Date;
-        updateDate: string | Date;
     }
 
     export interface IRating {
