@@ -5,12 +5,13 @@ import { ArticleNamespace } from 'share';
 export const ARTICLE_COMMENTS_ENTITY = 'article_comments';
 
 @Entity({ name: ARTICLE_COMMENTS_ENTITY })
-export class Commentary implements ArticleNamespace.ICommentary {
+export class Commentary implements ArticleNamespace.IArticleCommentary {
     @PrimaryGeneratedColumn() public id: number;
 
     @Column() public articleId: number;
     @Column() public comment: string;
     @Column() public commentId: number;
+    @Column() public authorId: number;
     @CreateDateColumn() public createDate: Date;
     @UpdateDateColumn() public updateDate: Date;
 

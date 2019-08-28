@@ -19,7 +19,7 @@ export class CommentaryController {
     @SetMetadata(META_ACCESS_KEY, AccessNamespace.CREATE)
     @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async addCommentary(
-        @Body() comment: Partial<ArticleNamespace.ICommentary>,
+        @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
         @Param() params: ICommentaryApiParams,
     ): Promise<number> {
         try {
@@ -38,7 +38,7 @@ export class CommentaryController {
     @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async updateCommentarty(
         @Param() params: ICommentaryApiParams,
-        @Body() comment: Partial<ArticleNamespace.ICommentary>,
+        @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
     ): Promise<void> {
         try {
             const dbRes = await this.commentaryRep.update(params.id, comment);
@@ -66,7 +66,7 @@ export class CommentaryController {
     @SetMetadata(META_PUBLIC_KEY, true)
     public async commentaryList(
         @Param() params: ICommentaryApiListParams,
-    ): Promise<ArticleNamespace.ICommentary[]> {
+    ): Promise<ArticleNamespace.IArticleCommentary[]> {
         try {
             const dbRes = this.commentaryRep.find({
                 where: {
