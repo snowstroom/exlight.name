@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ExlightCommonModule } from '@common-module/common.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 // PROVIDERS
 import { MARKDOWN_PROVIDER } from './services/providers/markdown.provider';
 import { INIT_CATEGORIES } from './services/providers/init.provider';
@@ -21,6 +22,7 @@ import { CommentaryItemComponent } from './components/comment-item/comment-item.
     ExlightCommonModule,
     CommonModule,
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule.forChild(ARTICLE_ROUTES),
     MarkdownModule.forRoot({ markedOptions: MARKDOWN_PROVIDER }),
   ],
