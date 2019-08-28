@@ -1,0 +1,44 @@
+@import "src/styles/variables";
+
+.ex-comment-control {
+  width: 100%;
+  display: flex;
+
+  .ex-comment-r {
+    .ex-avatar {
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+    }
+  }
+
+  .ex-comment-l {
+    width: calc(100% - 55px);
+
+    .ex-comment-content {
+      margin: 0 .5rem;
+      margin-bottom: 1rem;
+
+      .ex-comment-area {
+        width: 100%;
+        min-height: 55px;
+        font-family: $simple-text;
+      }
+    }
+
+    .ex-comment-footer {
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 0 .5rem;
+
+      .comment-action {
+        background: transparent;
+        font-family: $elements-text;
+        color: $links-text-color;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}

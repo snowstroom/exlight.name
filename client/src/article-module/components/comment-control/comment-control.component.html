@@ -1,1 +1,15 @@
-<span>Article commentary</span>
+<div class="ex-comment-control">
+  <div class="ex-comment-r">
+    <img class="ex-avatar" src="assets/no-photo.png" alt="User avatar">
+  </div>
+  <div class="ex-comment-l">
+    <div class="ex-comment-content">
+      <form [formGroup]="form">
+        <textarea placeholder="Комментарий..." class="ex-comment-area" formControlName="comment"></textarea>
+      </form>
+    </div>
+    <div class="ex-comment-footer">
+      <button class="comment-action" (click)="createComment()">Отправить</button>
+    </div>
+  </div>
+</div>
