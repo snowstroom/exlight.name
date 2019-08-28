@@ -8,4 +8,7 @@ import { Commentary } from '@article-module/models/commentary';
 })
 export class CommentaryItemComponent {
     @Input() public comment: Commentary;
+
+    public answer(): void {}
+    public delete(): void {}
 }
