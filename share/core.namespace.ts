@@ -16,6 +16,6 @@ export namespace CoreNamespace {
         public createDate: Date = new Date(<string>this.__data.createDate);
         public updateDate: Date = new Date(<string>this.__data.updateDate);
 
-        constructor(protected __data: ICommentary) {}
+        constructor(protected __data: Partial<ICommentary> = {}) {}
     }
 }
