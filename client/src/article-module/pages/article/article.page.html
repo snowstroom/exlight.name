@@ -17,7 +17,7 @@
       <ex-spinner [wait]="wait"></ex-spinner>
       <markdown [data]=article?.content></markdown>
     </article>
-    <ex-comment-control></ex-comment-control>
+    <ex-comment-control (send)="saveNewComment($event)"></ex-comment-control>
   </main>
   <aside class="right"></aside>
 </div>

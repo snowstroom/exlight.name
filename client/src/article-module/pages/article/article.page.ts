@@ -5,6 +5,9 @@ import { Article } from '@article-module/models/article';
 import { ApplicationService } from '@app/services/app.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Commentary } from '@article-module/models/commentary';
+import { CommentService } from '@article-module/services/comment.service';
+import { PaginationParams } from '@core/classes';
 
 @Component({
   templateUrl: './article.page.html',
@@ -13,12 +16,15 @@ import { takeUntil } from 'rxjs/operators';
 export class ArticlePage implements OnDestroy {
   public wait = true;
   public article: Article;
+  public comments: Commentary[] = [];
+  public commentsPagParams = new PaginationParams({ limit: 15 });
   private unsubscribe = new Subject();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private articleSrv: ArticleService,
     private appSrv: ApplicationService,
+    private artCommentSrv: CommentService,
     private router: Router
   ) {
     this.activatedRoute.params.pipe(takeUntil(this.unsubscribe))
@@ -42,8 +48,14 @@ export class ArticlePage implements OnDestroy {
     console.warn(r);
   }
 
+  public async saveNewComment(comment: string): Promise<void> {
+    const cmnt = new Commentary({ comment });
+    await this.artCommentSrv.addComment(this.article.id, cmnt);
+  }
+
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
+    this.comments = await this.artCommentSrv.getCommentList(this.article.id, this.commentsPagParams);
     this.wait = false;
     setTimeout(() => innerHeight === document.body.scrollHeight ?
       this.appSrv.showShareBlock() :
