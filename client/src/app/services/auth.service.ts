@@ -35,13 +35,15 @@ export class AuthService extends Api {
         return this.authData$.asObservable();
     }
 
-    public async auth(email: string, password: string): Promise<void> {
+    public async auth(email: string, password: string): Promise<boolean> {
         try {
             const token: IAuth = await this.post('auth', { email, password });
             this.storageSrv.setSessionItem(TOKEN_KEY, token.token);
             this.pareseToken(token.token);
+            return true;
         } catch (err) {
             console.warn(err);
+            return false;
         }
     }
 
