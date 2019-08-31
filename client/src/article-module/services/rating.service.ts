@@ -2,7 +2,6 @@ import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { EnviromentService } from '@app/services/envirement.service';
 import { ArticleNamespace } from '@share/';
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'

@@ -15,7 +15,10 @@ export class ProfileOutsideComponent implements OnDestroy {
 
     constructor(private profileSrv: ProfileService) {
         this.profileSrv.$user.pipe(takeUntil(this.subscriber))
-            .subscribe(user => this.user = user);
+            .subscribe(user => {
+                console.warn(user);
+                this.user = user;
+            });
     }
 
     public ngOnDestroy(): void {

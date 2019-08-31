@@ -10,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
     providedIn: 'root'
 })
 export class ProfileService extends Api {
-    private user: User;
+    private user: User = new User();
     private user$ = new BehaviorSubject(this.user);
 
     constructor(
@@ -31,7 +31,7 @@ export class ProfileService extends Api {
             const answ = await this.get<UserNamespace.IUser>(`user/${id}`);
             return new User(answ);
         } catch (error) {
-            return null;
+            return new User();
         }
     }
 

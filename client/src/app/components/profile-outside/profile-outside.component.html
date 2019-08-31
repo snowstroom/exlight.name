@@ -3,8 +3,8 @@
     <img src="assets/no-photo.png" alt="Пользовательское фото">
   </div>
   <div class="profile-content">
-    <div class="welcome">
-        Добро пожаловать, Гость
+    <div class="welcome" *ngIf="user">
+        Добро пожаловать, {{user.firstname || 'Гость' }}
     </div>
     <div></div>
     <div class="profile-links">

@@ -7,5 +7,5 @@ export class User implements UserNamespace.IUser {
     public secondname = this.__data.secondname;
     public roleId = this.__data.roleId;
 
-    constructor(private __data: Partial<UserNamespace.IUser>) { }
+    constructor(private __data: Partial<UserNamespace.IUser> = {}) { }
 }
