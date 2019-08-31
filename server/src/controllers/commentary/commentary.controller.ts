@@ -23,11 +23,13 @@ export class CommentaryController {
         @Param() params: ICommentaryApiParams,
     ): Promise<number> {
         try {
-            const dbRes = this.commentaryRep.create({
+            console.warn(comment, params);
+            const dbRes = await this.commentaryRep.insert({
                 articleId: params.articleId,
                 ...comment,
             });
-            return dbRes.id;
+            console.warn(dbRes);
+            return dbRes.identifiers[0].id;
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -52,7 +54,7 @@ export class CommentaryController {
     @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
     public async deleteCommentary(@Param() params: ICommentaryApiParams): Promise<void> {
         // I realy want delete comments?
-        // Delete if admin, mark as ddelete for users.
+        // Delete if admin, mark as delete for users.
         try {
             await this.commentaryRep.delete(params.id);
         } catch (err) {

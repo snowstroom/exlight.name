@@ -2,6 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { EnviromentService } from '@app/services/envirement.service';
 import { ArticleNamespace } from '@share/';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -27,9 +28,9 @@ export class RatingService extends Api {
         }
     }
 
-    public async setArticleRating(articleId: number, rate: ArticleNamespace.RatingNumber): Promise<boolean> {
+    public async setArticleRating(articleId: number, rating: ArticleNamespace.RatingNumber): Promise<boolean> {
         try {
-            await this.post(`rating/to-rate/article/${articleId}`, rate);
+            await this.post(`rating/to-rate/article/${articleId}`, { rating });
             return true;
         } catch (error) {
             return false;

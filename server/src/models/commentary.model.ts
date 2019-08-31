@@ -12,7 +12,7 @@ export class Commentary implements ArticleNamespace.IArticleCommentary {
     @Column() public comment: string;
     @Column() public commentId: number;
     @Column() public authorId: number;
-    @CreateDateColumn() public createDate: Date;
+    @CreateDateColumn({ default: new Date() }) public createDate: Date;
     @UpdateDateColumn() public updateDate: Date;
 
     @ManyToOne(type => User, user => user.comments)

@@ -17,7 +17,7 @@ export class User implements UserNamespace.IUser {
     @Column({ nullable: false }) public password: string;
     @Column({ nullable: false }) public roleId: number;
 
-    @OneToMany(type => Commentary, comment => comment.id)
+    @OneToMany(type => Commentary, comment => comment.authorId)
     public comments: Commentary[];
 
     @OneToMany(type => Rating, rating => rating.id)
