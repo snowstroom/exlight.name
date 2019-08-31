@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faStar, faStarHalf } from '@fortawesome/fontawesome-free-solid';
+import { ArticleNamespace } from '@share/*';
 
 
 @Component({
@@ -11,12 +12,12 @@ import { faStar, faStarHalf } from '@fortawesome/fontawesome-free-solid';
 export class RatingComponent {
     public readonly STAR_ICO = faStar;
     public readonly HALF_ICO = faStarHalf;
-    public ratingValue = 0;
+    public ratingValue: ArticleNamespace.RatingNumber = 0;
     public rating: number[] = [0, 0, 0, 0, 0];
     @Input() public readonly: boolean;
-    @Output() public change = new EventEmitter<number>();
+    @Output() public change = new EventEmitter<ArticleNamespace.RatingNumber>();
 
-    @Input() set value(val: number) {
+    @Input() set value(val: ArticleNamespace.RatingNumber) {
         this.ratingValue = val || 0;
         const rating: number[] = [];
         for (let i = 0; i < 5; i++) {
@@ -32,7 +33,7 @@ export class RatingComponent {
         this.rating = rating;
     }
 
-    public evaluation(ind: number): void {
+    public evaluation(ind: ArticleNamespace.RatingNumber): void {
         if (!this.readonly) {
             for (let i = 0; i < 5; i++) {
                 i <= ind ? this.rating[i] = 1 : this.rating[i] = 0;
@@ -48,7 +49,7 @@ export class RatingComponent {
 
     public estimate(ind: number): void {
         if (!this.readonly) {
-            this.change.emit(ind + 1);
+            this.change.emit(ind + 1 as ArticleNamespace.RatingNumber);
         }
     }
 }

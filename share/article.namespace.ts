@@ -28,7 +28,15 @@ export namespace ArticleNamespace {
     export interface IRating {
         id?: number;
         // userId: number;
-        rating: number;
+        rating: RatingNumber;
         dateOfCreate: Date;
+    }
+
+    export type RatingNumber = 0|1|2|3|4|5;
+
+    export interface IRatingInfo {
+        min: RatingNumber;
+        max: RatingNumber;
+        avarage: RatingNumber;
     }
 }

@@ -8,6 +8,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Commentary } from '@article-module/models/commentary';
 import { CommentService } from '@article-module/services/comment.service';
 import { PaginationParams } from '@core/classes';
+import { RatingService } from '@article-module/services/rating.service';
+import { ArticleNamespace } from '@share/*';
 
 @Component({
   templateUrl: './article.page.html',
@@ -18,6 +20,7 @@ export class ArticlePage implements OnDestroy {
   public article: Article;
   public comments: Commentary[] = [];
   public commentsPagParams = new PaginationParams({ limit: 15 });
+  public rating: ArticleNamespace.IRatingInfo;
   private unsubscribe = new Subject();
 
   constructor(
@@ -25,7 +28,8 @@ export class ArticlePage implements OnDestroy {
     private articleSrv: ArticleService,
     private appSrv: ApplicationService,
     private artCommentSrv: CommentService,
-    private router: Router
+    private router: Router,
+    private ratingSrv: RatingService
   ) {
     this.activatedRoute.params.pipe(takeUntil(this.unsubscribe))
       .subscribe(async (params: any) => this.getArticleByRoute(params.article));
@@ -44,8 +48,8 @@ export class ArticlePage implements OnDestroy {
     this.appSrv.setLdJsonShema(null);
   }
 
-  public setRating(r: number): void {
-    console.warn(r);
+  public async setRating(rate: ArticleNamespace.RatingNumber): Promise<void> {
+    await this.ratingSrv.setArticleRating(this.article.id, rate);
   }
 
   public async saveNewComment(comment: string): Promise<void> {
@@ -56,6 +60,7 @@ export class ArticlePage implements OnDestroy {
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
     this.comments = await this.artCommentSrv.getCommentList(this.article.id, this.commentsPagParams);
+    this.rating = await this.ratingSrv.getArticleRating(this.article.id);
     this.wait = false;
     setTimeout(() => innerHeight === document.body.scrollHeight ?
       this.appSrv.showShareBlock() :

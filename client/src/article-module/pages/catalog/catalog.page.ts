@@ -9,6 +9,7 @@ import { ApplicationService } from '@app/services/app.service';
 import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CategoriesService } from '@article-module/services/categories.service';
+import { RatingService } from '@article-module/services/rating.service';
 
 @Component({
   selector: 'ex-catalog',
@@ -29,7 +30,8 @@ export class CatalogPage implements OnDestroy {
     private categoriesSrv: CategoriesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private appSrv: ApplicationService
+    private appSrv: ApplicationService,
+    private ratingSrv: RatingService
   ) {
     combineLatest(this.activatedRoute.params, this.categoriesSrv.$categories)
       .pipe(takeUntil(this.subscriber))
