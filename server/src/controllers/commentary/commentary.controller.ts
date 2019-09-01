@@ -1,4 +1,4 @@
-import { Controller, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards } from '@nestjs/common';
+import { Controller, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards, Req } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import { ICommentaryApiParams, ICommentaryApiListParams } from 'server/src/interfaces/commentary-api';
@@ -6,6 +6,7 @@ import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/co
 import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace, ArticleNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Request } from 'express-serve-static-core';
 
 @Controller({ path: 'api/commentary' })
 @UseGuards(AuthGuardService)
@@ -21,11 +22,13 @@ export class CommentaryController {
     public async addCommentary(
         @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
         @Param() params: ICommentaryApiParams,
+        @Req() req: Request,
     ): Promise<number> {
         try {
             console.warn(comment, params);
             const dbRes = await this.commentaryRep.insert({
-                articleId: params.articleId,
+                article: { id: Number(params.articleId) },
+                user: { id: req.authInfo.id },
                 ...comment,
             });
             console.warn(dbRes);

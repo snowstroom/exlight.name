@@ -22,7 +22,7 @@ export namespace ArticleNamespace {
     }
 
     export interface IArticleCommentary extends CoreNamespace.ICommentary {
-        articleId: number;
+        articleId?: number;
     }
 
     export interface IRating {

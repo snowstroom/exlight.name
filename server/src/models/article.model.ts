@@ -4,6 +4,7 @@ import { Tag } from './tag.model';
 import { User } from './user.model';
 import { ArticleNamespace } from 'share';
 import { Rating } from './rating.model';
+import { Commentary } from './commentary.model';
 
 export const ARTICLE_TABLE_NAME = 'articles';
 
@@ -24,6 +25,9 @@ export class Atricle implements ArticleNamespace.IArticle {
     @OneToMany(type => Category, category => category.id)
     @Column({ nullable: false })
     public categoryId: number;
+
+    @OneToMany(type => Commentary, comment => comment.article)
+    public comments: Commentary[];
 
     @OneToMany(type => Rating, rating => rating.article)
     public ratings: Rating[];

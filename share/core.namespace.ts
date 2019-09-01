@@ -2,8 +2,8 @@ export namespace CoreNamespace {
     export interface ICommentary {
         id?: number;
         comment: string;
-        authorId: number;
-        commentId: number;
+        authorId?: number;
+        commentId?: number;
         createDate: string | Date;
         updateDate: string | Date;
     }

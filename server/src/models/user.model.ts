@@ -17,17 +17,18 @@ export class User implements UserNamespace.IUser {
     @Column({ nullable: false }) public password: string;
     @Column({ nullable: false }) public roleId: number;
 
-    @OneToMany(type => Commentary, comment => comment.authorId)
+    @OneToMany(type => Commentary, comment => comment.user)
     public comments: Commentary[];
 
     @OneToMany(type => Rating, rating => rating.id)
     public ratings: Rating[];
 
+    @OneToMany(type => Atricle, article => article.author)
+    public articles: Atricle[];
+
     @ManyToOne(type => Role, role => role.id)
     public role: Role;
 
-    @OneToMany(type => Atricle, article => article.author)
-    public articles: Atricle[];
     /*
     @ManyToMany(type => Access, access => access.roleId) @JoinTable({ name: ACCESS_ENTITY })
     public access: Access[];*/
