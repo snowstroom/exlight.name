@@ -7,4 +7,10 @@ export class Commentary extends CoreNamespace.AbstractCommentary implements Arti
     constructor(protected __data: Partial<ArticleNamespace.IArticleCommentary> = {}) {
         super(__data);
     }
+
+    public toJSON(): Partial<ArticleNamespace.IArticleCommentary> {
+        return {
+            comment: this.comment
+        };
+    }
 }
