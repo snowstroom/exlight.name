@@ -2,3 +2,4 @@
 /dist
 /documentation
 /src/configs/*.env
+/dia/db.dia.autosave

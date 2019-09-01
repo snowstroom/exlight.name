@@ -20,7 +20,7 @@ export class RatingController {
     @SetMetadata(META_PUBLIC_KEY, true)
     public async getRating(@Param() params: any) {
         try {
-            const records = await this.ratingRep.find({where: { articleId: params.articleId }});
+            const records = await this.ratingRep.find({ where: { articleId: params.articleId } });
             const ratingInfo: ArticleNamespace.IRatingInfo = {
                 avarage: 0,
                 min: null,
@@ -53,12 +53,19 @@ export class RatingController {
     @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.rating)
     public async toRateArticle(@Param() params: any, @Req() req: Request) {
         try {
-            await this.ratingRep.insert({
-                articleId: params.articleId,
-                userId: req.authInfo.id,
-                rating: req.body.rating,
+            const rate = await this.ratingRep.findOne({
+                article: { id: params.articleId },
+                user: { id: req.authInfo.id },
             });
-            return;
+            if (rate) {
+                throw new HttpException({ error: 'Уже оценено' }, HttpStatus.BAD_REQUEST);
+            } else {
+                await this.ratingRep.insert({
+                    article: { id: params.articleId },
+                    user: { id: req.authInfo.id },
+                    rating: req.body.rating,
+                });
+            }
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
         }

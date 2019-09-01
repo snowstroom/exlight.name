@@ -27,8 +27,8 @@ export namespace ArticleNamespace {
 
     export interface IRating {
         id?: number;
-        userId: number;
-        articleId: number;
+        userId?: number;
+        articleId?: number;
         rating: RatingNumber;
         dateOfCreate: Date;
     }

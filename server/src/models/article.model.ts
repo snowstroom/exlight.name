@@ -3,6 +3,7 @@ import { Category } from './category.model';
 import { Tag } from './tag.model';
 import { User } from './user.model';
 import { ArticleNamespace } from 'share';
+import { Rating } from './rating.model';
 
 export const ARTICLE_TABLE_NAME = 'articles';
 
@@ -23,6 +24,9 @@ export class Atricle implements ArticleNamespace.IArticle {
     @OneToMany(type => Category, category => category.id)
     @Column({ nullable: false })
     public categoryId: number;
+
+    @OneToMany(type => Rating, rating => rating.article)
+    public ratings: Rating[];
 
     @ManyToMany(type => Tag) @JoinTable({ name: 'articles_tags' })
     public tags: Tag[];
