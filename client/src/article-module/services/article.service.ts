@@ -5,7 +5,6 @@ import { Article } from '@article-module/models/article';
 import { CarouselItem, ICarouselItem } from '@app/models/carousel-item';
 import { EnviromentService } from '@app/services/envirement.service';
 import { ApiNamespace as API, ArticleNamespace } from '@share/';
-import { Commentary } from '@article-module/models/commentary';
 
 @Injectable({
   providedIn: 'root'
@@ -35,15 +34,6 @@ export class ArticleService extends Api {
       const answ = await this.get<API.IPaginationContent<ArticleNamespace.IArticle>>(`article/list${params}${catParams}${authorParams}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
-    } catch (err) {
-      return [];
-    }
-  }
-
-  public async getArticleCommentaries(articleId: number): Promise<Commentary[]> {
-    try {
-      const answ = await this.get<API.IPaginationContent<ArticleNamespace.IArticleCommentary>>(`commentary/list/article/${articleId}`);
-      return answ.content.map(c => new Commentary(c));
     } catch (err) {
       return [];
     }
