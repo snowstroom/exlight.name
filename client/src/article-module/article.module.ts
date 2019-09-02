@@ -16,6 +16,7 @@ import { CatalogPage } from './pages/catalog/catalog.page';
 import { ArticleItemComponent } from './components/article-item/article-item.component';
 import { CommentControlComponent } from './components/comment-control/comment-control.component';
 import { CommentaryItemComponent } from './components/comment-item/comment-item.component';
+import { CommentTreeComponent } from './components/comments-tree/comments-tree.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { CommentaryItemComponent } from './components/comment-item/comment-item.
     CatalogPage,
     ArticleItemComponent,
     CommentControlComponent,
-    CommentaryItemComponent
+    CommentaryItemComponent,
+    CommentTreeComponent
   ],
   providers: [
     INIT_CATEGORIES
