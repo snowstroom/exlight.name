@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Commentary } from '@article-module/models/commentary';
 
 @Component({
@@ -8,7 +8,13 @@ import { Commentary } from '@article-module/models/commentary';
 })
 export class CommentaryItemComponent {
     @Input() public comment: Commentary;
+    @Output() public answer = new EventEmitter();
+    @Output() public delete = new EventEmitter();
 
-    public answer(): void {}
-    public delete(): void {}
+    public answerToComment(): void {
+        this.answer.emit();
+    }
+    public deleteComment(): void {
+        this.delete.emit();
+    }
 }

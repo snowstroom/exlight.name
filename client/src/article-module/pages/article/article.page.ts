@@ -57,6 +57,10 @@ export class ArticlePage implements OnDestroy {
     await this.artCommentSrv.addComment(this.article.id, cmnt);
   }
 
+  public async deleteComment(comment: Commentary): Promise<void> {
+    await this.artCommentSrv.deleteComment(comment.id);
+  }
+
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
     this.comments = await this.artCommentSrv.getCommentList(this.article.id, this.commentsPagParams);

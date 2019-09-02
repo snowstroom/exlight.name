@@ -1,0 +1,14 @@
+<ex-comment-control (send)="sendNewComment($event)"></ex-comment-control>
+<ng-container *ngTemplateOutlet="treeTemplate; context: {items: comments, lvl: 0}"></ng-container>
+
+<ng-template #treeTemplate let-items="items" let-lvl="lvl">
+  <div *ngFor="let comment of items">
+    <ng-container *ngTemplateOutlet="commentItemTemplate; context: { comment: comment, lvl: lvl }"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #commentItemTemplate let-comment="comment" let-lvl="lvl">
+  <ex-commentary-item [comment]="comment" (delete)="deleteComment(comment)" (answer)="answerToComment(comment)">
+  </ex-commentary-item>
+  <ng-container *ngTemplateOutlet="treeTemplate; context: { items: node.children, level: level * 1 + 1}"></ng-container>
+</ng-template>
