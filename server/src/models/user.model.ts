@@ -14,7 +14,7 @@ export class User implements UserNamespace.IUser {
     @IsEmail() @Column({ unique: true, nullable: false }) public email: string;
     @Column({ nullable: true }) public firstname: string;
     @Column({ nullable: true }) public secondname: string;
-    @Column({ nullable: false }) public password: string;
+    @Column({ nullable: false, select: false }) public password: string;
     @Column({ nullable: false }) public roleId: number;
 
     @OneToMany(type => Commentary, comment => comment.user)
