@@ -17,7 +17,10 @@
       <ex-spinner [wait]="wait"></ex-spinner>
       <markdown [data]=article?.content></markdown>
     </article>
-    <ex-comment-tree (delete)="deleteComment($event)" (new)="saveNewComment($event)"></ex-comment-tree>
+    <div class="content">
+      <ex-comment-tree [comments]="comments" (delete)="deleteComment($event)" (new)="saveNewComment($event)">
+      </ex-comment-tree>
+    </div>
   </main>
   <aside class="right"></aside>
 </div>

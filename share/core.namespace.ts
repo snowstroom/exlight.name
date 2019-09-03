@@ -6,6 +6,7 @@ export namespace CoreNamespace {
         commentId?: number;
         createDate: string | Date;
         updateDate: string | Date;
+        comments: ICommentary[];
     }
 
     export abstract class AbstractCommentary implements ICommentary {
@@ -15,6 +16,7 @@ export namespace CoreNamespace {
         public authorId: number = this.__data.authorId;
         public createDate: Date = new Date(<string>this.__data.createDate);
         public updateDate: Date = new Date(<string>this.__data.updateDate);
+        public abstract comments: ICommentary[];
 
         constructor(protected __data: Partial<ICommentary> = {}) {}
     }

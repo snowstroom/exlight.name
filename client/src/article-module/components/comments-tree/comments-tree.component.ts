@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Commentary } from '@article-module/models/commentary';
 
-const PADDING = 35;
+const PADDING = 55;
 @Component({
     selector: 'ex-comment-tree',
     templateUrl: 'comments-tree.component.html',
