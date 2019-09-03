@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { APP_ROUTES } from './routes';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
 // MODULES
 import { BrowserModule, Title, Meta } from '@angular/platform-browser';
@@ -36,6 +38,10 @@ import { AccessDirective } from './directives/access.directive';
 import { INTERSEPTOR } from './services/providers/interseptor.provider';
 import { RegistrationConfirmPage } from './pages/registration-confirm/registration-confirm.page';
 import { RegistrationDisablePage } from './pages/registration-disable/registration-disable.page';
+import { LOCALE } from './services/providers/locale.provider';
+
+registerLocaleData(localeRu);
+
 @NgModule({
   declarations: [
     AboutPage,
@@ -71,7 +77,8 @@ import { RegistrationDisablePage } from './pages/registration-disable/registrati
     Meta,
     INIT_FONTS,
     HUMMER_PROVIDER,
-    INTERSEPTOR
+    INTERSEPTOR,
+    LOCALE
   ],
   bootstrap: [AppComponent]
 })
