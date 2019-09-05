@@ -4,6 +4,9 @@
   .active {
     color: $rating-active-color;
     cursor: pointer;
+    >svg {
+      filter: drop-shadow(0 0 5px #ffd700);
+    }
   }
 
   .inactive {

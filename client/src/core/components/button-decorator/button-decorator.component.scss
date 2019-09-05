@@ -8,6 +8,7 @@
   }
 
   .item-decorator {
+    border-radius: $element-radius;
     position: absolute;
     height: 100%;
     background: $active-element-bg;
