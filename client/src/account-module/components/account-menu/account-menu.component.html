@@ -2,7 +2,7 @@
   <div class="account-icon" *ngFor="let item of ICONS">
     <div class="icon-item" [title]="item.title">
       <a [routerLink]="item.route">
-        <fa-icon [icon]="item.ico" class="icon"></fa-icon>
+        <i class="la icon" [ngClass]="item.ico"></i>
       </a>
     </div>
   </div>

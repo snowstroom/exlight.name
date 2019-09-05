@@ -55,7 +55,7 @@
           <div class="social">
             <div *ngFor="let s of social" [title]="s.title">
               <a [href]="s.href">
-                <fa-icon [icon]="s.icon" class="icon"></fa-icon>
+                <i [ngClass]="s.icon" class="icon"></i>
               </a>
             </div>
           </div>

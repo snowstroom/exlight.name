@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExlightCommonModule } from '@common-module/common.module';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ExlightCoreModule } from '@core/core.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +30,6 @@ import { ExlightArticleModule } from '@article-module/article.module';
         CommonModule,
         BrowserModule,
         RouterModule,
-        FontAwesomeModule,
         AngularEditorModule,
         FormsModule,
         ReactiveFormsModule,

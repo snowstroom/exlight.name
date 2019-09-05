@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegistrationService } from '@app/services/registration.service';
 import { Router } from '@angular/router';
-import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 
 @Component({
     templateUrl: 'registration.page.html',
@@ -10,8 +9,6 @@ import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 })
 
 export class RegistrationComponent {
-    public readonly EYE_ICO = faEye;
-    public readonly EYE_SLASH_ICO = faEyeSlash;
     public hidePsw = true;
     public form = new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),

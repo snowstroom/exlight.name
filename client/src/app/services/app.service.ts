@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { EnviromentService } from './envirement.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { IconDefinition } from '@fortawesome/fontawesome-free-brands';
 import { VkShareButton, TwitterButton, FacebookButton, LinkedInButton, TelegramButton } from '@app/models/share-buttons';
 
 export interface IPageDescription {
@@ -14,7 +13,7 @@ export interface IPageDescription {
 }
 
 export interface IShareButton {
-    icon: IconDefinition;
+    icon: string;
     url: string;
     update(desc: IPageDescription): void;
 }

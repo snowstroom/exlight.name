@@ -3,5 +3,6 @@
 @import 'styles/reset';
 @import 'styles/global-elements';
 @import "styles/gloval-styles.scss";
-@import "../node_modules/prismjs/themes/prism-okaidia.css";
-@import "../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import "~prismjs/themes/prism-okaidia.css";
+@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import '~line-awesome/src/line-awesome';

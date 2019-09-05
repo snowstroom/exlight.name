@@ -29,11 +29,15 @@
     }
 
     .right {
-      border-radius: $element-radius;
       &.hiden {
         position: relative;
         right: -300px;
       }
+      .profile {
+        position: sticky;
+        top: 0;
+      }
+      border-radius: $element-radius;
       transition: right 0.3s;
       width: 300px;
       background: $blocks-color-bg;

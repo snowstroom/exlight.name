@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { faStar, faStarHalf } from '@fortawesome/fontawesome-free-solid';
 import { ArticleNamespace } from '@share/*';
 
 
@@ -10,8 +9,6 @@ import { ArticleNamespace } from '@share/*';
 })
 
 export class RatingComponent {
-    public readonly STAR_ICO = faStar;
-    public readonly HALF_ICO = faStarHalf;
     public ratingValue: ArticleNamespace.RatingNumber = 0;
     public rating: number[] = [0, 0, 0, 0, 0];
     @Input() public readonly: boolean;

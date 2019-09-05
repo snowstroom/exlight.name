@@ -1,7 +1,7 @@
 <div class="share" [ngClass]="{'visible': visibleShare}">
   <div class="icon-wrapper">
     <div class="icon-item" *ngFor="let icon of shareButtons" (click)="share(icon.url)">
-      <fa-icon [icon]="icon.icon" class="icon"></fa-icon>
+      <i [ngClass]="icon.icon" class="la icon"></i>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@
     </ex-input>
     <ex-input>
       <input formControlName="password" type="{{hidePsw ? 'password' : 'text'}}" placeholder="Ваш пароль">
-      <fa-icon [icon]="hidePsw ? EYE_SLASH_ICO : EYE_ICO" class="inp-icon" (click)="hidePsw = !hidePsw"></fa-icon>
+       <i class="la" [ngClass]="{'la-eye': hidePsw, 'la-eye-slash': !hidePsw}" (click)="hidePsw = !hidePsw"></i>
     </ex-input>
     <div class="btn">
       <button type="submit">Войти</button>

@@ -1,8 +1,7 @@
 import { IShareButton, IPageDescription } from '@app/services/app.service';
-import { faVk, faTwitter, IconDefinition, faFacebook, faLinkedin, faTelegram } from '@fortawesome/fontawesome-free-brands';
 
 export class VkShareButton implements IShareButton {
-    public readonly icon: IconDefinition = faVk;
+    public readonly icon = 'la-vk';
     public url: string;
     constructor(desc: IPageDescription) {
         this.update(desc);
@@ -14,7 +13,7 @@ export class VkShareButton implements IShareButton {
 }
 
 export class TwitterButton implements IShareButton {
-    public readonly icon: IconDefinition = faTwitter;
+    public readonly icon = 'la-twitter-square';
     public url: string;
     constructor(desc: IPageDescription) {
         this.update(desc);
@@ -26,7 +25,7 @@ export class TwitterButton implements IShareButton {
 }
 
 export class FacebookButton implements IShareButton {
-    public readonly icon: IconDefinition = faFacebook;
+    public readonly icon = 'la-facebook-official';
     public url: string;
     constructor(desc: IPageDescription) {
         this.update(desc);
@@ -38,7 +37,7 @@ export class FacebookButton implements IShareButton {
 }
 
 export class LinkedInButton implements IShareButton {
-    public readonly icon: IconDefinition = faLinkedin;
+    public readonly icon = 'la-linkedin-square';
     public url: string;
     constructor(desc: IPageDescription) {
         this.update(desc);
@@ -50,7 +49,7 @@ export class LinkedInButton implements IShareButton {
 }
 
 export class TelegramButton implements IShareButton {
-    public readonly icon: IconDefinition = faTelegram;
+    public readonly icon = 'la-telegram';
     public url: string;
     constructor(desc: IPageDescription) {
         this.update(desc);

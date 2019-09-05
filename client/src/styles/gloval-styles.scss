@@ -113,11 +113,13 @@ ul {
 }
 
 img {
+  border-radius: $element-radius;
   width: 100%;
   transition: width 0.5s;
 }
 
 table {
+  border-radius: $element-radius;
   width: 100%;
   background: #0000008a;
   margin-bottom: $margin-bottom;
@@ -143,4 +145,8 @@ table {
       }
     }
   }
+}
+
+pre[class*="language-"] {
+  border-radius: $element-radius;
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 import { AuthService } from '@app/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,10 +7,7 @@ import { Router } from '@angular/router';
     templateUrl: 'authorization.page.html',
     styleUrls: ['authorization.page.scss']
 })
-
 export class AuthorizationComponent {
-    public readonly EYE_ICO = faEye;
-    public readonly EYE_SLASH_ICO = faEyeSlash;
     public hidePsw = true;
 
     public form = new FormGroup({

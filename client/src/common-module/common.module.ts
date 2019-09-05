@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { LineSpinnerComponent } from './components/spinners/line-spinner/line-spinner.component';
 import { SpinnerComponent } from './components/spinners/text-spinner/spinner.component';
 import { RatingComponent } from './components/rating/rating.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.component';
 import { ExlightCoreModule } from '@core/core.module';
@@ -18,7 +17,6 @@ import { FooterComponent } from './components/footer/footer.component';
     imports: [
         CommonModule,
         BrowserModule,
-        FontAwesomeModule,
         RouterModule,
         ExlightCoreModule
     ],

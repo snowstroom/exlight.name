@@ -6,7 +6,9 @@
       <router-outlet></router-outlet>
     </main>
     <aside class="right" *ngIf="showAside">
-      <ex-profile-outside></ex-profile-outside>
+      <div class="profile">
+        <ex-profile-outside></ex-profile-outside>
+      </div>
     </aside>
   </div>
   <ex-footer [menuItems]="menuItems"></ex-footer>

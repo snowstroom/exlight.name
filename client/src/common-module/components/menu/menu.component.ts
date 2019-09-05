@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
-import { faBars } from '@fortawesome/fontawesome-free-solid';
 
 @Component({
   selector: 'ex-menu',
@@ -11,7 +10,6 @@ import { faBars } from '@fortawesome/fontawesome-free-solid';
 export class MenuComponent {
   @Input() public menuItems = [];
   @Output() public sidenavToogle = new EventEmitter();
-  public readonly MENU_ICO = faBars;
   public active: number;
 
   constructor(private activatedRoute: Router) {

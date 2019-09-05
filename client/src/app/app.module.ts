@@ -6,7 +6,6 @@ import localeRu from '@angular/common/locales/ru';
 // MODULES
 import { BrowserModule, Title, Meta } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonLdModule } from '@ngx-lite/json-ld';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExlightArticleModule } from '@article-module/article.module';
@@ -64,7 +63,6 @@ registerLocaleData(localeRu);
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(APP_ROUTES),
-    FontAwesomeModule,
     NgxJsonLdModule,
     ReactiveFormsModule,
     ExlightArticleModule,

@@ -1,24 +1,23 @@
-import { faUser, faCogs, faPencilAlt, faUserCog, faKey, faSitemap } from '@fortawesome/fontawesome-free-solid';
 import { IAccountIco } from '@account-module/interfaces/account-ico';
 
 export const ICONS: IAccountIco[] = [{
-    ico: faUser,
+    ico: 'la-user',
     route: '/account/profile',
     title: 'Профиль'
 }, {
-    ico: faPencilAlt,
+    ico: 'la-pencil',
     route: '/account/articles',
     title: 'Статьи'
 }, {
-    ico: faUserCog,
+    ico: 'la-cog',
     route: '/account/user-manage',
     title: 'Управление пользователями'
 }, {
-    ico: faKey,
+    ico: 'la-key',
     route: '/account/access-manage/accesses',
     title: 'Управление доступами'
 }, {
-    ico: faSitemap,
+    ico: 'la-sitemap',
     route: '/account/categories-manage',
     title: 'Управление категориями'
 }];
