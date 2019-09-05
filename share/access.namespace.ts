@@ -20,6 +20,7 @@ export namespace AccessNamespace {
         id?: number;
         entity: string;
         access: number;
+        description: string;
     }
 
     export interface IRole {
