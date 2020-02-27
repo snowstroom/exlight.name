@@ -46,11 +46,13 @@
 					"name": "Delete category",
 					"request": {
 						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB4bGlnaHQubmFtZSIsInJvbGVJZCI6MSwiaWF0IjoxNTU5NDc0Mjc0LCJleHAiOjE1NTk0NzQyNzR9.gpkTXNp4epyl2I-UgoJYTM_uehqYA39Nmz4FkfmGoLs",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{server}}/api/category/:id",
 							"host": [
@@ -64,7 +66,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "2",
+									"type": "string"
 								}
 							]
 						}
@@ -76,10 +79,6 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{server}}/api/category/:id",
 							"host": [
@@ -93,7 +92,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "",
+									"type": "string"
 								}
 							]
 						}
@@ -104,11 +104,13 @@
 					"name": "Get category",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB4bGlnaHQubmFtZSIsInJvbGVJZCI6MSwiaWF0IjoxNTU5NDg3MDc4LCJleHAiOjE1NTk0ODg4Nzh9.nEvKq8A-qvpN1blCYEkopiJnigwSMUAoO0rV3Gr4S_E",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{server}}/api/category/:id",
 							"host": [
@@ -122,7 +124,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"type": "string"
 								}
 							]
 						}
@@ -134,10 +137,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{server}}/api/category/all",
 							"host": [
@@ -171,7 +170,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"kwedwth@gmail.com\",\n\t\"password\": \"123456\"\n}"
+							"raw": "{\n\t\"email\": \"admin@xlight.name\",\n\t\"password\": \"2016exlightMinsk\"\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/auth",
@@ -230,7 +229,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"kwedwth@gmail.com\",\n\t\"password\": \"123456\"\n}"
+							"raw": "{\n\t\"email\": \"kerpith@gmail.com\",\n\t\"password\": \"123456\"\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/auth/registration",
@@ -241,6 +240,91 @@
 								"api",
 								"auth",
 								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/auth/forgot/email/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"forgot",
+								"email",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/auth/confirm/email?hash=U2FsdGVkX19WsZLDYQBpN/c69mZNhxqvmhCE0TdS5AZWyB8ZkNEvrbm23GgIJiCL",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"confirm",
+								"email"
+							],
+							"query": [
+								{
+									"key": "hash",
+									"value": "U2FsdGVkX19WsZLDYQBpN/c69mZNhxqvmhCE0TdS5AZWyB8ZkNEvrbm23GgIJiCL"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/auth/disable/email?hash=U2FsdGVkX19WsZLDYQBpN/c69mZNhxqvmhCE0TdS5AZWyB8ZkNEvrbm23GgIJiCL",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"disable",
+								"email"
+							],
+							"query": [
+								{
+									"key": "hash",
+									"value": "U2FsdGVkX19WsZLDYQBpN/c69mZNhxqvmhCE0TdS5AZWyB8ZkNEvrbm23GgIJiCL"
+								}
 							]
 						}
 					},
@@ -259,10 +343,6 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/article/item",
 									"host": [
@@ -282,10 +362,6 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/article/item/:id",
 									"host": [
@@ -300,7 +376,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -312,10 +389,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/article/item/:id",
 									"host": [
@@ -330,7 +403,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "1",
+											"type": "string"
 										}
 									]
 								}
@@ -342,12 +416,8 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
-									"raw": "{{server}}/api/article/item?route=test",
+									"raw": "{{server}}/api/article/item?route=test-article",
 									"host": [
 										"{{server}}"
 									],
@@ -359,7 +429,7 @@
 									"query": [
 										{
 											"key": "route",
-											"value": "test"
+											"value": "test-article"
 										}
 									]
 								}
@@ -371,10 +441,6 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/article/item/:id",
 									"host": [
@@ -389,7 +455,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -407,12 +474,8 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
-									"raw": "{{server}}/api/article/list?start=0&limit=5&category_id=1",
+									"raw": "{{server}}/api/article/list?start=0&limit=5&category_id=1&author_id=1",
 									"host": [
 										"{{server}}"
 									],
@@ -433,6 +496,10 @@
 										{
 											"key": "category_id",
 											"value": "1"
+										},
+										{
+											"key": "author_id",
+											"value": "1"
 										}
 									]
 								}
@@ -446,7 +513,66 @@
 		},
 		{
 			"name": "user",
-			"item": []
+			"item": [
+				{
+					"name": "item",
+					"item": [
+						{
+							"name": "Update user",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/api/user/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/api/user/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
 		},
 		{
 			"name": "role",
@@ -455,10 +581,17 @@
 					"name": "Add role",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"name\": \"MODERATOR\",\n\t\"description\": \"Moderator of source\"\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/role",
@@ -478,18 +611,78 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "{{server}}/api/role",
+							"raw": "{{server}}/api/role/:id",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
 								"api",
-								"role"
+								"role",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"ARTICLES_MODERATOR\",\n\t\"description\": \"Moderator of source\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/role/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"role",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get role list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/role/list",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"list"
 							]
 						}
 					},
@@ -508,10 +701,6 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/commentary/item/article/:id",
 									"host": [
@@ -527,7 +716,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -539,10 +729,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/commentary/list/article/:id?start=0&limit=10",
 									"host": [
@@ -568,7 +754,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -580,10 +767,6 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/commentary/:id/article",
 									"host": [
@@ -598,7 +781,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -610,10 +794,6 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{server}}/api/commentary/:id/article",
 									"host": [
@@ -628,7 +808,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "",
+											"type": "string"
 										}
 									]
 								}
@@ -637,6 +818,292 @@
 						}
 					],
 					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "rating",
+			"item": [
+				{
+					"name": "article",
+					"item": [
+						{
+							"name": "Get rating",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/api/rating/info/article/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"info",
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "To rate article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/javascript",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"rating\": 5\n}"
+								},
+								"url": {
+									"raw": "{{server}}/api/rating/to-rate/article/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"rating",
+										"to-rate",
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "tag",
+			"item": [
+				{
+					"name": "item",
+					"item": [
+						{
+							"name": "Add tags",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"tags\": [\"test\", \"music\", \"angular\"]\n}"
+								},
+								"url": {
+									"raw": "{{server}}/api/tag",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"tag"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete tag",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/api/tag/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"tag",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "string"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "list",
+					"item": [
+						{
+							"name": "Get tag list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/api/tag/list?start=0&limit=5",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"tag",
+										"list"
+									],
+									"query": [
+										{
+											"key": "start",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "article",
+					"item": [],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "access",
+			"item": [
+				{
+					"name": "Add access",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB4bGlnaHQubmFtZSIsInJvbGVJZCI6MSwiaWF0IjoxNTYwMDAwMDQ2LCJleHAiOjE1NjAwMDE4NDZ9.DNInETtoJZA6n_-CzAPUvicZHAPSwuzJnklfbCq32U8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roleId\": 3,\n\t\"entity\": \"article\",\n\t\"access\": 1\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/access",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"access"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update access",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roleId\": 3,\n\t\"entity\": \"article\",\n\t\"access\": 5\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/access/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"access",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete access",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/access/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"access",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
