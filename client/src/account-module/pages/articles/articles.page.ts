@@ -12,46 +12,51 @@ import { ActivatedRoute } from '@angular/router';
 import { numberParam } from '@core/functions/number-param';
 
 @Component({
-    templateUrl: 'articles.page.html'
+  templateUrl: 'articles.page.html',
 })
 export class ArticlesPage implements OnDestroy {
-    public readonly MENU_ITEMS = ARTICLES_SECTIONS;
-    public articles: Article[] = [new Article({
-        title: 'Test',
-        publicationDate: new Date(),
-        route: 'test'
-    })];
-    public page = 1;
-    public readonly PAGE_LENGTH = ITEMS_ON_PAGE_ART;
-    private pagParams = new PaginationParams({
-        limit: 5,
-        total: 30
-    });
-    private readonly subscriber = new Subject();
+  public readonly MENU_ITEMS = ARTICLES_SECTIONS;
+  public articles: Article[] = [
+    new Article({
+      title: 'Test',
+      publicationDate: new Date(),
+      route: 'test',
+    }),
+  ];
+  public page = 1;
+  public readonly PAGE_LENGTH = ITEMS_ON_PAGE_ART;
+  private pagParams = new PaginationParams({
+    limit: 5,
+    total: 30,
+  });
+  private readonly subscriber = new Subject();
 
-    constructor(
-        private articleSrv: ArticleService,
-        private profileSrv: ProfileService,
-        private activatedRoute: ActivatedRoute
-    ) {
-        combineLatest(this.activatedRoute.params, this.profileSrv.$user)
-            .pipe(takeUntil(this.subscriber))
-            .subscribe(([params, user]) => {
-                this.pagParams.page = numberParam(params.page);
-                this.page = numberParam(params.page);
-                this.init(user);
-            });
+  constructor(
+    private articleSrv: ArticleService,
+    private profileSrv: ProfileService,
+    private activatedRoute: ActivatedRoute,
+  ) {
+    combineLatest(this.activatedRoute.params, this.profileSrv.$user)
+      .pipe(takeUntil(this.subscriber))
+      .subscribe(([params, user]) => {
+        this.pagParams.page = numberParam(params.page);
+        this.page = numberParam(params.page);
+        this.init(user);
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriber.next(null);
+    this.subscriber.complete();
+  }
+
+  private async init(user: User): Promise<void> {
+    if (user) {
+      this.articles = await this.articleSrv.getArticles(
+        this.pagParams,
+        null,
+        user.id,
+      );
     }
-
-    public ngOnDestroy(): void {
-        this.subscriber.next(null);
-        this.subscriber.complete();
-    }
-
-
-    private async init(user: User): Promise<void> {
-        if (user) {
-            this.articles = await this.articleSrv.getArticles(this.pagParams, null, user.id);
-        }
-    }
+  }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: 'categories-manage.page.html'
+  templateUrl: 'categories-manage.page.html',
 })
 export class CategoriesManagePage {}

@@ -8,55 +8,78 @@ import { CategoriesManagePage } from './pages/categories-manage/categories-manag
 import { UserManagePage } from './pages/users-manage/users-manage.page';
 import { AccessManagePage } from './pages/access-manage/access-manage.page';
 
-export const ACCOUNT_ROUTES: IExlightRoute[] = [{
+export const ACCOUNT_ROUTES: IExlightRoute[] = [
+  {
     path: 'account',
     canActivate: [GuardService],
-    children: [{
+    children: [
+      {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'profile'
-    }, {
+        redirectTo: 'profile',
+      },
+      {
         path: 'profile',
-        children: [{
+        children: [
+          {
             path: '',
-            component: ProfileEditorPage
-        }, {
+            component: ProfileEditorPage,
+          },
+          {
             path: 'settings',
-            component: AccountSettingsPage
-        }]
-    }, {
+            component: AccountSettingsPage,
+          },
+        ],
+      },
+      {
         path: 'articles',
-        children: [{
+        children: [
+          {
             path: '',
             pathMatch: 'full',
             redirectTo: 'create',
-        }, {
+          },
+          {
             path: 'list/page/:page',
             component: ArticlesPage,
-        }, {
+          },
+          {
             path: 'create',
-            component: CreateArticlePage
-        }]
-    }, {
+            component: CreateArticlePage,
+          },
+        ],
+      },
+      {
         path: 'categories-manage',
-        children: [{
+        children: [
+          {
             path: '',
-            component: CategoriesManagePage
-        }]
-    }, {
+            component: CategoriesManagePage,
+          },
+        ],
+      },
+      {
         path: 'user-manage',
-        children: [{
+        children: [
+          {
             path: '',
-            component: UserManagePage
-        }]
-    }, {
+            component: UserManagePage,
+          },
+        ],
+      },
+      {
         path: 'access-manage',
-        children: [{
+        children: [
+          {
             path: 'accesses',
-            component: AccessManagePage
-        }, {
+            component: AccessManagePage,
+          },
+          {
             path: 'roles',
-            component: AccessManagePage
-        }]
-    }]
-}];
+            component: AccessManagePage,
+          },
+        ],
+      },
+    ],
+  },
+];

@@ -1,13 +1,26 @@
-<ex-account-page-wrapper [menuItems]="MENU_ITEMS" sectionName="Управление аккаунтом">
-  <img src="assets/no-photo.png" class="avatar" alt="Пользовательское фото">
+<ex-account-page-wrapper
+  [menuItems]="MENU_ITEMS"
+  sectionName="Управление аккаунтом"
+>
+  <img src="assets/no-photo.png" class="avatar" alt="Пользовательское фото" />
   <form [formGroup]="form">
     <label for="firstname">Имя</label>
     <ex-input>
-      <input type="text" id="firstname" formControlName="firstname" placeholder="Имя">
+      <input
+        type="text"
+        id="firstname"
+        formControlName="firstname"
+        placeholder="Имя"
+      />
     </ex-input>
     <label for="secondname">Фамилия</label>
     <ex-input>
-      <input type="text" id="secondname" formControlName="secondname" placeholder="Фамилия">
+      <input
+        type="text"
+        id="secondname"
+        formControlName="secondname"
+        placeholder="Фамилия"
+      />
     </ex-input>
   </form>
 </ex-account-page-wrapper>

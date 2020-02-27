@@ -18,16 +18,15 @@
         color: $element-text-color;
 
         .icon {
-          transition: color .5s;
+          transition: color 0.5s;
           cursor: pointer;
 
           &:hover {
             color: $active-element-bg;
-            transition: color .5s;
+            transition: color 0.5s;
           }
         }
       }
     }
   }
-
 }

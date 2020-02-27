@@ -1,23 +1,29 @@
 import { IAccountIco } from '@account-module/interfaces/account-ico';
 
-export const ICONS: IAccountIco[] = [{
+export const ICONS: IAccountIco[] = [
+  {
     ico: 'la-user',
     route: '/account/profile',
-    title: 'Профиль'
-}, {
+    title: 'Профиль',
+  },
+  {
     ico: 'la-pencil',
     route: '/account/articles',
-    title: 'Статьи'
-}, {
+    title: 'Статьи',
+  },
+  {
     ico: 'la-cog',
     route: '/account/user-manage',
-    title: 'Управление пользователями'
-}, {
+    title: 'Управление пользователями',
+  },
+  {
     ico: 'la-key',
     route: '/account/access-manage/accesses',
-    title: 'Управление доступами'
-}, {
+    title: 'Управление доступами',
+  },
+  {
     ico: 'la-sitemap',
     route: '/account/categories-manage',
-    title: 'Управление категориями'
-}];
+    title: 'Управление категориями',
+  },
+];

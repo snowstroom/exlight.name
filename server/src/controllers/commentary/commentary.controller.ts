@@ -1,5 +1,5 @@
 import { Controller, Body, Param, Post, HttpStatus, HttpException, Put, Delete, Get, SetMetadata, UseGuards, Req } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, TreeRepository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import { ICommentaryApiParams, ICommentaryApiListParams } from 'server/src/interfaces/commentary-api';
 import { META_ACCESS_KEY, META_ENTITY_KEY, META_PUBLIC_KEY } from 'server/src/consts/meta-keys';
@@ -13,7 +13,7 @@ import { Request } from 'express-serve-static-core';
 export class CommentaryController {
 
     constructor(
-        @InjectRepository(Commentary) private commentaryRep: Repository<Commentary>,
+        @InjectRepository(Commentary) private commentaryRep: TreeRepository<Commentary>,
     ) { }
 
     @Post('/item/article/:articleId')
@@ -73,13 +73,29 @@ export class CommentaryController {
         @Param() params: ICommentaryApiListParams,
     ): Promise<ArticleNamespace.IArticleCommentary[]> {
         try {
-            const dbRes = this.commentaryRep.find({
-                where: {
-                    articleId: params.articleId,
-                },
+            const dbRes = await this.commentaryRep.find({
+                where: { articleId: params.articleId },
                 skip: params.start,
                 take: params.limit,
+                relations: ['user'],
             });
+            const res = await this.commentaryRep.createDescendantsQueryBuilder('commentary', 'comments', null)
+                .where('commentary.articleId = :articleId', { articleId: params.articleId })
+                .andWhere(`commentary.type = 'secondary'`)
+                .leftJoinAndSelect('commentary.user', 'user')
+                .select([
+                    'commentary.id',
+                    'commentary.comment',
+                    'commentary.updateDate',
+                    'commentary.createDate',
+                    'user.id',
+                    'user.firstname',
+                    'user.secondname',
+                ])
+                .skip(params.limit)
+                .take(params.start)
+                .getMany();
+            console.warn(res);
             return dbRes;
         } catch (err) {
             throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);

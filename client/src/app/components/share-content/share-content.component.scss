@@ -25,9 +25,11 @@
       .icon {
         transition: color .5s;
         cursor: pointer;
+        text-shadow: none;
         &:hover {
           color: $active-element-bg;
-          transition: color .5s;
+          @include shadow-text($active-element-bg);
+          transition: color, text-shadow .5s;
         }
       }
 

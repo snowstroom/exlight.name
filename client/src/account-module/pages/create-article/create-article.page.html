@@ -1,20 +1,26 @@
-<ex-account-page-wrapper [menuItems]="MENU_ITEMS" sectionName="Управление статьями">
+<ex-account-page-wrapper
+  [menuItems]="MENU_ITEMS"
+  sectionName="Управление статьями"
+>
   <form [formGroup]="form">
     <label for="title">Заголовок</label>
     <ex-input>
-      <input type="text" id="title" placeholder="Заголовок статьи">
+      <input type="text" id="title" placeholder="Заголовок статьи" />
     </ex-input>
     <label for="description">Описание</label>
     <ex-input>
-      <input type="text" id="description" placeholder="Краткое описание">
+      <input type="text" id="description" placeholder="Краткое описание" />
     </ex-input>
     <label for="url"></label>
     <ex-input>
-      <input type="text" id="url" placeholder="URL">
+      <input type="text" id="url" placeholder="URL" />
     </ex-input>
     <ex-input>
-      <input type="text" placeholder="Категория">
+      <input type="text" placeholder="Категория" />
     </ex-input>
-    <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+    <angular-editor
+      [(ngModel)]="htmlContent"
+      [config]="config"
+    ></angular-editor>
   </form>
 </ex-account-page-wrapper>

@@ -6,6 +6,8 @@
   text-shadow: $text-shadow;
   font-family: $elements-text;
   font-weight: bold;
+  box-sizing: border-box;
+  min-height: 104px;
 
   .head {
     color: $element-text-color;
@@ -27,7 +29,7 @@
       height: 32px;
       background: $active-element-bg;
       z-index: 1;
-      transition: .3s width, .5s left;
+      transition: 0.3s width, 0.5s left;
       box-shadow: 0 0 10px $active-element-bg;
     }
 
@@ -48,7 +50,7 @@
 **/
 @media (min-width: $min-exs) and (max-width: $max-exs) {
   .main-head {
-    padding: 1em .5em;
+    padding: 1em 0.5em;
 
     .categories {
       overflow: auto;
