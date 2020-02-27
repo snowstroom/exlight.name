@@ -22,37 +22,34 @@ import { CategoriesManagePage } from './pages/categories-manage/categories-manag
 import { UserManagePage } from './pages/users-manage/users-manage.page';
 import { AccessManagePage } from './pages/access-manage/access-manage.page';
 import { ExlightArticleModule } from '@article-module/article.module';
+import { CategoryApiService } from './services/category.service';
 
 @NgModule({
-    imports: [
-        ExlightCommonModule,
-        ExlightCoreModule,
-        CommonModule,
-        BrowserModule,
-        RouterModule,
-        AngularEditorModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ExlightArticleModule,
-        RouterModule.forChild(ACCOUNT_ROUTES)
-    ],
-    declarations: [
-        ProfileEditorPage,
-        AccountSettingsPage,
-        ArticlesPage,
-        CreateArticlePage,
-        CategoriesManagePage,
-        UserManagePage,
-        AccessManagePage,
-        AccountPageWrapperComponent,
-        AccountHeadComponent,
-        AccountMenuComponent
-    ],
-    providers: [],
-    exports: [
-        ProfileEditorPage,
-        AccountSettingsPage,
-        RouterModule
-    ]
+  imports: [
+    ExlightCommonModule,
+    ExlightCoreModule,
+    CommonModule,
+    BrowserModule,
+    RouterModule,
+    AngularEditorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ExlightArticleModule,
+    RouterModule.forChild(ACCOUNT_ROUTES),
+  ],
+  declarations: [
+    ProfileEditorPage,
+    AccountSettingsPage,
+    ArticlesPage,
+    CreateArticlePage,
+    CategoriesManagePage,
+    UserManagePage,
+    AccessManagePage,
+    AccountPageWrapperComponent,
+    AccountHeadComponent,
+    AccountMenuComponent,
+  ],
+  providers: [CategoryApiService],
+  exports: [ProfileEditorPage, AccountSettingsPage, RouterModule],
 })
 export class ExlightAccountModule {}

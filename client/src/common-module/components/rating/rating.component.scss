@@ -4,6 +4,8 @@
   .active {
     color: $rating-active-color;
     cursor: pointer;
+    text-shadow: 0 0 5px $rating-active-color;
+    @include shadow-text($rating-active-color);
   }
 
   .inactive {
