@@ -4,21 +4,31 @@
     <div class="article-head" *ngIf="article">
       <div class="article-title" role="heading">{{article.title}}</div>
       <div class="info">
-        Дата: <time datetime="article.publicationDate"
-          class="active">{{article.publicationDate | date: 'dd.mm.yyyy'}}</time>
+        Дата:
+        <time datetime="article.publicationDate" class="active"
+          >{{article.publicationDate | date: 'dd.mm.yyyy'}}</time
+        >
         Просмотров: <span class="active">{{article.views}}</span>
       </div>
       <div class="article-rating">
-        <ex-rating [value]="article.rating" [readonly]="article.isAppreciated" (change)="setRating($event)"></ex-rating>
+        <ex-rating
+          [value]="article.rating"
+          [readonly]="article.isAppreciated"
+          (change)="setRating($event)"
+        ></ex-rating>
         <div class="rating-value">({{article.rating || '0.0'}})</div>
       </div>
     </div>
     <article class="content">
       <ex-spinner [wait]="wait"></ex-spinner>
-      <markdown [data]=article?.content></markdown>
+      <markdown [data]="article?.content"></markdown>
     </article>
     <div class="content">
-      <ex-comment-tree [comments]="comments" (delete)="deleteComment($event)" (new)="saveNewComment($event)">
+      <ex-comment-tree
+        [comments]="comments"
+        (delete)="deleteComment($event)"
+        (new)="saveNewComment($event)"
+      >
       </ex-comment-tree>
     </div>
   </main>

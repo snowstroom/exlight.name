@@ -4,15 +4,15 @@ import { IMediaItem } from '../../../app/interfaces/MediaItem.interface';
 @Component({
   selector: 'ex-media-catalog',
   templateUrl: './music-item.component.html',
-  styleUrls: ['./music-item.component.scss']
+  styleUrls: ['./music-item.component.scss'],
 })
 export class MusicItemComponent implements OnInit {
   @Input() public mediaItem: IMediaItem;
   @Output() public play = new EventEmitter();
   @Output() public download = new EventEmitter();
-  constructor() { }
+  constructor() {}
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {}
 
   public onPlay(): void {
     this.play.emit(this.mediaItem);
@@ -21,5 +21,4 @@ export class MusicItemComponent implements OnInit {
   public onDownload(): void {
     this.download.emit();
   }
-
 }

@@ -14,7 +14,7 @@ import { RatingService } from '@article-module/services/rating.service';
 @Component({
   selector: 'ex-catalog',
   templateUrl: './catalog.page.html',
-  styleUrls: ['./catalog.page.scss']
+  styleUrls: ['./catalog.page.scss'],
 })
 export class CatalogPage implements OnDestroy {
   public wait = true;
@@ -31,7 +31,7 @@ export class CatalogPage implements OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private appSrv: ApplicationService,
-    private ratingSrv: RatingService
+    private ratingSrv: RatingService,
   ) {
     combineLatest(this.activatedRoute.params, this.categoriesSrv.$categories)
       .pipe(takeUntil(this.subscriber))
@@ -51,7 +51,10 @@ export class CatalogPage implements OnDestroy {
 
   private async getArticles(): Promise<void> {
     if (this.curCategory) {
-      this.articles = await this.articlesSrv.getArticles(this.articlesSrv.pagination, this.curCategory.id);
+      this.articles = await this.articlesSrv.getArticles(
+        this.articlesSrv.pagination,
+        this.curCategory.id,
+      );
       this.wait = false;
     }
   }
@@ -60,10 +63,15 @@ export class CatalogPage implements OnDestroy {
     this.categories = categories;
     this.curCategory = this.categoriesSrv.categoriesMap.get(catURL);
     if (this.curCategory) {
-      this.categories.forEach(item => item.isActive = false);
+      this.categories.forEach(item => (item.isActive = false));
       this.curCategory.isActive = true;
     } else {
-      this.router.navigate(['catalog', this.categoriesSrv.DEF_CAT.route, 'page', 1]);
+      this.router.navigate([
+        'catalog',
+        this.categoriesSrv.DEF_CAT.route,
+        'page',
+        1,
+      ]);
     }
   }
 
@@ -74,13 +82,13 @@ export class CatalogPage implements OnDestroy {
 
   private setPageInfo(): void {
     this.appSrv.setPageInfo({
-      description: 'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
+      description:
+        'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
        поэзии, программировании и событиях в жизни. ',
       img: '',
       keywords: this.categories.map(c => c.name),
       title: 'Каталог статей',
-      url: ''
+      url: '',
     });
   }
-
 }

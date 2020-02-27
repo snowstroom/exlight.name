@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+
+.table-element {
+  box-shadow: $box-shadow;
+  background: none;
+  thead, tbody, tfoot {
+    tr {
+      th, td {
+        border: none;
+      }
+    }
+  }
+}

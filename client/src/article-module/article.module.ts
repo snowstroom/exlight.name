@@ -33,15 +33,9 @@ import { CommentTreeComponent } from './components/comments-tree/comments-tree.c
     ArticleItemComponent,
     CommentControlComponent,
     CommentaryItemComponent,
-    CommentTreeComponent
+    CommentTreeComponent,
   ],
-  providers: [
-    INIT_CATEGORIES
-  ],
-  exports: [
-    ArticlePage,
-    CatalogPage,
-    ArticleItemComponent
-  ]
+  providers: [INIT_CATEGORIES],
+  exports: [ArticlePage, CatalogPage, ArticleItemComponent],
 })
-export class ExlightArticleModule { }
+export class ExlightArticleModule {}

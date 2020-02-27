@@ -8,17 +8,8 @@ import { PhotoPage } from './pages/photo/photo.page';
 import { PhotoItemComponent } from './components/photo-item/photo-item.component';
 
 @NgModule({
-    imports: [
-        ExlightCommonModule,
-        CommonModule,
-        BrowserModule,
-    ],
-    declarations: [
-        PhotoPage,
-        PhotoItemComponent
-    ],
-    exports: [
-        PhotoPage,
-    ]
+  imports: [ExlightCommonModule, CommonModule, BrowserModule],
+  declarations: [PhotoPage, PhotoItemComponent],
+  exports: [PhotoPage],
 })
-export class ExlightPhotoModule { }
+export class ExlightPhotoModule {}

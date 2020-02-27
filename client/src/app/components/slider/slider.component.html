@@ -2,11 +2,16 @@
   <div class="content-wrapper">
     <div class="content">
       <div class="top">
-        <div class="content-head">{{currentSlide.title}}</div>
-        <div class="content-body">{{currentSlide.description}}</div>
+        <div class="content-head">{{ currentSlide.title }}</div>
+        <div class="content-body">{{ currentSlide.description }}</div>
       </div>
       <div class="content-footer">
-        <a class="link" [routerLink]="['article', 'all', currentSlide.route]" role="link">Читать подробнее...</a>
+        <a
+          class="link"
+          [routerLink]="['article', 'all', currentSlide.route]"
+          role="link"
+          >Читать подробнее...</a
+        >
       </div>
     </div>
   </div>
@@ -15,8 +20,13 @@
       <div role="button" class="controll" (click)="prevSlide()">Назад</div>
       <div class="item-wrapper">
         <ex-button-decorator [activeIndex]="currentIndex">
-          <div class="number-controll" *ngFor="let slide of carouselItems; let i = index"
-            (click)="showSlide(i)" role="button">{{i + 1}}
+          <div
+            class="number-controll"
+            *ngFor="let slide of carouselItems; let i = index"
+            (click)="showSlide(i)"
+            role="button"
+          >
+            {{ i + 1 }}
           </div>
         </ex-button-decorator>
       </div>

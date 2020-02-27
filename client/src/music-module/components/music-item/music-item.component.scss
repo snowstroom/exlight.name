@@ -2,10 +2,10 @@
 .media-item {
   background: #ffffff;
   box-shadow: $box-shadow;
-  margin: .5em;
+  margin: 0.5em;
   width: 200px;
   height: 300px;
-  .cover{
+  .cover {
     img {
       width: 200px;
       height: 200px;
@@ -23,19 +23,15 @@
       .icons {
         display: flex;
         .play {
-
         }
         .download {
-
         }
       }
     }
     .media-info-body {
       .shows {
-
       }
       .media-discription {
-
       }
     }
   }

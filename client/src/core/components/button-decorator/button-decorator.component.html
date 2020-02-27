@@ -1,8 +1,10 @@
 <div class="button-decorator">
-  <div class="item-decorator"
+  <div
+    class="item-decorator"
     *ngIf="position"
     [style.left.px]="position"
-    [style.width.px]="width"></div>
+    [style.width.px]="width"
+  ></div>
   <div class="decorator-content" #content>
     <ng-content></ng-content>
   </div>

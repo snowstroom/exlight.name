@@ -93,7 +93,7 @@
           height: 57px;
           background: $active-element-bg;
           z-index: 1;
-          transition: .3s width, .5s left;
+          transition: 0.3s width, 0.5s left;
           box-shadow: 0 0 10px $active-element-bg;
         }
       }
@@ -125,12 +125,12 @@
     .controls {
       .controls-wrapper {
         .controll {
-          padding: .5em;
+          padding: 0.5em;
         }
 
         .item-wrapper {
           .number-controll {
-            padding: .5em;
+            padding: 0.5em;
           }
           .item-decorator {
             width: 38px;

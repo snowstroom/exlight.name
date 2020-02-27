@@ -5,26 +5,24 @@ import { Subject } from 'rxjs';
 import { User } from '@account-module/models/user';
 
 @Component({
-    selector: 'ex-profile-outside',
-    templateUrl: 'profile-outside.component.html',
-    styleUrls: ['profile-outside.component.scss']
+  selector: 'ex-profile-outside',
+  templateUrl: 'profile-outside.component.html',
+  styleUrls: ['profile-outside.component.scss'],
 })
 export class ProfileOutsideComponent implements OnDestroy {
-    public user: User;
-    private subscriber = new Subject();
+  public user: User;
+  private subscriber = new Subject();
 
-    constructor(private profileSrv: ProfileService) {
-        this.profileSrv.$user.pipe(takeUntil(this.subscriber))
-            .subscribe(user => {
-                console.warn(user);
-                this.user = user;
-            });
-    }
+  constructor(private profileSrv: ProfileService) {
+    this.profileSrv.$user.pipe(takeUntil(this.subscriber)).subscribe(user => {
+      console.warn(user);
+      this.user = user;
+    });
+  }
 
-    public ngOnDestroy(): void {
-        this.subscriber.next(null);
-        this.subscriber.complete();
-        this.subscriber.unsubscribe();
-    }
-
+  public ngOnDestroy(): void {
+    this.subscriber.next(null);
+    this.subscriber.complete();
+    this.subscriber.unsubscribe();
+  }
 }

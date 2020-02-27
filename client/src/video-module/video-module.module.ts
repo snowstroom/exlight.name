@@ -7,17 +7,8 @@ import { ExlightCommonModule } from '@common-module/common.module';
 import { VideoPage } from './pages/video/video.page';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BrowserModule,
-        ExlightCommonModule
-    ],
-    declarations: [
-        VideoPage
-    ],
-    exports: [
-        VideoPage
-    ]
+  imports: [CommonModule, BrowserModule, ExlightCommonModule],
+  declarations: [VideoPage],
+  exports: [VideoPage],
 })
-
-export class ExlightVideoModule { }
+export class ExlightVideoModule {}

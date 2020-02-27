@@ -3,15 +3,11 @@ import { AccessNamespace } from '@share/access.namespace';
 import { AuthService } from '@app/services/auth.service';
 
 @Directive({
-    selector: '[exAccess]'
+  selector: '[exAccess]',
 })
 export class AccessDirective {
-    @Input() public entity: AccessNamespace.E_ENTITY_TYPES;
-    @Input() public access: number;
+  @Input() public entity: AccessNamespace.E_ENTITY_TYPES;
+  @Input() public access: number;
 
-    constructor(
-        private element: ElementRef,
-        private authSrv: AuthService
-    ) { }
-
+  constructor(private element: ElementRef, private authSrv: AuthService) {}
 }

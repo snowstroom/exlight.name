@@ -10,7 +10,7 @@ const EXS_DECORATOR_WIDTH = 38;
 @Component({
   selector: 'ex-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent {
   public carouselItems: CarouselItem[];
@@ -21,14 +21,16 @@ export class SliderComponent {
 
   constructor(
     private domSanitizer: DomSanitizer,
-    private envSrv: EnviromentService
+    private envSrv: EnviromentService,
   ) {
-    this.envSrv.$screenType.subscribe(type => this.screenType = type);
+    this.envSrv.$screenType.subscribe(type => (this.screenType = type));
     this.autoNext();
   }
 
   get background(): SafeStyle {
-    return this.domSanitizer.bypassSecurityTrustStyle(`url(${this.currentSlide.carouselImg})`);
+    return this.domSanitizer.bypassSecurityTrustStyle(
+      `url(${this.currentSlide.carouselImg})`,
+    );
   }
 
   @Input() set items(val: CarouselItem[]) {

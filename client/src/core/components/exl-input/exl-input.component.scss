@@ -14,7 +14,7 @@
 
     .input-link {
       position: absolute;
-      font-size: .6rem;
+      font-size: 0.6rem;
       bottom: -14px;
       font-family: $simple-text;
       right: 0;
@@ -23,7 +23,7 @@
     /deep/ input {
       background: transparent;
       color: $element-text-color;
-      padding: .5rem;
+      padding: 0.5rem;
       font-family: $simple-text;
       border: none;
       border: 2px solid transparent;

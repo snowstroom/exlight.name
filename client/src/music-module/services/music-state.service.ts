@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IMediaItem } from '@app/interfaces/MediaItem.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MusicStateService {
   private musicItems: IMediaItem[] = [];
@@ -118,5 +118,4 @@ export class MusicStateService {
     this.duration = duration;
     this.duration$.next(this.duration);
   }
-
 }

@@ -1,6 +1,6 @@
 <div class="ex-comment-item">
   <div>
-    <img class="ex-avatar" src="assets/no-photo.png" alt="User avatar">
+    <img class="ex-avatar" src="assets/no-photo.png" alt="User avatar" />
   </div>
   <div class="ex-comment-content">
     <div class="ex-comment-head">
@@ -8,13 +8,19 @@
         <a href="">Иван Петров</a>
       </div>
       <div class="ex-comment-time">
-        <time *ngIf="!updateDate">{{comment.createDate | date: 'dd MMMM yyyy HH:mm'}}</time>
-        <time *ngIf="updateDate">{{comment.updateDate | date: 'dd MMMM yyyy HH:mm'}}</time>
+        <time *ngIf="!updateDate">{{
+          comment.createDate | date: 'dd MMMM yyyy HH:mm'
+        }}</time>
+        <time *ngIf="updateDate">{{
+          comment.updateDate | date: 'dd MMMM yyyy HH:mm'
+        }}</time>
       </div>
     </div>
-    <div class="ex-comment-body">{{comment.comment}}</div>
+    <div class="ex-comment-body">{{ comment.comment }}</div>
     <div class="ex-comment-footer">
-      <button class="comment-action" (click)="answerToComment()">Ответить</button>
+      <button class="comment-action" (click)="answerToComment()">
+        Ответить
+      </button>
       <button class="comment-action" (click)="deleteComment()">Удалить</button>
     </div>
   </div>

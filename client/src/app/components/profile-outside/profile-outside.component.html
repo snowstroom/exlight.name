@@ -1,15 +1,15 @@
 <div class="ex-outside-profile">
   <div class="avatar">
-    <img src="assets/no-photo.png" alt="Пользовательское фото">
+    <img src="assets/no-photo.png" alt="Пользовательское фото" />
   </div>
   <div class="profile-content">
     <div class="welcome" *ngIf="user">
-        Добро пожаловать, {{user.firstname || 'Гость' }}
+      Добро пожаловать, {{ user.firstname || 'Гость' }}
     </div>
     <div></div>
     <div class="profile-links">
-        <a routerLink="/registration">Регистрация</a>
-        <a routerLink="/authorization">Вход</a>
+      <a routerLink="/registration">Регистрация</a>
+      <a routerLink="/authorization">Вход</a>
     </div>
   </div>
 </div>

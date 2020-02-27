@@ -1,6 +1,10 @@
-<div class="share" [ngClass]="{'visible': visibleShare}">
+<div class="share" [ngClass]="{ visible: visibleShare }">
   <div class="icon-wrapper">
-    <div class="icon-item" *ngFor="let icon of shareButtons" (click)="share(icon.url)">
+    <div
+      class="icon-item"
+      *ngFor="let icon of shareButtons"
+      (click)="share(icon.url)"
+    >
       <i [ngClass]="icon.icon" class="la icon"></i>
     </div>
   </div>

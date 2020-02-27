@@ -1,5 +1,5 @@
 export class ExError extends Error {
-    toJSON() {
-        return this.message;
-    }
+  toJSON() {
+    return this.message;
+  }
 }

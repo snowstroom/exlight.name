@@ -1,16 +1,24 @@
 <section class="article">
   <div class="article-head">
-    <a [routerLink]="[ '/', 'article', article.route ]" role="heading">
-      <h1>{{article.title}}</h1>
+    <a [routerLink]="['/', 'article', article.route]" role="heading">
+      <h1>{{ article.title }}</h1>
     </a>
   </div>
   <div class="article-rating">
-    <ex-rating [value]="article.rating" [readonly]="true" (change)="setRating($event)"></ex-rating>
-    <div class="rating-value">({{article.rating || '0.0'}})</div>
+    <ex-rating
+      [value]="article.rating"
+      [readonly]="true"
+      (change)="setRating($event)"
+    ></ex-rating>
+    <div class="rating-value">({{ article.rating || '0.0' }})</div>
   </div>
-  <time datetime="article.publicationDate" class="article-date">{{article.publicationDate | date:'dd.mm.yyyy'}}</time>
-  <div class="article-discription">{{article.description}}</div>
+  <time datetime="article.publicationDate" class="article-date">{{
+    article.publicationDate | date: 'dd.mm.yyyy'
+  }}</time>
+  <div class="article-discription">{{ article.description }}</div>
   <div class="article-link">
-    <a [routerLink]="[ '/', 'article', article.route ]" role="link">Читать подробнее...</a>
+    <a [routerLink]="['/', 'article', article.route]" role="link"
+      >Читать подробнее...</a
+    >
   </div>
 </section>

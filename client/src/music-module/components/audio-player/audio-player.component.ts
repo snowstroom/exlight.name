@@ -5,7 +5,7 @@ import { IMediaItem } from '../../../app/interfaces/MediaItem.interface';
 @Component({
   selector: 'ex-audio-player',
   templateUrl: './audio-player.component.html',
-  styleUrls: ['./audio-player.component.scss']
+  styleUrls: ['./audio-player.component.scss'],
 })
 export class AudioPlayerComponent implements OnInit {
   public isPlay: boolean;
@@ -15,17 +15,21 @@ export class AudioPlayerComponent implements OnInit {
   public currentTime = 0;
   public duration: number;
 
-  constructor(
-    private musicStateSrv: MusicStateService
-  ) { }
+  constructor(private musicStateSrv: MusicStateService) {}
 
   public ngOnInit(): void {
-    this.musicStateSrv.$musicItems.subscribe(tracks => this.tracks = tracks);
-    this.musicStateSrv.$playingTrack.subscribe(playingTrack => this.playingTrack = playingTrack);
-    this.musicStateSrv.$isPlay.subscribe(play => this.isPlay = play);
-    this.musicStateSrv.$volume.subscribe(volume => this.volume = volume);
-    this.musicStateSrv.$currentTime.subscribe(currentTime => this.currentTime = currentTime);
-    this.musicStateSrv.$duration.subscribe(duration => this.duration = duration);
+    this.musicStateSrv.$musicItems.subscribe(tracks => (this.tracks = tracks));
+    this.musicStateSrv.$playingTrack.subscribe(
+      playingTrack => (this.playingTrack = playingTrack),
+    );
+    this.musicStateSrv.$isPlay.subscribe(play => (this.isPlay = play));
+    this.musicStateSrv.$volume.subscribe(volume => (this.volume = volume));
+    this.musicStateSrv.$currentTime.subscribe(
+      currentTime => (this.currentTime = currentTime),
+    );
+    this.musicStateSrv.$duration.subscribe(
+      duration => (this.duration = duration),
+    );
   }
 
   public play(): void {
@@ -45,7 +49,7 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   public playTrack(track: IMediaItem): void {
-      this.musicStateSrv.playTrack(track);
+    this.musicStateSrv.playTrack(track);
   }
 
   public changeVolume(e: any): void {
@@ -55,5 +59,4 @@ export class AudioPlayerComponent implements OnInit {
   public changePosition(e: any): void {
     this.musicStateSrv.navByTrack(e.target.value);
   }
-
 }

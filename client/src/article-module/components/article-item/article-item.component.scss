@@ -5,7 +5,7 @@
   color: $element-text-color;
 
   .article-head {
-    padding: .5em 0;
+    padding: 0.5em 0;
 
     a {
       font-size: 1.2em;
@@ -22,7 +22,7 @@
   }
 
   .article-rating {
-    padding: .5em 0;
+    padding: 0.5em 0;
     display: flex;
 
     .rating-value {
@@ -32,18 +32,18 @@
 
   .article-date {
     font-family: $simple-text;
-    padding: .25em 0;
+    padding: 0.25em 0;
   }
 
   .article-discription {
     margin-left: 1em;
     font-family: $simple-text;
-    padding: .5em 0;
+    padding: 0.5em 0;
   }
 
   .article-link {
     margin-left: 1em;
-    padding: .5em 0;
+    padding: 0.5em 0;
 
     a {
       color: $links-text-color;

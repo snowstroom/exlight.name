@@ -4,7 +4,7 @@ import { Article } from '@article-module/models/article';
 @Component({
   selector: 'ex-articles',
   templateUrl: './article-item.component.html',
-  styleUrls: ['./article-item.component.scss']
+  styleUrls: ['./article-item.component.scss'],
 })
 export class ArticleItemComponent {
   @Input() public article: Article;

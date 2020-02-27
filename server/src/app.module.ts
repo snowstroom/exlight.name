@@ -64,13 +64,13 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
   ],
 })
 export class AppModule implements NestModule {
-
   constructor(private readonly connection: Connection) {
     this.init();
   }
 
   public configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(JwtDecodeMiddleware)
+    consumer
+      .apply(JwtDecodeMiddleware)
       .forRoutes(
         AccessController,
         AuthController,

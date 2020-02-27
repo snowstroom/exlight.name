@@ -2,7 +2,7 @@
 .photo-item {
   background: #ffffff;
   box-shadow: $box-shadow;
-  margin: .5em;
+  margin: 0.5em;
   width: 200px;
   height: 300px;
   .photo {
@@ -16,10 +16,8 @@
     font-family: $elements-text;
     padding: 1em;
     .photo-description {
-
     }
     .photo-shows {
-
     }
   }
 }

@@ -5,16 +5,14 @@ $simple-text-color: #ffffff;
 $blocks-color-bg: #101014f8;
 $alt-block-color-bg: #ffffff;
 $box-shadow: 0 0 1em #000000;
-$active-box-shadow: 0 0 .5em #cf3333;
+$active-box-shadow: 0 0 0.5em #cf3333;
 $text-shadow: 0 0 0.1em #ffffff;
 
 $rating-active-color: #ffd700;
 $rating-inactive-color: #ffffff;
 
-$simple-text: 'PT Sans Narrow',
-sans-serif;
-$elements-text: 'Amatic SC',
-cursive;
+$simple-text: 'PT Sans Narrow', sans-serif;
+$elements-text: 'Amatic SC', cursive;
 
 $element-radius: 2px;
 
@@ -38,5 +36,5 @@ $la-font-path: '~line-awesome/fonts/';
 $la-css-prefix: 'la';
 
 @mixin shadow-text($color) {
-    text-shadow: 0 0 5px $color;
+  text-shadow: 0 0 5px $color;
 }

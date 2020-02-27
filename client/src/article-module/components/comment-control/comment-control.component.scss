@@ -1,4 +1,4 @@
-@import "src/styles/variables";
+@import 'src/styles/variables';
 
 .ex-comment-control {
   width: 100%;
@@ -16,7 +16,7 @@
     width: calc(100% - 55px);
 
     .ex-comment-content {
-      margin: 0 .5rem;
+      margin: 0 0.5rem;
       margin-bottom: 1rem;
 
       .ex-comment-area {
@@ -30,7 +30,7 @@
     .ex-comment-footer {
       display: flex;
       flex-direction: row-reverse;
-      margin: 0 .5rem;
+      margin: 0 0.5rem;
 
       .comment-action {
         background: transparent;

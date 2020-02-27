@@ -5,17 +5,8 @@ import { ExlInputComponent } from './components/exl-input/exl-input.component';
 import { ButtonDecoratorComponent } from './components/button-decorator/button-decorator.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BrowserModule
-    ],
-    declarations: [
-        ExlInputComponent,
-        ButtonDecoratorComponent
-    ],
-    exports: [
-        ExlInputComponent,
-        ButtonDecoratorComponent
-    ]
+  imports: [CommonModule, BrowserModule],
+  declarations: [ExlInputComponent, ButtonDecoratorComponent],
+  exports: [ExlInputComponent, ButtonDecoratorComponent],
 })
-export class ExlightCoreModule { }
+export class ExlightCoreModule {}

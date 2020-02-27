@@ -1,4 +1,4 @@
-@import "src/styles/variables";
+@import 'src/styles/variables';
 
 .ex-comment-item {
   display: flex;
@@ -14,7 +14,7 @@
       display: flex;
 
       .ex-comment-author {
-        margin: 0 .5rem;
+        margin: 0 0.5rem;
       }
 
       .ex-comment-time {
@@ -24,12 +24,12 @@
     }
 
     .ex-comment-body {
-      margin: 1rem .5rem;
+      margin: 1rem 0.5rem;
     }
 
     .ex-comment-footer {
       display: flex;
-      margin: 0 .5rem;
+      margin: 0 0.5rem;
 
       .comment-action {
         background: transparent;
@@ -41,5 +41,4 @@
       }
     }
   }
-
 }

@@ -1,4 +1,4 @@
 export interface IApiList {
-    start: number;
-    limit: number;
+  start: number;
+  limit: number;
 }

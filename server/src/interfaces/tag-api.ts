@@ -1,3 +1,3 @@
 export interface ICreateTagsApi {
-    tags: string[];
+  tags: string[];
 }

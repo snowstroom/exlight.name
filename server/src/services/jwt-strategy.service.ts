@@ -6,19 +6,18 @@ import { UserNamespace } from 'share';
 
 @Injectable()
 export class JwtStrategyService extends PassportStrategy(Strategy) {
+  constructor(private readonly authSrv: AuthService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.JWT_SECRET_KEY,
+    });
+  }
 
-    constructor(private readonly authSrv: AuthService) {
-        super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: process.env.JWT_SECRET_KEY,
-        });
+  public async validate(payload: Partial<UserNamespace.IUser>) {
+    const user = await this.authSrv.validateUser(payload);
+    if (user) {
+      throw new UnauthorizedException();
     }
-
-    public async validate(payload: Partial<UserNamespace.IUser>)  {
-        const user = await this.authSrv.validateUser(payload);
-        if (user) {
-            throw new UnauthorizedException();
-        }
-        return user;
-    }
+    return user;
+  }
 }

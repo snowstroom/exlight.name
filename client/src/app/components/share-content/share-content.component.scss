@@ -6,11 +6,11 @@
   position: fixed;
   top: calc(50% - 113px);
   left: -65px;
-  transition: left .5s;
+  transition: left 0.5s;
 
   &.visible {
     left: 0;
-    transition: left .5s;
+    transition: left 0.5s;
   }
 
   .icon-wrapper {
@@ -23,16 +23,15 @@
       text-align: center;
 
       .icon {
-        transition: color .5s;
+        transition: color 0.5s;
         cursor: pointer;
         text-shadow: none;
         &:hover {
           color: $active-element-bg;
           @include shadow-text($active-element-bg);
-          transition: color, text-shadow .5s;
+          transition: color, text-shadow 0.5s;
         }
       }
-
     }
   }
 }
@@ -44,7 +43,7 @@
   .share {
     .icon-wrapper {
       .icon-item {
-        font-size: .6em;
+        font-size: 0.6em;
       }
     }
   }

@@ -1,10 +1,10 @@
 import { IApiList } from './base-api';
 
 export interface ICommentaryApiListParams extends IApiList {
-    articleId: number;
+  articleId: number;
 }
 
 export interface ICommentaryApiParams {
-    id: number;
-    articleId: number;
+  id: number;
+  articleId: number;
 }

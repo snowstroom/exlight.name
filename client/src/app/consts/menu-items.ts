@@ -1,13 +1,16 @@
 import { IMenuItem } from '@app/interfaces/menu-item';
 
-export const MENU_ITEMS: IMenuItem[] = [{
+export const MENU_ITEMS: IMenuItem[] = [
+  {
     name: 'Главная',
     route: [''],
-    exact: true
-}, {
+    exact: true,
+  },
+  {
     name: 'Каталог',
-    route: ['catalog']
-}, /* {
+    route: ['catalog'],
+  },
+  /* {
     name: 'Видео',
     route: ['video']
 }, {
@@ -19,5 +22,6 @@ export const MENU_ITEMS: IMenuItem[] = [{
 },*/ {
     name: 'Ссылки',
     route: ['about'],
-    rel: 'contact'
-}];
+    rel: 'contact',
+  },
+];

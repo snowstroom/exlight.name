@@ -1,3 +1,11 @@
-<div class="ex-article-progress" (click)="navigate($event)" [ngClass]="{'visible': visible}">
-    <div class="progress" [style.width.%]="progress" [ngClass]="{'change': change}"></div>
+<div
+  class="ex-article-progress"
+  (click)="navigate($event)"
+  [ngClass]="{ visible: visible }"
+>
+  <div
+    class="progress"
+    [style.width.%]="progress"
+    [ngClass]="{ change: change }"
+  ></div>
 </div>

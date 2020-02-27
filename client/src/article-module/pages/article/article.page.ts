@@ -13,7 +13,7 @@ import { ArticleNamespace } from '@share/*';
 
 @Component({
   templateUrl: './article.page.html',
-  styleUrls: ['./article.page.scss']
+  styleUrls: ['./article.page.scss'],
 })
 export class ArticlePage implements OnDestroy {
   public wait = true;
@@ -29,15 +29,15 @@ export class ArticlePage implements OnDestroy {
     private appSrv: ApplicationService,
     private artCommentSrv: CommentService,
     private router: Router,
-    private ratingSrv: RatingService
+    private ratingSrv: RatingService,
   ) {
-    this.activatedRoute.params.pipe(takeUntil(this.unsubscribe))
+    this.activatedRoute.params
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe(async (params: any) => this.getArticleByRoute(params.article));
-    this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe))
-      .subscribe(scroll => {
-        this.toogleShare(scroll);
-        this.toogleProgress(scroll);
-      });
+    this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe)).subscribe(scroll => {
+      this.toogleShare(scroll);
+      this.toogleProgress(scroll);
+    });
   }
 
   public ngOnDestroy(): void {
@@ -63,19 +63,26 @@ export class ArticlePage implements OnDestroy {
 
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
-    this.comments = await this.artCommentSrv.getCommentList(this.article.id, this.commentsPagParams);
+    this.comments = await this.artCommentSrv.getCommentList(
+      this.article.id,
+      this.commentsPagParams,
+    );
     this.rating = await this.ratingSrv.getArticleRating(this.article.id);
     this.wait = false;
-    setTimeout(() => innerHeight === document.body.scrollHeight ?
-      this.appSrv.showShareBlock() :
-      this.appSrv.hideShareBlock(), 0);
+    setTimeout(
+      () =>
+        innerHeight === document.body.scrollHeight
+          ? this.appSrv.showShareBlock()
+          : this.appSrv.hideShareBlock(),
+      0,
+    );
     if (this.article) {
       this.appSrv.setPageInfo({
         title: this.article.title,
         description: this.article.description,
         keywords: [],
         url: this.router.url,
-        img: ''
+        img: '',
       });
       this.appSrv.setLdJsonShema(this.article.structData);
     }

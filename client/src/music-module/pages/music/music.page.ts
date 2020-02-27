@@ -5,7 +5,7 @@ import { MusicStateService } from '../../services/music-state.service';
 
 @Component({
   templateUrl: './music.page.html',
-  styleUrls: ['./music.page.scss']
+  styleUrls: ['./music.page.scss'],
 })
 export class MusicPage implements OnInit {
   public currentpage: number;
@@ -14,16 +14,15 @@ export class MusicPage implements OnInit {
   constructor(
     private titleSrv: Title,
     private metaSrv: Meta,
-    private musicStateSrv: MusicStateService
-  ) { }
+    private musicStateSrv: MusicStateService,
+  ) {}
 
   public ngOnInit(): void {
     this.titleSrv.setTitle('eXligth - Музыка');
-    this.musicStateSrv.$musicItems.subscribe(musicList => this.mediaItems = musicList);
+    this.musicStateSrv.$musicItems.subscribe(
+      musicList => (this.mediaItems = musicList),
+    );
   }
 
-  public setActivePage(page: number): void {
-
-  }
-
+  public setActivePage(page: number): void {}
 }

@@ -7,16 +7,16 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private jwtService: JwtService,
-        @InjectRepository(User) private userRep: Repository<User>,
-    ) { }
+  constructor(
+    private jwtService: JwtService,
+    @InjectRepository(User) private userRep: Repository<User>,
+  ) {}
 
-    public async signIn(user: Partial<UserNamespace.IUser>): Promise<string> {
-        return this.jwtService.sign(user);
-    }
+  public async signIn(user: Partial<UserNamespace.IUser>): Promise<string> {
+    return this.jwtService.sign(user);
+  }
 
-    public async validateUser(user: Partial<UserNamespace.IUser>): Promise<any> {
-        return this.userRep.find({ where: { email: user.email } });
-    }
+  public async validateUser(user: Partial<UserNamespace.IUser>): Promise<any> {
+    return this.userRep.find({ where: { email: user.email } });
+  }
 }

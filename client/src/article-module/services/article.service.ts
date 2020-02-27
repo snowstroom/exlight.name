@@ -7,17 +7,14 @@ import { EnviromentService } from '@app/services/envirement.service';
 import { ApiNamespace as API, ArticleNamespace } from '@share/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticleService extends Api {
   public pagination = new PaginationParams({ limit: 5 });
   private carouselItems$ = new BehaviorSubject<CarouselItem[]>([]);
   private carouselItems: CarouselItem[] = [];
 
-  constructor(
-    injector: Injector,
-    envSrv: EnviromentService
-  ) {
+  constructor(injector: Injector, envSrv: EnviromentService) {
     super(injector, envSrv.API_DOMAIN);
     this.initCarousel();
   }
@@ -26,12 +23,18 @@ export class ArticleService extends Api {
     return this.carouselItems$.asObservable();
   }
 
-  public async getArticles(pagination: PaginationParams, catId?: number, authorId?: number): Promise<Article[]> {
+  public async getArticles(
+    pagination: PaginationParams,
+    catId?: number,
+    authorId?: number,
+  ): Promise<Article[]> {
     try {
       const params = pagination.getUrlString();
       const catParams = catId ? `&category_id=${catId}` : '';
       const authorParams = authorId ? `&author_id=${authorId}` : '';
-      const answ = await this.get<API.IPaginationContent<ArticleNamespace.IArticle>>(`article/list${params}${catParams}${authorParams}`);
+      const answ = await this.get<
+        API.IPaginationContent<ArticleNamespace.IArticle>
+      >(`article/list${params}${catParams}${authorParams}`);
       this.pagination.total = answ.count;
       return answ.content.map(art => new Article(art));
     } catch (err) {
@@ -41,7 +44,9 @@ export class ArticleService extends Api {
 
   public async getArticle(id: number): Promise<Article> {
     try {
-      const answ: ArticleNamespace.IArticle = await this.get<ArticleNamespace.IArticle>(`article/item/${id}`);
+      const answ: ArticleNamespace.IArticle = await this.get<
+        ArticleNamespace.IArticle
+      >(`article/item/${id}`);
       return new Article(answ);
     } catch (err) {
       return new Article();
@@ -50,7 +55,9 @@ export class ArticleService extends Api {
 
   public async getArticleByRoute(route: string): Promise<Article> {
     try {
-      const answ: ArticleNamespace.IArticle = await this.get<ArticleNamespace.IArticle>(`article/item?route=${route}`);
+      const answ: ArticleNamespace.IArticle = await this.get<
+        ArticleNamespace.IArticle
+      >(`article/item?route=${route}`);
       return new Article(answ);
     } catch (err) {
       return new Article();
@@ -59,7 +66,9 @@ export class ArticleService extends Api {
 
   public async getCarouselItems(): Promise<CarouselItem[]> {
     try {
-      const answ: ICarouselItem[] = await this.get<ICarouselItem[]>('carousel-items');
+      const answ: ICarouselItem[] = await this.get<ICarouselItem[]>(
+        'carousel-items',
+      );
       return answ.map(item => new CarouselItem(item));
     } catch (err) {
       return [];
@@ -70,5 +79,4 @@ export class ArticleService extends Api {
     this.carouselItems = await this.getCarouselItems();
     this.carouselItems$.next(this.carouselItems);
   }
-
 }

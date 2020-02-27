@@ -8,13 +8,13 @@ $margin-bottom: 10px;
   background-position: center;
   background-size: 100% auto;
   background-repeat: no-repeat;
-  transition: background-size .5s;
+  transition: background-size 0.5s;
   margin: 25px 25px;
   display: inline-block;
 
   &:hover {
     background-size: 110% auto;
-    transition: background-size .5s;
+    transition: background-size 0.5s;
   }
 }
 
@@ -92,7 +92,7 @@ blockquote {
   font-style: italic;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     left: -10px;
     width: 2px;
@@ -147,6 +147,6 @@ table {
   }
 }
 
-pre[class*="language-"] {
+pre[class*='language-'] {
   border-radius: $element-radius;
 }

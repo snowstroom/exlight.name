@@ -9,7 +9,7 @@
 
   .article-title,
   .info {
-    padding: .5em 0;
+    padding: 0.5em 0;
 
     .active {
       color: $active-element-bg;
@@ -17,12 +17,12 @@
   }
 
   .article-title {
-    font-size: 1.4em
+    font-size: 1.4em;
   }
 
   .article-rating {
     display: flex;
-    padding: .5em 0;
+    padding: 0.5em 0;
 
     .rating-value {
       margin: 0 5px;

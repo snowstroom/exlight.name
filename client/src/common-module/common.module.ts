@@ -12,31 +12,29 @@ import { CatalogMenuComponent } from './components/catalog-menu/catalog-menu.com
 import { ExlightCoreModule } from '@core/core.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BrowserModule,
-        RouterModule,
-        ExlightCoreModule
-    ],
-    declarations: [
-        LineSpinnerComponent,
-        SpinnerComponent,
-        RatingComponent,
-        PaginationComponent,
-        CatalogMenuComponent,
-        FooterComponent,
-        MenuComponent
-    ],
-    exports: [
-        LineSpinnerComponent,
-        SpinnerComponent,
-        RatingComponent,
-        PaginationComponent,
-        CatalogMenuComponent,
-        FooterComponent,
-        MenuComponent
-    ]
+  imports: [CommonModule, BrowserModule, RouterModule, ExlightCoreModule],
+  declarations: [
+    LineSpinnerComponent,
+    SpinnerComponent,
+    RatingComponent,
+    PaginationComponent,
+    CatalogMenuComponent,
+    FooterComponent,
+    MenuComponent,
+    TableComponent,
+  ],
+  exports: [
+    LineSpinnerComponent,
+    SpinnerComponent,
+    RatingComponent,
+    PaginationComponent,
+    CatalogMenuComponent,
+    FooterComponent,
+    MenuComponent,
+    TableComponent,
+  ],
 })
-export class ExlightCommonModule { }
+export class ExlightCommonModule {}

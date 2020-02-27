@@ -9,22 +9,22 @@ import { Access } from 'server/src/models/access.model';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const ENTITIES = [
-    Atricle,
-    Category,
-    Commentary,
-    Rating,
-    Role,
-    Tag,
-    User,
-    Access,
+  Atricle,
+  Category,
+  Commentary,
+  Rating,
+  Role,
+  Tag,
+  User,
+  Access,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
-    type: 'postgres',
-    host: process.env.POSTGRES_HOST,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTRGES_DB,
-    entities: ENTITIES,
-    synchronize: true,
+  type: 'postgres',
+  host: process.env.POSTGRES_HOST,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTRGES_DB,
+  entities: ENTITIES,
+  synchronize: true,
 };

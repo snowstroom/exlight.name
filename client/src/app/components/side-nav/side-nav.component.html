@@ -1,12 +1,19 @@
-<div class="ex-side-nav" [ngClass]="{ visible: visible }" 
-  (swiperight)="hideSideNav()">
+<div
+  class="ex-side-nav"
+  [ngClass]="{ visible: visible }"
+  (swiperight)="hideSideNav()"
+>
   <div class="side-nav-item-wrapper">
-    <a class="side-nav-item" 
-        [routerLink]="item.route"
-        role="link"
-        routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.exact}"
-        *ngFor="let item of MENU"
-        [rel]="item.rel"
-        (click)="hideSideNav()">{{item.name}}</a>
+    <a
+      class="side-nav-item"
+      [routerLink]="item.route"
+      role="link"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.exact }"
+      *ngFor="let item of MENU"
+      [rel]="item.rel"
+      (click)="hideSideNav()"
+      >{{ item.name }}</a
+    >
   </div>
 </div>
