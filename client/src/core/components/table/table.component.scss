@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.table {
+  box-shadow: $box-shadow;
+  table {
+    margin-bottom: 0;
+  }
+  .table-element {
+    background: none;
+    thead,
+    tbody,
+    tfoot {
+      tr {
+        th,
+        td {
+          border: none;
+          padding: 18px;
+        }
+      }
+    }
+  }
+}

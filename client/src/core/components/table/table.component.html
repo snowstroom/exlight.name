@@ -1,0 +1,43 @@
+<div class="table">
+  <table class="table-element">
+    <thead>
+      <tr>
+        <th *ngFor="let col of tableModel.keys" (click)="tableModel.sort(col)">
+          <span
+            ><i
+              class="la"
+              [ngClass]="{
+                'la-caret-up':
+                  tableModel.sortState.type === SORT_TYPE.UP &&
+                  col === tableModel.sortState.key,
+                'la-caret-down':
+                  tableModel.sortState.type === SORT_TYPE.DOWN &&
+                  col === tableModel.sortState.key
+              }"
+            ></i
+          ></span>
+          <span><i class="la "></i></span>
+          <span>{{ tableModel.names[col] }}</span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of tableModel.items">
+        <td *ngFor="let col of tableModel.keys">{{ row[col] }}</td>
+      </tr>
+    </tbody>
+    <!--
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>-->
+  </table>
+  <ex-pagination
+    [recordCount]="10"
+    [onPage]="5"
+    [activePage]="1"
+  >
+  </ex-pagination>
+</div>
