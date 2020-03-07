@@ -3,10 +3,32 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExlInputComponent } from './components/exl-input/exl-input.component';
 import { ButtonDecoratorComponent } from './components/button-decorator/button-decorator.component';
+import { TableComponent } from './components/table/table.component';
+import { LineSpinnerComponent } from './components/spinners/line-spinner/line-spinner.component';
+import { SpinnerComponent } from './components/spinners/text-spinner/spinner.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule],
-  declarations: [ExlInputComponent, ButtonDecoratorComponent],
-  exports: [ExlInputComponent, ButtonDecoratorComponent],
+  imports: [CommonModule, BrowserModule, RouterModule],
+  declarations: [
+    ExlInputComponent,
+    ButtonDecoratorComponent,
+    TableComponent,
+    LineSpinnerComponent,
+    SpinnerComponent,
+    RatingComponent,
+    PaginationComponent,
+  ],
+  exports: [
+    ExlInputComponent,
+    ButtonDecoratorComponent,
+    TableComponent,
+    LineSpinnerComponent,
+    SpinnerComponent,
+    RatingComponent,
+    PaginationComponent,
+  ],
 })
 export class ExlightCoreModule {}

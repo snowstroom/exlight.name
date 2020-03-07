@@ -17,10 +17,12 @@ import { ArticleItemComponent } from './components/article-item/article-item.com
 import { CommentControlComponent } from './components/comment-control/comment-control.component';
 import { CommentaryItemComponent } from './components/comment-item/comment-item.component';
 import { CommentTreeComponent } from './components/comments-tree/comments-tree.component';
+import { ExlightCoreModule } from '@core/core.module';
 
 @NgModule({
   imports: [
     ExlightCommonModule,
+    ExlightCoreModule,
     CommonModule,
     BrowserModule,
     ReactiveFormsModule,
