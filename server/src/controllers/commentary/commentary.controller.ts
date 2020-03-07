@@ -15,10 +15,6 @@ import {
 import { Repository, TreeRepository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import {
-  ICommentaryApiParams,
-  ICommentaryApiListParams,
-} from 'server/src/interfaces/commentary-api';
-import {
   META_ACCESS_KEY,
   META_ENTITY_KEY,
   META_PUBLIC_KEY,
@@ -41,18 +37,16 @@ export class CommentaryController {
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
   public async addCommentary(
     @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
-    @Param() params: ICommentaryApiParams,
+    @Param() params: ArticleNamespace.ICommentaryApiParams,
     @Req() req: Request,
   ): Promise<number> {
     try {
-      console.warn(comment, params);
-      const dbRes = await this.commentaryRep.insert({
+      const { identifiers } = await this.commentaryRep.insert({
         article: { id: Number(params.articleId) },
         user: { id: req.authInfo.id },
         ...comment,
       });
-      console.warn(dbRes);
-      return dbRes.identifiers[0].id;
+      return identifiers[0].id;
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -62,7 +56,7 @@ export class CommentaryController {
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
   public async updateCommentarty(
-    @Param() params: ICommentaryApiParams,
+    @Param() params: ArticleNamespace.ICommentaryApiParams,
     @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
   ): Promise<void> {
     try {
@@ -76,7 +70,7 @@ export class CommentaryController {
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
   public async deleteCommentary(
-    @Param() params: ICommentaryApiParams,
+    @Param() params: ArticleNamespace.ICommentaryApiParams,
   ): Promise<void> {
     // I realy want delete comments?
     // Delete if admin, mark as delete for users.
@@ -92,7 +86,7 @@ export class CommentaryController {
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
   @SetMetadata(META_PUBLIC_KEY, true)
   public async commentaryList(
-    @Param() params: ICommentaryApiListParams,
+    @Param() params: ArticleNamespace.ICommentaryApiListParams,
   ): Promise<ArticleNamespace.IArticleCommentary[]> {
     try {
       const dbRes = await this.commentaryRep.find({

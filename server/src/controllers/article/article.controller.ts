@@ -15,7 +15,6 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Atricle } from 'server/src/models/article.model';
-import { IArticleApiList, IItemApi } from 'server/src/interfaces/articles-api';
 import { RolesAccesService } from 'server/src/services/roles-access.service';
 import {
   META_ACCESS_KEY,
@@ -39,7 +38,7 @@ export class ArticleController {
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.article)
   @SetMetadata(META_PUBLIC_KEY, true)
   public async getArticle(
-    @Param() params: IItemApi,
+    @Param() params: ArticleNamespace.IItemApi,
   ): Promise<ArticleNamespace.IArticle> {
     try {
       if (params.id) {
@@ -58,7 +57,7 @@ export class ArticleController {
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.article)
   @SetMetadata(META_PUBLIC_KEY, true)
   public async getArticleByQuery(
-    @Query() query: IItemApi,
+    @Query() query: ArticleNamespace.IItemApi,
   ): Promise<ArticleNamespace.IArticle> {
     try {
       if (query.route) {
@@ -80,28 +79,27 @@ export class ArticleController {
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.article)
   @SetMetadata(META_PUBLIC_KEY, true)
   public async getList(
-    @Query() query: IArticleApiList,
+    @Query() query: ArticleNamespace.IArticleApiList,
   ): Promise<ApiNamespace.IPaginationContent<Atricle>> {
-    const where = query.category_id ? { categoryId: query.category_id } : {};
+    const { category_id, limit, start } = query;
     try {
-      const dbRes = await this.articleRep.findAndCount({
-        where,
-        skip: query.start,
-        take: query.limit,
+      const [content, count] = await this.articleRep.findAndCount({
+        where: category_id ? { category_id } : {},
+        skip: start,
+        take: limit,
       });
-      return {
-        count: dbRes[1],
-        content: dbRes[0],
-      };
-    } catch (err) {
-      throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
+      return { count, content };
+    } catch (error) {
+      throw new HttpException({ error }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   @Delete('/item/:id')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.article)
-  public async deleteArticle(@Param() params: IItemApi): Promise<void> {
+  public async deleteArticle(
+    @Param() params: ArticleNamespace.IItemApi,
+  ): Promise<void> {
     try {
       await this.articleRep.delete({ id: params.id });
     } catch (err) {
@@ -127,7 +125,7 @@ export class ArticleController {
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.article)
   public async updateArticle(
-    @Param() params: IItemApi,
+    @Param() params: ArticleNamespace.IItemApi,
     @Body() article: Partial<ArticleNamespace.IArticle>,
   ): Promise<void> {
     try {
