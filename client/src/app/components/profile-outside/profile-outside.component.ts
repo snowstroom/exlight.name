@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ProfileService } from '@account-module/services/profile.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { User } from '@account-module/models/user';
+import { UserApi } from '@account-module/models/api/user';
 
 @Component({
   selector: 'ex-profile-outside',
@@ -10,7 +10,7 @@ import { User } from '@account-module/models/user';
   styleUrls: ['profile-outside.component.scss'],
 })
 export class ProfileOutsideComponent implements OnDestroy {
-  public user: User;
+  public user: UserApi;
   private subscriber = new Subject();
 
   constructor(private profileSrv: ProfileService) {
