@@ -6,7 +6,7 @@
 
 Автор в социальных сетях:
 
-| [Twitter](https://twitter.com/only-exlight) | [Instagram](https://instagram.com/only-exlight) | [Facebook](https://www.facebook.com/only.exlight.page) | [VK](https://vk.com/only-exlight) [LinkedIn](https://linkedin.com/only-exlight) | [Telegram](https://t.me/only-exlight) | [Discord](https://discordapp.com/invite/sAvkc7A) |
+| [Twitter](https://twitter.com/only-exlight) | [Instagram](https://instagram.com/only-exlight) | [Facebook](https://www.facebook.com/only.exlight.page) | [VK](https://vk.com/only-exlight) | [LinkedIn](https://linkedin.com/only-exlight) | [Telegram](https://t.me/only-exlight) | [Discord](https://discordapp.com/invite/sAvkc7A) |
 
 ## Структура проекта
 
