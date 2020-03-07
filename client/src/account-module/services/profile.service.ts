@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { EnviromentService } from '@app/services/envirement.service';
-import { User } from '@account-module/models/user';
+import { UserApi } from '@account-module/models/api/user';
 import { UserNamespace } from '@share/';
 import { AuthService, ITokenData } from '@app/services/auth.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProfileService extends Api {
-  private user: User = new User();
+  private user: UserApi = new UserApi();
   private user$ = new BehaviorSubject(this.user);
 
   constructor(
@@ -24,16 +24,16 @@ export class ProfileService extends Api {
     );
   }
 
-  get $user(): Observable<User> {
+  get $user(): Observable<UserApi> {
     return this.user$.asObservable();
   }
 
-  public async getProfile(id: number): Promise<User> {
+  public async getProfile(id: number): Promise<UserApi> {
     try {
       const answ = await this.get<UserNamespace.IUser>(`user/${id}`);
-      return new User(answ);
+      return new UserApi(answ);
     } catch (error) {
-      return new User();
+      return new UserApi();
     }
   }
 

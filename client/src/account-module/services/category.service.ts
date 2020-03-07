@@ -15,23 +15,23 @@ export class CategoryApiService extends Api {
   public async createCategory(
     cat: ArticleNamespace.ICategory,
   ): Promise<number> {
-    return this.post(`/category`, cat);
+    return this.post(`category`, cat);
   }
 
   public async deleteCategory(id: number): Promise<void> {
-    return this.delete(`/category/${id}`);
+    return this.delete(`category/${id}`);
   }
 
   public async updateCategory(
     id: number,
     cat: ArticleNamespace.ICategory,
   ): Promise<void> {
-    return this.put(`/category/${id}`, cat);
+    return this.put(`category/${id}`, cat);
   }
 
   public async getCategory(id: number): Promise<CategoryApi> {
     try {
-      const cat: ArticleNamespace.ICategory = await this.get(`/category/${id}`);
+      const cat = await this.get<ArticleNamespace.ICategory>(`category/${id}`);
       return new CategoryApi(cat);
     } catch (error) {
       throw error;
@@ -40,9 +40,7 @@ export class CategoryApiService extends Api {
 
   public async getAllCategories(): Promise<CategoryApi[]> {
     try {
-      const cats: ArticleNamespace.ICategory[] = await this.get(
-        `/category/all`,
-      );
+      const cats = await this.get<ArticleNamespace.ICategory[]>(`category/all`);
       return cats.map(c => new CategoryApi(c));
     } catch (error) {
       throw error;

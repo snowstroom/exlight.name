@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { ProfileService } from '@account-module/services/profile.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { User } from '@account-module/models/user';
+import { UserApi } from '@account-module/models/api/user';
 
 @Component({
   selector: 'ex-profile-editor',
@@ -48,7 +48,7 @@ export class ProfileEditorPage implements OnDestroy {
     this.subscriber.unsubscribe();
   }
 
-  private init(user: User): void {
+  private init(user: UserApi): void {
     if (user) {
       this.firstname.setValue(user.firstname);
       this.secondname.setValue(user.secondname);
