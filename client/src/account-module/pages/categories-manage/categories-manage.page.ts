@@ -7,7 +7,7 @@ import { CategoryApi } from '@account-module/models/api/category.api';
   templateUrl: 'categories-manage.page.html',
 })
 export class CategoriesManagePage implements OnInit {
-  public table: TableModel<CategoryApi> = new TableModel<CategoryApi>([], {});
+  public table = new TableModel<CategoryApi>([], {});
   constructor(private catApiSrv: CategoryApiService) {}
 
   public async ngOnInit(): Promise<void> {

@@ -1,8 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
-import { Api } from '@core/classes';
+import { Api, PaginationParams } from '@core/classes';
 import { EnviromentService } from '@app/services/envirement.service';
 import { UserApi } from '@account-module/models/api/user';
-import { UserNamespace } from '@share/';
+import { UserNamespace, ApiNamespace as API } from '@share/';
 import { AuthService, ITokenData } from '@app/services/auth.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -45,6 +45,22 @@ export class ProfileService extends Api {
       return true;
     } catch (error) {
       return false;
+    }
+  }
+
+  public async getUsers(
+    pagination: PaginationParams,
+    roleId?: number,
+  ): Promise<UserApi[]> {
+    try {
+      const params = pagination.getUrlString();
+      const roleParams = roleId ? `&roleId=${roleId}` : ``;
+      const userList = await this.get<
+        API.IPaginationContent<UserNamespace.IUser>
+      >(`user/list${params}${roleParams}`);
+      return userList.content.map(u => new UserApi(u));
+    } catch (error) {
+      return [];
     }
   }
 
