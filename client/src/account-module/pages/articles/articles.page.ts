@@ -4,7 +4,7 @@ import { ArticleService } from '@article-module/services/article.service';
 import { ProfileService } from '@account-module/services/profile.service';
 import { Subject, combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { User } from '@account-module/models/user';
+import { UserApi } from '@account-module/models/api/user';
 import { PaginationParams } from '@core/classes';
 import { Article } from '@article-module/models/article';
 import { ITEMS_ON_PAGE_ART } from '@app/consts/ItemsOnPage.const';
@@ -25,7 +25,7 @@ export class ArticlesPage implements OnDestroy {
   ];
   public page = 1;
   public readonly PAGE_LENGTH = ITEMS_ON_PAGE_ART;
-  private pagParams = new PaginationParams({
+  public pagParams = new PaginationParams({
     limit: 5,
     total: 30,
   });
@@ -50,7 +50,7 @@ export class ArticlesPage implements OnDestroy {
     this.subscriber.complete();
   }
 
-  private async init(user: User): Promise<void> {
+  private async init(user: UserApi): Promise<void> {
     if (user) {
       this.articles = await this.articleSrv.getArticles(
         this.pagParams,

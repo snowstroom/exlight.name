@@ -1,6 +1,6 @@
 import { UserNamespace } from '@share/';
 
-export class User implements UserNamespace.IUser {
+export class UserApi implements UserNamespace.IUser {
   public id = this.__data.id;
   public email = this.__data.email;
   public firstname = this.__data.firstname;
