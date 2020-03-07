@@ -3,4 +3,9 @@ export namespace ApiNamespace {
     content: T[];
     count: number;
   }
+
+  export interface IApiList {
+    start: number;
+    limit: number;
+  }
 }

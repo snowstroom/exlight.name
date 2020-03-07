@@ -1,4 +1,5 @@
 import { CoreNamespace } from './core.namespace';
+import { ApiNamespace } from './api.namespace';
 export namespace ArticleNamespace {
   export interface IArticle {
     id?: number;
@@ -39,5 +40,23 @@ export namespace ArticleNamespace {
     min: RatingNumber;
     max: RatingNumber;
     avarage: RatingNumber;
+  }
+
+  export interface IArticleApiList extends ApiNamespace.IApiList {
+    category_id: number;
+  }
+
+  export interface IItemApi {
+    id: number;
+    route: string;
+  }
+
+  export interface ICommentaryApiListParams extends ApiNamespace.IApiList {
+    articleId: number;
+  }
+
+  export interface ICommentaryApiParams {
+    id: number;
+    articleId: number;
   }
 }
