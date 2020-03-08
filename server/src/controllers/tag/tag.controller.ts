@@ -13,11 +13,10 @@ import {
 } from '@nestjs/common';
 import { Repository, ObjectLiteral } from 'typeorm';
 import { Tag } from '../../models/tag.model';
-import { IApiList } from 'server/src/interfaces/base-api';
 import { ICreateTagsApi } from 'server/src/interfaces/tag-api';
 import { META_ACCESS_KEY, META_ENTITY_KEY } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
-import { AccessNamespace } from 'share';
+import { AccessNamespace, ApiNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller({ path: 'api/tag' })
@@ -46,7 +45,7 @@ export class TagController {
   @Delete('/:id')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.DELETE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
-  public async deleteTag(@Param() params: any): Promise<void> {
+  public async deleteTag(@Param() params: { id: number }): Promise<void> {
     try {
       await this.tagRep.delete(params.id);
     } catch (err) {
@@ -57,7 +56,7 @@ export class TagController {
   @Get('/list')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.tag)
-  public async tagList(@Param() params: IApiList) {
+  public async tagList(@Param() params: ApiNamespace.IApiList) {
     try {
       const dbRes = await this.tagRep.find({
         skip: params.start,

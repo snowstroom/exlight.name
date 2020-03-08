@@ -12,7 +12,7 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { Repository, TreeRepository } from 'typeorm';
+import {  TreeRepository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import {
   META_ACCESS_KEY,
@@ -89,33 +89,14 @@ export class CommentaryController {
     @Param() params: ArticleNamespace.ICommentaryApiListParams,
   ): Promise<ArticleNamespace.IArticleCommentary[]> {
     try {
-      const dbRes = await this.commentaryRep.find({
-        where: { articleId: params.articleId },
-        skip: params.start,
-        take: params.limit,
-        relations: ['user'],
+      const { articleId, limit, start } = params;
+      const comments = await this.commentaryRep.find({
+        where: { articleId },
+        skip: start,
+        take: limit,
+        relations: ['comments', 'user'],
       });
-      const res = await this.commentaryRep
-        .createDescendantsQueryBuilder('commentary', 'comments', null)
-        .where('commentary.articleId = :articleId', {
-          articleId: params.articleId,
-        })
-        .andWhere(`commentary.type = 'secondary'`)
-        .leftJoinAndSelect('commentary.user', 'user')
-        .select([
-          'commentary.id',
-          'commentary.comment',
-          'commentary.updateDate',
-          'commentary.createDate',
-          'user.id',
-          'user.firstname',
-          'user.secondname',
-        ])
-        .skip(params.limit)
-        .take(params.start)
-        .getMany();
-      console.warn(res);
-      return dbRes;
+      return comments;
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }

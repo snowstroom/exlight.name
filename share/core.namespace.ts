@@ -1,3 +1,4 @@
+import { UserNamespace } from './user.namespace';
 export namespace CoreNamespace {
   export interface ICommentary {
     id?: number;
@@ -7,17 +8,31 @@ export namespace CoreNamespace {
     createDate: string | Date;
     updateDate: string | Date;
     comments: ICommentary[];
+    user?: UserNamespace.IUser;
   }
 
   export abstract class AbstractCommentary implements ICommentary {
-    public id: number = this.__data.id;
-    public comment: string = this.__data.comment;
-    public commentId: number = this.__data.commentId;
-    public authorId: number = this.__data.authorId;
-    public createDate: Date = new Date(<string>this.__data.createDate);
-    public updateDate: Date = new Date(<string>this.__data.updateDate);
+    public id = 0;
+    public comment = '';
+    public commentId = 0;
+    public authorId = 0;
+    public createDate = new Date();
+    public updateDate = new Date();
+    public abstract user: UserNamespace.IUser;
     public abstract comments: ICommentary[];
 
-    constructor(protected __data: Partial<ICommentary> = {}) {}
+    public __data: Partial<ICommentary> = {};
+
+    constructor(__data?: Partial<ICommentary>) {
+      if (__data) {
+        this.id = __data.id;
+        this.comment = __data.comment;
+        this.commentId = __data.commentId;
+        this.authorId = __data.authorId;
+        this.createDate = new Date(<string>__data.createDate);
+        this.updateDate = new Date(<string>__data.updateDate);
+        this.__data = __data;
+      }
+    }
   }
 }

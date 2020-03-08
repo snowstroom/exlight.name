@@ -1,17 +1,28 @@
 <div class="ex-comment-item">
   <div>
-    <img class="ex-avatar" src="assets/no-photo.png" alt="User avatar" />
+    <img
+      class="ex-avatar"
+      *ngIf="!comment.user.avatar"
+      src="assets/no-photo.png"
+      alt="User avatar"
+    />
+    <img
+      class="ex-avatar"
+      *ngIf="comment.user.avatar"
+      [src]="comment.user.avatar"
+      [alt]="comment.user.userName"
+    />
   </div>
   <div class="ex-comment-content">
     <div class="ex-comment-head">
       <div class="ex-comment-author">
-        <a href="">Иван Петров</a>
+        <a href="">{{ comment.user.userName }}</a>
       </div>
       <div class="ex-comment-time">
-        <time *ngIf="!updateDate">{{
+        <time *ngIf="!comment.updateDate">{{
           comment.createDate | date: 'dd MMMM yyyy HH:mm'
         }}</time>
-        <time *ngIf="updateDate">{{
+        <time *ngIf="comment.updateDate">{{
           comment.updateDate | date: 'dd MMMM yyyy HH:mm'
         }}</time>
       </div>
