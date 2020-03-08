@@ -1,11 +1,27 @@
 import { UserNamespace } from '@share/';
 
 export class UserApi implements UserNamespace.IUser {
-  public id = this.__data.id;
-  public email = this.__data.email;
-  public firstname = this.__data.firstname;
-  public secondname = this.__data.secondname;
-  public roleId = this.__data.roleId;
+  public id = 0;
+  public email = '';
+  public firstname = '';
+  public secondname = '';
+  public roleId = 0;
+  public avatar = '';
 
-  constructor(private __data: Partial<UserNamespace.IUser> = {}) {}
+  private __data: Partial<UserNamespace.IUser> = {};
+
+  constructor(__data?: Partial<UserNamespace.IUser>) {
+    if (__data) {
+      this.id = __data.id;
+      this.email = __data.email;
+      this.firstname = __data.firstname;
+      this.secondname = __data.secondname;
+      this.roleId = __data.roleId;
+      this.__data = __data;
+    }
+  }
+
+  get userName(): string {
+    return `${this.firstname} ${this.secondname}`;
+  }
 }

@@ -4,12 +4,15 @@
   </div>
   <div class="profile-content">
     <div class="welcome" *ngIf="user">
-      Добро пожаловать, {{ user.firstname || 'Гость' }}
+      <span>Добро пожаловать, </span>
+      <a routerLink="/account/profile" *ngIf="user.id">{{ user.firstname }}</a>
+      <span *ngIf="!user.id">Гость</span>
     </div>
     <div></div>
     <div class="profile-links">
-      <a routerLink="/registration">Регистрация</a>
-      <a routerLink="/authorization">Вход</a>
+      <a routerLink="/registration" *ngIf="!user.id">Регистрация</a>
+      <a routerLink="/authorization" *ngIf="!user.id">Вход</a>
+      <a routerLink="/registration" *ngIf="user.id">Выйти</a>
     </div>
   </div>
 </div>
