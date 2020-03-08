@@ -12,11 +12,12 @@
       </div>
       <div class="article-rating">
         <ex-rating
-          [value]="article.rating"
-          [readonly]="article.isAppreciated"
+          *ngIf="rating"
+          [value]="rating.avarage"
+          [readonly]="rating.isAppreciated"
           (change)="setRating($event)"
         ></ex-rating>
-        <div class="rating-value">({{article.rating || '0.0'}})</div>
+        <div *ngIf="rating" class="rating-value">({{rating.avarage || '0.0'}})</div>
       </div>
     </div>
     <article class="content">

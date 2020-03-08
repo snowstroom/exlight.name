@@ -40,10 +40,11 @@ export class ArticleController {
   public async getArticle(
     @Param() params: ArticleNamespace.IItemApi,
   ): Promise<ArticleNamespace.IArticle> {
+    const { id, route } = params;
     try {
-      if (params.id) {
-        const dbRes = await this.articleRep.findOne({ id: params.id });
-        return dbRes;
+      if (id) {
+        const article = await this.articleRep.findOne({ id });
+        return article;
       } else {
         throw new HttpException({ error: 'Bad id' }, HttpStatus.BAD_REQUEST);
       }
@@ -61,8 +62,13 @@ export class ArticleController {
   ): Promise<ArticleNamespace.IArticle> {
     try {
       if (query.route) {
-        const dbRes = await this.articleRep.findOne({ route: query.route });
-        return dbRes;
+        const dbRes = await this.articleRep.findOne(
+          { route: query.route },
+          {
+            relations: ['tags'],
+          },
+        );
+        return dbRes as any;
       } else {
         throw new HttpException(
           { error: 'Bad parametr' },

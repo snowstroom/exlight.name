@@ -24,6 +24,7 @@ export class RatingService extends Api {
         avarage: 0,
         max: 0,
         min: 0,
+        isAppreciated: true,
       };
     }
   }

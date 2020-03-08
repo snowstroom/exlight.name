@@ -32,15 +32,20 @@ export class RatingController {
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.rating)
   @SetMetadata(META_PUBLIC_KEY, true)
-  public async getRating(@Param() params: any) {
+  public async getRating(
+    @Param() params: { articleId: string },
+    @Req() req: Request,
+  ) {
     try {
       const records = await this.ratingRep.find({
         where: { articleId: params.articleId },
+        relations: ['user'],
       });
       const ratingInfo: ArticleNamespace.IRatingInfo = {
         avarage: 0,
-        min: null,
-        max: null,
+        min: 0,
+        max: 0,
+        isAppreciated: false,
       };
       if (records.length) {
         ratingInfo.max = records[0].rating;
@@ -53,15 +58,18 @@ export class RatingController {
           if (r.rating < ratingInfo.min) {
             ratingInfo.min = r.rating;
           }
+          ratingInfo.isAppreciated =
+            ratingInfo.isAppreciated || r.user.id === req.authInfo.id;
           summ += r.rating;
         });
         ratingInfo.avarage = (summ /
           records.length) as ArticleNamespace.RatingNumber;
+        return ratingInfo;
       } else {
         return ratingInfo;
       }
-    } catch (err) {
-      throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
+    } catch (error) {
+      throw new HttpException({ error }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

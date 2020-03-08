@@ -11,8 +11,7 @@ export namespace ArticleNamespace {
     categoryId: number;
     author: number;
     route: string;
-    // rating: number;
-    // isAppreciated: boolean;
+    tags: ITag[];
   }
 
   export interface ICategory {
@@ -40,6 +39,7 @@ export namespace ArticleNamespace {
     min: RatingNumber;
     max: RatingNumber;
     avarage: RatingNumber;
+    isAppreciated: boolean;
   }
 
   export interface IArticleApiList extends ApiNamespace.IApiList {
@@ -58,5 +58,10 @@ export namespace ArticleNamespace {
   export interface ICommentaryApiParams {
     id: number;
     articleId: number;
+  }
+
+  export interface ITag {
+    id?: number;
+    name: string;
   }
 }

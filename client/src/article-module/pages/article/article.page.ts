@@ -33,7 +33,9 @@ export class ArticlePage implements OnDestroy {
   ) {
     this.activatedRoute.params
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(async (params: any) => this.getArticleByRoute(params.article));
+      .subscribe(async (params: { article: string }) =>
+        this.getArticleByRoute(params.article),
+      );
     this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe)).subscribe(scroll => {
       this.toogleShare(scroll);
       this.toogleProgress(scroll);
@@ -52,13 +54,22 @@ export class ArticlePage implements OnDestroy {
     await this.ratingSrv.setArticleRating(this.article.id, rate);
   }
 
-  public async saveNewComment(comment: string): Promise<void> {
-    const cmnt = new Commentary({ comment });
-    await this.artCommentSrv.addComment(this.article.id, cmnt);
+  public async saveNewComment(comment: Commentary): Promise<void> {
+    await this.artCommentSrv.addComment(this.article.id, comment);
+    // TODO: don't reload tree
+    this.comments = await this.artCommentSrv.getCommentList(
+      this.article.id,
+      this.commentsPagParams,
+    );
   }
 
   public async deleteComment(comment: Commentary): Promise<void> {
     await this.artCommentSrv.deleteComment(comment.id);
+    // TODO: don't reload tree
+    this.comments = await this.artCommentSrv.getCommentList(
+      this.article.id,
+      this.commentsPagParams,
+    );
   }
 
   private async getArticleByRoute(route: string): Promise<void> {

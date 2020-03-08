@@ -17,8 +17,7 @@ export class Article implements ArticleNamespace.IArticle {
   public views: number = this.__data.views;
   // public category: number  = this.__data.category;
   public route: string = this.__data.route;
-  // public rating: number = this.__data.rating;
-  // public isAppreciated: boolean = this.__data.isAppreciated;
+  public tags: any[] = this.__data.tags; // TODO: any type
   public author: number = this.__data.author;
   public categoryId: number = this.__data.categoryId;
 
