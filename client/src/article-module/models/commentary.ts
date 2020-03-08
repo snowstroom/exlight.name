@@ -6,6 +6,7 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
   public articleId = 0;
   public comments: Commentary[] = [];
   public user: UserApi;
+  public parentComment: Commentary | null;
 
   constructor(__data?: Partial<ArticleNamespace.IArticleCommentary>) {
     super(__data);
@@ -13,6 +14,9 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
       this.__data = __data;
       this.articleId = __data.articleId;
       this.user = new UserApi(__data.user);
+      this.parentComment = __data.parentComment
+        ? new Commentary(__data.parentComment)
+        : null;
       this.comments = __data.comments
         ? __data.comments.map(c => new Commentary(c))
         : [];
@@ -21,7 +25,9 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
 
   public toJSON(): Partial<ArticleNamespace.IArticleCommentary> {
     return {
+      id: this.id ? this.id : undefined,
       comment: this.comment,
+      parentComment: this.parentComment,
     };
   }
 }

@@ -10,7 +10,7 @@ const PADDING = 55;
 export class CommentTreeComponent {
   @Input() public comments: Commentary[] = [];
   @Output() public delete = new EventEmitter<Commentary>();
-  @Output() public new = new EventEmitter<string>();
+  @Output() public new = new EventEmitter<Commentary>();
 
   public getPadding(lvl: number): number {
     return PADDING * lvl;
@@ -21,10 +21,18 @@ export class CommentTreeComponent {
   }
 
   public answerToComment(comment: Commentary): void {
-    console.warn(comment);
+    comment.comments.push(
+      new Commentary({
+        articleId: comment.articleId,
+        comment: '',
+        comments: [],
+        parentComment: comment,
+      }),
+    );
   }
 
-  public sendNewComment(content: string): void {
-    this.new.emit(content);
+  public sendNewComment(content: string, comment?: Commentary): void {
+    comment.comment = content;
+    this.new.emit(comment);
   }
 }

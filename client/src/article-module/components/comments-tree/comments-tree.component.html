@@ -1,6 +1,7 @@
 <div class="title">Добавить комментарий:</div>
 <ex-comment-control (send)="sendNewComment($event)"></ex-comment-control>
 <div class="title" *ngIf="comments.length">Комментарии:</div>
+
 <ng-container
   *ngTemplateOutlet="treeTemplate; context: { items: comments, lvl: 0 }"
 ></ng-container>
@@ -19,11 +20,16 @@
 <ng-template #commentItemTemplate let-comment="comment" let-lvl="lvl">
   <div [style.paddingLeft.px]="getPadding(lvl)" style="padding-bottom: 20px">
     <ex-commentary-item
+      *ngIf="comment.id"
       [comment]="comment"
       (delete)="deleteComment(comment)"
       (answer)="answerToComment(comment)"
     >
     </ex-commentary-item>
+    <ex-comment-control
+      *ngIf="!comment.id"
+      (send)="sendNewComment($event, comment)"
+    ></ex-comment-control>
   </div>
 
   <ng-container

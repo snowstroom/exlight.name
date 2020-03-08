@@ -12,7 +12,7 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import {  TreeRepository } from 'typeorm';
+import { TreeRepository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import {
   META_ACCESS_KEY,
@@ -41,12 +41,20 @@ export class CommentaryController {
     @Req() req: Request,
   ): Promise<number> {
     try {
-      const { identifiers } = await this.commentaryRep.insert({
+      let parentComment = null;
+      if (comment.parentComment) {
+        parentComment = await this.commentaryRep.findOne({
+          where: { id: comment.parentComment.id },
+        });
+      }
+      const ent = this.commentaryRep.create({
         article: { id: Number(params.articleId) },
         user: { id: req.authInfo.id },
         ...comment,
       });
-      return identifiers[0].id;
+      ent.parentComment = parentComment;
+      const { id } = await this.commentaryRep.manager.save(ent);
+      return id;
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -89,13 +97,18 @@ export class CommentaryController {
     @Param() params: ArticleNamespace.ICommentaryApiListParams,
   ): Promise<ArticleNamespace.IArticleCommentary[]> {
     try {
-      const { articleId, limit, start } = params;
+      const { articleId, limit: take, start: skip } = params;
       const comments = await this.commentaryRep.find({
-        where: { articleId },
-        skip: start,
-        take: limit,
-        relations: ['comments', 'user'],
+        where: { articleId, parentComment: null },
+        take,
+        skip,
+        relations: ['user'],
       });
+      await Promise.all(
+        comments.map(rootComment =>
+          this.commentaryRep.findDescendantsTree(rootComment),
+        ),
+      );
       return comments;
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
