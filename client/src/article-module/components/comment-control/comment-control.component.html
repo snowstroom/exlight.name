@@ -3,60 +3,65 @@
     <img class="ex-avatar" src="assets/no-photo.png" alt="User avatar" />
   </div>
   <div class="ex-comment-l">
-    <div class="ex-comment-content">
-      <form [formGroup]="form">
+    <form [formGroup]="form">
+      <div class="ex-comment-content">
         <textarea
           #area
           placeholder="Комментарий..."
           class="ex-comment-area"
-          formControlName="comment"
+          [formControl]="comment"
         ></textarea>
-      </form>
-    </div>
-    <div class="ex-comment-footer">
-      <ng-container [ngSwitch]="type">
-        <ng-container *ngSwitchCase="'new'">
-          <button
-            class="comment-action"
-            [disabled]="comment.disabled"
-            (click)="createComment()"
-          >
-            <span>Отправить</span>
-          </button>
+      </div>
+      <div class="ex-comment-footer">
+        <ng-container [ngSwitch]="type">
+          <ng-container *ngSwitchCase="'new'">
+            <button
+              type="submit"
+              class="comment-action"
+              [disabled]="comment.disabled"
+              (click)="sendComment()"
+            >
+              <span>Отправить</span>
+            </button>
+          </ng-container>
+          <ng-container *ngSwitchCase="'edit'">
+            <button
+              type="submit"
+              class="comment-action"
+              [disabled]="comment.disabled"
+              (click)="sendComment()"
+            >
+              <span>Сохранить</span>
+            </button>
+            <button
+              type="button"
+              class="comment-action"
+              [disabled]="comment.disabled"
+              (click)="cancelEdit()"
+            >
+              <span>Отмена</span>
+            </button>
+          </ng-container>
+          <ng-container *ngSwitchCase="'answer'">
+            <button
+              type="submit"
+              class="comment-action"
+              [disabled]="comment.disabled"
+              (click)="sendComment()"
+            >
+              <span>Отправить</span>
+            </button>
+            <button
+              type="button"
+              class="comment-action"
+              [disabled]="comment.disabled"
+              (click)="cancelEdit()"
+            >
+              <span>Отмена</span>
+            </button>
+          </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="'edit'">
-          <button
-            class="comment-action"
-            [disabled]="comment.disabled"
-            (click)="createComment()"
-          >
-            <span>Сохранить</span>
-          </button>
-          <button
-            class="comment-action"
-            [disabled]="comment.disabled"
-            (click)="cancelEdit()"
-          >
-            <span>Отмена</span>
-          </button>
-        </ng-container>
-        <ng-container *ngSwitchCase="'answer'">
-          <button
-            class="comment-action"
-            [disabled]="comment.disabled"
-            (click)="createComment()"
-          >
-            <span>Отправить</span>
-          </button>
-          <button
-            class="comment-action"
-            [disabled]="comment.disabled"
-            (click)="cancelEdit()"
-          >
-            <span>Отмена</span>
-          </button>
-        </ng-container>
-      </ng-container>
-    </div>
+      </div>
+    </form>
   </div>
 </div>

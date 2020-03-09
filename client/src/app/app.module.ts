@@ -57,7 +57,7 @@ registerLocaleData(localeRu);
     AuthorizationComponent,
     ForgotPassowrdComponent,
     ProfileOutsideComponent,
-    AccessDirective
+    AccessDirective,
   ],
   imports: [
     BrowserModule,
@@ -68,17 +68,9 @@ registerLocaleData(localeRu);
     ExlightArticleModule,
     ExlightCoreModule,
     ExlightCommonModule,
-    ExlightAccountModule
+    ExlightAccountModule,
   ],
-  providers: [
-    Title,
-    Meta,
-    INIT_FONTS,
-    HUMMER_PROVIDER,
-    INTERSEPTOR,
-    LOCALE
-  ],
-  bootstrap: [AppComponent]
+  providers: [Title, Meta, INIT_FONTS, HUMMER_PROVIDER, INTERSEPTOR, LOCALE],
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

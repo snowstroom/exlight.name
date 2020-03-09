@@ -9,6 +9,12 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+export type TCommentControllType = 'new' | 'edit' | 'answer';
+export interface ICommentSendEvent {
+  content: string;
+  type: TCommentControllType;
+}
+
 @Component({
   selector: 'ex-comment-control',
   templateUrl: 'comment-control.component.html',
@@ -16,16 +22,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CommentControlComponent implements OnInit {
   public form = new FormGroup({
-    comment: new FormControl(null, [Validators.required]),
+    comment: new FormControl('', [Validators.required]),
   });
   @Input() public autofocus = false;
-  @Input() public type: 'new' | 'edit' | 'answer' = 'new';
-  @Output() public send = new EventEmitter();
-  @Output() public cancel = new EventEmitter();
-
-  @Input() set message(val: string) {
-    this.comment.setValue(val);
-  }
+  @Input() public type: TCommentControllType = 'new';
+  @Input() public message = '';
+  @Output()
+  public send = new EventEmitter<ICommentSendEvent>();
+  @Output() public cancel = new EventEmitter<TCommentControllType>();
 
   @Input() set wait(val: boolean) {
     if (val) {
@@ -42,19 +46,25 @@ export class CommentControlComponent implements OnInit {
     if (this.autofocus) {
       this.textarea.nativeElement.focus();
     }
+    if (this.message) {
+      this.comment.setValue(this.message);
+    }
   }
 
   get comment(): FormControl {
     return this.form.get('comment') as FormControl;
   }
 
-  public async createComment(): Promise<void> {
+  public sendComment(): void {
     if (this.form.valid) {
-      this.send.emit(this.comment.value);
+      this.send.emit({
+        content: this.comment.value,
+        type: this.type,
+      });
     }
   }
 
   public cancelEdit(): void {
-    this.cancel.emit();
+    this.cancel.emit(this.type);
   }
 }

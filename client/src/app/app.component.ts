@@ -11,7 +11,7 @@ import { MENU_ITEMS } from './consts/menu-items';
 @Component({
   selector: 'ex-app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   // @ViewChild('htmlPlayer') public  htmlPlayer: ElementRef<HTMLAudioElement>;
@@ -31,15 +31,17 @@ export class AppComponent implements OnInit {
     private musicStateSrv: MusicStateService,
     private envSrv: EnviromentService,
     private appSrv: ApplicationService,
-    private router: Router
+    private router: Router,
   ) {
-    this.envSrv.$screenType.subscribe(type => console.warn(E_SCREEN_TYPE[type]));
+    this.envSrv.$screenType.subscribe(type =>
+      console.warn(E_SCREEN_TYPE[type]),
+    );
     this.appSrv.$ldJsonSchema.subscribe(schema => {
       this.ldJsonSchema = schema;
     });
-    this.router.events.pipe(filter((e) => e instanceof ActivationEnd))
+    this.router.events
+      .pipe(filter(e => e instanceof ActivationEnd))
       .subscribe((data: ActivatedRoute) => {
-        console.warn(data.snapshot.data);
         this.showAside = data.snapshot.data.showAside;
         this.haveNoBg = data.snapshot.data.haveNoBackground;
       });
