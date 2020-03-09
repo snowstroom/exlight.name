@@ -1,7 +1,11 @@
 <div class="title">Добавить комментарий:</div>
-<ex-comment-control (send)="sendNewComment($event)"></ex-comment-control>
-<div class="title" *ngIf="comments.length">Комментарии:</div>
+<ex-comment-control
+  (send)="sendNewComment($event)"
+  [wait]="rootComment.updating"
+></ex-comment-control>
 
+<div class="title" *ngIf="comments.length">Комментарии:</div>
+<ex-spinner [wait]="waitComments"></ex-spinner>
 <ng-container
   *ngTemplateOutlet="treeTemplate; context: { items: comments, lvl: 0 }"
 ></ng-container>
@@ -20,15 +24,20 @@
 <ng-template #commentItemTemplate let-comment="comment" let-lvl="lvl">
   <div [style.paddingLeft.px]="getPadding(lvl)" style="padding-bottom: 20px">
     <ex-commentary-item
-      *ngIf="comment.id"
+      *ngIf="!comment.editable"
       [comment]="comment"
       (delete)="deleteComment(comment)"
+      (edit)="editComment(comment)"
       (answer)="answerToComment(comment)"
     >
     </ex-commentary-item>
     <ex-comment-control
-      *ngIf="!comment.id"
+      *ngIf="comment.editable"
+      [isEdit]="comment.editable"
+      [wait]="comment.updating"
+      [message]="comment.comment"
       (send)="sendNewComment($event, comment)"
+      (cancel)="cancelEdit(comment)"
     ></ex-comment-control>
   </div>
 

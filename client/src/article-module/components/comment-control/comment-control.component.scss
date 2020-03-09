@@ -20,15 +20,20 @@
       margin-bottom: 1rem;
 
       .ex-comment-area {
+        background: transparent;
+        color: $simple-text-color;
+        padding: 0.5rem;
+        border-color: $simple-text-color;
         width: 100%;
         min-height: 55px;
         font-family: $simple-text;
+        font-size: 1rem;
         border-radius: $element-radius;
         &:focus {
           outline-color: $links-text-color;
         }
         &:disabled {
-          background: $disabled-item-color;;
+          color: $disabled-item-color;;
         }
       }
     }

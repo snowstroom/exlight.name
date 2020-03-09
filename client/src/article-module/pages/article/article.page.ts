@@ -18,6 +18,7 @@ import { ArticleNamespace } from '@share/*';
 export class ArticlePage implements OnDestroy {
   public wait = true;
   public article: Article;
+  public commentsWait = true;
   public comments: Commentary[] = [];
   public commentsPagParams = new PaginationParams({ limit: 15 });
   public rating: ArticleNamespace.IRatingInfo;
@@ -56,11 +57,17 @@ export class ArticlePage implements OnDestroy {
 
   public async saveNewComment(comment: Commentary): Promise<void> {
     await this.artCommentSrv.addComment(this.article.id, comment);
+    comment.updating = false;
     // TODO: don't reload tree
     this.comments = await this.artCommentSrv.getCommentList(
       this.article.id,
       this.commentsPagParams,
     );
+  }
+
+  public async updateComment(comment: Commentary): Promise<void> {
+    console.warn(comment);
+    comment.editable = false;
   }
 
   public async deleteComment(comment: Commentary): Promise<void> {
@@ -78,6 +85,7 @@ export class ArticlePage implements OnDestroy {
       this.article.id,
       this.commentsPagParams,
     );
+    this.commentsWait = false;
     this.rating = await this.ratingSrv.getArticleRating(this.article.id);
     this.wait = false;
     setTimeout(

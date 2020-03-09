@@ -13,8 +13,21 @@
       </form>
     </div>
     <div class="ex-comment-footer">
-      <button class="comment-action" (click)="createComment()">
-        Отправить
+      <button
+        class="comment-action"
+        [disabled]="comment.disabled"
+        (click)="createComment()"
+      >
+        <span *ngIf="!isEdit">Отправить</span>
+        <span *ngIf="isEdit">Сохранить</span>
+      </button>
+      <button
+        class="comment-action"
+        [disabled]="comment.disabled"
+        *ngIf="isEdit"
+        (click)="cancelEdit()"
+      >
+        <span>Отмена</span>
       </button>
     </div>
   </div>

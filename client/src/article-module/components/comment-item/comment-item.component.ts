@@ -7,14 +7,21 @@ import { Commentary } from '@article-module/models/commentary';
   styleUrls: ['comment-item.component.scss'],
 })
 export class CommentaryItemComponent {
+  @Input() public wait = false;
   @Input() public comment: Commentary;
   @Output() public answer = new EventEmitter();
   @Output() public delete = new EventEmitter();
+  @Output() public edit = new EventEmitter();
 
   public answerToComment(): void {
     this.answer.emit();
   }
+
   public deleteComment(): void {
     this.delete.emit();
+  }
+
+  public editComment(): void {
+    this.edit.emit();
   }
 }

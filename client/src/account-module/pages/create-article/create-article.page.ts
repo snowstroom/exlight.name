@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ARTICLES_SECTIONS } from '@account-module/consts/account-sections';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -18,30 +17,4 @@ export class CreateArticlePage {
     categoryId: new FormControl(null, Validators.required),
     tags: new FormArray([]),
   });
-
-  public config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    toolbarPosition: 'top',
-    defaultFontName: 'Times New Roman',
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText',
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-  };
 }

@@ -26,8 +26,10 @@
     </article>
     <div class="content">
       <ex-comment-tree
+        [waitComments]="commentsWait"
         [comments]="comments"
         (delete)="deleteComment($event)"
+        (update)="updateComment($event)"
         (new)="saveNewComment($event)"
       >
       </ex-comment-tree>

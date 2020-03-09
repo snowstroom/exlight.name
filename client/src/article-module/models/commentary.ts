@@ -31,6 +31,7 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
       id: this.id ? this.id : undefined,
       comment: this.comment,
       parentComment: this.parentComment,
+      edited: !!this.edited,
     };
   }
 }
