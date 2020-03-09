@@ -3,6 +3,7 @@ export namespace CoreNamespace {
   export interface ICommentary {
     id?: number;
     comment: string;
+    edited: boolean;
     createDate: string | Date;
     updateDate: string | Date;
     comments: ICommentary[];
@@ -13,6 +14,7 @@ export namespace CoreNamespace {
   export abstract class AbstractCommentary implements ICommentary {
     public id = 0;
     public comment = '';
+    public edited = false;
     public createDate = new Date();
     public updateDate = new Date();
     public abstract user: UserNamespace.IUser;
@@ -27,6 +29,7 @@ export namespace CoreNamespace {
         this.comment = __data.comment;
         this.createDate = new Date(<string>__data.createDate);
         this.updateDate = new Date(<string>__data.updateDate);
+        this.edited = __data.edited;
         this.__data = __data;
       }
     }

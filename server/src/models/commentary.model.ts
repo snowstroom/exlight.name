@@ -21,6 +21,7 @@ export class Commentary implements ArticleNamespace.IArticleCommentary {
   @PrimaryGeneratedColumn() public id: number;
   @Column() public articleId: number;
   @Column() public comment: string;
+  @Column() public edited: boolean;
   @CreateDateColumn({ default: new Date() }) public createDate: Date;
   @UpdateDateColumn() public updateDate: Date;
 

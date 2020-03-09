@@ -8,6 +8,9 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
   public user: UserApi;
   public parentComment: Commentary | null;
 
+  public updating = false;
+  public editable = false;
+
   constructor(__data?: Partial<ArticleNamespace.IArticleCommentary>) {
     super(__data);
     if (__data) {
