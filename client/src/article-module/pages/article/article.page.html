@@ -17,7 +17,9 @@
           [readonly]="rating.isAppreciated"
           (change)="setRating($event)"
         ></ex-rating>
-        <div *ngIf="rating" class="rating-value">({{rating.avarage || '0.0'}})</div>
+        <div *ngIf="rating" class="rating-value">
+          ({{rating.avarage || '0.0'}})
+        </div>
       </div>
     </div>
     <article class="content">
@@ -26,12 +28,13 @@
     </article>
     <div class="content">
       <ex-comment-tree
-        [isAuth]="true"
+        [currentUserId]="userProfile.id"
         [waitComments]="commentsWait"
         [comments]="comments"
         (delete)="deleteComment($event)"
         (update)="updateComment($event)"
         (new)="saveNewComment($event)"
+        (answer)="saveNewComment($event)"
       >
       </ex-comment-tree>
     </div>

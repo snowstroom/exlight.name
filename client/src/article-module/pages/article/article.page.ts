@@ -10,6 +10,8 @@ import { CommentService } from '@article-module/services/comment.service';
 import { PaginationParams } from '@core/classes';
 import { RatingService } from '@article-module/services/rating.service';
 import { ArticleNamespace } from '@share/*';
+import { ProfileService } from '@account-module/services/profile.service';
+import { UserApi } from '@account-module/models/api/user';
 
 @Component({
   templateUrl: './article.page.html',
@@ -22,6 +24,7 @@ export class ArticlePage implements OnDestroy {
   public comments: Commentary[] = [];
   public commentsPagParams = new PaginationParams({ limit: 15 });
   public rating: ArticleNamespace.IRatingInfo;
+  public userProfile: UserApi;
   private unsubscribe = new Subject();
 
   constructor(
@@ -31,6 +34,7 @@ export class ArticlePage implements OnDestroy {
     private artCommentSrv: CommentService,
     private router: Router,
     private ratingSrv: RatingService,
+    private profileSrv: ProfileService,
   ) {
     this.activatedRoute.params
       .pipe(takeUntil(this.unsubscribe))
@@ -41,6 +45,9 @@ export class ArticlePage implements OnDestroy {
       this.toogleShare(scroll);
       this.toogleProgress(scroll);
     });
+    this.profileSrv.$user
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(user => (this.userProfile = user));
   }
 
   public ngOnDestroy(): void {
@@ -68,8 +75,9 @@ export class ArticlePage implements OnDestroy {
   }
 
   public async updateComment(comment: Commentary): Promise<void> {
-    console.warn(comment);
+    await this.artCommentSrv.updateComment(this.article.id, comment);
     comment.editable = false;
+    comment.updating = false;
   }
 
   public async deleteComment(comment: Commentary): Promise<void> {

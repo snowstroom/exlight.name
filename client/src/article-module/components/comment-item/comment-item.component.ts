@@ -9,7 +9,7 @@ import { Commentary } from '@article-module/models/commentary';
 export class CommentaryItemComponent {
   @Input() public wait = false;
   @Input() public comment: Commentary;
-  @Input() public isReadonly = true;
+  @Input() public currentUserId: number;
   @Output() public answer = new EventEmitter();
   @Output() public delete = new EventEmitter();
   @Output() public edit = new EventEmitter();

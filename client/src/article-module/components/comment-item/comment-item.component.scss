@@ -45,6 +45,7 @@
 
     .ex-comment-body {
       margin: 1rem 0.5rem;
+      cursor: text;
       &.disabled {
         color: $disabled-item-color;
       }
