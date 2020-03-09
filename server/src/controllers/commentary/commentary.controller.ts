@@ -60,15 +60,19 @@ export class CommentaryController {
     }
   }
 
-  @Put('/:id/article')
+  @Put('/:id/article/:articleId')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
   public async updateCommentarty(
-    @Param() params: ArticleNamespace.ICommentaryApiParams,
+    @Param() { articleId, id }: ArticleNamespace.ICommentaryApiParams,
     @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
   ): Promise<void> {
     try {
-      const dbRes = await this.commentaryRep.update(params.id, comment);
+      await this.commentaryRep.update(id, {
+        articleId,
+        ...comment,
+        edited: true,
+      });
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
