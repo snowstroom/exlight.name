@@ -1,12 +1,30 @@
 <div class="ex-rating">
   <ng-container *ngFor="let r of rating; let i = index">
     <ng-container [ngSwitch]="r">
-      <i *ngSwitchCase="0" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()" (click)="estimate(i)"
-        class="la la-star-o inactive" [ngClass]="{readonly: readonly}"></i>
-      <i class="active la la-star-half-o" *ngSwitchCase="0.5" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()"
-        (click)="estimate(i)" [ngClass]="{readonly: readonly}"></i>
-      <i *ngSwitchCase="1" (mouseover)="evaluation(i)" (mouseleave)="canvelEval()" (click)="estimate(i)"
-        class="la la-star active" [ngClass]="{readonly: readonly}"></i>
+      <i
+        *ngSwitchCase="0"
+        (mouseover)="evaluation(i)"
+        (mouseleave)="canvelEval()"
+        (click)="estimate(i)"
+        class="la la-star-o inactive"
+        [ngClass]="{ readonly: readonly }"
+      ></i>
+      <i
+        class="active la la-star-half-o"
+        *ngSwitchCase="0.5"
+        (mouseover)="evaluation(i)"
+        (mouseleave)="canvelEval()"
+        (click)="estimate(i)"
+        [ngClass]="{ readonly: readonly }"
+      ></i>
+      <i
+        *ngSwitchCase="1"
+        (mouseover)="evaluation(i)"
+        (mouseleave)="canvelEval()"
+        (click)="estimate(i)"
+        class="la la-star active"
+        [ngClass]="{ readonly: readonly }"
+      ></i>
     </ng-container>
   </ng-container>
 </div>
