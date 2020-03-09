@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ExlightCommonModule } from '@common-module/common.module';
 import { RouterModule } from '@angular/router';
 import { ExlightCoreModule } from '@core/core.module';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // PROVIDERS
 
@@ -31,7 +30,6 @@ import { CategoryApiService } from './services/category.service';
     CommonModule,
     BrowserModule,
     RouterModule,
-    AngularEditorModule,
     FormsModule,
     ReactiveFormsModule,
     ExlightArticleModule,
