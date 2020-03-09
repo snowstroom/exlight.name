@@ -10,16 +10,23 @@
   }
 
   .ex-comment-content {
+    width: 100%;
     .ex-comment-head {
       display: flex;
+      justify-content: space-between;
+      .ex-comment-info {
+        display: flex;
+        .ex-comment-author {
+          margin: 0 0.5rem;
+        }
 
-      .ex-comment-author {
-        margin: 0 0.5rem;
+        .ex-comment-time {
+          font-family: $elements-text;
+          font-weight: bold;
+        }
       }
-
-      .ex-comment-time {
-        font-family: $elements-text;
-        font-weight: bold;
+      .ex-comment-actions {
+        display: flex;
       }
     }
 
@@ -30,15 +37,20 @@
     .ex-comment-footer {
       display: flex;
       margin: 0 0.5rem;
-
-      .comment-action {
-        background: transparent;
-        font-family: $elements-text;
-        color: $links-text-color;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-      }
+    }
+  }
+  .comment-action {
+    background: transparent;
+    font-family: $elements-text;
+    color: $links-text-color;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline-color: $links-text-color;
+    }
+    &:disabled {
+      color: $disabled-item-color;
     }
   }
 }

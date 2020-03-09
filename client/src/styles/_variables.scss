@@ -4,6 +4,7 @@ $element-text-color: #ffffff;
 $simple-text-color: #ffffff;
 $blocks-color-bg: #101014f8;
 $alt-block-color-bg: #ffffff;
+$disabled-item-color: #979797;
 $box-shadow: 0 0 1em #000000;
 $active-box-shadow: 0 0 0.5em #cf3333;
 $text-shadow: 0 0 0.1em #ffffff;
@@ -31,9 +32,8 @@ $min-lg: 992px;
 $max-lg: 1199px;
 
 $min-elg: 1200px;
-
-$la-font-path: '~line-awesome/fonts/';
-$la-css-prefix: 'la';
+$la-font-path: '~line-awesome/dist/line-awesome/fonts';
+$la-css-prefix-las: la;
 
 @mixin shadow-text($color) {
   text-shadow: 0 0 5px $color;

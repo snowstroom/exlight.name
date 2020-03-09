@@ -24,6 +24,12 @@
         min-height: 55px;
         font-family: $simple-text;
         border-radius: $element-radius;
+        &:focus {
+          outline-color: $links-text-color;
+        }
+        &:disabled {
+          background: $disabled-item-color;;
+        }
       }
     }
 
@@ -39,6 +45,12 @@
         font-weight: bold;
         border: none;
         cursor: pointer;
+        &:focus {
+          outline-color: $links-text-color;
+        }
+        &:disabled {
+          color: $disabled-item-color;
+        }
       }
     }
   }
