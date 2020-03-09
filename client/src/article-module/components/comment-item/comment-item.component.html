@@ -35,7 +35,7 @@
       </div>
       <div
         class="ex-comment-actions"
-        *ngIf="comment.comments.length && currentUserId === comment.user.id"
+        *ngIf="!comment.comments.length && currentUserId === comment.user.id"
       >
         <button
           class="comment-action"

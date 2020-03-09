@@ -28,6 +28,7 @@
         .ex-comment-time {
           font-family: $elements-text;
           font-weight: bold;
+          margin-right: 0.5rem;
           &.disabled {
             color: $disabled-item-color;
           }
@@ -35,7 +36,7 @@
 
         .ex-comment-edited {
           color: $disabled-item-color;
-          margin: 0 0.5rem;
+          margin-right: 0.5rem;
         }
       }
       .ex-comment-actions {
