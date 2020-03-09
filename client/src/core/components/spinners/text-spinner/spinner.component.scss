@@ -1,11 +1,9 @@
 @import 'src/styles/variables';
 .ex-spinner {
-    min-height: 2.2em;
-    .spinner-text {
-        font-family: $elements-text;
-        font-weight: bold;
-        font-size: 2.2em;
-        color: $links-text-color;
-        animation: textShadow 4s infinite;
-    }
+  .spinner-text {
+    font-family: $elements-text;
+    font-weight: bold;
+    color: $links-text-color;
+    animation: textShadow 4s infinite;
+  }
 }

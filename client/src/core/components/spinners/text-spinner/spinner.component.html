@@ -1,3 +1,11 @@
-<div role="img" class="ex-spinner" *ngIf="wait" role="progressbar">
-  <span class="spinner-text">{{visibleText}}</span>
+<div
+  role="img"
+  class="ex-spinner"
+  *ngIf="wait"
+  [style.minHeight.rem]="size"
+  role="progressbar"
+>
+  <span class="spinner-text" [style.fontSize.rem]="size">{{
+    visibleText
+  }}</span>
 </div>
