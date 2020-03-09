@@ -1,4 +1,12 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ViewChild,
+  OnInit,
+  ElementRef,
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,11 +14,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: 'comment-control.component.html',
   styleUrls: ['comment-control.component.scss'],
 })
-export class CommentControlComponent {
+export class CommentControlComponent implements OnInit {
   public form = new FormGroup({
     comment: new FormControl(null, [Validators.required]),
   });
-  @Input() public isEdit = false;
+  @Input() public autofocus = false;
+  @Input() public type: 'new' | 'edit' | 'answer' = 'new';
   @Output() public send = new EventEmitter();
   @Output() public cancel = new EventEmitter();
 
@@ -24,6 +33,14 @@ export class CommentControlComponent {
     } else {
       this.comment.enable();
       this.comment.reset();
+    }
+  }
+
+  @ViewChild('area') public textarea: ElementRef<HTMLTextAreaElement>;
+
+  public ngOnInit(): void {
+    if (this.autofocus) {
+      this.textarea.nativeElement.focus();
     }
   }
 

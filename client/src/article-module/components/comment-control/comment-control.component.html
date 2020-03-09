@@ -6,6 +6,7 @@
     <div class="ex-comment-content">
       <form [formGroup]="form">
         <textarea
+          #area
           placeholder="Комментарий..."
           class="ex-comment-area"
           formControlName="comment"
@@ -13,22 +14,49 @@
       </form>
     </div>
     <div class="ex-comment-footer">
-      <button
-        class="comment-action"
-        [disabled]="comment.disabled"
-        (click)="createComment()"
-      >
-        <span *ngIf="!isEdit">Отправить</span>
-        <span *ngIf="isEdit">Сохранить</span>
-      </button>
-      <button
-        class="comment-action"
-        [disabled]="comment.disabled"
-        *ngIf="isEdit"
-        (click)="cancelEdit()"
-      >
-        <span>Отмена</span>
-      </button>
+      <ng-container [ngSwitch]="type">
+        <ng-container *ngSwitchCase="'new'">
+          <button
+            class="comment-action"
+            [disabled]="comment.disabled"
+            (click)="createComment()"
+          >
+            <span>Отправить</span>
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'edit'">
+          <button
+            class="comment-action"
+            [disabled]="comment.disabled"
+            (click)="createComment()"
+          >
+            <span>Сохранить</span>
+          </button>
+          <button
+            class="comment-action"
+            [disabled]="comment.disabled"
+            (click)="cancelEdit()"
+          >
+            <span>Отмена</span>
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'answer'">
+          <button
+            class="comment-action"
+            [disabled]="comment.disabled"
+            (click)="createComment()"
+          >
+            <span>Отправить</span>
+          </button>
+          <button
+            class="comment-action"
+            [disabled]="comment.disabled"
+            (click)="cancelEdit()"
+          >
+            <span>Отмена</span>
+          </button>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
 </div>
