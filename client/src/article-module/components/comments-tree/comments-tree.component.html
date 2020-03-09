@@ -1,14 +1,24 @@
-<div class="title">Добавить комментарий:</div>
-<ex-comment-control
-  (send)="sendNewComment($event)"
-  [wait]="rootComment.updating"
-></ex-comment-control>
+<div class="ex-comment-new" *ngIf="isAuth">
+  <div class="title">Добавить комментарий:</div>
+  <ex-comment-control
+    (send)="sendNewComment($event)"
+    [wait]="rootComment.updating"
+  ></ex-comment-control>
+</div>
 
-<div class="title" *ngIf="comments.length">Комментарии:</div>
-<ex-spinner [wait]="waitComments"></ex-spinner>
-<ng-container
-  *ngTemplateOutlet="treeTemplate; context: { items: comments, lvl: 0 }"
-></ng-container>
+<div *ngIf="!isAuth" class="ex-comment-no-auth">
+  <div class="title">
+    <a routerLink="/authorization">Войдите</a>, что бы оставить коментарий.
+  </div>
+</div>
+
+<div class="ex-comments-items">
+  <div class="title" *ngIf="comments.length">Комментарии:</div>
+  <ex-spinner [wait]="waitComments"></ex-spinner>
+  <ng-container
+    *ngTemplateOutlet="treeTemplate; context: { items: comments, lvl: 0 }"
+  ></ng-container>
+</div>
 
 <ng-template #treeTemplate let-items="items" let-lvl="lvl">
   <div *ngFor="let comment of items">
@@ -25,6 +35,7 @@
   <div [style.paddingLeft.px]="getPadding(lvl)" style="padding-bottom: 20px">
     <ex-commentary-item
       *ngIf="!comment.editable"
+      [isReadonly]="!isAuth"
       [comment]="comment"
       (delete)="deleteComment(comment)"
       (edit)="editComment(comment)"

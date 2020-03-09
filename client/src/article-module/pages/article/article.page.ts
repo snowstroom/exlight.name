@@ -53,6 +53,8 @@ export class ArticlePage implements OnDestroy {
 
   public async setRating(rate: ArticleNamespace.RatingNumber): Promise<void> {
     await this.ratingSrv.setArticleRating(this.article.id, rate);
+    // setAlert() // TODO: set alert 'Thanks for estimate'
+    this.rating = await this.ratingSrv.getArticleRating(this.article.id);
   }
 
   public async saveNewComment(comment: Commentary): Promise<void> {

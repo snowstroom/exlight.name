@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Commentary } from '@article-module/models/commentary';
+import { UserApi } from '@account-module/models/api/user';
 
 const PADDING = 55;
 @Component({
@@ -11,6 +12,7 @@ export class CommentTreeComponent {
   public rootComment = new Commentary();
   @Input() public waitComments = false;
   @Input() public comments: Commentary[] = [];
+  @Input() public isAuth: boolean;
   @Output() public delete = new EventEmitter<Commentary>();
   @Output() public new = new EventEmitter<Commentary>();
   @Output() public update = new EventEmitter<Commentary>();

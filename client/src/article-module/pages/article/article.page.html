@@ -26,6 +26,7 @@
     </article>
     <div class="content">
       <ex-comment-tree
+        [isAuth]="true"
         [waitComments]="commentsWait"
         [comments]="comments"
         (delete)="deleteComment($event)"

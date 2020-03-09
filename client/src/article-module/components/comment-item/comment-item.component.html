@@ -33,7 +33,7 @@
         <div class="ex-comment-edited" *ngIf="comment.edited">Изменено</div>
         <ex-spinner [wait]="comment.updating" [size]="1"></ex-spinner>
       </div>
-      <div class="ex-comment-actions" *ngIf="!comment.comments.length">
+      <div class="ex-comment-actions" *ngIf="!comment.comments.length || !isReadonly">
         <button
           class="comment-action"
           [disabled]="comment.updating"
@@ -55,6 +55,7 @@
     </div>
     <div class="ex-comment-footer">
       <button
+        *ngIf="!isReadonly"
         class="comment-action"
         [disabled]="comment.updating"
         (click)="answerToComment()"
