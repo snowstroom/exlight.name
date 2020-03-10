@@ -108,12 +108,40 @@ export class CommentaryController {
         skip,
         relations: ['user'],
       });
-      await Promise.all(
+      const items = await Promise.all(
         comments.map(rootComment =>
-          this.commentaryRep.findDescendantsTree(rootComment),
+          this.commentaryRep
+            .createDescendantsQueryBuilder(
+              'article_comments',
+              'article_commentsClosure',
+              rootComment,
+            )
+            .leftJoinAndSelect('article_comments.user', 'user')
+            .leftJoinAndSelect(
+              'article_comments.parentComment',
+              'parentComment',
+            )
+            .getMany(),
         ),
       );
-      return comments;
+      const map = new Map<number, Commentary>();
+      const allItems: Commentary[] = [];
+      const roots: Commentary[] = [];
+      items.forEach(item =>
+        item.forEach(cmt => {
+          map.set(cmt.id, cmt);
+          allItems.push(cmt);
+        }),
+      );
+      allItems.forEach(item => {
+        if (item.parentComment) {
+          const c = map.get(item.parentComment.id);
+          c.comments ? c.comments.push(item) : (c.comments = [item]);
+        } else {
+          roots.push(item);
+        }
+      });
+      return roots;
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
