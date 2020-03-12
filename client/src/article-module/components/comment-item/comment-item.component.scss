@@ -57,6 +57,7 @@
       margin: 0 0.5rem;
     }
   }
+
   .comment-action {
     background: transparent;
     font-family: $elements-text;
@@ -64,6 +65,16 @@
     font-weight: bold;
     border: none;
     cursor: pointer;
+
+    &.like {
+      color: $simple-text-color;
+      &.active {
+        color: $links-text-color;
+      }
+    }
+    .like-count {
+      color: $simple-text-color;
+    }
     &:focus {
       outline-color: $links-text-color;
     }

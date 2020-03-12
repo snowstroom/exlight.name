@@ -33,23 +33,44 @@
         <div class="ex-comment-edited" *ngIf="comment.edited">Изменено</div>
         <ex-spinner [wait]="comment.updating" [size]="1"></ex-spinner>
       </div>
-      <div
-        class="ex-comment-actions"
-        *ngIf="!comment.comments.length && currentUserId === comment.user.id"
-      >
-        <button
-          class="comment-action"
-          [disabled]="comment.updating"
-          (click)="editComment()"
+      <div class="ex-comment-actions">
+        <ng-container
+          *ngIf="!comment.comments.length && currentUserId === comment.user.id"
         >
-          <i class="la la-pencil"></i>
+          <button
+            class="comment-action"
+            [disabled]="comment.updating"
+            (click)="editComment()"
+          >
+            <i class="la la-pencil"></i>
+          </button>
+          <button
+            class="comment-action"
+            [disabled]="comment.updating"
+            (click)="deleteComment()"
+          >
+            <i class="la la-trash"></i>
+          </button>
+        </ng-container>
+        <button
+          title="Мне нравится"
+          class="comment-action like"
+          [ngClass]="{ active: true }"
+          [disabled]="comment.updating"
+          (click)="likeComment()"
+        >
+          <span class="like-count">12</span>&nbsp;
+          <i class="la la-heart"></i>
         </button>
         <button
-          class="comment-action"
+          title="Мне не нравится"
+          class="comment-action like"
+          [ngClass]="{ active: false }"
           [disabled]="comment.updating"
-          (click)="deleteComment()"
+          (click)="likeComment()"
         >
-          <i class="la la-trash"></i>
+          <span class="like-count">12</span>&nbsp;
+          <i class="la la-thumbs-down"></i>
         </button>
       </div>
     </div>
