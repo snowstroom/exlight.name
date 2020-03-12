@@ -1,23 +1,27 @@
-<div class="ex-comment-new" *ngIf="isAuth">
+<div class="ex-comment-new" *ngIf="currentUserId">
   <div class="title">Добавить комментарий:</div>
   <ex-comment-control
-    (send)="sendNewComment($event)"
-    [wait]="rootComment.updating"
+    (send)="updateEditChanges($event)"
+    [wait]="root.updating"
   ></ex-comment-control>
 </div>
 
-<div *ngIf="!isAuth" class="ex-comment-no-auth">
+<div *ngIf="!currentUserId" class="ex-comment-no-auth">
   <div class="title">
     <a routerLink="/authorization">Войдите</a>, что бы оставить коментарий.
   </div>
 </div>
 
 <div class="ex-comments-items">
-  <div class="title" *ngIf="comments.length">Комментарии:</div>
+  <div class="title" *ngIf="root.comments.length">Комментарии:</div>
   <ex-spinner [wait]="waitComments"></ex-spinner>
   <ng-container
-    *ngTemplateOutlet="treeTemplate; context: { items: comments, lvl: 0 }"
+    *ngTemplateOutlet="treeTemplate; context: { items: root.comments, lvl: 0 }"
   ></ng-container>
+</div>
+<!--*ngIf="root.comments.length < total"-->
+<div class="ex-comments-more">
+  <a>Еще...</a>
 </div>
 
 <ng-template #treeTemplate let-items="items" let-lvl="lvl">
@@ -34,21 +38,24 @@
 <ng-template #commentItemTemplate let-comment="comment" let-lvl="lvl">
   <div [style.paddingLeft.px]="getPadding(lvl)" style="padding-bottom: 20px">
     <ex-commentary-item
-      *ngIf="!comment.editable"
-      [isReadonly]="!isAuth"
+      *ngIf="!comment.editable && comment.id"
+      [currentUserId]="currentUserId"
       [comment]="comment"
       (delete)="deleteComment(comment)"
       (edit)="editComment(comment)"
       (answer)="answerToComment(comment)"
+      (like)="likeComment(comment)"
+      (dislike)="dislikeComment(comment)"
     >
     </ex-commentary-item>
     <ex-comment-control
-      *ngIf="comment.editable"
-      [isEdit]="comment.editable"
+      *ngIf="comment.editable || !comment.id"
+      [autofocus]="true"
+      [type]="comment.editable ? 'edit' : 'answer'"
       [wait]="comment.updating"
       [message]="comment.comment"
-      (send)="sendNewComment($event, comment)"
-      (cancel)="cancelEdit(comment)"
+      (send)="updateEditChanges($event, comment)"
+      (cancel)="cancelEdit($event, comment)"
     ></ex-comment-control>
   </div>
 
