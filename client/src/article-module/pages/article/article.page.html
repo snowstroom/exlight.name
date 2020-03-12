@@ -31,10 +31,12 @@
         [currentUserId]="userProfile.id"
         [waitComments]="commentsWait"
         [comments]="comments"
+        [total]="commentsTotalCount"
         (delete)="deleteComment($event)"
         (update)="updateComment($event)"
         (new)="saveNewComment($event)"
         (answer)="saveNewComment($event)"
+        (more)="getMoreComments()"
       >
       </ex-comment-tree>
     </div>

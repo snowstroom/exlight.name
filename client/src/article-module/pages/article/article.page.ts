@@ -22,6 +22,7 @@ export class ArticlePage implements OnDestroy {
   public article: Article;
   public commentsWait = true;
   public comments: Commentary[] = [];
+  public commentsTotalCount = 0;
   public commentsPagParams = new PaginationParams({ limit: 15 });
   public rating: ArticleNamespace.IRatingInfo;
   public userProfile: UserApi;
@@ -68,10 +69,12 @@ export class ArticlePage implements OnDestroy {
     await this.artCommentSrv.addComment(this.article.id, comment);
     comment.updating = false;
     // TODO: don't reload tree
-    this.comments = await this.artCommentSrv.getCommentList(
+    const { content, count } = await this.artCommentSrv.getCommentList(
       this.article.id,
       this.commentsPagParams,
     );
+    this.comments = content;
+    this.commentsTotalCount = count;
   }
 
   public async updateComment(comment: Commentary): Promise<void> {
@@ -83,18 +86,32 @@ export class ArticlePage implements OnDestroy {
   public async deleteComment(comment: Commentary): Promise<void> {
     await this.artCommentSrv.deleteComment(comment.id);
     // TODO: don't reload tree
-    this.comments = await this.artCommentSrv.getCommentList(
+    const { content, count } = await this.artCommentSrv.getCommentList(
       this.article.id,
       this.commentsPagParams,
     );
+    this.comments = content;
+    this.commentsTotalCount = count;
+  }
+
+  public async getMoreComments(): Promise<void> {
+    this.commentsPagParams.page++;
+    const { content, count } = await this.artCommentSrv.getCommentList(
+      this.article.id,
+      this.commentsPagParams,
+    );
+    this.comments.concat(content);
+    this.commentsTotalCount = count;
   }
 
   private async getArticleByRoute(route: string): Promise<void> {
     this.article = await this.articleSrv.getArticleByRoute(route);
-    this.comments = await this.artCommentSrv.getCommentList(
+    const { content, count } = await this.artCommentSrv.getCommentList(
       this.article.id,
       this.commentsPagParams,
     );
+    this.comments = content;
+    this.commentsTotalCount = count;
     this.commentsWait = false;
     this.rating = await this.ratingSrv.getArticleRating(this.article.id);
     this.wait = false;

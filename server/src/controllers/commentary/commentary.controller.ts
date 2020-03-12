@@ -20,7 +20,7 @@ import {
   META_PUBLIC_KEY,
 } from 'server/src/consts/meta-keys';
 import { AuthGuardService } from 'server/src/guards/auth.guard';
-import { AccessNamespace, ArticleNamespace } from 'share';
+import { AccessNamespace, ArticleNamespace, ApiNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Request } from 'express-serve-static-core';
 
@@ -99,7 +99,9 @@ export class CommentaryController {
   @SetMetadata(META_PUBLIC_KEY, true)
   public async commentaryList(
     @Param() params: ArticleNamespace.ICommentaryApiListParams,
-  ): Promise<ArticleNamespace.IArticleCommentary[]> {
+  ): Promise<
+    ApiNamespace.IPaginationContent<ArticleNamespace.IArticleCommentary>
+  > {
     try {
       const { articleId, limit: take, start: skip } = params;
       const comments = await this.commentaryRep.find({
@@ -107,6 +109,9 @@ export class CommentaryController {
         take,
         skip,
         relations: ['user'],
+      });
+      const count = await this.commentaryRep.count({
+        where: { articleId, parentComment: null },
       });
       const items = await Promise.all(
         comments.map(rootComment =>
@@ -130,18 +135,22 @@ export class CommentaryController {
       items.forEach(item =>
         item.forEach(cmt => {
           map.set(cmt.id, cmt);
+          cmt.comments = [];
           allItems.push(cmt);
         }),
       );
       allItems.forEach(item => {
         if (item.parentComment) {
           const c = map.get(item.parentComment.id);
-          c.comments ? c.comments.push(item) : (c.comments = [item]);
+          c.comments.push(item);
         } else {
           roots.push(item);
         }
       });
-      return roots;
+      return {
+        content: roots,
+        count,
+      };
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }

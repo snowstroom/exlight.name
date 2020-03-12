@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from '@core/classes';
 import { EnviromentService } from '@app/services/envirement.service';
-import { ArticleNamespace } from '@share/*';
+import { ArticleNamespace, ApiNamespace } from '@share/*';
 import { Commentary } from '@article-module/models/commentary';
 
 @Injectable({
@@ -46,15 +46,21 @@ export class CommentService extends Api {
   public async getCommentList(
     articleId: number,
     pagParams: PaginationParams,
-  ): Promise<Commentary[]> {
+  ): Promise<ApiNamespace.IPaginationContent<Commentary>> {
     try {
       const params = pagParams.getUrlString();
-      const comments = await this.get<ArticleNamespace.IArticleCommentary[]>(
-        `commentary/list/article/${articleId}${params}`,
-      );
-      return comments.map(c => new Commentary(c));
+      const { content, count } = await this.get<
+        ApiNamespace.IPaginationContent<ArticleNamespace.IArticleCommentary>
+      >(`commentary/list/article/${articleId}${params}`);
+      return {
+        content: content.map(c => new Commentary(c)),
+        count,
+      };
     } catch (error) {
-      return [];
+      return {
+        content: [],
+        count: 0,
+      };
     }
   }
 }

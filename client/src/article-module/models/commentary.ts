@@ -11,17 +11,27 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
   public updating = false;
   public editable = false;
 
+  get haveEditAnswer(): boolean {
+    return this.comments.findIndex(c => !c.id) > -1;
+  }
+
   constructor(__data?: Partial<ArticleNamespace.IArticleCommentary>) {
     super(__data);
     if (__data) {
       this.__data = __data;
       this.articleId = __data.articleId;
       this.user = new UserApi(__data.user);
-      this.parentComment = __data.parentComment
-        ? new Commentary(__data.parentComment)
-        : null;
+      if (__data.parentComment && __data.parentComment instanceof Commentary) {
+        this.parentComment = __data.parentComment;
+      } else if (__data.parentComment) {
+        this.parentComment = new Commentary(__data.parentComment);
+      } else {
+        this.parentComment = null;
+      }
       this.comments = __data.comments
-        ? __data.comments.map(c => new Commentary(c))
+        ? __data.comments.map(
+            c => new Commentary({ ...c, parentComment: this }),
+          )
         : [];
     }
   }
