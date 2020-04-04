@@ -44,9 +44,10 @@ export class AuthGuardService implements CanActivate {
           routeAccess,
           authInfo.roleId,
         );
+        console.warn(authInfo.roleId);
         return res;
       } catch (err) {
-        // console.warn(err);
+        console.warn(err);
         return false;
       }
     } else {

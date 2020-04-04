@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { EnviromentService } from './envirement.service';
+import { EnvironmentService } from './envirement.service';
 import { Role } from '@app/models/role';
 import { AccessNamespace } from '@share/access.namespace';
 
@@ -9,7 +9,7 @@ export class RolesAccessService extends Api {
     private rolesByIdMap = new Map<number, Role>();
 
     constructor(
-        envSrv: EnviromentService,
+        envSrv: EnvironmentService,
         injector: Injector
     ) {
         super(injector, envSrv.API_DOMAIN);

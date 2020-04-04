@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { Api } from '@core/classes';
 import { AccessNamespace } from '@share/access.namespace';
 
@@ -7,7 +7,7 @@ import { AccessNamespace } from '@share/access.namespace';
   providedIn: 'root',
 })
 export class AccessApiService extends Api {
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 

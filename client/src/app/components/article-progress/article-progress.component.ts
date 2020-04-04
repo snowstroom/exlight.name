@@ -17,13 +17,13 @@ export class ArticleProgressComponent {
 
   public scrollPage(scroll: number): void {
     this.change = true;
-    this.progress = ApplicationService.scrollPageToPrecent(scroll);
+    this.progress = ApplicationService.scrollPageToPercent(scroll);
     setTimeout(() => (this.change = false), 200);
   }
 
   public navigate(e: MouseEvent): void {
     const progress = (e.clientX * 100) / innerWidth;
-    const scrollTo = ApplicationService.scrollPrecentToPX(progress);
+    const scrollTo = ApplicationService.scrollPercentToPX(progress);
     window.scrollTo({
       top: scrollTo,
       behavior: 'smooth',

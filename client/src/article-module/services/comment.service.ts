@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from '@core/classes';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { ArticleNamespace, ApiNamespace } from '@share/*';
 import { Commentary } from '@article-module/models/commentary';
 
@@ -8,7 +8,7 @@ import { Commentary } from '@article-module/models/commentary';
   providedIn: 'root',
 })
 export class CommentService extends Api {
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 

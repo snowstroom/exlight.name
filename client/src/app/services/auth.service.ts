@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
 import { StorageService } from '@core/services/storage.service';
-import { EnviromentService } from './envirement.service';
+import { EnvironmentService } from './envirement.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TOKEN_KEY } from '@app/consts/keys';
 
@@ -24,7 +24,7 @@ export class AuthService extends Api {
 
   constructor(
     injector: Injector,
-    envSrv: EnviromentService,
+    envSrv: EnvironmentService,
     private storageSrv: StorageService,
   ) {
     super(injector, envSrv.API_DOMAIN);
@@ -39,7 +39,7 @@ export class AuthService extends Api {
     try {
       const token: IAuth = await this.post('auth', { email, password });
       this.storageSrv.setSessionItem(TOKEN_KEY, token.token);
-      this.pareseToken(token.token);
+      this.parseToken(token.token);
       return true;
     } catch (err) {
       console.warn(err);
@@ -47,7 +47,7 @@ export class AuthService extends Api {
     }
   }
 
-  public pareseToken(token: string): void {
+  public parseToken(token: string): void {
     const p2: string = token.split('.')[1];
     const tokenData = atob(p2);
     this.authData = JSON.parse(tokenData);
@@ -57,7 +57,7 @@ export class AuthService extends Api {
   private init(): void {
     const token: string = this.storageSrv.getSessionItem(TOKEN_KEY);
     if (token) {
-      this.pareseToken(token);
+      this.parseToken(token);
     }
   }
 }

@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-export type TCommentControllType = 'new' | 'edit' | 'answer';
+export type TCommentControlType = 'new' | 'edit' | 'answer';
 export interface ICommentSendEvent {
   content: string;
-  type: TCommentControllType;
+  type: TCommentControlType;
 }
 
 @Component({
@@ -25,11 +25,11 @@ export class CommentControlComponent implements OnInit {
     comment: new FormControl('', [Validators.required]),
   });
   @Input() public autofocus = false;
-  @Input() public type: TCommentControllType = 'new';
+  @Input() public type: TCommentControlType = 'new';
   @Input() public message = '';
   @Output()
   public send = new EventEmitter<ICommentSendEvent>();
-  @Output() public cancel = new EventEmitter<TCommentControllType>();
+  @Output() public cancel = new EventEmitter<TCommentControlType>();
 
   @Input() set wait(val: boolean) {
     if (val) {

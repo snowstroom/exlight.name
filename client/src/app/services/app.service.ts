@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import { EnviromentService } from './envirement.service';
+import { EnvironmentService } from './envirement.service';
 import { Title, Meta } from '@angular/platform-browser';
 import {
   VkShareButton,
@@ -39,7 +39,7 @@ export class ApplicationService {
   private currentLdJsonSchema = new BehaviorSubject({});
 
   constructor(
-    private envSrv: EnviromentService,
+    private envSrv: EnvironmentService,
     private titleSrv: Title,
     private metaSrv: Meta,
   ) {
@@ -89,7 +89,7 @@ export class ApplicationService {
     this.sideNavState.next(true);
   }
 
-  public toogleSideNav(): void {
+  public toggleSideNav(): void {
     this.sideNavIsShown = !this.sideNavIsShown;
     this.sideNavState.next(this.sideNavIsShown);
   }
@@ -98,12 +98,12 @@ export class ApplicationService {
     return this.sideNavState.asObservable();
   }
 
-  public static scrollPageToPrecent(scroll: number): number {
+  public static scrollPageToPercent(scroll: number): number {
     return (scroll * 100) / (document.body.scrollHeight - innerHeight);
   }
 
-  public static scrollPrecentToPX(precent: number): number {
-    return ((document.body.scrollHeight - innerHeight) * precent) / 100;
+  public static scrollPercentToPX(percent: number): number {
+    return ((document.body.scrollHeight - innerHeight) * percent) / 100;
   }
 
   get $scroll(): Observable<number> {
@@ -134,8 +134,8 @@ export class ApplicationService {
     this.scrollProgress.next(false);
   }
 
-  public setLdJsonShema(shema: any): void {
-    this.currentLdJsonSchema.next(shema);
+  public setLdJsonSchema(schema: any): void {
+    this.currentLdJsonSchema.next(schema);
   }
 
   private windowScroll(): void {

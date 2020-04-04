@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { Api } from '@core/classes';
 import { ArticleNamespace } from '@share/article.namespace';
 import { CategoryApi } from '@account-module/models/api/category.api';
@@ -8,7 +8,7 @@ import { CategoryApi } from '@account-module/models/api/category.api';
   providedIn: 'root',
 })
 export class CategoryApiService extends Api {
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 

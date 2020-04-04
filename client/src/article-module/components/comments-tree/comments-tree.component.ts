@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Commentary } from '@article-module/models/commentary';
 import {
-  TCommentControllType,
+  TCommentControlType,
   ICommentSendEvent,
 } from '../comment-control/comment-control.component';
 
@@ -42,7 +42,7 @@ export class CommentTreeComponent {
     comment.editable = true;
   }
 
-  public cancelEdit(type: TCommentControllType, comment: Commentary): void {
+  public cancelEdit(type: TCommentControlType, comment: Commentary): void {
     if (type === 'answer') {
       this.deleteActiveEdit(comment.parentComment);
     } else {

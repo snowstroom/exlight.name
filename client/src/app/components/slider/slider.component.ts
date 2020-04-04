@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { CarouselItem } from '@app/models/carousel-item';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { E_SCREEN_TYPE } from '@app/enums/screen-type';
 
 const TIME = 12000;
@@ -21,7 +21,7 @@ export class SliderComponent {
 
   constructor(
     private domSanitizer: DomSanitizer,
-    private envSrv: EnviromentService,
+    private envSrv: EnvironmentService,
   ) {
     this.envSrv.$screenType.subscribe(type => (this.screenType = type));
     this.autoNext();

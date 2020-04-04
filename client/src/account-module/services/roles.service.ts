@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { AccessNamespace } from '@share/access.namespace';
 import { RoleApi } from '@account-module/models/api/role.api';
 
@@ -8,7 +8,7 @@ import { RoleApi } from '@account-module/models/api/role.api';
   providedIn: 'root',
 })
 export class RolesApiService extends Api {
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 

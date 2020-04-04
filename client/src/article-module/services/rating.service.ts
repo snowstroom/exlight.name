@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api } from '@core/classes';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { ArticleNamespace } from '@share/';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RatingService extends Api {
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 
@@ -21,7 +21,7 @@ export class RatingService extends Api {
       return rating;
     } catch (error) {
       return {
-        avarage: 0,
+        average: 0,
         max: 0,
         min: 0,
         isAppreciated: true,

@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Api, PaginationParams } from '@core/classes';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { UserApi } from '@account-module/models/api/user';
 import { UserNamespace, ApiNamespace as API } from '@share/';
 import { AuthService, ITokenData } from '@app/services/auth.service';
@@ -15,7 +15,7 @@ export class ProfileService extends Api {
 
   constructor(
     injector: Injector,
-    envSrv: EnviromentService,
+    envSrv: EnvironmentService,
     private authSrv: AuthService,
   ) {
     super(injector, envSrv.API_DOMAIN);

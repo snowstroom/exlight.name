@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MENU_ITEMS } from '@app/consts/menu-items';
 import { ApplicationService } from '@app/services/app.service';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 
 @Component({
   selector: 'ex-side-nav',
@@ -14,7 +14,7 @@ export class SideNavComponent {
 
   constructor(
     private appSrv: ApplicationService,
-    private envSrv: EnviromentService,
+    private envSrv: EnvironmentService,
   ) {
     this.appSrv.$sideNavState.subscribe(state => (this.visible = state));
     this.envSrv.$screenType.subscribe(type => {

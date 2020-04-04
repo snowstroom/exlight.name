@@ -43,8 +43,8 @@ export class ArticlePage implements OnDestroy {
         this.getArticleByRoute(params.article),
       );
     this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe)).subscribe(scroll => {
-      this.toogleShare(scroll);
-      this.toogleProgress(scroll);
+      this.toggleShare(scroll);
+      this.toggleProgress(scroll);
     });
     this.profileSrv.$user
       .pipe(takeUntil(this.unsubscribe))
@@ -56,7 +56,7 @@ export class ArticlePage implements OnDestroy {
     this.appSrv.hideShareBlock();
     this.unsubscribe.next(null);
     this.unsubscribe.complete();
-    this.appSrv.setLdJsonShema(null);
+    this.appSrv.setLdJsonSchema(null);
   }
 
   public async setRating(rate: ArticleNamespace.RatingNumber): Promise<void> {
@@ -130,12 +130,12 @@ export class ArticlePage implements OnDestroy {
         url: this.router.url,
         img: '',
       });
-      this.appSrv.setLdJsonShema(this.article.structData);
+      this.appSrv.setLdJsonSchema(this.article.structData);
     }
   }
 
-  private toogleShare(scroll: number): void {
-    const progress = ApplicationService.scrollPageToPrecent(scroll);
+  private toggleShare(scroll: number): void {
+    const progress = ApplicationService.scrollPageToPercent(scroll);
     if (progress <= 15) {
       this.appSrv.hideShareBlock();
     } else if (progress > 15 && progress < 90) {
@@ -145,7 +145,7 @@ export class ArticlePage implements OnDestroy {
     }
   }
 
-  private toogleProgress(scroll: number): void {
+  private toggleProgress(scroll: number): void {
     if (scroll > 100) {
       this.appSrv.showScrollProgress();
     } else {

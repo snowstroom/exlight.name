@@ -3,7 +3,7 @@ import { Api, PaginationParams } from '@core/classes';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Article } from '@article-module/models/article';
 import { CarouselItem, ICarouselItem } from '@app/models/carousel-item';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { ApiNamespace as API, ArticleNamespace } from '@share/';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ArticleService extends Api {
   private carouselItems$ = new BehaviorSubject<CarouselItem[]>([]);
   private carouselItems: CarouselItem[] = [];
 
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
     this.initCarousel();
   }

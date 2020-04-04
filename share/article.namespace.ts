@@ -38,7 +38,7 @@ export namespace ArticleNamespace {
   export interface IRatingInfo {
     min: RatingNumber;
     max: RatingNumber;
-    avarage: RatingNumber;
+    average: RatingNumber;
     isAppreciated: boolean;
   }
 

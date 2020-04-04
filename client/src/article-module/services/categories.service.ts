@@ -4,7 +4,7 @@ import { DEF_CAT } from '@article-module/const/def-cat';
 import { CAT_ROUTE_TEMPLATE } from '@article-module/const/urls';
 import { CategoriesItem } from '@article-module/models/categories';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { EnviromentService } from '@app/services/envirement.service';
+import { EnvironmentService } from '@app/services/envirement.service';
 import { ArticleNamespace } from '@share/';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class CategoriesService extends Api {
   private categories$ = new BehaviorSubject<CategoriesItem[]>([]);
   private categories: CategoriesItem[] = [];
 
-  constructor(injector: Injector, envSrv: EnviromentService) {
+  constructor(injector: Injector, envSrv: EnvironmentService) {
     super(injector, envSrv.API_DOMAIN);
   }
 

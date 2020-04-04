@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicStateService } from '../music-module/services/music-state.service';
 import { IMediaItem } from './interfaces/MediaItem.interface';
-import { EnviromentService } from './services/envirement.service';
+import { EnvironmentService } from './services/envirement.service';
 import { E_SCREEN_TYPE } from './enums/screen-type';
 import { ApplicationService } from './services/app.service';
 import { ActivatedRoute, Router, ActivationEnd } from '@angular/router';
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private musicStateSrv: MusicStateService,
-    private envSrv: EnviromentService,
+    private envSrv: EnvironmentService,
     private appSrv: ApplicationService,
     private router: Router,
   ) {
@@ -100,7 +100,7 @@ export class AppComponent implements OnInit {
     this.appSrv.showSideNav();
   }
 
-  public toogleSidenav(): void {
-    this.appSrv.toogleSideNav();
+  public toggleSidenav(): void {
+    this.appSrv.toggleSideNav();
   }
 }
