@@ -7,7 +7,7 @@ export class CryptoService {
     return MD5(data).toString();
   }
 
-  public aesDecript(data: string, key: string) {
+  public aesDecrypt(data: string, key: string) {
     return AES.decrypt(data, key).toString(enc.Utf8);
   }
 

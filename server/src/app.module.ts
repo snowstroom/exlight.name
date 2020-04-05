@@ -12,7 +12,7 @@ import { AuthService } from './services/auth.service';
 import { JwtStrategyService } from './services/jwt-strategy.service';
 import { AuthGuardService } from './guards/auth.guard';
 import { MailerService } from './services/mailer.service';
-import { RolesAccesService } from './services/roles-access.service';
+import { RolesAccessService } from './services/roles-access.service';
 import { FileService } from './services/file.service';
 import { CryptoService } from './services/crypto.service';
 // MIDLEWARES
@@ -59,7 +59,7 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
     JwtStrategyService,
     MailerService,
     AuthGuardService,
-    RolesAccesService,
+    RolesAccessService,
     CryptoService,
   ],
 })

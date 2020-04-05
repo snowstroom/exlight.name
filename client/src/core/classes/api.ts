@@ -17,7 +17,7 @@ export abstract class Api {
     this.httpClient = injector.get(HttpClient);
   }
   /**
-   * Генерирет сообщение для пользователя о ошибке HTTP
+   * Генерирует сообщение для пользователя о ошибке HTTP
    */
   public static generateHttpErr(
     err: HttpErrorResponse,
@@ -31,11 +31,11 @@ export abstract class Api {
     }
   }
   /**
-   * Генерирует из обекта строку x-www-form-urlencoded
+   * Генерирует из объекта строку x-www-form-urlencoded
    */
   public static formUrlEncoded(data: object): string {
     const body = new URLSearchParams();
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       if (data[key] !== null && data[key] !== undefined) {
         body.set(key, data[key]);
       }
@@ -50,7 +50,7 @@ export abstract class Api {
     return params ? `?${params}` : '';
   }
   /**
-   * Генерирует первую часть URL из домена и переданного суфикса
+   * Генерирует первую часть URL из домена и переданного суффикса
    */
   protected getUrl(suffix: string): string {
     return `${this.domain}/${suffix}`;
@@ -59,12 +59,12 @@ export abstract class Api {
    * Отправляет POST запрос на сервер
    */
   protected async post(
-    sufix: string,
+    suffix: string,
     body?: any,
     headers?: HttpHeaders,
   ): Promise<any> {
     return this.httpClient
-      .post(this.getUrl(sufix), body, { headers: headers })
+      .post(this.getUrl(suffix), body, { headers: headers })
       .toPromise();
   }
   /**
@@ -101,29 +101,27 @@ export abstract class Api {
    * Отправляет DELETE запрос на сервер
    */
   protected async delete(
-    sufix: string,
+    suffix: string,
     body?: any,
     headers?: HttpHeaders,
   ): Promise<any> {
     return this.httpClient
-      .delete(this.getUrl(sufix), { headers: headers })
+      .delete(this.getUrl(suffix), { headers: headers })
       .toPromise();
   }
   /**
    * Преобразует бинарные данные в строку Base64
    */
-  protected readFileFromBinary(binary: ArrayBuffer): Promise<string> {
-    return new Promise((resolve, reject) => {
+  protected async readFileFromBinary(binary: ArrayBuffer): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
       const blob = new Blob([new Uint8Array(binary)]);
       const fr = new FileReader();
       fr.readAsDataURL(blob);
       fr.addEventListener('loadend', (e: IFileReaderEvent) => {
-        const res: any = e.target.result;
-        resolve(res as string);
+        const res = e.target.result as string;
+        resolve(res);
       });
-      fr.addEventListener('abort', e => {
-        reject(e);
-      });
+      fr.addEventListener('abort', (e) => reject(e));
     });
   }
 }

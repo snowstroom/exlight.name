@@ -42,7 +42,7 @@ export class RatingController {
         relations: ['user'],
       });
       const ratingInfo: ArticleNamespace.IRatingInfo = {
-        avarage: 0,
+        average: 0,
         min: 0,
         max: 0,
         isAppreciated: false,
@@ -50,7 +50,7 @@ export class RatingController {
       if (records.length) {
         ratingInfo.max = records[0].rating;
         ratingInfo.min = records[0].rating;
-        let summ = 0;
+        let sum = 0;
         records.forEach(r => {
           if (r.rating > ratingInfo.max) {
             ratingInfo.max = r.rating;
@@ -60,9 +60,9 @@ export class RatingController {
           }
           ratingInfo.isAppreciated =
             ratingInfo.isAppreciated || r.user.id === req.authInfo.id;
-          summ += r.rating;
+          sum += r.rating;
         });
-        ratingInfo.avarage = (summ /
+        ratingInfo.average = (sum /
           records.length) as ArticleNamespace.RatingNumber;
         return ratingInfo;
       } else {

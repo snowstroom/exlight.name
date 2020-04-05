@@ -18,7 +18,7 @@ import { Commentary } from './commentary.model';
 export const ARTICLE_TABLE_NAME = 'articles';
 
 @Entity({ name: ARTICLE_TABLE_NAME })
-export class Atricle implements ArticleNamespace.IArticle {
+export class Article implements ArticleNamespace.IArticle {
   @PrimaryGeneratedColumn() public id: number;
   @Column() public title: string;
   @Column({ type: 'date', default: new Date() }) public publicationDate: Date;

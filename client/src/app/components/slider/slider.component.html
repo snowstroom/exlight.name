@@ -17,11 +17,11 @@
   </div>
   <div class="controls">
     <div class="controls-wrapper">
-      <div role="button" class="controll" (click)="prevSlide()">Назад</div>
+      <div role="button" class="control" (click)="prevSlide()">Назад</div>
       <div class="item-wrapper">
         <ex-button-decorator [activeIndex]="currentIndex">
           <div
-            class="number-controll"
+            class="number-control"
             *ngFor="let slide of carouselItems; let i = index"
             (click)="showSlide(i)"
             role="button"
@@ -30,7 +30,7 @@
           </div>
         </ex-button-decorator>
       </div>
-      <div role="button" class="controll" (click)="nextSlide()">Далее</div>
+      <div role="button" class="control" (click)="nextSlide()">Далее</div>
     </div>
   </div>
 </div>

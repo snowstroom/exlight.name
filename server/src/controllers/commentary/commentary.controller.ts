@@ -63,7 +63,7 @@ export class CommentaryController {
   @Put('/:id/article/:articleId')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
   @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
-  public async updateCommentarty(
+  public async updateCommentary(
     @Param() { articleId, id }: ArticleNamespace.ICommentaryApiParams,
     @Body() comment: Partial<ArticleNamespace.IArticleCommentary>,
   ): Promise<void> {
@@ -84,7 +84,7 @@ export class CommentaryController {
   public async deleteCommentary(
     @Param() params: ArticleNamespace.ICommentaryApiParams,
   ): Promise<void> {
-    // I realy want delete comments?
+    // I really want delete comments?
     // Delete if admin, mark as delete for users.
     try {
       await this.commentaryRep.delete(params.id);

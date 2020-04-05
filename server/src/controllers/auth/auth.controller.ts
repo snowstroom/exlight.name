@@ -14,7 +14,7 @@ import { Repository } from 'typeorm';
 import { ExError } from 'server/src/classes/err';
 import { AuthService } from 'server/src/services/auth.service';
 import { MailerService } from 'server/src/services/mailer.service';
-import { RolesAccesService } from 'server/src/services/roles-access.service';
+import { RolesAccessService } from 'server/src/services/roles-access.service';
 import { Access } from 'server/src/models/access.model';
 import { UserNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -28,7 +28,7 @@ export class AuthController {
     @InjectRepository(Access) private accessRep: Repository<Access>,
     private authSrv: AuthService,
     private mailSrv: MailerService,
-    private roleSrv: RolesAccesService,
+    private roleSrv: RolesAccessService,
     private cryptoSrv: CryptoService,
   ) {}
 
@@ -59,7 +59,7 @@ export class AuthController {
   }
 
   @Post('/registration')
-  public async userRigistr(@Body() user: Partial<UserNamespace.IUser>) {
+  public async userRegistration(@Body() user: Partial<UserNamespace.IUser>) {
     try {
       const existUser = await this.userRep.findOne({
         where: { email: user.email },
@@ -110,7 +110,7 @@ export class AuthController {
         await this.userRep.delete(user);
       } else {
         return new HttpException(
-          { error: 'You have alrady confirmed email' },
+          { error: 'You have already confirmed email' },
           HttpStatus.BAD_REQUEST,
         );
       }

@@ -4,7 +4,7 @@
       <i
         *ngSwitchCase="0"
         (mouseover)="evaluation(i)"
-        (mouseleave)="canvelEval()"
+        (mouseleave)="cancelEval()"
         (click)="estimate(i)"
         class="la la-star-o inactive"
         [ngClass]="{ readonly: readonly }"
@@ -13,14 +13,14 @@
         class="active la la-star-half-o"
         *ngSwitchCase="0.5"
         (mouseover)="evaluation(i)"
-        (mouseleave)="canvelEval()"
+        (mouseleave)="cancelEval()"
         (click)="estimate(i)"
         [ngClass]="{ readonly: readonly }"
       ></i>
       <i
         *ngSwitchCase="1"
         (mouseover)="evaluation(i)"
-        (mouseleave)="canvelEval()"
+        (mouseleave)="cancelEval()"
         (click)="estimate(i)"
         class="la la-star active"
         [ngClass]="{ readonly: readonly }"

@@ -59,7 +59,7 @@ export class MusicStateService {
     return this.duration$.asObservable();
   }
 
-  public playTrack(track: IMediaItem) {
+  public playTrack(track: IMediaItem): void {
     this.playingTrack = track;
     this.currentTime = 0;
     this.currentTime$.next(this.currentTime);
@@ -67,15 +67,15 @@ export class MusicStateService {
     this.isPlay$.next(true);
   }
 
-  public play() {
+  public play(): void {
     this.isPlay$.next(true);
   }
 
-  public pause() {
+  public pause(): void {
     this.isPlay$.next(false);
   }
 
-  public next() {
+  public next(): void {
     const index = this.musicItems.indexOf(this.playingTrack);
     const nextIndex = index + 1;
     if (nextIndex < this.musicItems.length) {
@@ -87,7 +87,7 @@ export class MusicStateService {
     }
   }
 
-  public prev() {
+  public prev(): void {
     const index = this.musicItems.indexOf(this.playingTrack);
     const prevIndex = index - 1;
     if (prevIndex >= 0) {
@@ -99,22 +99,22 @@ export class MusicStateService {
     }
   }
 
-  public navByTrack(time: number) {
+  public navByTrack(time: number): void {
     this.currentTime = time;
     this.intTime$.next(this.currentTime);
   }
 
-  public showTime(time: number) {
+  public showTime(time: number): void {
     this.currentTime = time;
     this.currentTime$.next(this.currentTime);
   }
 
-  public changeVolume(volume: number) {
+  public changeVolume(volume: number): void {
     this.volume = volume;
     this.volume$.next(volume);
   }
 
-  public setDuration(duration: number) {
+  public setDuration(duration: number): void {
     this.duration = duration;
     this.duration$.next(this.duration);
   }

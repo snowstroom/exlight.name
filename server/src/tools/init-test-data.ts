@@ -1,5 +1,5 @@
 import { Connection, Repository } from 'typeorm';
-import { Atricle } from 'server/src/models/article.model';
+import { Article } from 'server/src/models/article.model';
 import { Category } from 'server/src/models/category.model';
 import { ArticleNamespace } from 'share';
 
@@ -33,7 +33,7 @@ export async function initTestData(connection: Connection): Promise<void> {
       const categoryRep: Repository<Category> = connection.getRepository(
         Category,
       );
-      const articleRep: Repository<Atricle> = connection.getRepository(Atricle);
+      const articleRep: Repository<Article> = connection.getRepository(Article);
       const categoryRes = await categoryRep.find({ take: 1 });
       if (!categoryRes.length) {
         const categoryIns = categoryRep.create(category);

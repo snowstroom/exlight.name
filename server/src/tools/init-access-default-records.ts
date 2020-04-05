@@ -16,10 +16,10 @@ export async function initAccessDefRec(connection: Connection): Promise<void> {
   const accessRep: Repository<Access> = connection.getRepository(Access);
   const usersRep: Repository<User> = connection.getRepository(User);
   try {
-    const ADMIN_ROLE_INSTANSE = await roleRep.findOne({
+    const ADMIN_ROLE_INSTANCE = await roleRep.findOne({
       where: { name: ADMIN_ROLE_NAME },
     });
-    if (!ADMIN_ROLE_INSTANSE) {
+    if (!ADMIN_ROLE_INSTANCE) {
       const accessList = ALLOW_ALL_ACCESS.map(a => accessRep.create(a));
       await accessRep.insert(accessList);
       const accesses = await accessRep.find();

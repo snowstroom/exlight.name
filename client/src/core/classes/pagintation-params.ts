@@ -12,7 +12,7 @@ export interface IPostParams {
   limit: number;
 }
 /**
- * Класс уравляет параметрами пагинации
+ * Класс управляет параметрами пагинации
  */
 export class PaginationParams implements IPaginationParams {
   /**
@@ -28,7 +28,7 @@ export class PaginationParams implements IPaginationParams {
    */
   private startItem: number;
   /**
-   * Всего элеметов
+   * Всего элементов
    */
   private totalItems: number;
 
@@ -57,7 +57,7 @@ export class PaginationParams implements IPaginationParams {
     this.startItem = (page - 1) * this.limit;
   }
   /**
-   * Устанавлевает общее колличество элементов
+   * Устанавливает общее количество элементов
    */
   set total(total: number) {
     if (total) {
@@ -67,13 +67,13 @@ export class PaginationParams implements IPaginationParams {
     }
   }
   /**
-   * Возвращает общее колличество элементов
+   * Возвращает общее количество элементов
    */
   get total(): number {
     return this.totalItems;
   }
   /**
-   * Расчитывает и возвращает общее колличество страниц
+   * Рассчитывает и возвращает общее количество страниц
    */
   get totalPage(): number {
     return Math.ceil(this.totalItems / this.limit) || 1;

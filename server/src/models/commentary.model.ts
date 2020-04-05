@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { User } from './user.model';
 import { ArticleNamespace } from 'share';
-import { Atricle } from './article.model';
+import { Article } from './article.model';
 
 export const ARTICLE_COMMENTS_ENTITY = 'article_comments';
 
@@ -34,6 +34,6 @@ export class Commentary implements ArticleNamespace.IArticleCommentary {
   @ManyToOne(type => User, user => user.comments)
   public user: User;
 
-  @ManyToOne(type => Atricle, article => article.comments)
-  public article: Atricle;
+  @ManyToOne(type => Article, article => article.comments)
+  public article: Article;
 }

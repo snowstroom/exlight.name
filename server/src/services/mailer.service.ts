@@ -48,9 +48,9 @@ export class MailerService {
 
   public async confirmReg(email: string): Promise<boolean> {
     try {
-      const tempalte = this.templates.get('welcome.hbs');
+      const template = this.templates.get('welcome.hbs');
       const emailHash = this.cryptoSrv.md5hash(email);
-      const mail = tempalte({
+      const mail = template({
         domain: process.env.CLIENT_DOMAIN,
         adminEmail: process.env.APP_ADMIN_EMAIL,
         link: `http://${
@@ -64,7 +64,7 @@ export class MailerService {
         to: email,
         from: process.env.CLIENT_DOMAIN,
         priority: 'normal',
-        subject: `Спаcибо за регистрацию на ${process.env.CLIENT_DOMAIN}`,
+        subject: `Спасибо за регистрацию на ${process.env.CLIENT_DOMAIN}`,
         html: mail,
       };
       await this.transporter.sendMail(option);

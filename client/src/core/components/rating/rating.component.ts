@@ -36,7 +36,7 @@ export class RatingComponent {
     }
   }
 
-  public canvelEval(): void {
+  public cancelEval(): void {
     if (!this.readonly) {
       this.value = this.ratingValue;
     }

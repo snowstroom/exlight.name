@@ -4,7 +4,6 @@ import {
   AfterContentInit,
   ViewChild,
   ElementRef,
-  AfterViewInit,
 } from '@angular/core';
 
 @Component({

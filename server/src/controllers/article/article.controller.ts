@@ -14,8 +14,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Atricle } from 'server/src/models/article.model';
-import { RolesAccesService } from 'server/src/services/roles-access.service';
+import { Article } from 'server/src/models/article.model';
+import { RolesAccessService } from 'server/src/services/roles-access.service';
 import {
   META_ACCESS_KEY,
   META_ENTITY_KEY,
@@ -29,8 +29,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 @UseGuards(AuthGuardService)
 export class ArticleController {
   constructor(
-    @InjectRepository(Atricle) private articleRep: Repository<Atricle>,
-    private readonly accessSrv: RolesAccesService,
+    @InjectRepository(Article) private articleRep: Repository<Article>,
+    private readonly accessSrv: RolesAccessService,
   ) {}
 
   @Get('/item/:id')
@@ -71,7 +71,7 @@ export class ArticleController {
         return dbRes as any;
       } else {
         throw new HttpException(
-          { error: 'Bad parametr' },
+          { error: 'Bad parameter' },
           HttpStatus.BAD_REQUEST,
         );
       }
@@ -86,7 +86,7 @@ export class ArticleController {
   @SetMetadata(META_PUBLIC_KEY, true)
   public async getList(
     @Query() query: ArticleNamespace.IArticleApiList,
-  ): Promise<ApiNamespace.IPaginationContent<Atricle>> {
+  ): Promise<ApiNamespace.IPaginationContent<Article>> {
     const { category_id, limit, start } = query;
     try {
       const [content, count] = await this.articleRep.findAndCount({

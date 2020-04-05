@@ -13,12 +13,12 @@
       <div class="article-rating">
         <ex-rating
           *ngIf="rating"
-          [value]="rating.avarage"
+          [value]="rating.average"
           [readonly]="rating.isAppreciated"
           (change)="setRating($event)"
         ></ex-rating>
         <div *ngIf="rating" class="rating-value">
-          ({{rating.avarage || '0.0'}})
+          ({{rating.average || '0.0'}})
         </div>
       </div>
     </div>

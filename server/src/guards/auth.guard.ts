@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RolesAccesService } from 'server/src/services/roles-access.service';
+import { RolesAccessService } from 'server/src/services/roles-access.service';
 import { Reflector } from '@nestjs/core';
 import {
   META_ACCESS_KEY,
@@ -13,7 +13,7 @@ import { AccessNamespace } from 'share';
 export class AuthGuardService implements CanActivate {
   constructor(
     private readonly jwt: JwtService,
-    private readonly accessSrv: RolesAccesService,
+    private readonly accessSrv: RolesAccessService,
     private readonly reflector: Reflector,
   ) {}
 

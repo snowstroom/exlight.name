@@ -4,12 +4,12 @@ import { Commentary } from '../models/commentary.model';
 import { Role } from '../models/role.model';
 import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
-import { Atricle } from '../models/article.model';
+import { Article } from '../models/article.model';
 import { Access } from 'server/src/models/access.model';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const ENTITIES = [
-  Atricle,
+  Article,
   Category,
   Commentary,
   Rating,

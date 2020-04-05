@@ -1,10 +1,10 @@
 @import 'src/styles/variables';
-$progres-height: 7px;
+$progress-height: 7px;
 
 .ex-article-progress {
   width: 100%;
-  height: $progres-height;
-  top: -$progres-height;
+  height: $progress-height;
+  top: -$progress-height;
   background: $blocks-color-bg;
   box-shadow: $box-shadow;
   position: fixed;
@@ -19,7 +19,7 @@ $progres-height: 7px;
 
   .progress {
     background: $active-element-bg;
-    height: $progres-height;
+    height: $progress-height;
     transition: width 1s box-shadow 1s;
 
     &.change {

@@ -12,7 +12,7 @@ import { IsEmail } from 'class-validator';
 import { Commentary } from './commentary.model';
 import { Rating } from './rating.model';
 import { Role } from './role.model';
-import { Atricle } from './article.model';
+import { Article } from './article.model';
 import { UserNamespace } from 'share';
 
 export const USER_ENTITY = 'users';
@@ -32,8 +32,8 @@ export class User implements UserNamespace.IUser {
   @OneToMany(type => Rating, rating => rating.id)
   public ratings: Rating[];
 
-  @OneToMany(type => Atricle, article => article.author)
-  public articles: Atricle[];
+  @OneToMany(type => Article, article => article.author)
+  public articles: Article[];
 
   @ManyToOne(type => Role, role => role.id)
   public role: Role;

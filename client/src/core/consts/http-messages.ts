@@ -66,7 +66,7 @@ export const AUTH_TIMEOUT = (context: string): IAlert => ({
   msg: context ? `${context}: ${AUTH_TIMEOUT_MSG}` : AUTH_TIMEOUT_MSG,
 });
 /**
- * Объкт типа Map с функциями генерирующие сообщения об ошибке по статусу
+ * Объект типа Map с функциями генерирующие сообщения об ошибке по статусу
  */
 export const HTTP_ERRORS = {
   0: CONNECTION_LOST,

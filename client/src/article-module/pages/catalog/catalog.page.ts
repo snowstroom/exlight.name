@@ -83,7 +83,7 @@ export class CatalogPage implements OnDestroy {
   private setPageInfo(): void {
     this.appSrv.setPageInfo({
       description:
-        'Каталог статей. eXlight - блог разработчкиа о творчестве, музыке,\
+        'Каталог статей. eXlight - блог разработчика о творчестве, музыке,\
        поэзии, программировании и событиях в жизни. ',
       img: '',
       keywords: this.categories.map(c => c.name),

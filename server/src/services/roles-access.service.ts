@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class RolesAccesService {
+export class RolesAccessService {
   private roles: Role[];
   private rolesByIdMap = new Map<number, Role>();
   private defaultRole: Role;

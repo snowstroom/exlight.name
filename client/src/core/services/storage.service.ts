@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 /**
- * Сервис для работы слокальным хранилищем
+ * Сервис для работы с локальным хранилищем
  */
 @Injectable({
   providedIn: 'root',

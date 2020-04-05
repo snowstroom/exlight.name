@@ -12,7 +12,7 @@ export class ShareContentComponent {
 
   constructor(private appSrv: ApplicationService) {
     this.appSrv.$shareState.subscribe(state => (this.visibleShare = state));
-    this.appSrv.$shareButtons.subscribe(btns => (this.shareButtons = btns));
+    this.appSrv.$shareButtons.subscribe(buttons => (this.shareButtons = buttons));
   }
 
   public share(url: string): void {

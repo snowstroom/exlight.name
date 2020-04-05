@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Min, Max } from 'class-validator';
 import { User } from './user.model';
 import { ArticleNamespace } from 'share';
-import { Atricle } from './article.model';
+import { Article } from './article.model';
 
 export const RATING_ENTITY = 'rating';
 
@@ -15,8 +15,8 @@ export class Rating implements ArticleNamespace.IRating {
   public rating: ArticleNamespace.RatingNumber;
   @Column({ default: new Date(), type: 'date' }) public dateOfCreate: Date;
 
-  @ManyToOne(type => Atricle, article => article.ratings)
-  public article: Atricle;
+  @ManyToOne(type => Article, article => article.ratings)
+  public article: Article;
 
   @ManyToOne(type => User, user => user.ratings)
   public user: User;

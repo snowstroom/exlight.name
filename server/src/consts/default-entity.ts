@@ -14,7 +14,7 @@ export const CONFIRMED_USER_ROLE_NAME = 'CONFIRMED_USER';
 
 export const ADMIN_ROLE: AccessNamespace.IRole = {
   name: ADMIN_ROLE_NAME,
-  description: 'Administrator of resourcse',
+  description: 'Administrator of resource',
 };
 
 export const USER_ROLE: AccessNamespace.IRole = {
@@ -27,7 +27,7 @@ export const CONFIRMED_USER_ROLE: AccessNamespace.IRole = {
   description: 'User with confirmed email',
 };
 /**
- * Super, Create, Read, Update, Delete. Where super - can mandge other users records
+ * Super, Create, Read, Update, Delete. Where super - can manage other users records
  */
 const ALLOW_ALL = 0b11111;
 /**
