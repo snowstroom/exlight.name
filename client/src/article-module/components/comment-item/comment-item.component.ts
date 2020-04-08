@@ -14,7 +14,6 @@ export class CommentaryItemComponent {
   @Output() public delete = new EventEmitter();
   @Output() public edit = new EventEmitter();
   @Output() public like = new EventEmitter();
-  @Output() public dislike = new EventEmitter();
 
   public answerToComment(): void {
     this.answer.emit();
@@ -30,9 +29,5 @@ export class CommentaryItemComponent {
 
   public likeComment(): void {
     this.like.emit();
-  }
-
-  public dislikeComment(): void {
-    this.dislike.emit();
   }
 }

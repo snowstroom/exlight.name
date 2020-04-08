@@ -32,11 +32,12 @@
         [waitComments]="commentsWait"
         [comments]="comments"
         [total]="commentsTotalCount"
-        (delete)="deleteComment($event)"
-        (update)="updateComment($event)"
         (new)="saveNewComment($event)"
+        (update)="updateComment($event)"
+        (delete)="deleteComment($event)"
         (answer)="saveNewComment($event)"
         (more)="getMoreComments()"
+        (like)="likeCommentary($event)"
       >
       </ex-comment-tree>
     </div>

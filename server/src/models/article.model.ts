@@ -5,7 +5,6 @@ import {
   ManyToMany,
   JoinTable,
   PrimaryGeneratedColumn,
-  OneToOne,
   ManyToOne,
 } from 'typeorm';
 import { Category } from './category.model';

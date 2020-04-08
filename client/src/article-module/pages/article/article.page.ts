@@ -1,17 +1,17 @@
+import { UserApi } from '@account-module/models/api/user';
+import { ProfileService } from '@account-module/services/profile.service';
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ArticleService } from '@article-module/services/article.service';
-import { Article } from '@article-module/models/article';
 import { ApplicationService } from '@app/services/app.service';
+import { Article } from '@article-module/models/article';
+import { Commentary } from '@article-module/models/commentary';
+import { ArticleService } from '@article-module/services/article.service';
+import { CommentService } from '@article-module/services/comment.service';
+import { RatingService } from '@article-module/services/rating.service';
+import { PaginationParams } from '@core/classes';
+import { ArticleNamespace } from '@share/*';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Commentary } from '@article-module/models/commentary';
-import { CommentService } from '@article-module/services/comment.service';
-import { PaginationParams } from '@core/classes';
-import { RatingService } from '@article-module/services/rating.service';
-import { ArticleNamespace } from '@share/*';
-import { ProfileService } from '@account-module/services/profile.service';
-import { UserApi } from '@account-module/models/api/user';
 
 @Component({
   templateUrl: './article.page.html',
@@ -42,13 +42,15 @@ export class ArticlePage implements OnDestroy {
       .subscribe(async (params: { article: string }) =>
         this.getArticleByRoute(params.article),
       );
-    this.appSrv.$scroll.pipe(takeUntil(this.unsubscribe)).subscribe(scroll => {
-      this.toggleShare(scroll);
-      this.toggleProgress(scroll);
-    });
+    this.appSrv.$scroll
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((scroll) => {
+        this.toggleShare(scroll);
+        this.toggleProgress(scroll);
+      });
     this.profileSrv.$user
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(user => (this.userProfile = user));
+      .subscribe((user) => (this.userProfile = user));
   }
 
   public ngOnDestroy(): void {
@@ -102,6 +104,19 @@ export class ArticlePage implements OnDestroy {
     );
     this.comments.concat(content);
     this.commentsTotalCount = count;
+  }
+
+  public async likeCommentary(commentary: Commentary): Promise<void> {
+    try {
+      const answer = await this.artCommentSrv.likeCommentary(commentary.id);
+      if (answer.msg === 'liked') {
+        commentary.likeCount++;
+      } else {
+        commentary.likeCount--;
+      }
+    } catch (error) {
+      console.warn(error);
+    }
   }
 
   private async getArticleByRoute(route: string): Promise<void> {

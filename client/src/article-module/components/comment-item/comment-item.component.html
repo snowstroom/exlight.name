@@ -59,18 +59,9 @@
           [disabled]="comment.updating"
           (click)="likeComment()"
         >
-          <span class="like-count">12</span>&nbsp;
+          <span class="like-count">{{ comment.likeCount }}</span
+          >&nbsp;
           <i class="la la-heart"></i>
-        </button>
-        <button
-          title="Мне не нравится"
-          class="comment-action like"
-          [ngClass]="{ active: false }"
-          [disabled]="comment.updating"
-          (click)="likeComment()"
-        >
-          <span class="like-count">12</span>&nbsp;
-          <i class="la la-thumbs-down"></i>
         </button>
       </div>
     </div>

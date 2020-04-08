@@ -53,7 +53,7 @@ export class CommentService extends Api {
         ApiNamespace.IPaginationContent<ArticleNamespace.IArticleCommentary>
       >(`commentary/list/article/${articleId}${params}`);
       return {
-        content: content.map(c => new Commentary(c)),
+        content: content.map((c) => new Commentary(c)),
         count,
       };
     } catch (error) {
@@ -61,6 +61,16 @@ export class CommentService extends Api {
         content: [],
         count: 0,
       };
+    }
+  }
+
+  public async likeCommentary(
+    id: number,
+  ): Promise<{ msg: 'liked' | 'removed' }> {
+    try {
+      return this.put(`commentary/${id}/like`);
+    } catch (error) {
+      throw error;
     }
   }
 }

@@ -12,7 +12,7 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { TreeRepository } from 'typeorm';
+import { TreeRepository, Repository } from 'typeorm';
 import { Commentary } from 'server/src/models/commentary.model';
 import {
   META_ACCESS_KEY,
@@ -23,6 +23,7 @@ import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace, ArticleNamespace, ApiNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Request } from 'express-serve-static-core';
+import { CommentaryLike } from 'server/src/models/commentary-like.model';
 
 @Controller({ path: 'api/commentary' })
 @UseGuards(AuthGuardService)
@@ -30,6 +31,8 @@ export class CommentaryController {
   constructor(
     @InjectRepository(Commentary)
     private commentaryRep: TreeRepository<Commentary>,
+    @InjectRepository(CommentaryLike)
+    private commentaryLikeRep: Repository<CommentaryLike>,
   ) {}
 
   @Post('/item/article/:articleId')
@@ -126,6 +129,10 @@ export class CommentaryController {
               'article_comments.parentComment',
               'parentComment',
             )
+            .loadRelationCountAndMap(
+              'article_comments.likeCount',
+              'article_comments.commentaryLikes',
+            )
             .getMany(),
         ),
       );
@@ -151,6 +158,35 @@ export class CommentaryController {
         content: roots,
         count,
       };
+    } catch (err) {
+      throw new HttpException(
+        { error: err.toString() },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Put('/:id/like')
+  @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
+  @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.commentary)
+  public async likeCommentary(
+    @Param() params: { id: number },
+    @Req() req: Request,
+  ): Promise<{ msg: 'liked' | 'removed' }> {
+    try {
+      const commentaryLike = await this.commentaryLikeRep.findOne({
+        where: { authorId: req.authInfo.id, commentaryId: params.id },
+      });
+      if (commentaryLike) {
+        await this.commentaryLikeRep.delete(commentaryLike.id);
+        return { msg: 'removed' };
+      } else {
+        await this.commentaryLikeRep.insert({
+          authorId: req.authInfo.id,
+          commentaryId: params.id,
+        });
+        return { msg: 'liked' };
+      }
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }

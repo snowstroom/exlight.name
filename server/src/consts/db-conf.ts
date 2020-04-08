@@ -1,12 +1,14 @@
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Access } from 'server/src/models/access.model';
+
+import { Article } from '../models/article.model';
 import { Category } from '../models/category.model';
-import { Rating } from '../models/rating.model';
+import { CommentaryLike } from '../models/commentary-like.model';
 import { Commentary } from '../models/commentary.model';
+import { Rating } from '../models/rating.model';
 import { Role } from '../models/role.model';
 import { Tag } from '../models/tag.model';
 import { User } from '../models/user.model';
-import { Article } from '../models/article.model';
-import { Access } from 'server/src/models/access.model';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const ENTITIES = [
   Article,
@@ -17,6 +19,7 @@ export const ENTITIES = [
   Tag,
   User,
   Access,
+  CommentaryLike,
 ];
 
 export const DB_CONFIG: TypeOrmModuleOptions = {

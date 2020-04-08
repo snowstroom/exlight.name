@@ -1,5 +1,6 @@
 import { CoreNamespace } from './core.namespace';
 import { ApiNamespace } from './api.namespace';
+
 export namespace ArticleNamespace {
   export interface IArticle {
     id?: number;
@@ -23,6 +24,7 @@ export namespace ArticleNamespace {
 
   export interface IArticleCommentary extends CoreNamespace.ICommentary {
     articleId?: number;
+    likeCount: number;
   }
 
   export interface IRating {
@@ -63,5 +65,11 @@ export namespace ArticleNamespace {
   export interface ITag {
     id?: number;
     name: string;
+  }
+
+  export interface IArticleCommentaryLike {
+    id?: number;
+    authorId: number;
+    commentaryId: number;
   }
 }

@@ -2,17 +2,20 @@ import { ArticleNamespace } from '@share/*';
 import { CoreNamespace } from '@share/core.namespace';
 import { UserApi } from '@account-module/models/api/user';
 
-export class Commentary extends CoreNamespace.AbstractCommentary {
+export class Commentary extends CoreNamespace.AbstractCommentary
+  implements ArticleNamespace.IArticleCommentary {
   public articleId = 0;
   public comments: Commentary[] = [];
   public user: UserApi;
   public parentComment: Commentary | null;
 
+  public likeCount: number;
+
   public updating = false;
   public editable = false;
 
   get haveEditAnswer(): boolean {
-    return this.comments.findIndex(c => !c.id) > -1;
+    return this.comments.findIndex((c) => !c.id) > -1;
   }
 
   constructor(__data?: Partial<ArticleNamespace.IArticleCommentary>) {
@@ -21,6 +24,7 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
       this.__data = __data;
       this.articleId = __data.articleId;
       this.user = new UserApi(__data.user);
+      this.likeCount = __data.likeCount;
       if (__data.parentComment && __data.parentComment instanceof Commentary) {
         this.parentComment = __data.parentComment;
       } else if (__data.parentComment) {
@@ -30,7 +34,7 @@ export class Commentary extends CoreNamespace.AbstractCommentary {
       }
       this.comments = __data.comments
         ? __data.comments.map(
-            c => new Commentary({ ...c, parentComment: this }),
+            (c) => new Commentary({ ...c, parentComment: this }),
           )
         : [];
     }

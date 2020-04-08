@@ -8,10 +8,12 @@ import {
   Tree,
   TreeChildren,
   TreeParent,
+  OneToMany,
 } from 'typeorm';
 import { User } from './user.model';
 import { ArticleNamespace } from 'share';
 import { Article } from './article.model';
+import { CommentaryLike } from './commentary-like.model';
 
 export const ARTICLE_COMMENTS_ENTITY = 'article_comments';
 
@@ -36,4 +38,12 @@ export class Commentary implements ArticleNamespace.IArticleCommentary {
 
   @ManyToOne(type => Article, article => article.comments)
   public article: Article;
+
+  @OneToMany(
+    type => CommentaryLike,
+    commentaryLike => commentaryLike.commentary,
+  )
+  public commentaryLikes: CommentaryLike[];
+
+  public likeCount: number;
 }
