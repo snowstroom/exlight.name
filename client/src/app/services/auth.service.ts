@@ -35,6 +35,10 @@ export class AuthService extends Api {
     return this.authData$.asObservable();
   }
 
+  get isExpired(): boolean {
+    return this.authData.exp - Date.now() <= 0;
+  }
+
   public async auth(email: string, password: string): Promise<boolean> {
     try {
       const token: IAuth = await this.post('auth', { email, password });
@@ -50,14 +54,24 @@ export class AuthService extends Api {
   public parseToken(token: string): void {
     const p2: string = token.split('.')[1];
     const tokenData = atob(p2);
-    this.authData = JSON.parse(tokenData);
-    this.authData$.next(this.authData);
+    try {
+      this.authData = JSON.parse(tokenData);
+    } catch (error) {
+      this.authData = null;
+    } finally {
+      this.authData$.next(this.authData);
+    }
   }
 
   private init(): void {
     const token: string = this.storageSrv.getSessionItem(TOKEN_KEY);
     if (token) {
       this.parseToken(token);
+      if (this.isExpired) {
+        this.storageSrv.removeSessionItem(TOKEN_KEY);
+        this.authData = null;
+        this.authData$.next(this.authData);
+      }
     }
   }
 }
