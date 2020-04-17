@@ -1,0 +1,29 @@
+<div
+  class="drop-zone"
+  (dragover)="markSpaceAsActive($event)"
+  (dragleave)="markSpaceAsInactive($event)"
+  (drop)="dropFile($event)"
+  [ngClass]="{active: isActive}"
+  dropzone="copy"
+>
+  <label for="uploader">
+    <img
+      src="assets/no-photo.png"
+      class="uploader"
+      alt="Пользовательское фото"
+    />
+
+    <input
+      type="file"
+      multiple
+      id="uploader"
+      name="uploader"
+      accept="image/jpeg,image/png"
+      (change)="changeFiles($event)"
+    />
+    <div class="uploader-overlay">Отпустите файл здесь</div>
+    <div class="hover-overlay">
+      Нажмите что бы выбрать фото или перетащите файл
+    </div>
+  </label>
+</div>

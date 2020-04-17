@@ -9,6 +9,7 @@ import { SpinnerComponent } from './components/spinners/text-spinner/spinner.com
 import { RatingComponent } from './components/rating/rating.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RouterModule } from '@angular/router';
+import { PhotoUploaderComponent } from './components/photo-uploader/photo-uploader.component';
 
 @NgModule({
   imports: [CommonModule, BrowserModule, RouterModule],
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     SpinnerComponent,
     RatingComponent,
     PaginationComponent,
+    PhotoUploaderComponent,
   ],
   exports: [
     ExlInputComponent,
@@ -29,6 +31,7 @@ import { RouterModule } from '@angular/router';
     SpinnerComponent,
     RatingComponent,
     PaginationComponent,
+    PhotoUploaderComponent,
   ],
 })
 export class ExlightCoreModule {}

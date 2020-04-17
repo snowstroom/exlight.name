@@ -2,7 +2,11 @@
   [menuItems]="MENU_ITEMS"
   sectionName="Управление аккаунтом"
 >
-  <img src="assets/no-photo.png" class="avatar" alt="Пользовательское фото" />
+  <ex-photo-uploader
+    [extensions]="['jpeg', 'jpg', 'png']"
+    (upload)="uploadFile($event)"
+    (error)="fileUploadError($event)"
+  ></ex-photo-uploader>
   <form [formGroup]="form">
     <label for="firstname">Имя</label>
     <ex-input>

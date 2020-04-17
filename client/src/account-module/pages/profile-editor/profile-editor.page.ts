@@ -22,7 +22,7 @@ export class ProfileEditorPage implements OnDestroy {
   constructor(private profileSrv: ProfileService) {
     this.profileSrv.$user
       .pipe(takeUntil(this.subscriber))
-      .subscribe(user => this.init(user));
+      .subscribe((user) => this.init(user));
   }
 
   get firstname(): FormControl {
@@ -46,6 +46,14 @@ export class ProfileEditorPage implements OnDestroy {
     this.subscriber.next(null);
     this.subscriber.complete();
     this.subscriber.unsubscribe();
+  }
+
+  public uploadFile(file: File): void {
+    console.warn(file);
+  }
+
+  public fileUploadError(error: string): void {
+    console.warn(error);
   }
 
   private init(user: UserApi): void {

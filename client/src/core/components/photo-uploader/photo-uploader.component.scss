@@ -1,0 +1,61 @@
+@import 'src/styles/variables';
+
+.drop-zone {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  &:hover {
+    .hover-overlay {
+      opacity: 1;
+      transition: 0.5s opacity;
+    }
+  }
+  &.active {
+    .uploader-overlay {
+      opacity: 1;
+      transition: 0.5s opacity;
+    }
+  }
+  .uploader {
+    width: 100%;
+    height: 100%;
+  }
+  input[name='uploader'] {
+    display: none;
+  }
+  .uploader-overlay {
+    box-sizing: border-box;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: #10101499;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.5s opacity;
+  }
+  .hover-overlay {
+    box-sizing: border-box;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: #10101499;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.5s opacity;
+    cursor: pointer;
+  }
+}
