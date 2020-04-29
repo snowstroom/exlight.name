@@ -48,8 +48,8 @@ export class ProfileEditorPage implements OnDestroy {
     this.subscriber.unsubscribe();
   }
 
-  public uploadFile(file: File): void {
-    console.warn(file);
+  public async uploadFile(file: File): Promise<void> {
+    await this.profileSrv.uploadPhoto(file);
   }
 
   public fileUploadError(error: string): void {

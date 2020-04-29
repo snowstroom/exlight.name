@@ -5,6 +5,7 @@ import { UserApi } from '@account-module/models/api/user';
 import { UserNamespace, ApiNamespace as API } from '@share/';
 import { AuthService, ITokenData } from '@app/services/auth.service';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -58,9 +59,19 @@ export class ProfileService extends Api {
       const userList = await this.get<
         API.IPaginationContent<UserNamespace.IUser>
       >(`user/list${params}${roleParams}`);
-      return userList.content.map(u => new UserApi(u));
+      return userList.content.map((u) => new UserApi(u));
     } catch (error) {
       return [];
+    }
+  }
+
+  public async uploadPhoto(photo: File): Promise<void> {
+    const form = new FormData();
+    form.append('file', photo, photo.name);
+    try {
+      await this.post('user/photo/upload', form);
+    } catch (error) {
+      throw error;
     }
   }
 
