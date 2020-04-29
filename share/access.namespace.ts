@@ -14,6 +14,7 @@ export namespace AccessNamespace {
     role = 'role',
     tag = 'tag',
     user = 'user',
+    files = 'files',
   }
 
   export interface IAccess {

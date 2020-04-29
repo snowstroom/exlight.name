@@ -9,6 +9,9 @@ import {
   SetMetadata,
   UseGuards,
   Query,
+  Post,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../../models/user.model';
@@ -21,13 +24,21 @@ import { AuthGuardService } from 'server/src/guards/auth.guard';
 import { AccessNamespace, UserNamespace, ApiNamespace } from 'share';
 import { InjectRepository } from '@nestjs/typeorm';
 import { E_SERVER_MODE } from 'server/src/consts/enums';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FileService } from 'server/src/services/file.service';
+import { IMulterFile } from 'server/src/interfaces';
+import { CryptoService } from 'server/src/services/crypto.service';
 
 const { MODE } = process.env;
 
 @Controller({ path: 'api/user' })
 @UseGuards(AuthGuardService)
 export class UserController {
-  constructor(@InjectRepository(User) private userRep: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private userRep: Repository<User>,
+    private fileSrv: FileService,
+    private cryptoSrv: CryptoService,
+  ) {}
 
   @Get('/list')
   @SetMetadata(META_ACCESS_KEY, AccessNamespace.READ)
@@ -82,5 +93,17 @@ export class UserController {
     } catch (err) {
       throw new HttpException({ error: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  @Post('/photo/upload')
+  @SetMetadata(META_ACCESS_KEY, AccessNamespace.UPDATE)
+  @SetMetadata(META_ENTITY_KEY, AccessNamespace.E_ENTITY_TYPES.user)
+  @UseInterceptors(FileInterceptor('file'))
+  public async uploadPhoto(
+    @UploadedFile()
+    file: IMulterFile,
+  ) {
+    const fileName = this.cryptoSrv.md5hash(file.buffer.toString());
+    this.fileSrv.writeFile(`./${file.originalname}`, file.buffer);
   }
 }

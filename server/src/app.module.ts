@@ -28,6 +28,7 @@ import { AccessController } from './controllers/access/access.controller';
 import { RoleController } from './controllers/role/role.controller';
 import { ArticleController } from './controllers/article/article.controller';
 import { CommentaryController } from './controllers/commentary/commentary.controller';
+import { FileStoreService } from './services/file-store.service';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { CommentaryController } from './controllers/commentary/commentary.contro
     AuthGuardService,
     RolesAccessService,
     CryptoService,
+    FileStoreService,
   ],
 })
 export class AppModule implements NestModule {
